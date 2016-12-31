@@ -1,0 +1,204 @@
+new_window          pixel 1
+# hide_edge_borders   both
+default_orientation horizontal
+focus_follows_mouse no
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #bcbcbc #bcbcbc #ffffff #2e9ef4 #bcbcbc
+client.focused_inactive #333333 #333333 #ffffff #484e50 #333333
+client.unfocused        #3a3a3a #3a3a3a #888888 #292d2e #3a3a3a
+client.urgent           #a78bc3 #a78bc3 #2d2d2d #3a3a3a #aa2222
+client.placeholder      #000000 #000000 #ffffff #000000 #000000
+client.background       #ffffff
+
+# Available letters: zaygcv SZTYFGMWXV
+set $mod Mod4
+set $mod2 Mod1
+
+font pango:Cousine 9
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return "exec x-terminal-emulator -e nvim term://zsh &"
+
+# kill focused window
+bindsym $mod+Shift+A kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d "exec dmenu_run -p  \"$(date +%H:%M) $(acpi | grep -o '[0-9]*%' | tr '\n' ' ')\" -i &"
+# start dopen (file browser based on dmenu)
+bindsym $mod+Shift+d exec /home/me/bin/dopen
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (tabbed, toggle split)
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+
+# split vertical
+bindsym $mod+e split v
+# split horizontal
+bindsym $mod+Shift+e split h
+
+# send to scratchpad
+bindsym $mod+x move scratchpad
+# show scratchpad
+bindsym $mod+w scratchpad show
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container using ;
+bindcode $mod+59 focus parent
+
+# focus the child container using ,
+bindcode $mod+58 focus child
+
+# define workspaces
+set $wp1 1
+set $wp2 2
+set $wp3 3
+set $wp4 4
+set $wp5 5
+set $wp6 6
+set $wp7 7
+set $wp8 8
+set $wp9 9
+set $wp10 10
+
+# switch to workspace
+bindsym $mod+ampersand  workspace $wp1
+bindsym $mod+eacute     workspace $wp2
+bindsym $mod+quotedbl   workspace $wp3
+bindsym $mod+apostrophe workspace $wp4
+bindsym $mod+parenleft  workspace $wp5
+bindsym $mod+minus      workspace $wp6
+bindsym $mod+egrave     workspace $wp7
+bindsym $mod+underscore workspace $wp8
+bindsym $mod+ccedilla   workspace $wp9
+bindsym $mod+agrave     workspace $wp10
+
+# move focused container to workspace
+bindsym $mod+Shift+1        move container to workspace $wp1
+bindsym $mod+Shift+eacute   move container to workspace $wp2
+bindsym $mod+Shift+3        move container to workspace $wp3
+bindsym $mod+Shift+4        move container to workspace $wp4
+bindsym $mod+Shift+5        move container to workspace $wp5
+bindsym $mod+Shift+6        move container to workspace $wp6
+bindsym $mod+Shift+egrave   move container to workspace $wp7
+bindsym $mod+Shift+8        move container to workspace $wp8
+bindsym $mod+Shift+ccedilla move container to workspace $wp9
+bindsym $mod+Shift+agrave   move container to workspace $wp10
+
+# move workspaces around
+bindsym $mod+$mod2+h move workspace to output right
+bindsym $mod+$mod2+j move workspace to output bottom
+bindsym $mod+$mod2+k move workspace to output top
+bindsym $mod+$mod2+l move workspace to output left
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Lock the computer
+bindsym $mod+q       exec i3lock --dpms --inactivity-timeout=10 --ignore-empty-password --show-failed-attempts --color=2d2d2d
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+q "exec \"i3-nagbar -t warning -m '' -b '                                  Exit i3                                  ' 'i3-msg exit'\""
+
+# Next song with $mod+n, previous song with $mod+N
+set     $mediaprev    "exec mpc next &"
+set     $medianext    "exec mpc prev &"
+bindsym XF86AudioPrev $mediaprev
+bindsym XF86AudioNext $medianext
+bindsym $mod+n        $mediaprev
+bindsym $mod+Shift+n  $medianext
+
+# Play/pause with $mod+p
+set     $mediatoggle  "exec mpc toggle &"
+bindsym $mod+p        $mediatoggle
+bindsym XF86AudioPlay $mediatoggle
+# Select specific song to play with $mod+P
+bindsym $mod+Shift+p exec /home/me/bin/dmusic
+
+# Toggle random/non random music playing with $mod+o
+bindsym $mod+o exec mpc random
+# Switch audio output with $mod+O
+bindsym $mod+Shift+o exec /home/me/bin/saoutput
+
+# Lower volume with $mod+i, increase with $mod+I
+set     $volup               "exec /home/me/bin/vup"
+set     $voldown             "exec /home/me/bin/vdown"
+bindsym $mod+i               $voldown
+bindsym $mod+Shift+i         $volup
+bindsym XF86AudioLowerVolume $voldown
+bindsym XF86AudioRaiseVolume $volup
+
+# Mute volume with $mod+m
+set     $volmute      "exec /home/me/bin/vmute"
+bindsym $mod+m        $volmute
+bindsym XF86AudioMute $volmute
+
+# Decrease brightness with $mod+u, increase with $mod+U
+set     $brightdown           "exec sudo -A /home/me/bin/bdown"
+set     $brightup             "exec sudo -A /home/me/bin/bup"
+bindsym $mod+u                $brightdown
+bindsym $mod+Shift+u          $brightup
+bindsym XF86MonBrightnessDown $brightdown
+bindsym XF86MonBrightnessUp   $brightup
+
+# Open browser with $mod+b
+bindsym $mod+b exec x-www-browser
+# Open m with $mod+B
+bindsym $mod+Shift+b exec term -e mutt
+
+# Take a screenshot with the PrintScreen key
+bindsym --release Print "exec scrot -s '/home/me/pictures/screenshot_%Y-%m-%d-%T.png'"
+
+# create resize mode, lets you resize with hjkl
+set $resize_mode "resize"
+mode $resize_mode {
+        bindsym u resize shrink width  20 px or 20 ppt
+        bindsym i resize grow   height 20 px or 20 ppt
+        bindsym o resize shrink height 20 px or 20 ppt
+        bindsym p resize grow   width  20 px or 20 ppt
+
+        bindsym h resize shrink width  10 px or 10 ppt
+        bindsym j resize grow   height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow   width  10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode $resize_mode
+
+for_window [class="feh"]                    floating enable
+for_window [class="mpv"]                    floating enable
+for_window [class="arandr"]                 floating enable
+for_window [class="Arandr"]                 floating enable
+for_window [class="Screenkey"]              floating enable
+for_window [class="VirtualBox"]             floating enable
+for_window [class="Lxappearance"]           floating enable
+for_window [class="Floating Xterm"]         floating enable
+for_window [title="Terminator Preferences"] floating enable
+
+exec --no-startup-id /home/me/.config/i3/i3-startup

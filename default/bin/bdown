@@ -1,0 +1,9 @@
+#!/bin/sh
+# This script lowers the screen's brightness. It needs root to be executed.
+
+brightness=$((`cat /sys/class/backlight/intel_backlight/brightness`-50))
+
+if [ $brightness -gt 0 ]
+then
+	 echo $brightness > /sys/class/backlight/intel_backlight/brightness
+fi

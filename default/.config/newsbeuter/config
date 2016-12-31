@@ -1,0 +1,54 @@
+unbind-key j
+bind-key j down
+unbind-key k
+bind-key k up
+unbind-key D
+bind-key d delete-article
+unbind-key g
+bind-key g home
+unbind-key G
+bind-key G end
+unbind-key s
+bind-key s sort
+unbind-key S
+bind-key S rev-sort
+
+always-display-description false
+article-sort-order date desc
+auto-reload yes
+browser "(x-www-browser %u >/dev/null 2>&1) &"
+# browser "elinks -remote %u"
+confirm-exit no
+datetime-format "%F, %T"
+delete-read-articles-on-quit no
+download-full-page yes
+feedlist-format "%4i %n %11u %t"
+goto-first-unread yes
+goto-next-feed yes
+history-limit 0
+mark-as-read-on-hover yes
+max-download-speed 0
+max-items 0
+notify-format "newsbeuter: finished reload, %f unread feeds (%n unread articles total)"
+notify-program "notify-send"
+notify-always no
+notify-screen no
+notify-xterm yes
+notify-beep no
+refresh-on-startup yes
+reload-only-visible-feeds no
+reload-time 60
+reload-threads 4
+show-keymap-hint yes
+show-read-feeds yes
+show-read-articles yes
+suppress-first-reload no
+swap-title-and-hints yes
+
+color background        default     default
+color listnormal        default     default
+color listfocus    	    color16     color145
+color listnormal_unread color111    default
+color listfocus_unread  color16     color145
+color info              color250    color237
+color article           default     default

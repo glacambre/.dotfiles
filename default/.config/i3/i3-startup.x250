@@ -1,0 +1,3 @@
+#!/bin/sh
+
+i3-msg "workspace 2; exec x-terminal-emulator -e term://zsh"

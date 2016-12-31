@@ -1,0 +1,8 @@
+textobj#path#select_aP()	vim-textobj-path.txt	/*textobj#path#select_aP()*
+textobj#path#select_ap()	vim-textobj-path.txt	/*textobj#path#select_ap()*
+textobj#path#select_iP()	vim-textobj-path.txt	/*textobj#path#select_iP()*
+textobj#path#select_ip()	vim-textobj-path.txt	/*textobj#path#select_ip()*
+vim-textobj-path	vim-textobj-path.txt	/*vim-textobj-path*
+vim-textobj-path-contents	vim-textobj-path.txt	/*vim-textobj-path-contents*
+vim-textobj-path-functions	vim-textobj-path.txt	/*vim-textobj-path-functions*
+vim-textobj-path.txt	vim-textobj-path.txt	/*vim-textobj-path.txt*

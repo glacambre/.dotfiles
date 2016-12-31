@@ -1,0 +1,17 @@
+#!/bin/sh
+# Choose whether to open urls with mpv or firefox.
+
+if [ "$#" -eq "0" ] ; then
+    /usr/bin/firefox 2>/dev/null 1>&2 &
+    exit
+fi
+
+for URL in $@; do
+    case "$URL" in
+        *youtube.com*|*youtu.be*|*.webm|*.mkv|*.mp4)
+            mpv --no-terminal "$URL" &
+            ;;
+        *)
+            /usr/bin/firefox "$URL" 2>/dev/null 1>&2 &
+    esac
+done

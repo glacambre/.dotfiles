@@ -1,0 +1,9 @@
+#!/bin/sh
+# Mute the alsa master chanel.
+
+if [ `amixer sget Master,0 | grep -c "Mono:.*\[on\]"` -eq 1 ]
+then
+	amixer sset Master,0 mute
+else
+	amixer sset Master,0 unmute
+fi

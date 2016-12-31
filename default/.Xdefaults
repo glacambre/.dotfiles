@@ -1,0 +1,144 @@
+/* #include "/etc/X11/app-defaults/XTerm-color" */
+
+!BLK Cursor
+#define _color0        #101010
+#define _color8        #101010
+!RED Tag
+#define _color1        #af0000
+#define _color9        #af0000
+!GRN SpecialKey
+#define _color2        #5faf00
+#define _color10       #5faf00
+!YEL Keyword
+#define _color3        #afaf00
+#define _color11       #afaf00
+!BLU Number
+#define _color4        #5fafff
+#define _color12       #5fafff
+!MAG Precondit
+#define _color5        #af5fef
+#define _color13       #af5fef
+!CYN Float
+#define _color6        #87d7ff
+#define _color14       #87d7ff
+!WHT Search
+#define _color7        #dedede
+#define _color15       #dedede
+!FMT Include, StatusLine, ErrorMsg
+#define _colorBD       #ffcfaf
+#define _colorUL       #ccdc90
+#define _colorIT       #80d4aa
+!TXT Normal, Normal, Cursor
+#define _foreground    #bcbcbc
+#define _background    #262626
+#define _cursorColor   #bcbcbc
+!Font attributes
+#define _font_name     Cousine
+#define _font_size     10
+
+xft*antialias          : true
+
+*xterm*termName        : xterm-256color
+*xterm*faceName        : _font_name
+*xterm*faceSize        : _font_size
+*xterm*altIsNotMeta    : true
+*xterm*metaSendsEscape : true
+*xTerm*color0          : _color0
+*xTerm*color1          : _color1
+*xTerm*color2          : _color2
+*xTerm*color3          : _color3
+*xTerm*color4          : _color4
+*xTerm*color5          : _color5
+*xTerm*color6          : _color6
+*xTerm*color7          : _color7
+*xTerm*color8          : _color8
+*xTerm*color9          : _color9
+*xTerm*color10         : _color10
+*xTerm*color11         : _color11
+*xTerm*color12         : _color12
+*xTerm*color13         : _color13
+*xTerm*color14         : _color14
+*xTerm*color15         : _color15
+*xTerm*foreground      : _foreground
+*xTerm*background      : _background
+*xTerm*cursorColor     : _cursorColor
+
+*URxvt*font            : xft:_font_name:size=_font_size
+*URxvt*boldFont        : xft:_font_name:size=_font_size:style=Bold
+*URxvt*letterSpace     : -3
+*URxvt*scrollBar       : false
+*URxvt*termName        : rxvt-unicode-256color
+*URxvt*color0          : _color0
+*URxvt*color1          : _color1
+*URxvt*color2          : _color2
+*URxvt*color3          : _color3
+*URxvt*color4          : _color4
+*URxvt*color5          : _color5
+*URxvt*color6          : _color6
+*URxvt*color7          : _color7
+*URxvt*color8          : _color8
+*URxvt*color9          : _color9
+*URxvt*color10         : _color10
+*URxvt*color11         : _color11
+*URxvt*color12         : _color12
+*URxvt*color13         : _color13
+*URxvt*color14         : _color14
+*URxvt*color15         : _color15
+*URxvt*foreground      : _foreground
+*URxvt*background      : _background
+*URxvt*cursorColor     : _cursorColor
+
+*VT100*colorMode       : on
+*VT100*boldColors      : on
+*VT100*dynamicColors   : on
+*VT100*color0          : _color0
+*VT100*color1          : _color1
+*VT100*color2          : _color2
+*VT100*color3          : _color3
+*VT100*color4          : _color4
+*VT100*color5          : _color5
+*VT100*color6          : _color6
+*VT100*color7          : _color7
+*VT100*color8          : _color8
+*VT100*color9          : _color9
+*VT100*color10         : _color10
+*VT100*color11         : _color11
+*VT100*color12         : _color12
+*VT100*color13         : _color13
+*VT100*color14         : _color14
+*VT100*color15         : _color15
+*VT100*foreground      : _foreground
+*VT100*background      : _background
+*VT100*cursorColor     : _cursorColor
+
+#if PLANES > 8
+*SimpleMenu*background       : _background
+*SimpleMenu*foreground       : _foreground
+
+*Form.menubar.background     : _background
+*Form.menubar*background     : _background
+*Form.menubar.foreground     : _foreground
+*Form.menubar*foreground     : _foreground
+*Form.background             : _background
+
+*mainMenu*background         : _background
+*mainMenu*foreground         : _foreground
+*vtMenu*background           : _background
+*vtMenu*foreground           : _foreground
+*fontMenu*background         : _background
+*fontMenu*foreground         : _foreground
+*tekMenu*background          : _background
+*tekMenu*foreground          : _foreground
+
+*VT100.scrollbar.thumb       : vlines2
+*VT100.scrollbar.width       : 0
+*VT100.scrollbar.background  : _background
+*VT100.scrollbar.foreground  : _foreground
+*VT100.scrollbar.borderWidth : 0
+*VT100.scrollbar.displayList :\
+foreground      gray90;\
+lines           1,-1,-1,-1,-1,1;\
+foreground      gray60;\
+lines           -1,0,0,0,0,-1
+#endif
+

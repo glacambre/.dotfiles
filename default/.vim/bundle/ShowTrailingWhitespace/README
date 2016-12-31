@@ -1,0 +1,45 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3966
+
+DESCRIPTION
+This plugin highlights whitespace at the end of each line (except when typing
+at the end of a line). It uses the matchadd()-function, therefore doesn't
+interfere with syntax highlighting and leaves the :match command for other
+uses.
+Highlighting can be switched on/off globally and for individual buffers. The
+plugin comes with exceptions for certain filetypes, where certain lines can /
+must include trailing whitespace; additional patterns can be configured.
+
+SEE ALSO
+Many plugins also come with a command to strip off the trailing whitespace;
+this plugin separates this into the companion DeleteTrailingWhitespace.vim
+plugin (vimscript #3967), which can even remove the trailing whitespace
+automatically on each write.
+
+To quickly locate the occurrences of trailing whitespace, you can use the
+companion JumpToTrailingWhitespace.vim plugin (vimscript #3968).
+
+RELATED WORKS
+There are already a number of plugins for this purpose, most based on this
+VimTip:
+    http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+However, most of them use the older :match command and are not as flexible.
+- smartmatcheol.vim (vimscript #2635) highlights based on file extension or
+  name.
+- trailing-whitespace (vimscript #3201) uses :match.
+- bad-whitespace (vimscript #3735) uses :match, allows on/off/toggling via
+  commands.
+- Trailer Trash (vimscript #3938) uses :match.
+- DynamicSigns (vimscript #3965) can show whitespace errors (also mixed
+  indent) in the sign column.
+- better-whitespace (vimscript #4859) can use either :match or :syntax (with
+  the option of excluding the current line), and has a :StripWhitespace
+  command, also automatic triggering for some filetypes.
+
+USAGE
+By default, trailing whitespace is highlighted in all Vim buffers. Some users
+may want to selectively enable / disable this for certain filetypes, or files
+in a particular directory hierarchy, or toggle this on demand. Since it's
+difficult to accommodate all these demands with short and easy mappings and
+commands, this plugin does not define any of them, and leaves it to you to
+tailor the plugin to your needs. See ShowTrailingWhitespace-configuration
+below.

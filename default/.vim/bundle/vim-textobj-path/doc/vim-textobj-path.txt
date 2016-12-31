@@ -1,0 +1,20 @@
+*vim-textobj-path.txt*
+                                                            *vim-textobj-path*
+
+==============================================================================
+CONTENTS                                           *vim-textobj-path-contents*
+  1. Functions....................................|vim-textobj-path-functions|
+
+==============================================================================
+FUNCTIONS                                         *vim-textobj-path-functions*
+
+textobj#path#select_ip()                            *textobj#path#select_ip()*
+
+textobj#path#select_iP()                            *textobj#path#select_iP()*
+
+textobj#path#select_ap()                            *textobj#path#select_ap()*
+
+textobj#path#select_aP()                            *textobj#path#select_aP()*
+
+
+vim:tw=78:ts=8:ft=help:norl:

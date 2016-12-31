@@ -1,0 +1,64 @@
+# rtorrent conf
+# LEGAL torrents only ;)
+
+# Maximum and minimum number of peers to connect to per torrent.
+max_peers = 100
+
+# Mac number of peers to connect to in order to seed. -1 = same as max_peers
+max_peers_seed = -1
+
+# Maximum number of simultanious uploads per torrent.
+max_uploads = 15
+
+# Upload/download rate in KBps
+download_rate = 1100
+upload_rate = 85
+
+# Default directory to save the downloaded torrents.
+directory = /wd/torrents/
+session = /wd/rtorrent.session
+
+# Watch a directory for new torrents, and stop those that have been
+# deleted.
+schedule = watch_directory,5,5,load_start=/wd/torrents/films/*.torrent
+schedule = untied_directory,5,5,stop_untied=
+schedule = tied_directory,5,5,start_tied=
+
+system.method.insert=checkdirs1,simple,"not=\"$equal={d.get_custom1=,d.get_base_path=}\""
+system.method.insert=movecheck1,simple,"and={checkdirs1=,d.get_complete=,d.get_custom1=}"
+system.method.insert=movedir1,simple,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1=;d.set_custom1=;d.stop=;d.start="
+system.method.set_key=event.download.hash_done,move_hashed1,"branch={$movecheck1=,movedir1=}"
+
+# Sort torrents per ratio
+view.sort_current = main,greater=d.get_ratio=
+view.sort_new = main,less=d.get_ratio=
+view.sort = main
+
+# Seed to a ratio of at least 2 and then stop.
+ratio.enable =
+ratio.min.set = 200
+
+# Close torrents when diskspace is low.
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+
+# Port range to use for listening.
+port_range = 49153-49153
+port_random = no
+
+# Don't check hash for finished torrents. The raspberry pi doesn't
+# handle it well.
+check_hash = no
+
+use_udp_trackers = yes
+
+# Allow incoming encrypted connections, try encrypting outgoing
+# connections, if trying o start an encrypted connection fails
+# retry without encryption
+encryption = allow_incoming,try_outgoing,enable_retry
+
+# Enable DHT use.
+dht = on
+dht_port = 6881
+
+# Enable peer exchange (for torrents not marked private)
+peer_exchange = yes

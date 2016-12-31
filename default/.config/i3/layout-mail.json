@@ -1,0 +1,24 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 3,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 364,
+       "width": 564,
+       "x": 0,
+       "y": 0
+    },
+    "name": "nvim",
+    "percent": 1,
+    "swallows": [
+       {
+       // "class": "^URxvt$",
+       // "instance": "^x\\-terminal\\-emulator$",
+       // "title": "^nvim$",
+       // "transient_for": "^$"
+       }
+    ],
+    "type": "con"
+}
+

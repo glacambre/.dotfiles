@@ -1,0 +1,9 @@
+source ~/.vim/functions.vim
+source ~/.vim/settings.vim
+source ~/.vim/keymap.vim
+source ~/.vim/autocommands.vim
+
+set secure  " Disable dangerous settings, just in case
+set exrc    " Enable project-specific vimrc
+
+source ~/.vim/plugins.vim

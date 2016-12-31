@@ -1,0 +1,7 @@
+image/jpeg; feh %s
+image/png; feh %s
+image/gif; feh %s
+
+application/pdf; mupdf %s
+text/html; elinks %s; nametemplate=%s.html
+text/html; elinks -no-home 1 -dump -force-html %s; needsterminal; copiousoutput;

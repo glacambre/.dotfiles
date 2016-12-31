@@ -1,0 +1,7 @@
+#!/bin/sh
+# Turn the alsa master channel volume up.
+amixer -q sset Master 3%+
+
+if [ "$?" != 0 ] ; then
+    amixer -c 1 -q sset Master 3%+
+fi

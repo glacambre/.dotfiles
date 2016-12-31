@@ -1,0 +1,29 @@
+#!/bin/sh
+# A recursive dmenu file browser.
+
+myls() {
+    printf "..\n%s" "$(find "$1" -maxdepth 1 | tail -n +2 | sed "s@^$1/@@")"
+}
+
+myexpand() {
+    cd "$1" || exit; pwd
+}
+
+mycleanpath() {
+    echo "$1" | sed -e 's@^'"$HOME"'@~@'
+}
+
+filepath=$(myexpand ".")
+
+while [ -d "$filepath" ] ; do
+    res=$(myls "$filepath" | dmenu -p "$(mycleanpath "$filepath")")
+    filepath="$filepath/$res"
+    if [ -d "$filepath" ] ; then
+        filepath=$(myexpand "$filepath")
+        if [ -z "$res" ] ; then
+            exit
+        fi
+    fi
+done
+
+xdg-open "$filepath"
