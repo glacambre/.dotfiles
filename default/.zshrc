@@ -5,6 +5,7 @@ zmodload zsh/zpty     # Enables starting commands in pseudo terminals
 
 ##### PATH VARIABLES
 export PATH="$HOME/bin/:$PATH"
+export XDG_DATA_HOME="$HOME/.local/share/"
 
 ##### MISC VARIABLES
 export EDITOR="nvim"
