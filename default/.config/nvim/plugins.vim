@@ -42,6 +42,9 @@ call dein#begin(s:bundle_dir)
     call dein#add('https://github.com/Shougo/neco-vim',                        {'on_ft': ['vim']})
     call dein#add('https://github.com/zchee/deoplete-zsh',                     {'on_ft': ['sh', 'zsh']})
 
+    " Tags generation
+    call dein#add('https://github.com/ludovicchabant/vim-gutentags',           {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+
     " Snippets plugins
     call dein#add('https://github.com/Shougo/neosnippet.vim',                  {'on_path': '^\(.*term:\/\/\)\@!.*$'})
     call dein#add('https://github.com/Shougo/neosnippet-snippets',             {'on_path': '^\(.*term:\/\/\)\@!.*$'})
@@ -160,3 +163,13 @@ let g:deoplete#sources#clang#libclang_path="/usr/lib64/libclang.so"
 let g:deoplete#sources#clang#clang_header="/usr/lib64/clang/"
 let g:deoplete#sources#go#gocode_binary=$HOME . "/.go/bin/gocode"
 
+" Gutentags
+let s:xdg_data_home = $XDG_DATA_HOME
+if s:xdg_data_home == ""
+    let s:xdg_data_home = $HOME . "/.local/share"
+endif
+let s:tag_dir = s:xdg_data_home . "/nvim/tags"
+if !isdirectory(s:tag_dir)
+    call mkdir(s:tag_dir, "p")
+endif
+let g:gutentags_cache_dir = s:tag_dir

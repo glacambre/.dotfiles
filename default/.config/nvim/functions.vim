@@ -65,6 +65,9 @@ function! MyStatusLine ()
     endif
     let l:line .= '%y[%f]%m%r%='
     let l:line .= '%{MyNeomakeStatusItem()}'
+    if exists('*gutentags#statusline()')
+        let l:line .= '[%{gutentags#statusline()}]'
+    endif
     return l:line . '[%l,%c:%b][%P]'
 endfunction
 
@@ -237,4 +240,6 @@ endfunction
 function! LessInitFunc()
     set nocursorcolumn nocursorline
     set laststatus=0
+    set readonly
+    call ShowTrailingWhitespace#Set(0,1)
 endfunction
