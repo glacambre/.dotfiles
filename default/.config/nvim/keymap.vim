@@ -34,7 +34,7 @@ nnoremap S :w !sudo tee > /dev/null %<CR>
 " x closes the current buffer
 nnoremap x :silent call WipeButKeepOpen(0)<CR>
 " X closes the current buffer even if it was modified
-nnoremap X :close
+nnoremap X :close<CR>
 
 " R reloads the current buffer
 nnoremap R :e!<CR>
