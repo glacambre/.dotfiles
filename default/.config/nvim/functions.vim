@@ -115,19 +115,28 @@ function! CompileAndUpdate()
                 \ fi;)
 endfunction
 
-"This is used in order to find out whether vim should go into insert mode
-"when entering a terminal window. Can't use a bufleave event because the
-"window will always be in normal mode when it happens
+" Called when a new term is created
 function! OnTermOpen()
-    noremap <buffer> <A-h> :silent let b:should_insert=0<CR><C-w>h
-    noremap <buffer> <A-j> :silent let b:should_insert=0<CR><C-w>j
-    noremap <buffer> <A-k> :silent let b:should_insert=0<CR><C-w>k
-    noremap <buffer> <A-l> :silent let b:should_insert=0<CR><C-w>l
+    " Use a pretty name for the buffer
     execute("file " . substitute(expand("%"), "term://.//", "", ""))
+
+    " Splitting opens a new term
+    nnoremap <buffer> <C-w>s :split<CR>:term<CR>
+    nnoremap <buffer> <C-w>v :vsplit<CR>:term<CR>
+
+    " When leaving a term buffer, remember whether it was in insert or normal
+    " mode. When entering a terminal window/buffer, go in insert mode if the
+    " term was in insert mode.
     let b:should_insert = 1
-    au WinEnter <buffer> if exists("b:should_insert") && b:should_insert == 1 | startinsert | endif
-    au BufLeave <buffer> call feedkeys("\<C-\>\<C-n>")
+    au BufEnter <buffer> if b:should_insert == 1 | startinsert | endif
+    au WinEnter <buffer> if b:should_insert == 1 | startinsert | endif
+    nnoremap <buffer> a :let b:should_insert = 1<CR>a
+    nnoremap <buffer> i :let b:should_insert = 1<CR>i
     startinsert
+
+    " When opening a new term, go in insert mode
+    startinsert
+    let b:should_insert = 1
 endfunction
 
 "When closing a terminal, feed enter to close the buffer or leave nvim if it
@@ -221,19 +230,6 @@ endfunction
 function! SetNetrwMappings()
     nnoremap <buffer> x :silent call WipeButKeepOpen(0)<CR>
     nnoremap <buffer> X :silent call WipeButKeepOpen(1)<CR>
-endfunction
-
-" Tries to find out if a new term should be started in the new split
-function! OpenNewTermIfTermSplit(vertical)
-    let openterm = &buftype == "terminal" ? 1 : 0
-    if a:vertical
-        vs
-    else
-        sp
-    endif
-    if openterm
-        term
-    endif
 endfunction
 
 " Function called when running $VIMRUNTIME/macros/less.sh

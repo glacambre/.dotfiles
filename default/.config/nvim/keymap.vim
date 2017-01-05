@@ -59,10 +59,10 @@ inoremap <A-H> <Esc><C-w>H
 inoremap <A-J> <Esc><C-w>J
 inoremap <A-K> <Esc><C-w>K
 inoremap <A-L> <Esc><C-w>L
-tnoremap <A-h> <C-\><C-n>:silent let b:should_insert=1<CR><C-w>h
-tnoremap <A-j> <C-\><C-n>:silent let b:should_insert=1<CR><C-w>j
-tnoremap <A-k> <C-\><C-n>:silent let b:should_insert=1<CR><C-w>k
-tnoremap <A-l> <C-\><C-n>:silent let b:should_insert=1<CR><C-w>l
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
 tnoremap <A-H> <C-\><C-n><C-w>H
 tnoremap <A-J> <C-\><C-n><C-w>J
 tnoremap <A-K> <C-\><C-n><C-w>K
