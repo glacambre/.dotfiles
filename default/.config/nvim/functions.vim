@@ -121,8 +121,8 @@ function! OnTermOpen()
     execute("file " . substitute(expand("%"), "term://.//", "", ""))
 
     " Splitting opens a new term
-    nnoremap <buffer> <C-w>s :split<CR>:term<CR>
-    nnoremap <buffer> <C-w>v :vsplit<CR>:term<CR>
+    nnoremap <buffer> <silent> <C-w>s :split<CR>:term<CR>
+    nnoremap <buffer> <silent> <C-w>v :vsplit<CR>:term<CR>
 
     " When leaving a term buffer, remember whether it was in insert or normal
     " mode. When entering a terminal window/buffer, go in insert mode if the
@@ -130,8 +130,8 @@ function! OnTermOpen()
     let b:should_insert = 1
     au BufEnter <buffer> if b:should_insert == 1 | startinsert | endif
     au WinEnter <buffer> if b:should_insert == 1 | startinsert | endif
-    nnoremap <buffer> a :let b:should_insert = 1<CR>a
-    nnoremap <buffer> i :let b:should_insert = 1<CR>i
+    nnoremap <buffer> <silent> a :let b:should_insert = 1<CR>a
+    nnoremap <buffer> <silent> i :let b:should_insert = 1<CR>i
     startinsert
 
     " When opening a new term, go in insert mode
