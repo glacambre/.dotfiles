@@ -1,5 +1,5 @@
 #!/bin/sh
-# Locks the computer before hibernating.
+# Locks the computer before suspending.
 
 if [ "$EUID" -ne 0 ]; then
   echo "This script needs to be run as root."
@@ -7,5 +7,4 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 sudo -u me i3lock --ignore-empty-password --show-failed-attempts --color=2d2d2d &
-echo "/dev/sda3" > /sys/power/resume
-echo "disk" > /sys/power/state
+echo "mem" > /sys/power/state
