@@ -19,3 +19,5 @@ au FileType calendar call ShowTrailingWhitespace#Set(0,0)
 
 au TermOpen * silent call OnTermOpen()
 au TermClose * silent call OnTermClose()
+
+autocmd CursorHold,FocusGained,FocusLost * rshada|wshada

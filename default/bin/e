@@ -17,14 +17,8 @@ if not addr:
 
 nvim = attach("socket", path=addr)
 
-
 def _setup():
-    nvim.input('<c-\\><c-n>')  # exit terminal mode
-    chid = nvim.channel_id
-    nvim.command('augroup EDIT')
-    nvim.command('au BufEnter <buffer> call rpcnotify({0}, "n")'.format(chid))
-    nvim.command('au BufEnter <buffer> startinsert'.format(chid))
-    nvim.command('augroup END')
+    nvim.command('augroup MY_RPC_AUTOCOMMAND | au BufEnter <buffer> call rpcnotify({0}, "n") | augroup END'.format(nvim.channel_id))
     nvim.vars['files_to_edit'] = list(map(os.path.abspath, args))
     if sys.argv[0].endswith('/sp'):
         command = 'sp'
@@ -35,13 +29,9 @@ def _setup():
     for x in range(0, len(args)):
         nvim.command('exe "' + command + ' " . fnameescape(remove(g:files_to_edit, 0))')
 
-
 def _exit(*args):
     nvim.vars['files_to_edit'] = None
-    nvim.command('augroup EDIT')
-    nvim.command('au!')
-    nvim.command('augroup END')
+    nvim.command('augroup MY_RPC_AUTOCOMMAND | au! | augroup END')
     nvim.stop_loop()
-
 
 nvim.run_loop(_exit, _exit, _setup)
