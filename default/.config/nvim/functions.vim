@@ -65,9 +65,6 @@ function! MyStatusLine ()
     endif
     let l:line .= '%y[%f]%m%r%='
     let l:line .= '%{MyNeomakeStatusItem()}'
-    if exists('*gutentags#statusline()')
-        let l:line .= '[%{gutentags#statusline()}]'
-    endif
     return l:line . '[%l,%c:%b][%P]'
 endfunction
 
