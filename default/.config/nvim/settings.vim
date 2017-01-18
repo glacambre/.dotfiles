@@ -81,5 +81,3 @@ let g:netrw_browsex_viewer= "xdg-open" " Open files with xdg-open
 
 let g:tex_flavor = "latex"             " Sets which kind of latex I use
 
-let g:terminal_scrollback_buffer_size = 100000
-
