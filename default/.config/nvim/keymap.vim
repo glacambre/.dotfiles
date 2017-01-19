@@ -1,5 +1,13 @@
-" Space disables highlighting of currently matched search pattern
-nnoremap <space> :nohlsearch<CR>
+let mapleader = " " " Leader key is space
+
+" Leader twice disables highlighting of currently matched search pattern
+nnoremap <leader><leader> :nohlsearch<CR>
+
+" Leader n goes to the next quickfix item
+nnoremap <leader>n :lnext<CR>
+
+" Leader p goes to the previous quickfix item
+nnoremap <leader>p :lprev<CR>
 
 " wrapped lines: go to next row instead of next line
 nnoremap j gj
