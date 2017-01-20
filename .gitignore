@@ -1,5 +1,6 @@
 /default/bin/hugo
 
+/default/.config/gtk-2.0/gtkfilechooser.ini
 /default/.config/mutt/accounts/*
 !/default/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/
 /default/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/.git*
