@@ -9,14 +9,27 @@ visual-mode-eol () {
     CURSOR=${#BUFFER};
 }
 
+prev-line-with-sudo () {
+    BUFFER="sudo $(fc -lnrm "$1*" 1 2>/dev/null | head -n 1)"
+    CURSOR=${#BUFFER};
+}
+
+vi-join-prev-history-line () {
+    BUFFER="$(fc -lnrm "$1*" 1 2>/dev/null | head -n 1) && $BUFFER"
+}
+
 zle -N visual-mode-eol
+zle -N prev-line-with-sudo
+zle -N vi-join-prev-history-line
 
 #todo: find a good binding for spell-word
 #todo: find a good binding for quote-region
 bindkey -M viins '^?'    backward-delete-char
 bindkey -M viins '^H'    backward-delete-char
 bindkey -M viins '^K'    insert-last-word
-bindkey -M viins '^a'    beginning-of-line
+bindkey -M viins '^S'    prev-line-with-sudo
+bindkey -M viins '^A'    beginning-of-line
+bindkey -M viins '^J'    vi-join-prev-history-line
 bindkey -M viins '^[[H'  beginning-of-line
 bindkey -M viins '^e'    end-of-line
 bindkey -M viins '^[[F'  end-of-line
@@ -32,8 +45,6 @@ bindkey -M vicmd 'H'     run-help
 # ^[[3~ is the "del" key
 bindkey -M viins '^[[3~' delete-char
 bindkey -M vicmd '^[[3~' delete-char
-# ^[[Z is Shift-Tab
-bindkey -M viins '^[[Z'  reverse-menu-complete
 # Quotes/brackets text objects
 autoload -U select-bracketed
 autoload -U select-quoted
