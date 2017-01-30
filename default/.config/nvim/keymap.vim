@@ -9,6 +9,12 @@ nnoremap <leader>n :lnext<CR>
 " Leader p goes to the previous quickfix item
 nnoremap <leader>p :lprev<CR>
 
+" Leader e goes to the earlier version of the buffer
+nnoremap <leader>e :earlier<CR>
+
+" Leader l goes to the later version of the buffer
+nnoremap <leader>l :later<CR>
+
 " wrapped lines: go to next row instead of next line
 nnoremap j gj
 nnoremap k gk
@@ -42,9 +48,14 @@ vnoremap . :normal .<CR>
 for i in ['h', 'j', 'k', 'l', 'H', 'J', 'K', 'L']
     execute('noremap <A-' . i . '> <C-w>' . i)
     execute('inoremap <A-' . i . '> <Esc><C-w>' . i)
-    execute('tnoremap <A-' . i . '> <C-\><C-n><C-w>' . i)
+    execute('tnoremap <A-' . i . '> <C-\><C-n><C-w>' . i . 'a')
 endfor
-tnoremap <silent> <A-Space> <C-\><C-n>:set laststatus=2<CR>:let b:should_insert = 0<CR>:tnoremap <A-Space> <C-\><C-n>:silent let b:should_insert=0<CR>
+function! ChangeASpaceKeybind() abort
+      set laststatus=2
+      let b:should_insert = 0
+      tnoremap <silent> <A-Space> <C-\><C-n>:let b:should_insert = 0<CR>
+endfunction
+tnoremap <silent> <A-Space> <C-\><C-n>:call ChangeASpaceKeybind()<CR>
 
 " Suggest a spelling correction
 nnoremap <C-s> z=
