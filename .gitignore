@@ -8,6 +8,7 @@
 /default/.config/nvim/spell/
 /default/.config/syncthing/
 /default/.config/zsh/zsh_history
+/default/.config/zsh/zsh-autosuggestions
 
 /default/.elinks/bookmarks
 /default/.elinks/cookies
