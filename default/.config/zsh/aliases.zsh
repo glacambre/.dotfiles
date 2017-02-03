@@ -7,24 +7,22 @@ function dd () {
 }
 
 function go () {
-    if [ "$1" != "get" ]; then;
+    if [[ "$GOPATH" != "" ]]; then;
         command go $@;
         return;
     fi
     local dir="$PWD"
     for i in 0 1 2 3; do
         if [ -d "$dir/.gopath" ]; then;
-            export GOPATH="$dir/.gopath";
-            command go $@;
+            GOPATH="$dir/.gopath" command go $@;
             return;
         fi
         dir="$dir/../";
     done
     if [ ! -e "$PWD/.gopath" ]; then;
         mkdir .gopath;
-        export GOPATH="$PWD/.gopath";
     fi
-    command go $@;
+    GOPATH="$PWD/.gopath" command go $@;
     return;
 }
 
