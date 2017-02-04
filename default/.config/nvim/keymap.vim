@@ -48,7 +48,7 @@ vnoremap . :normal .<CR>
 for i in ['h', 'j', 'k', 'l', 'H', 'J', 'K', 'L']
     execute('noremap <A-' . i . '> <C-w>' . i)
     execute('inoremap <A-' . i . '> <Esc><C-w>' . i)
-    execute('tnoremap <A-' . i . '> <C-\><C-n><C-w>' . i . 'a')
+    execute('tnoremap <A-' . i . '> <C-\><C-n><C-w>' . i)
 endfor
 function! ChangeASpaceKeybind() abort
       set laststatus=2

@@ -3,84 +3,82 @@ let s:config_dir = expand('<sfile>:p:h')
 let s:bundle_dir = s:config_dir . "/bundle"
 execute("set runtimepath+=" . s:bundle_dir . "/repos/github.com/Shougo/dein.vim")
 call dein#begin(s:bundle_dir)
-    call dein#add('https://github.com/Shougo/dein.vim')
+call dein#add('https://github.com/Shougo/dein.vim')
 
-    " To be used everywhere, even in terminal
-    call dein#add('https://github.com/chrisbra/Recover.vim')
-    call dein#add('https://github.com/vim-scripts/gitignore')
-    call dein#add('https://github.com/haya14busa/incsearch.vim')
-    call dein#add('https://github.com/Shougo/denite.nvim')
-    call dein#add('https://github.com/Shougo/neomru.vim',                      {'depends': 'denite.nvim'})
+" To be used everywhere, even in terminal
+call dein#add('https://github.com/chrisbra/Recover.vim')
+call dein#add('https://github.com/vim-scripts/gitignore')
+call dein#add('https://github.com/haya14busa/incsearch.vim')
+call dein#add('https://github.com/Shougo/denite.nvim')
+call dein#add('https://github.com/Shougo/neomru.vim',                      {'depends': 'denite.nvim'})
 
-    " New and enhanced motions, new text objects
-    call dein#add('https://github.com/tpope/vim-repeat',                       {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/tpope/vim-surround')
-    call dein#add('https://github.com/tommcdo/vim-exchange',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/junegunn/vim-easy-align',                {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/tpope/vim-commentary.git',               {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/wellle/targets.vim',                     {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/unblevable/quick-scope',                 {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/kana/vim-textobj-user')
-    call dein#add('https://github.com/thinca/vim-textobj-between',             {'depends': 'vim-textobj-user'})
-    call dein#add('https://github.com/glts/vim-textobj-comment',               {'depends': 'vim-textobj-user'})
-    call dein#add('https://github.com/jceb/vim-textobj-uri',                   {'depends': 'vim-textobj-user'})
-    call dein#add('https://github.com/kana/vim-textobj-line',                  {'depends': 'vim-textobj-user'})
-    call dein#add('https://github.com/kana/vim-textobj-entire',                {'depends': 'vim-textobj-user'})
-    call dein#add('https://github.com/rbonvall/vim-textobj-latex',             {'depends': 'vim-textobj-user',
-		\ 'hook_add': 'omap iE <Plug>(textobj-latex-environment-i)
-		\ | xmap iE <Plug>(textobj-latex-environment-i)
-		\ | omap aE <Plug>(textobj-latex-environment-a)
-		\ | xmap aE <Plug>(textobj-latex-environment-a)' })
+" New and enhanced motions, new text objects
+call dein#add('https://github.com/tpope/vim-repeat',                       {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/tpope/vim-surround')
+call dein#add('https://github.com/tommcdo/vim-exchange',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/junegunn/vim-easy-align',                {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/tpope/vim-commentary.git',               {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/wellle/targets.vim',                     {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/unblevable/quick-scope',                 {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/kana/vim-textobj-user')
+call dein#add('https://github.com/thinca/vim-textobj-between',             {'depends': 'vim-textobj-user'})
+call dein#add('https://github.com/glts/vim-textobj-comment',               {'depends': 'vim-textobj-user'})
+call dein#add('https://github.com/jceb/vim-textobj-uri',                   {'depends': 'vim-textobj-user'})
+call dein#add('https://github.com/kana/vim-textobj-line',                  {'depends': 'vim-textobj-user'})
+call dein#add('https://github.com/kana/vim-textobj-entire',                {'depends': 'vim-textobj-user'})
+call dein#add('https://github.com/rbonvall/vim-textobj-latex',             {'depends': 'vim-textobj-user',
+	    \ 'hook_add': 'omap iE <Plug>(textobj-latex-environment-i)
+	    \ | xmap iE <Plug>(textobj-latex-environment-i)
+	    \ | omap aE <Plug>(textobj-latex-environment-a)
+	    \ | xmap aE <Plug>(textobj-latex-environment-a)' })
 
 
-    " Autocompletion plugins
-    call dein#add('https://github.com/Shougo/deoplete.nvim',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/zchee/deoplete-clang',                   {'on_ft': ['c', 'cpp']})
-    " call dein#add('https://github.com/zchee/deoplete-go',                      {'on_ft': ['go']})
-    call dein#add('https://github.com/zchee/deoplete-jedi',                    {'on_ft': ['python']})
-    call dein#add('https://github.com/carlitux/deoplete-ternjs',               {'on_ft': ['javascript']})
-    call dein#add('https://github.com/Shougo/neco-vim',                        {'on_ft': ['vim']})
-    call dein#add('https://github.com/zchee/deoplete-zsh',                     {'on_ft': ['sh', 'zsh']})
+" Autocompletion plugins
+call dein#add('https://github.com/Shougo/deoplete.nvim',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/zchee/deoplete-clang',                   {'on_ft': ['c', 'cpp']})
+call dein#add('https://github.com/zchee/deoplete-go',                      {'on_ft': ['go'], 'build': {'unix': 'make'}})
+call dein#add('https://github.com/zchee/deoplete-jedi',                    {'on_ft': ['python']})
+call dein#add('https://github.com/carlitux/deoplete-ternjs',               {'on_ft': ['javascript']})
+call dein#add('https://github.com/Shougo/neco-vim',                        {'on_ft': ['vim']})
+call dein#add('https://github.com/zchee/deoplete-zsh',                     {'on_ft': ['sh', 'zsh']})
 
-    " Tags generation
-    call dein#add('https://github.com/ludovicchabant/vim-gutentags',           {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+" Tags generation
+call dein#add('https://github.com/ludovicchabant/vim-gutentags',           {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 
-    " Snippets plugins
-    call dein#add('https://github.com/Shougo/neosnippet.vim',                  {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/Shougo/neosnippet-snippets',             {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+" Snippets plugins
+call dein#add('https://github.com/Shougo/neosnippet.vim',                  {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/Shougo/neosnippet-snippets',             {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 
-    " Automatically build files and show errors
-    call dein#add('https://github.com/neomake/neomake',                        {'on_path': '^\(.*term:\/\/\)\@!.*$',
-		\ 'hook_add': 'au BufWritePost * Neomake' })
+" Automatically build files and show errors
+call dein#add('https://github.com/neomake/neomake',                        {'on_path': '^\(.*term:\/\/\)\@!.*$',
+	    \ 'hook_add': 'au BufWritePost * Neomake' })
 
-    " Echoes documentation in the command line when possible
-    call dein#add('https://github.com/Shougo/echodoc.vim',                     {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+" Echoes documentation in the command line when possible
+call dein#add('https://github.com/Shougo/echodoc.vim',                     {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 
-    " Various language-specific plugins
-    call dein#add('https://github.com/PotatoesMaster/i3-vim-syntax',           {'on_ft': ['i3']})
-    call dein#add('https://github.com/vim-erlang/vim-erlang-omnicomplete',     {'on_ft': ['erlang']})
-    call dein#add('https://github.com/jelera/vim-javascript-syntax',           {'on_ft': ['javascript']})
-    call dein#add('https://github.com/rust-lang/rust.vim',                     {'on_ft': ['rust']})
-    call dein#add('https://github.com/shiracamus/vim-syntax-x86-objdump-d',    {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/ap/vim-css-color',                       {'on_ft': ['css']})
+" Various language-specific plugins
+call dein#add('https://github.com/PotatoesMaster/i3-vim-syntax',           {'on_ft': ['i3']})
+call dein#add('https://github.com/vim-erlang/vim-erlang-omnicomplete',     {'on_ft': ['erlang']})
+call dein#add('https://github.com/jelera/vim-javascript-syntax',           {'on_ft': ['javascript']})
+call dein#add('https://github.com/rust-lang/rust.vim',                     {'on_ft': ['rust']})
+call dein#add('https://github.com/shiracamus/vim-syntax-x86-objdump-d',    {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/ap/vim-css-color',                       {'on_ft': ['css']})
 
-    " Completes 'if' with 'endif', opening brackets with closing brackets...
-    call dein#add('https://github.com/rstacruz/vim-closer.git',                {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    call dein#add('https://github.com/tpope/vim-endwise',                      {'on_ft': ['aspvbs', 'c', 'cpp', 'crystal', 'elixir', 'haskell', 'htmldjango', 'lua', 'matlab', 'objc', 'ruby', 'sh', 'snippets', 'vb', 'vbnet', 'vim', 'xdefaults', 'zsh']})
+" Completes 'if' with 'endif', opening brackets with closing brackets...
+call dein#add('https://github.com/rstacruz/vim-closer.git',                {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/tpope/vim-endwise',                      {'on_ft': ['aspvbs', 'c', 'cpp', 'crystal', 'elixir', 'haskell', 'htmldjango', 'lua', 'matlab', 'objc', 'ruby', 'sh', 'snippets', 'vb', 'vbnet', 'vim', 'xdefaults', 'zsh']})
 
-    " Configures indentation settings
-    call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-    " Shows trailing whitespace
-    call dein#add('https://github.com/vim-scripts/ShowTrailingWhitespace.git', {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+" Configures indentation settings
+call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 call dein#end()
 
 " Disable quickscope on files with huge lines because it's slow
 augroup MY_QUICKSCOPE_AUGROUP
     au BufEnter * if (max(map(range(1, line('$')), "col([v:val, '$'])")) > 10000)
-		    \ | let g:qs_enable = 0
+		\ | let g:qs_enable = 0
 		\ | else
 		    \ | let g:qs_enable = 1
-		\ | endif
+		    \ | endif
 augroup END
 
 "Sets Neomake conf
@@ -97,9 +95,10 @@ function g:Undotree_CustomMap()
 endfunction
 
 " Denite
-nnoremap zh :Denite -default_action=split buffer file_mru file_rec<CR>
-nnoremap zv :Denite -default_action=vsplit buffer file_mru file_rec<CR>
-nnoremap Z :Denite buffer file_mru file_rec<CR>
+nnoremap Z :Denite buffer file_rec file_mru<CR>
+nnoremap zh :Denite -default_action=split buffer file_rec file_mru<CR>
+nnoremap zv :Denite -default_action=vsplit buffer file_rec file_mru<CR>
+nnoremap zg :Denite -no-empty grep:.:! -input=
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 " Add wildignored patterns to denite's ignored patterns
@@ -115,7 +114,7 @@ call denite#custom#var('file_rec', 'command',
 	    \ '--ignore-dir', '.svn/',    '--ignore-dir', 'undodir/',      '--ignore-dir', 'images/',
 	    \ '--ignore-dir', 'fonts/',   '--ignore-dir', 'music/',        '--ignore-dir', 'img/',
 	    \ '--ignore-dir', '.mozilla/','--ignore-dir', 'node_modules/', '--ignore-dir', 'img/',
-	    \ '--ignore-dir', 'bundle/',  '--ignore-dir', 'spell/',	       '--ignore-dir', '.cache/',
+	    \ '--ignore-dir', 'bundle/',  '--ignore-dir', 'spell/',        '--ignore-dir', '.cache/',
 	    \ '--ignore-dir', 'swapdir/', '--ignore-dir', '.metadata/'] + wildignored_patterns)
 
 "incsearch conf
@@ -161,7 +160,7 @@ let g:neosnippet#snippets_directory= [ s:bundle_dir . '/repos/github.com/Shougo/
 	    \ s:config_dir . '/custom_snippets' ]
 let g:deoplete#sources#clang#libclang_path="/usr/lib64/libclang.so"
 let g:deoplete#sources#clang#clang_header="/usr/lib64/clang/"
-let g:deoplete#sources#go#gocode_binary=$HOME . "/.go/bin/gocode"
+let g:deoplete#sources#go#gocode_binary=$HOME . "/.gopath/bin/gocode"
 
 " Gutentags
 let s:xdg_data_home = $XDG_DATA_HOME
