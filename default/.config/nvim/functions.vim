@@ -237,5 +237,4 @@ function! LessInitFunc()
     set nocursorcolumn nocursorline
     set laststatus=0
     set readonly
-    call ShowTrailingWhitespace#Set(0,1)
 endfunction
