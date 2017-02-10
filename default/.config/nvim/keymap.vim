@@ -31,7 +31,7 @@ vnoremap <expr>y "my\"" . v:register . "y`y"
 " s saves current buffer
 nnoremap s :w<CR>
 " S saves with sudo
-nnoremap S :w !sudo tee > /dev/null %<CR>
+nnoremap S :set nomodified<CR>:w !sudo tee > /dev/null %<CR><CR>
 
 " x closes the current buffer
 nnoremap <silent> x :call WipeButKeepOpen(0)<CR>
