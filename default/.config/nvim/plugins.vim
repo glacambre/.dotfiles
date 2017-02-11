@@ -98,7 +98,7 @@ endfunction
 nnoremap Z :Denite buffer file_rec file_mru<CR>
 nnoremap zh :Denite -default_action=split buffer file_rec file_mru<CR>
 nnoremap zv :Denite -default_action=vsplit buffer file_rec file_mru<CR>
-nnoremap zg :Denite -no-empty grep:.:! -input=
+nnoremap zg :Denite grep:::!
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 " Add wildignored patterns to denite's ignored patterns
@@ -119,10 +119,10 @@ call denite#custom#var('file_rec', 'command',
 
 "incsearch conf
 let g:incsearch#auto_nohlsearch = 1
-" nmap / <Plug>(incsearch-forward)
-" nmap ? <Plug>(incsearch-backward)
-" nmap n <Plug>(incsearch-nohl-n)
-" nmap N <Plug>(incsearch-nohl-N)
+nmap / <Plug>(incsearch-forward)
+nmap ? <Plug>(incsearch-backward)
+nmap n <Plug>(incsearch-nohl-n)
+nmap N <Plug>(incsearch-nohl-N)
 
 " Echodoc
 let g:echodoc_enable_at_startup = 1
