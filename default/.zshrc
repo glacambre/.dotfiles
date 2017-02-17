@@ -55,3 +55,4 @@ setopt numeric_glob_sort      # On {01..XX} expansions, sort numerically instead
 setopt pushd_ignore_dups      # Don't duplicate directories in the pushd stack
 setopt pushd_silent           # Don't print directory stack after pushd/popd
 setopt short_loops            # Allow alternative syntax, e.g. if { true } { thing() } else { other() }
+

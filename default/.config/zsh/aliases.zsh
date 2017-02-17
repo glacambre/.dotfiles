@@ -54,11 +54,12 @@ alias es='nocorrect emerge --search'
 alias eu='nocorrect sudo emerge --unmerge'
 alias ev='equery -q list --portage-tree'
 alias ew='sudo emerge --ask --update --deep --changed-use @world && sudo emerge -av --depclean && sudo revdep-rebuild'
-alias grep='grep --color=auto --exclude-dir=.git --binary-files=without-match --line-number'
+alias grep='LC_ALL=C grep --color=auto --exclude-dir=.git --binary-files=without-match --line-number'
 alias glog='git log --graph --abbrev-commit --decorate --date=relative --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'\'' --all'
 alias l='ls -lAh --color=auto'
 alias ls='ls --color=auto'
 alias rtorrent='ssh -tt raspi abduco -A torrent rtorrent'
+alias remoteshell='(term -e ssh -Y -tt x250 nvim term://zsh) &'
 if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then
     alias less='/usr/share/nvim/runtime/macros/less.sh';
 fi
