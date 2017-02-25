@@ -42,11 +42,8 @@ function hist_stats () {
 }
 
 alias _='sudo'
-alias cp='cp  -i'
-alias mv='nocorrect mv -i'
-alias ln='nocorrect ln'
-alias mkdir='nocorrect mkdir'
 alias cleantex='rm *.{aux,idx,log,nav,out,snm,toc,vrb}(.N) 2>/dev/null'
+alias cp='cp  -i'
 alias ea='nocorrect sudo emerge --ask'
 alias ek='cd /usr/src/linux && sudo -s make menuconfig && sudo make && sudo make modules_install && sudo make install'
 alias eq='nocorrect equery uses'
@@ -54,12 +51,16 @@ alias es='nocorrect emerge --search'
 alias eu='nocorrect sudo emerge --unmerge'
 alias ev='equery -q list --portage-tree'
 alias ew='sudo emerge --ask --update --deep --changed-use @world && sudo emerge -av --depclean && sudo revdep-rebuild'
-alias grep='LC_ALL=C grep --color=auto --exclude-dir=.git --binary-files=without-match --line-number'
+alias gdb='gdb -q'
 alias glog='git log --graph --abbrev-commit --decorate --date=relative --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'\'' --all'
+alias grep='LC_ALL=C grep --color=auto --exclude-dir=.git --binary-files=without-match --line-number'
 alias l='ls -lAh --color=auto'
+alias ln='nocorrect ln'
 alias ls='ls --color=auto'
-alias rtorrent='ssh -tt raspi abduco -A torrent rtorrent'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv -i'
 alias remoteshell='(term -e ssh -Y -tt x250 nvim term://zsh) &'
+alias rtorrent='ssh -tt raspi abduco -A torrent rtorrent'
 if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then
     alias less='/usr/share/nvim/runtime/macros/less.sh';
 fi
