@@ -24,3 +24,5 @@
 /default/.vim/spell/
 /default/.vim/swapdir/
 /default/.vim/undodir/
+
+/default/.weechat/weechat.log
