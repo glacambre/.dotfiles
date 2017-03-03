@@ -1,6 +1,5 @@
 set encoding=utf-8
 
-set switchbuf=usetab,newtab         " Try to treat buffers as tabs
 set tabpagemax=9                    " Have a maximum of 9 tabs open at all time
 set showtabline=1                   " Show tabline when there are at least two
 set tabline=%!MyTabLine()           " MyTabLine is defined in functions.vim
@@ -51,9 +50,9 @@ set matchpairs+=<:>
 set smartindent   " Indents based on previous line indentation
 set autoindent    " Indents when opening lines with o/O
 set smarttab      " Indents by x chars instead of specific number
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=8
+set softtabstop=8
+set shiftwidth=8
 set expandtab     " Space-based indentation.
 set shiftround    " When indenting with <> round to a multiple of shiftwidth
 
