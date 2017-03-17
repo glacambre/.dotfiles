@@ -99,6 +99,8 @@ nnoremap U <C-r>
 " TODO: Play last recorded macro with Q
 nnoremap Q @@
 
+" This is needed because of mathchpairs+=<:> in settings.vim
+nnoremap << :<<CR>
 " Do not exit Visual mode when shift-indenting
 vnoremap < <gv
 vnoremap > >gv

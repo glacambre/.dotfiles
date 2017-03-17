@@ -53,7 +53,6 @@ set smarttab      " Indents by x chars instead of specific number
 set tabstop=8
 set softtabstop=8
 set shiftwidth=8
-set expandtab     " Space-based indentation.
 set shiftround    " When indenting with <> round to a multiple of shiftwidth
 
 set nocul " shows CursorLine
