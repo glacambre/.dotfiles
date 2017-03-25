@@ -13,7 +13,6 @@ if [[ -e "${ZSH_AUTOSUGGESTIONS_DIR}/zsh-autosuggestions.zsh" ]] ; then
     source "${ZSH_AUTOSUGGESTIONS_DIR}/zsh-autosuggestions.zsh"
     ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line vi-end-of-line vi-add-eol )
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
-    ZSH_AUToSUGGEST_BUFFER_MAX_SIZE=20
     ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
     bindkey -M viins '\t' autosuggest-accept
     bindkey -M viins '^[[Z' autosuggest-clear

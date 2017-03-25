@@ -1,14 +1,19 @@
-/default/bin/hugo
-
 /default/.config/gtk-2.0/gtkfilechooser.ini
+
 /default/.config/mutt/accounts/*
-!/default/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/
-/default/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/.git*
+
+/default/.config/newsbeuter/cache.db
+/default/.config/newsbeuter/history.cmdline
+/default/.config/newsbeuter/history.search
+/default/.config/newsbeuter/urls
+
 /default/.config/nvim/bundle/
 /default/.config/nvim/spell/
+
 /default/.config/syncthing/
-/default/.config/zsh/zsh_history
+
 /default/.config/zsh/zsh-autosuggestions
+/default/.config/zsh/zsh_history
 
 /default/.elinks/bookmarks
 /default/.elinks/cookies
@@ -16,13 +21,10 @@
 /default/.elinks/gotohist
 /default/.elinks/searchhist
 
-/default/.config/newsbeuter/cache.db
-/default/.config/newsbeuter/history.cmdline
-/default/.config/newsbeuter/history.search
-/default/.config/newsbeuter/urls
-
 /default/.vim/spell/
 /default/.vim/swapdir/
 /default/.vim/undodir/
 
 /default/.weechat/weechat.log
+
+/default/bin/hugo
