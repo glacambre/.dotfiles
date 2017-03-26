@@ -1,7 +1,13 @@
 "Start Dein (plugin manager)
 let s:config_dir = expand('<sfile>:p:h')
 let s:bundle_dir = s:config_dir . "/bundle"
-execute("set runtimepath+=" . s:bundle_dir . "/repos/github.com/Shougo/dein.vim")
+let s:dein_dir = s:bundle_dir . "/repos/github.com/Shougo/dein.vim"
+
+if !isdirectory(s:dein_dir)
+    execute "!git clone --depth 1 --branch master 'https://github.com/Shougo/dein.vim' '" . s:dein_dir . "'"
+endif
+execute("set runtimepath+=" . s:dein_dir)
+
 call dein#begin(s:bundle_dir)
 call dein#add('https://github.com/Shougo/dein.vim')
 
