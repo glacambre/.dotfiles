@@ -17,10 +17,10 @@ call dein#add('https://github.com/Shougo/denite.nvim')
 call dein#add('https://github.com/Shougo/neomru.vim',                      {'depends': 'denite.nvim'})
 call dein#add('https://github.com/haya14busa/incsearch.vim',               {'hook_add': '
 	    \ let g:incsearch#auto_nohlsearch = 1
-	    \ | nmap / <Plug>(incsearch-forward)
-	    \ | nmap ? <Plug>(incsearch-backward)
-	    \ | nmap n <Plug>(incsearch-nohl-n)
-	    \ | nmap N <Plug>(incsearch-nohl-N)'})
+	    \| nmap / <Plug>(incsearch-forward)
+	    \| nmap ? <Plug>(incsearch-backward)
+	    \| nmap n <Plug>(incsearch-nohl-n)
+	    \| nmap N <Plug>(incsearch-nohl-N)'})
 
 " New pending operators, functions and motions
 call dein#add('https://github.com/tommcdo/vim-exchange',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
@@ -30,7 +30,7 @@ call dein#add('https://github.com/tpope/vim-surround')
 call dein#add('https://github.com/wellle/targets.vim',                     {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 call dein#add('https://github.com/junegunn/vim-easy-align',                {'on_path': '^\(.*term:\/\/\)\@!.*$',
 	    \ 'hook_add': ' nmap ga <Plug>(EasyAlign)
-		    \ | vmap ga <Plug>(EasyAlign)' })
+		    \| vmap ga <Plug>(EasyAlign)' })
 
 " New text objects
 call dein#add('https://github.com/kana/vim-textobj-user')
@@ -41,9 +41,9 @@ call dein#add('https://github.com/kana/vim-textobj-line',                  {'dep
 call dein#add('https://github.com/kana/vim-textobj-entire',                {'depends': 'vim-textobj-user'})
 call dein#add('https://github.com/rbonvall/vim-textobj-latex',             {'depends': 'vim-textobj-user',
 	    \ 'hook_add': 'omap iE <Plug>(textobj-latex-environment-i)
-	    \ | xmap iE <Plug>(textobj-latex-environment-i)
-	    \ | omap aE <Plug>(textobj-latex-environment-a)
-	    \ | xmap aE <Plug>(textobj-latex-environment-a)' })
+	    \| xmap iE <Plug>(textobj-latex-environment-i)
+	    \| omap aE <Plug>(textobj-latex-environment-a)
+	    \| xmap aE <Plug>(textobj-latex-environment-a)' })
 
 " Autocompletion plugins
 call dein#add('https://github.com/Shougo/deoplete.nvim',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
@@ -57,14 +57,14 @@ call dein#add('https://github.com/zchee/deoplete-zsh',                     {'on_
 " Tags generation
 call dein#add('https://github.com/ludovicchabant/vim-gutentags',           {'on_path': '^\(.*term:\/\/\)\@!.*$',
 	    \ 'hook_add': 'let s:xdg_data_home = $XDG_DATA_HOME
-	    \ | if s:xdg_data_home == ""
-	    \ |     let s:xdg_data_home = $HOME . "/.local/share"
-	    \ | endif
-	    \ | let s:tag_dir = s:xdg_data_home . "/nvim/tags"
-	    \ | if !isdirectory(s:tag_dir)
-	    \ |     call mkdir(s:tag_dir, "p")
-	    \ | endif
-	    \ | let g:gutentags_cache_dir = s:tag_dir'})
+	    \| if s:xdg_data_home == ""
+	    \|     let s:xdg_data_home = $HOME . "/.local/share"
+	    \| endif
+	    \| let s:tag_dir = s:xdg_data_home . "/nvim/tags"
+	    \| if !isdirectory(s:tag_dir)
+	    \|     call mkdir(s:tag_dir, "p")
+	    \| endif
+	    \| let g:gutentags_cache_dir = s:tag_dir'})
 
 " Snippets plugins
 call dein#add('https://github.com/Shougo/neosnippet.vim',                  {'on_path': '^\(.*term:\/\/\)\@!.*$'})
@@ -74,10 +74,10 @@ call dein#add('https://github.com/Shougo/neosnippet-snippets',             {'on_
 call dein#add('https://github.com/neomake/neomake',                        {'on_path': '^\(.*term:\/\/\)\@!.*$',
 	    \ 'hook_add': "
 	    \ let g:neomake_error_sign     = {'text': '»', 'texthl': 'NeomakeErrorSign'}
-	    \ | let g:neomake_warning_sign = {'text': '»', 'texthl': 'NeomakeWarningSign'}
-	    \ | let g:neomake_message_sign = {'text': '»', 'texthl': 'NeomakeMessageSign'}
-	    \ | let g:neomake_info_sign    = {'text': '»', 'texthl': 'NeomakeInfoSign'}
-	    \ | au BufWritePost * Neomake"})
+	    \| let g:neomake_warning_sign = {'text': '»', 'texthl': 'NeomakeWarningSign'}
+	    \| let g:neomake_message_sign = {'text': '»', 'texthl': 'NeomakeMessageSign'}
+	    \| let g:neomake_info_sign    = {'text': '»', 'texthl': 'NeomakeInfoSign'}
+	    \| au BufWritePost * Neomake"})
 
 " Echoes documentation in the command line when possible
 call dein#add('https://github.com/Shougo/echodoc.vim',                     {'on_path': '^\(.*term:\/\/\)\@!.*$',
