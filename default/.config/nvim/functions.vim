@@ -234,6 +234,7 @@ endfunction
 
 " Function called when running $VIMRUNTIME/macros/less.sh
 function! LessInitFunc()
+    set nolist
     set nocursorcolumn nocursorline
     set laststatus=0
     set readonly
