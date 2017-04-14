@@ -12,6 +12,8 @@
 
 /default/.config/syncthing/
 
+/default/.config/gimp-2.8/
+
 /default/.config/zsh/zsh-autosuggestions
 /default/.config/zsh/zsh_history
 

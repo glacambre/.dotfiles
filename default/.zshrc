@@ -14,6 +14,7 @@ export VISUAL="$EDITOR"
 export ZSH_HOME="$HOME/.config/zsh/"
 export NODE_REPL_HISTORY=""
 export XKB_DEFAULT_LAYOUT="fr-latin9"
+export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
 
 source "$ZSH_HOME/aliases.zsh"
 source "$ZSH_HOME/hash_directories.zsh"
