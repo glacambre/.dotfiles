@@ -96,7 +96,7 @@ function! CompileAndUpdate()
     " If a mupdf instance has been found, update it with a hup signal.
     " Otherwise, start a mupdf instance.
     " TODO: Turn this into a custom neomake maker.
-    !pdflatex % && (if [ -e %:r.toc ]; then;
+    !pdflatex -file-line-error -interaction nonstopmode % >/dev/null && (if [ -e %:r.toc ]; then;
                     \ pdflatex %;
                 \ fi;
                 \ found=false;
