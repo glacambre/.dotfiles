@@ -2,9 +2,11 @@
 let s:config_dir = expand('<sfile>:p:h')
 let s:bundle_dir = s:config_dir . "/bundle"
 let s:dein_dir = s:bundle_dir . "/repos/github.com/Shougo/dein.vim"
+let s:do_update = 0
 
 if !isdirectory(s:dein_dir)
 	execute "!git clone --depth 1 --branch master 'https://github.com/Shougo/dein.vim' '" . s:dein_dir . "'"
+	let s:do_update = 1
 endif
 execute("set runtimepath+=" . s:dein_dir)
 
@@ -77,7 +79,9 @@ call dein#add('https://github.com/neomake/neomake',                        {'on_
 	\| let g:neomake_warning_sign = {'text': '»', 'texthl': 'NeomakeWarningSign'}
 	\| let g:neomake_message_sign = {'text': '»', 'texthl': 'NeomakeMessageSign'}
 	\| let g:neomake_info_sign    = {'text': '»', 'texthl': 'NeomakeInfoSign'}
-	\| au BufWritePost * Neomake"})
+	\| au BufWritePost * Neomake
+	\| au User NeomakeFinished call UpdateLatexPdfDisplay()
+	\ "})
 
 " Echoes documentation in the command line when possible
 call dein#add('https://github.com/Shougo/echodoc.vim',                     {'on_path': '^\(.*term:\/\/\)\@!.*$',
@@ -98,6 +102,10 @@ call dein#add('https://github.com/tpope/vim-endwise',                      {'on_
 " Configures indentation settings
 " call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 call dein#end()
+
+if s:do_update == 1
+	dein#update()
+endif
 
 " Denite
 nnoremap Z :Denite buffer file_rec file_mru<CR>

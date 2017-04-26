@@ -4,7 +4,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 au BufWritePost ~/.Xdefaults !xrdb -merge ~/.Xdefaults
 au BufWritePost fonts.conf !fc-cache
 
-au BufWritePost *.tex call CompileAndUpdate()
+" au BufWritePost *.tex call CompileAndUpdate()
 au FileType tex setlocal spell spelllang=fr
 
 au BufReadPost *hledger.journal set ft=ledger

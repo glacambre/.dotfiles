@@ -89,27 +89,25 @@ function! MyNeomakeStatusItem()
     return ""
 endfunction
 
-" Compiles and updates/lauches mupdf when editing latex files
-function! CompileAndUpdate()
-    " If a toc file exists, compile twice. Then iterate over mupdf pids
-    " in order to find one that has been called with the current filename.
-    " If a mupdf instance has been found, update it with a hup signal.
-    " Otherwise, start a mupdf instance.
-    " TODO: Turn this into a custom neomake maker.
-    !pdflatex -file-line-error -interaction nonstopmode % >/dev/null && (if [ -e %:r.toc ]; then;
-                    \ pdflatex %;
-                \ fi;
-                \ found=false;
-                \ for i in `pidof mupdf-x11`; do;
-                    \ if [ `xargs -0 < /proc/$i/cmdline | grep -c "%:r.pdf"` -ge 1 ] ; then;
-                        \ kill -1 $i;
-                        \ found=true;
-                        \ break;
-                    \ fi;
-                \ done;
-                \ if [ $found = false ]; then;
-                    \ mupdf %:r.pdf &;
-                \ fi;)
+" Updates/lauches mupdf
+function! UpdateLatexPdfDisplay()
+	" If a mupdf instance has been found, update it with a hup signal.
+	" Otherwise, start a mupdf instance.
+	if &ft != "tex"
+		return
+	endif
+	silent exec '!
+	\ found=false;
+	\ for i in `pidof mupdf-x11`; do;
+		\ if [ `xargs -0 < /proc/$i/cmdline | grep -c "' . expand('%:p:r') . '.pdf"` -ge 1 ] ; then;
+			\ kill -1 $i;
+			\ found=true;
+			\ break;
+		\ fi;
+	\ done;
+	\ if [ $found = false ]; then;
+		\ mupdf "' . expand('%:p:r') . '.pdf" &;
+	\ fi'
 endfunction
 
 " Called when a new term is created
