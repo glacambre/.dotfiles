@@ -1,0 +1,12 @@
+#!/bin/sh
+# Tries to connect to a remote mpc server. If impossible, connect to local mpc server.
+
+
+/usr/bin/mpc "$@" 2>/dev/null
+
+if [ $? -eq 0 ]
+then
+	exit
+fi
+
+exec /usr/bin/mpc -h r4 "$@" 2>/dev/null
