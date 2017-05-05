@@ -6,6 +6,12 @@ function dd () {
     command dd status=progress $@
 }
 
+function httpserve () {
+    for i in $@ ; do
+        (echo -ne "HTTP/1.1 200 OK\r\n\r\n"; dd if="$i") | nc -l -p 8080 -q 1
+    done
+}
+
 function go () {
     if [[ "$GOPATH" != "" ]]; then;
         command go $@;
