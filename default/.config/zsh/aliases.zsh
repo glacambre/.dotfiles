@@ -6,9 +6,27 @@ function dd () {
     command dd status=progress $@
 }
 
+# Simulates an http server using netcat.
+# -d: display instead of downloading.
 function httpserve () {
-    for i in $@ ; do
-        (echo -ne "HTTP/1.1 200 OK\r\n\r\n"; dd if="$i") | nc -l -p 8080 -q 1
+    download="attachment; "
+    if [ "$1" = "-d" ]
+    then
+        download=""
+        shift
+    fi
+    for i in "$@"
+    do
+        if [ ! -f "$i" ]
+        then
+            echo "No such file: $i"
+            continue
+        fi
+        (echo -ne "HTTP/1.1 200 OK\r
+Expires: -1\r
+Server: Netcat :)\r
+Content-Disposition: ${download}filename=\"$i\"\r
+\r\n"; dd if="$i") | nc -l -p 8080 -q 1
     done
 }
 
