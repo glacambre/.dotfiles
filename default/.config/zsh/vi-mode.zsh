@@ -33,6 +33,8 @@ bindkey -M viins '^J'    vi-join-prev-history-line
 bindkey -M viins '^[[H'  beginning-of-line
 bindkey -M viins '^e'    end-of-line
 bindkey -M viins '^[[F'  end-of-line
+bindkey -M viins "^N" expand-or-complete
+bindkey -M viins "^P" reverse-menu-complete
 bindkey -M vicmd 'gg'    beginning-of-buffer-or-history
 bindkey -M vicmd 'g~'    vi-oper-swap-case
 bindkey -M vicmd 'G'     end-of-buffer-or-history
@@ -45,6 +47,10 @@ bindkey -M vicmd 'H'     run-help
 # ^[[3~ is the "del" key
 bindkey -M viins '^[[3~' delete-char
 bindkey -M vicmd '^[[3~' delete-char
+bindkey -M menuselect "^Y" accept-and-menu-complete
+bindkey -M menuselect "^E" send-break
+bindkey -M menuselect "^[" vi-cmd-mode
+bindkey -M menuselect "^M" "^M^M" # Sort of a hack. Enter accepts completion and feeds line
 # Quotes/brackets text objects
 autoload -U select-bracketed
 autoload -U select-quoted

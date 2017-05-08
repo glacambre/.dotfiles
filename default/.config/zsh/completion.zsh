@@ -5,14 +5,6 @@ promptinit
 [ -e "/etc/gentoo-release" ] && prompt gentoo
 zstyle ':completion:*:*:*:*:*' menu select
 
-# Vim-like completion bindings
-bindkey -M viins "^N" expand-or-complete
-bindkey -M viins "^P" reverse-menu-complete
-bindkey -M menuselect "^Y" accept-and-menu-complete
-bindkey -M menuselect "^E" send-break
-bindkey -M menuselect "^[" send-break
-bindkey -M menuselect "^M" "^M^M" # Sort of a hack. Enter accepts completion and feeds line
-
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path /tmp
