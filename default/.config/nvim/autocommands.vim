@@ -1,13 +1,16 @@
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-      \| exe "normal! g`\"" | endif
 
-au BufWritePost ~/.Xdefaults !xrdb -merge ~/.Xdefaults
-au BufWritePost fonts.conf !fc-cache
+augroup MY_GENERAL_AUGROUP
+	autocmd!
+	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+				\| exe "normal! g`\"" | endif
+	au CursorHold,FocusGained,FocusLost * rshada|wshada
+augroup END
 
-" au BufWritePost *.tex call CompileAndUpdate()
-au FileType tex setlocal spell spelllang=fr
-
-au BufReadPost *hledger.journal set ft=ledger
+augroup MY_UPDATE_AUGROUP
+	autocmd!
+	au BufWritePost ~/.Xdefaults !xrdb -merge ~/.Xdefaults
+	au BufWritePost fonts.conf !fc-cache
+augroup END
 
 augroup MY_C_AUGROUP
 	autocmd!
@@ -21,11 +24,19 @@ augroup MY_C_AUGROUP
 		\ | set ft=c
 augroup END
 
-au BufReadPost mutt-* setlocal formatoptions += aw | setlocal tw=78
+augroup MY_NETRW_AUGROUP
+	autocmd!
+	au FileType netrw call SetNetrwMappings()
+augroup END
 
-au FileType netrw call SetNetrwMappings()
+augroup MY_TERM_AUGROUP
+	autocmd!
+	au TermOpen * silent call OnTermOpen()
+	au TermClose * silent call OnTermClose()
+augroup END
 
-au TermOpen * silent call OnTermOpen()
-au TermClose * silent call OnTermClose()
-
-autocmd CursorHold,FocusGained,FocusLost * rshada|wshada
+augroup MY_MISC_AUGROUP
+	au FileType tex setlocal spell spelllang=fr
+	au BufReadPost *hledger.journal set ft=ledger
+	au BufReadPost mutt-* setlocal formatoptions += aw | setlocal tw=78
+augroup END

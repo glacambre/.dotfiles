@@ -75,10 +75,11 @@ call dein#add('https://github.com/Shougo/neosnippet-snippets',             {'on_
 " Automatically build files and show errors
 call dein#add('https://github.com/neomake/neomake',                        {'on_path': '^\(.*term:\/\/\)\@!.*$',
 	\ 'hook_add': "
-	\ let g:neomake_error_sign     = {'text': '»', 'texthl': 'NeomakeErrorSign'}
+	\ let g:neomake_error_sign    = {'text': '»', 'texthl': 'NeomakeErrorSign'}
 	\| let g:neomake_warning_sign = {'text': '»', 'texthl': 'NeomakeWarningSign'}
 	\| let g:neomake_message_sign = {'text': '»', 'texthl': 'NeomakeMessageSign'}
 	\| let g:neomake_info_sign    = {'text': '»', 'texthl': 'NeomakeInfoSign'}
+	\| let g:neomake_tex_enabled_makers = ['pdflatex']
 	\| au BufWritePost * Neomake
 	\| au User NeomakeFinished call UpdateLatexPdfDisplay()
 	\ "})
@@ -100,7 +101,7 @@ call dein#add('https://github.com/rstacruz/vim-closer.git',                {'on_
 call dein#add('https://github.com/tpope/vim-endwise',                      {'on_ft': ['aspvbs', 'c', 'cpp', 'crystal', 'elixir', 'haskell', 'htmldjango', 'lua', 'matlab', 'objc', 'ruby', 'sh', 'snippets', 'vb', 'vbnet', 'vim', 'xdefaults', 'zsh']})
 
 " Configures indentation settings
-" call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 call dein#end()
 
 if s:do_update == 1
