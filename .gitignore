@@ -27,6 +27,7 @@
 /default/.vim/swapdir/
 /default/.vim/undodir/
 
+/default/.weechat/script/plugins.xml.gz
 /default/.weechat/weechat.log
 
 /default/bin/hugo
