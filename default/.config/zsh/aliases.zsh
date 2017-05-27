@@ -3,7 +3,7 @@ function cpr () {
 }
 
 function dd () {
-    command dd status=progress $@
+    command dd status=progress "$@"
 }
 
 # Simulates an http server using netcat.
@@ -32,13 +32,13 @@ Content-Disposition: ${download}filename=\"$i\"\r
 
 function go () {
     if [[ "$GOPATH" != "" ]]; then;
-        command go $@;
+        command go "$@";
         return;
     fi
     local dir="$PWD"
     for i in 0 1 2 3; do
         if [ -d "$dir/.gopath" ]; then;
-            GOPATH="$dir/.gopath" command go $@;
+            GOPATH="$dir/.gopath" command go "$@";
             return;
         fi
         dir="$dir/../";
@@ -46,7 +46,7 @@ function go () {
     if [ ! -e "$PWD/.gopath" ]; then;
         mkdir .gopath;
     fi
-    GOPATH="$PWD/.gopath" command go $@;
+    GOPATH="$PWD/.gopath" command go "$@";
     return;
 }
 
