@@ -24,17 +24,21 @@ zle -N vi-join-prev-history-line
 
 #todo: find a good binding for spell-word
 #todo: find a good binding for quote-region
+#Bindings left: ^Z^T^Y^O
 bindkey -M viins '^?'    backward-delete-char
 bindkey -M viins '^H'    backward-delete-char
+bindkey -M viins '^U'    backward-kill-line
 bindkey -M viins '^K'    insert-last-word
 bindkey -M viins '^S'    prev-line-with-sudo
-bindkey -M viins '^A'    beginning-of-line
 bindkey -M viins '^J'    vi-join-prev-history-line
+bindkey -M viins '^F'    emacs-forward-word
+bindkey -M viins '^B'    emacs-backward-word
+bindkey -M viins '^A'    beginning-of-line
 bindkey -M viins '^[[H'  beginning-of-line
-bindkey -M viins '^e'    end-of-line
+bindkey -M viins '^E'    end-of-line
 bindkey -M viins '^[[F'  end-of-line
-bindkey -M viins "^N" expand-or-complete
-bindkey -M viins "^P" reverse-menu-complete
+bindkey -M viins "^N"    expand-or-complete
+bindkey -M viins "^P"    reverse-menu-complete
 bindkey -M vicmd 'gg'    beginning-of-buffer-or-history
 bindkey -M vicmd 'g~'    vi-oper-swap-case
 bindkey -M vicmd 'G'     end-of-buffer-or-history
