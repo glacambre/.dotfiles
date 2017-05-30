@@ -128,8 +128,8 @@ function! OnTermOpen()
     let b:should_insert = 1
     au BufEnter <buffer> if b:should_insert == 1 | startinsert | endif
     au WinEnter <buffer> if b:should_insert == 1 | startinsert | endif
-    nnoremap <buffer> <silent> a :let b:should_insert = 1<CR>a
-    nnoremap <buffer> <silent> i :let b:should_insert = 1<CR>i
+    nnoremap <buffer> <silent> a :set laststatus=1<CR>:let b:should_insert = 1<CR>a
+    nnoremap <buffer> <silent> i :set laststatus=1<CR>:let b:should_insert = 1<CR>i
     startinsert
 
     " When opening a new term, go in insert mode
@@ -159,7 +159,7 @@ endfunction
 " suspending. If it is, suspend.
 function! SuspendIfInShell()
     let parent_name=substitute(system("ps -o comm= $(ps -p '" . getpid() . "' -o ppid=)"), '\n$', '\1', '')
-    if (match([ 'zsh','bash','csh','ksh','ash','sh' ], parent_name) != -1)
+    if (match(['zsh','bash','csh','ksh','ash','ssh','sh'], parent_name) != -1)
         :suspend
     else
         echo "Suspend: Not suspended because running in " . parent_name
