@@ -35,11 +35,12 @@ set listchars=eol:¬,tab:►\
 set lazyredraw                  " Redraw the screen only when it's needed
 set autoread                    " Periodically check if the file changed
 
-set hlsearch   " Shows the last search pattern
-set incsearch  " Highlight searches as the regex is typed
-set ignorecase " Ignore case when searching
-set smartcase  " Don't ignore case when search pattern contains uppercase
-set gdefault   " Patterns match all matches on the same line by default
+set hlsearch           " Shows the last search pattern
+set incsearch          " Highlight searches as the regex is typed
+set inccommand=nosplit " Display changes as they are made
+set ignorecase         " Ignore case when searching
+set smartcase          " Don't ignore case when uppercase in search pattern
+set gdefault           " Patterns match all matches on same line by default
 
 set hidden     " Do not unload buffers when leaving them
 
