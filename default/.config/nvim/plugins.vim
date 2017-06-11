@@ -54,7 +54,8 @@ call dein#add('https://github.com/zchee/deoplete-go',                      {'on_
 call dein#add('https://github.com/zchee/deoplete-jedi',                    {'on_ft': ['python']})
 call dein#add('https://github.com/carlitux/deoplete-ternjs',               {'on_ft': ['javascript']})
 call dein#add('https://github.com/Shougo/neco-vim',                        {'on_ft': ['vim']})
-call dein#add('https://github.com/zchee/deoplete-zsh',                     {'on_ft': ['sh', 'zsh']})
+call dein#add('https://github.com/zchee/deoplete-zsh',                     {'on_ft': ['sh', 'zsh'],
+	\ 'hook_add': 'au FileType zsh au BufUnload <buffer> !rm -f ~/.zcompdump_capture'})
 
 " Tags generation
 call dein#add('https://github.com/ludovicchabant/vim-gutentags',           {'on_path': '^\(.*term:\/\/\)\@!.*$',
@@ -118,9 +119,9 @@ call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'nor
 " Add wildignored patterns to denite's ignored patterns
 let wildignored_patterns = []
 for elem in split(&wildignore, ',')
-    let elem = substitute(elem, '*.', '*', 'g')
-    let wildignored_patterns += ['--ignore', tolower(elem)]
-    let wildignored_patterns += ['--ignore', toupper(elem)]
+	let elem = substitute(elem, '*.', '*', 'g')
+	let wildignored_patterns += ['--ignore', tolower(elem)]
+	let wildignored_patterns += ['--ignore', toupper(elem)]
 endfor
 call denite#custom#var('file_rec', 'command',
 	\ ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '',
