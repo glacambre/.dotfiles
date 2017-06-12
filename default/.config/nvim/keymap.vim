@@ -110,4 +110,15 @@ vnoremap ~ ~gv
 
 " Call a function that checks whether we can suspend or not
 nnoremap <C-z> :call SuspendIfInShell()<CR>
-vnoremap <C-z> <Esc> :call SuspendIfInShell()<CR>gv
+vnoremap <C-z> <Esc>:call SuspendIfInShell()<CR>gv
+
+" Insert mode: go to beginning of line
+inoremap <C-a> <C-o>0
+" Insert mode: go to end of line
+inoremap <C-e> <C-o>$
+" Insert mode: go to beginning of word
+inoremap <C-b> <C-o>b
+" Insert mode: go to end of word
+inoremap <C-f> <C-o>e
+" Insert mode: delete following word
+inoremap <expr><C-d> strcharpart(getline('.')[col('.') - 1:], 0, 1) == ' ' ? "\<C-o>d2w" : "\<C-o>dw"
