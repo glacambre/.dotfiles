@@ -1,9 +1,96 @@
+# cli pdf reader
 function cpr () {
     pdftotext $1 - | less
 }
 
+# dd wrapper to get that sweet sweet statusbar
 function dd () {
     command dd status=progress "$@"
+}
+
+# Simple dc wrapper. $1 is input base, $2 is output base, $3 is value
+function baseXtoY () {
+    dc -e "${1}i${2}o${3}p"
+}
+
+# Try to guess input base and convert to base 2
+function base2 () {
+    for i in "$@"
+    do
+        case "$i[0,2]" in
+            "0x")
+                baseXtoY 16 2 "$i[3,-1]"
+                ;;
+            "0b")
+                baseXtoY  2 2 "$i[3,-1]"
+                ;;
+            0*)
+                baseXtoY  8 2 "$i[2,-1]"
+                ;;
+            *)
+                baseXtoY 10 2 "$i"
+        esac
+    done
+}
+
+# Try to guess input base and convert to base 8
+function base8 () {
+    for i in "$@"
+    do
+        case "$i[0,2]" in
+            "0x")
+                baseXtoY 16 8 "$i[3,-1]"
+                ;;
+            "0b")
+                baseXtoY  2 8 "$i[3,-1]"
+                ;;
+            0*)
+                baseXtoY  8 8 "$i[2,-1]"
+                ;;
+            *)
+                baseXtoY 10 8 "$i"
+        esac
+    done
+}
+
+# Try to guess input base and convert to base 10
+function base10 () {
+    for i in "$@"
+    do
+        case "$i[0,2]" in
+            "0x")
+                printf "%i\n" "$i"
+                ;;
+            "0b")
+                printf "%i\n" "$i"
+                ;;
+            0*)
+                echo $((8#$i[2,-1]))
+                ;;
+            *)
+                printf "%i\n" "$i"
+        esac
+    done
+}
+
+# Try to guess input base and convert to base 16
+function base16 () {
+    for i in "$@"
+    do
+        case "$i[0,2]" in
+            "0x")
+                printf "%x\n" "$i"
+                ;;
+            "0b")
+                printf "%x\n" "$i"
+                ;;
+            0*)
+                baseXtoY  8 16 "$i[2,-1]"
+                ;;
+            *)
+                printf "%x\n" "$i"
+        esac
+    done
 }
 
 # Simulates an http server using netcat.
@@ -30,26 +117,31 @@ Content-Disposition: ${download}filename=\"$i\"\r
     done
 }
 
+# Wrapper around go binary to provide project-specific gopath
 function go () {
-    if [[ "$GOPATH" != "" ]]; then;
-        command go "$@";
-        return;
+    if [[ "$GOPATH" != "" ]]
+    then
+        command go "$@"
+        return
     fi
     local dir="$PWD"
     for i in 0 1 2 3; do
-        if [ -d "$dir/.gopath" ]; then;
-            GOPATH="$dir/.gopath" command go "$@";
-            return;
+        if [ -d "$dir/.gopath" ]
+        then
+            GOPATH="$dir/.gopath" command go "$@"
+            return
         fi
-        dir="$dir/../";
+        dir="$dir/../"
     done
-    if [ ! -e "$PWD/.gopath" ]; then;
-        mkdir .gopath;
+    if [ ! -e "$PWD/.gopath" ]
+    then
+        mkdir .gopath
     fi
-    GOPATH="$PWD/.gopath" command go "$@";
-    return;
+    GOPATH="$PWD/.gopath" command go "$@"
+    return
 }
 
+# Prints ssh keys. Useful to check if new host has the right key
 function print_keys () {
     echo "SSH keys:"
     for i in /etc/ssh/*.pub ; do
@@ -61,6 +153,7 @@ function print_keys () {
     done
 }
 
+# Prints history statistics
 function hist_stats () {
     fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
 }
