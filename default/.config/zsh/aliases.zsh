@@ -15,13 +15,13 @@ function baseXtoY () {
 
 # Try to guess input base and convert to base 2
 function base2 () {
-    for i in "$@"
+    for i in "$@:u"
     do
         case "$i[0,2]" in
-            "0x")
+            "0X")
                 baseXtoY 16 2 "$i[3,-1]"
                 ;;
-            "0b")
+            "0B")
                 baseXtoY  2 2 "$i[3,-1]"
                 ;;
             0*)
@@ -35,13 +35,13 @@ function base2 () {
 
 # Try to guess input base and convert to base 8
 function base8 () {
-    for i in "$@"
+    for i in "$@:u"
     do
         case "$i[0,2]" in
-            "0x")
+            "0X")
                 baseXtoY 16 8 "$i[3,-1]"
                 ;;
-            "0b")
+            "0B")
                 baseXtoY  2 8 "$i[3,-1]"
                 ;;
             0*)
@@ -55,13 +55,13 @@ function base8 () {
 
 # Try to guess input base and convert to base 10
 function base10 () {
-    for i in "$@"
+    for i in "$@:u"
     do
         case "$i[0,2]" in
-            "0x")
+            "0X")
                 printf "%i\n" "$i"
                 ;;
-            "0b")
+            "0B")
                 printf "%i\n" "$i"
                 ;;
             0*)
@@ -75,13 +75,13 @@ function base10 () {
 
 # Try to guess input base and convert to base 16
 function base16 () {
-    for i in "$@"
+    for i in "$@:u"
     do
         case "$i[0,2]" in
-            "0x")
+            "0X")
                 printf "%x\n" "$i"
                 ;;
-            "0b")
+            "0B")
                 printf "%x\n" "$i"
                 ;;
             0*)
