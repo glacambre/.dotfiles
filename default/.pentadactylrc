@@ -87,7 +87,7 @@ command! playAllYoutubeLinks -js <<EOF
                             link = a.href.match(regex) || a.innerText.match(regex);
                         return p + (link && link.length > 0 && p.indexOf(link[0]) < 0 ? link[0] + ' ' : "");
                     };
-                })(/^https?:\/\/(www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+$/), "")
+                })(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/), "")
         .split(" ")));
 EOF
 
