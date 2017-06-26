@@ -10,6 +10,9 @@
 /default/.config/nvim/bundle/
 /default/.config/nvim/spell/
 
+/default/.config/qutebrowser/bookmarks/
+/default/.config/qutebrowser/quickmarks
+
 /default/.config/syncthing/
 
 /default/.config/gimp-2.8/
