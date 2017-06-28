@@ -1,10 +1,12 @@
 set bell-style none
 set colored-stats on
 set completion-ignore-case on
+set completion-map-case on
 set editing-mode vi
 set enable-keypad on
 set enable-keypad on
 set mark-directories on
+set mark-symlinked-directories on
 set match-hidden-files on
 set page-completions off
 set print-completions-horizontally on
