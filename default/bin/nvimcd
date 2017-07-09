@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+"""Cd nvim host instance"""
+from __future__ import print_function
+import os
+import sys
+
+from neovim import attach
+
+if not sys.argv[1]:
+    print("Usage: {} <dirname>".format(sys.argv[0]))
+    sys.exit(1)
+
+addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
+if not addr:
+    sys.exit(1)
+
+nvim = attach("socket", path=addr)
+
+def _setup():
+    nvim.vars['directory_to_change_to'] = sys.argv[1]
+    nvim.command('exe "cd " . fnameescape(g:directory_to_change_to)')
+    nvim.command('call rpcnotify({0}, "n")'.format(nvim.channel_id))
+
+def _exit(*args):
+    nvim.vars['directory_to_change_to'] = None
+    nvim.stop_loop()
+
+nvim.run_loop(_exit, _exit, _setup)
