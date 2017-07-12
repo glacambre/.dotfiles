@@ -55,11 +55,13 @@ bindkey -M menuselect "^Y" accept-and-menu-complete
 bindkey -M menuselect "^E" send-break
 bindkey -M menuselect "^[" vi-cmd-mode
 bindkey -M menuselect "^M" "^M^M" # Sort of a hack. Enter accepts completion and feeds line
+
 # Quotes/brackets text objects
 autoload -U select-bracketed
 autoload -U select-quoted
 zle -N select-bracketed
 zle -N select-quoted
+
 for km in viopp visual; do
     bindkey -M $km -- '-' vi-up-line-or-history
     for c in {a,i}${(s..)^:-\'\"\`\|,./:;-=+@}; do
@@ -69,3 +71,25 @@ for km in viopp visual; do
         bindkey -M $km $c select-bracketed
     done
 done
+
+# Surrouding operators !
+autoload -U select-quoted select-bracketed surround
+zle -N select-quoted
+zle -N select-bracketed
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+
+for m in visual viopp; do
+    for c in {a,i}{\',\",\`}; do
+        bindkey -M $m $c select-quoted
+    done
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $m $c select-bracketed
+    done
+done
+
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual S add-surround
