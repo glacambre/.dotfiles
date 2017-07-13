@@ -55,7 +55,7 @@ call dein#add('https://github.com/zchee/deoplete-jedi',                    {'on_
 call dein#add('https://github.com/carlitux/deoplete-ternjs',               {'on_ft': ['javascript']})
 call dein#add('https://github.com/Shougo/neco-vim',                        {'on_ft': ['vim']})
 call dein#add('https://github.com/zchee/deoplete-zsh',                     {'on_ft': ['sh', 'zsh'],
-	\ 'hook_add': 'au FileType zsh au BufUnload <buffer> !rm -f ~/.zcompdump_capture'})
+	\ 'hook_add': 'au FileType zsh au BufUnload <buffer> silent exec "!rm -f ~/.zcompdump_capture"'})
 
 " Tags generation
 call dein#add('https://github.com/ludovicchabant/vim-gutentags',           {'on_path': '^\(.*term:\/\/\)\@!.*$',
