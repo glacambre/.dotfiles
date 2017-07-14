@@ -1,11 +1,12 @@
 "Start Dein (plugin manager)
-let s:config_dir = expand('<sfile>:p:h')
+let s:config_dir = substitute(expand('<sfile>:p:h'), '\', '/', 'g')
 let s:bundle_dir = s:config_dir . "/bundle"
 let s:dein_dir = s:bundle_dir . "/repos/github.com/Shougo/dein.vim"
 let s:do_update = 0
 
 if !isdirectory(s:dein_dir)
-	execute "!git clone --depth 1 --branch master 'https://github.com/Shougo/dein.vim' '" . s:dein_dir . "'"
+	call mkdir(fnamemodify(s:dein_dir, "h"), "p")
+	execute '!git clone --depth 1 --branch master "https://github.com/Shougo/dein.vim" "' . s:dein_dir . '"'
 	let s:do_update = 1
 endif
 execute("set runtimepath+=" . s:dein_dir)
@@ -106,7 +107,7 @@ call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_
 call dein#end()
 
 if s:do_update == 1
-	dein#update()
+	call dein#update()
 endif
 
 " Denite
