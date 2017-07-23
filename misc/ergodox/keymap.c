@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   =    |   &  |   é  |   "  |   '  |   (  | LEFT |           | RIGHT|   -  |   è  |   _  |   ç  |   à  |   )    |
+ * |   ^    |   &  |   é  |   "  |   '  |   (  | LEFT |           | RIGHT|   -  |   è  |   _  |   ç  |   à  |   )    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | Del    |   A  |   Z  |   E  |   R  |   T  |  L1  |           |  L1  |   Y  |   U  |   I  |   O  |   P  |   =    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = KEYMAP(  // layer 0 : default
         // left hand
-        KC_EQL,  FR_AMP,  FR_EACU, FR_QUOT, FR_APOS, FR_LPRN, KC_LEFT,
+        FR_CIRC,  FR_AMP,  FR_EACU, FR_QUOT, FR_APOS, FR_LPRN, KC_LEFT,
         KC_DELT, FR_A,    FR_Z,    KC_E,     KC_R,    KC_T,    TG(QWER),
         KC_ESC,  FR_Q,    KC_S,    KC_D,     KC_F,    KC_G,
         KC_LSFT, FR_W,    KC_X,    KC_C,     KC_V,    KC_B,    TG(SYMB),
@@ -74,10 +74,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |       |      |      |      |      |                                       |      |      |      |      |      |
  *   `-----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |Animat|      |       |Toggle|Solid |
+ *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
- *                                 |Bright|Bright|      |       |      |Hue-  |Hue+  |
- *                                 |ness- |ness+ |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
@@ -89,18 +89,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, FR_HASH, FR_DLR,  FR_LPRN, FR_RPRN, FR_GRV,
        KC_TRNS, FR_PERC, FR_CIRC, FR_LBRC, FR_RBRC, FR_TILD, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                                                    RGB_MOD, KC_TRNS,
+                                                    KC_TRNS, KC_TRNS,
                                                              KC_TRNS,
-                                           RGB_VAD, RGB_VAI, KC_TRNS,
+                                           KC_TRNS, KC_TRNS, KC_TRNS,
        // right hand
        KC_TRNS, KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,
        KC_TRNS, FR_EQL,  FR_7,   FR_8,    FR_9,    FR_ASTR, KC_F12,
                 FR_0,    FR_4,   FR_5,    FR_6,    FR_PLUS, KC_TRNS,
        KC_TRNS, FR_DOT,  FR_1,   FR_2,    FR_3,    FR_BSLS, KC_TRNS,
                          KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       RGB_TOG, RGB_SLD,
+       KC_TRNS, KC_TRNS,
        KC_TRNS,
-       KC_TRNS, RGB_HUD, RGB_HUI
+       KC_TRNS, KC_TRNS, KC_TRNS
 ),
 [QWER] = KEYMAP(  // layer 1 : default
         // left hand
