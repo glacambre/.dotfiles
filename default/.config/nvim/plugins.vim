@@ -50,12 +50,12 @@ call dein#add('https://github.com/rbonvall/vim-textobj-latex',             {'dep
 
 " Autocompletion plugins
 call dein#add('https://github.com/Shougo/deoplete.nvim',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-call dein#add('https://github.com/zchee/deoplete-clang',                   {'on_ft': ['c', 'cpp']})
-call dein#add('https://github.com/zchee/deoplete-go',                      {'on_ft': ['go'], 'build': {'unix': 'make'}})
-call dein#add('https://github.com/zchee/deoplete-jedi',                    {'on_ft': ['python']})
-call dein#add('https://github.com/carlitux/deoplete-ternjs',               {'on_ft': ['javascript']})
-call dein#add('https://github.com/Shougo/neco-vim',                        {'on_ft': ['vim']})
-call dein#add('https://github.com/zchee/deoplete-zsh',                     {'on_ft': ['sh', 'zsh'],
+call dein#add('https://github.com/zchee/deoplete-clang',                   {'depends': 'deoplete.nvim', 'on_ft': ['c', 'cpp']})
+call dein#add('https://github.com/zchee/deoplete-go',                      {'depends': 'deoplete.nvim', 'on_ft': ['go'], 'build': {'unix': 'make'}})
+call dein#add('https://github.com/zchee/deoplete-jedi',                    {'depends': 'deoplete.nvim', 'on_ft': ['python']})
+call dein#add('https://github.com/carlitux/deoplete-ternjs',               {'depends': 'deoplete.nvim', 'on_ft': ['javascript']})
+call dein#add('https://github.com/Shougo/neco-vim',                        {'depends': 'deoplete.nvim', 'on_ft': ['vim']})
+call dein#add('https://github.com/zchee/deoplete-zsh',                     {'depends': 'deoplete.nvim', 'on_ft': ['sh', 'zsh'],
 	\ 'hook_add': 'au FileType zsh au BufUnload <buffer> silent exec "!rm -f ~/.zcompdump_capture"'})
 
 " Tags generation
