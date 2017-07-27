@@ -30,8 +30,10 @@
 /default/.vim/swapdir/
 /default/.vim/undodir/
 
-/default/.weechat/script/plugins.xml.gz
+/default/.weechat/plugins
 /default/.weechat/plugins.conf
+/default/.weechat/script/plugins.xml.gz
+/default/.weechat/weechat-discord
 /default/.weechat/weechat.log
 
 /default/bin/hugo
