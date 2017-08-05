@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Edit a file in the host nvim instance."""
 from __future__ import print_function
 import os
