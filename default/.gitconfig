@@ -2,3 +2,5 @@
 	tool = vimdiff2
 [mergetool "vimdiff2"]
 	path = nvim
+[commit]
+	verbose = true
