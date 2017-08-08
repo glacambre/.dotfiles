@@ -4,3 +4,7 @@
 	path = nvim
 [commit]
 	verbose = true
+[push]
+	default = upstream
+[log]
+	decorate = short
