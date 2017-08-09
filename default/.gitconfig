@@ -2,3 +2,6 @@
 	tool = vimdiff2
 [mergetool "vimdiff2"]
 	path = nvim
+[user]
+	name = glacambre
+	email = me@r4
