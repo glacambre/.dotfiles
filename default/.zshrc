@@ -4,7 +4,7 @@ zmodload zsh/complist # Completion listing extension
 zmodload zsh/zpty     # Enables starting commands in pseudo terminals
 
 ##### PATH VARIABLES
-export PATH="$HOME/bin/:$PATH"
+export PATH="$HOME/bin/:$HOME/.cargo/bin/:$PATH"
 export INDENT_PROFILE="$HOME/.config/indent/profile"
 export XDG_DATA_HOME="$HOME/.local/share/"
 
