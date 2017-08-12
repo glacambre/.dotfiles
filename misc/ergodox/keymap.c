@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |         |   %  |   ^  |   [  |   ]  |   ~  |      |           |      |   .  |   1  |   2  |   3  |   \  |        |
  * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |       |      |      |      |      |                                       |      |      |      |      |      |
+ *   |       | Right|  Up  | Down | Left |                                       | Left | Down |  Up  |Right |      |
  *   `-----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, FR_EXLM, FR_AT,   FR_LCBR, FR_RCBR, FR_PIPE, KC_TRNS,
        KC_TRNS, FR_HASH, FR_DLR,  FR_LPRN, FR_RPRN, FR_GRV,
        KC_TRNS, FR_PERC, FR_CIRC, FR_LBRC, FR_RBRC, FR_TILD, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_RGHT, KC_UP,   KC_DOWN, KC_LEFT,
                                                     KC_TRNS, KC_TRNS,
                                                              KC_TRNS,
                                            KC_TRNS, KC_TRNS, KC_TRNS,
@@ -97,12 +97,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, FR_EQL,  FR_7,   FR_8,    FR_9,    FR_ASTR, KC_F12,
                 FR_0,    FR_4,   FR_5,    FR_6,    FR_PLUS, KC_TRNS,
        KC_TRNS, FR_DOT,  FR_1,   FR_2,    FR_3,    FR_BSLS, KC_TRNS,
-                         KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                         KC_LEFT,KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS
 ),
-[QWER] = KEYMAP(  // layer 1 : default
+[QWER] = KEYMAP(  // layer 3 : qwerty
         // left hand
         KC_EQL,  KC_1,   KC_HASH,  KC_QUOT,  LSFT(KC_QUOT), KC_LPRN, KC_LEFT,
         KC_DELT, KC_A,    KC_Z,    KC_E,     KC_R,    KC_T,    TG(QWER),
@@ -122,13 +122,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              KC_PGDN,
              KC_RALT, KC_BSPC, KC_ENT
 ),
+// Qwerty symbols
 [QWSY] = KEYMAP(
        // left hand
        VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,
        KC_TRNS, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS,
        KC_TRNS, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,
        KC_TRNS, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_RGHT, KC_UP,   KC_DOWN, KC_LEFT,
                                                     RGB_MOD, KC_TRNS,
                                                              KC_TRNS,
                                            RGB_VAD, RGB_VAI, KC_TRNS,
@@ -137,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, KC_EQL,  KC_7,   KC_8,    KC_9,    KC_ASTR, KC_F12,
                 KC_0,    KC_4,   KC_5,    KC_6,    KC_PLUS, KC_TRNS,
        KC_TRNS, KC_DOT,  KC_1,   KC_2,    KC_3,    KC_BSLS, KC_TRNS,
-                         KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                         KC_LEFT,KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS,
        RGB_TOG, RGB_SLD,
        KC_TRNS,
        KC_TRNS, RGB_HUD, RGB_HUI
