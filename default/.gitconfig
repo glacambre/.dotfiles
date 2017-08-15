@@ -5,3 +5,9 @@
 [user]
 	name = glacambre
 	email = me@r4
+[commit]
+	verbose = true
+[push]
+	default = upstream
+[log]
+	decorate = short
