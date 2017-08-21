@@ -33,8 +33,8 @@
 #define _background    #262626
 #define _cursorColor   #bcbcbc
 !Font attributes
-#define _font_name     Cousine
-#define _font_size     10
+#define _font_name     NotoMono
+#define _font_size     11
 
 xft*antialias          : true
 
@@ -65,7 +65,7 @@ xft*antialias          : true
 
 *URxvt*font            : xft:_font_name:size=_font_size
 *URxvt*boldFont        : xft:_font_name:size=_font_size:style=Bold
-*URxvt*letterSpace     : -3
+*URxvt*letterSpace     : -1
 *URxvt*scrollBar       : false
 *URxvt*termName        : rxvt-unicode-256color
 *URxvt*color0          : _color0
