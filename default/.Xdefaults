@@ -1,5 +1,3 @@
-/* #include "/etc/X11/app-defaults/XTerm-color" */
-
 !BLK Cursor
 #define _color0        #101010
 #define _color8        #101010
