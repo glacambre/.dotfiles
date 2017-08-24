@@ -1,3 +1,5 @@
+/* #include "/etc/X11/app-defaults/XTerm-color" */
+
 !BLK Cursor
 #define _color0        #101010
 #define _color8        #101010
@@ -62,7 +64,6 @@ xft*antialias          : true
 *xTerm*cursorColor     : _cursorColor
 
 *URxvt*font            : xft:_font_name:size=_font_size
-*URxvt*boldFont        : xft:_font_name:size=_font_size:style=Bold
 *URxvt*letterSpace     : -1
 *URxvt*scrollBar       : false
 *URxvt*termName        : rxvt-unicode-256color

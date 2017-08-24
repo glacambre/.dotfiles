@@ -1,7 +1,13 @@
-FILENAME="$HOME/.xinitrc.$(hostname)"
-if [ -e "$FILENAME" ] ; then
-    source "$FILENAME"
+XORG_CONF_DIR="$HOME/.config/xorg"
+if [ -d "$XORG_CONF_DIR" ] ; then
+    xrdb -merge "${XORG_CONF_DIR}/Xdefaults" &
+
+    FILENAME="$XORG_CONF_DIR/xinitrc.$(hostname)"
+    if [ -e "$FILENAME" ] ; then
+        source "$FILENAME"
+    fi
 fi
+
 
 # Use a custom compose key
 export GTK_IM_MODULE="xim"
