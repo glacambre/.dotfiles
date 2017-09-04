@@ -8,7 +8,7 @@ augroup END
 
 augroup MY_UPDATE_AUGROUP
 	autocmd!
-	au BufWritePost ~/.Xdefaults !xrdb -merge ~/.Xdefaults
+	au BufWritePost ~/.config/xorg/Xdefaults !xrdb -merge ~/.config/xorg/Xdefaults
 	au BufWritePost fonts.conf !fc-cache
 augroup END
 
