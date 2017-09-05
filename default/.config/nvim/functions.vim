@@ -72,7 +72,7 @@ function! MyNeomakeStatusItem()
     if !exists('*neomake#statusline#LoclistCounts()')
         return ""
     endif
-    let counts = neomake#statusline#LoclistCounts()
+    let counts = neomake#statusline#LoclistCounts(bufnr("%"))
     let ecount = get(counts, "E", 0)
     let wcount = get(counts, "W", 0)
     if ecount > 0 && wcount > 0
@@ -127,7 +127,6 @@ function! OnTermOpen()
     " term was in insert mode.
     let b:should_insert = 1
     au BufEnter <buffer> if b:should_insert == 1 | startinsert | endif
-    au WinEnter <buffer> if b:should_insert == 1 | startinsert | endif
     nnoremap <buffer> <silent> a :set laststatus=1<CR>:let b:should_insert = 1<CR>a
     nnoremap <buffer> <silent> i :set laststatus=1<CR>:let b:should_insert = 1<CR>i
     startinsert
