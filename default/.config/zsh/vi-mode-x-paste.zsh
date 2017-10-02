@@ -1,4 +1,4 @@
-if [ $(which "xsel") ] ; then
+if which "xsel" >/dev/null; then
     bindkey -M vicmd -r '"'
     vi-x-paste-set-buffer () {
         if [ ${REGION_ACTIVE} -eq 1 ]; then
