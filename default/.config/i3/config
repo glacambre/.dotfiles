@@ -199,6 +199,7 @@ for_window [class="Screenkey"]              floating enable
 for_window [class="VirtualBox"]             floating enable
 for_window [class="Lxappearance"]           floating enable
 for_window [class="Floating Xterm"]         floating enable
+for_window [title="Pentadactyledit"]        floating enable
 for_window [title="Terminator Preferences"] floating enable
 
 exec --no-startup-id /home/me/.config/i3/i3-startup

@@ -59,7 +59,7 @@ map -count -modes=n "?" -builtin :set hlfind<CR>?
 map -count -modes=n n -builtin :set hlfind<CR>n
 map -count -modes=n N -builtin :set hlfind<CR>N
 set cdpath=''
-set editor='x-terminal-emulator -e nvim +<line> +"sil! call cursor(0, <column>)" +"sil! set tw=0" <file>'
+set editor='x-terminal-emulator -insecure false -title Pentadactyledit -e nvim +<line> +"sil! call cursor(0, <column>)" +"sil! set tw=0" <file>'
 set extendedhinttags=[iI]:img,[asOTvVWy]:':-moz-any-link',area[href],img[src],iframe[src],[A]:[id],a[name],[f]:body,[F]:body,code,div,html,p,pre,span,[S]:'input:not([type=hidden])',textarea,button,select,[Y]:a,div,p,span,pre,[Y]:a,div,p,span,pre,[Y]:a,div,p,span,pre,[m]:a,[r]:a
 set guioptions=bCs
 set hintkeys=fdsqjklmrezauiopwxcvghtybn
