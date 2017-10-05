@@ -17,12 +17,12 @@ if not addr:
 nvim = attach("socket", path=addr)
 
 def _setup():
-    nvim.vars['directory_to_change_to'] = sys.argv[1]
-    nvim.command('exe "cd " . fnameescape(g:directory_to_change_to)')
-    nvim.command('call rpcnotify({0}, "n")'.format(nvim.channel_id))
+    nvim.vars['b:terminal_path'] = sys.argv[1]
+    nvim.command('let b:terminal_path=fnameescape("' + sys.argv[1] + '")\n\
+    exe "cd " . b:terminal_path\n\
+    call rpcnotify(' + str(nvim.channel_id) + ', "n")')
 
 def _exit(*args):
-    nvim.vars['directory_to_change_to'] = None
     nvim.stop_loop()
 
 nvim.run_loop(_exit, _exit, _setup)

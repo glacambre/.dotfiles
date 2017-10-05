@@ -19,8 +19,6 @@ set wildignore+=*.toc,*.nav,*.aux,*.log,*.dvi,*.cls,*.sty,*.bib
 
 set completeopt=menu,menuone,noinsert,noselect
 
-set autochdir                   " Automatically cd into dir of current buffer
-
 set showcmd                     " Show commands at the bottom of the screen
 set noruler                     " Don't show cursor position at the bottom
 set noshowmode                  " Don't show the mode in the line at the bottom

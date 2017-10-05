@@ -125,6 +125,7 @@ function! OnTermOpen()
     " When leaving a term buffer, remember whether it was in insert or normal
     " mode. When entering a terminal window/buffer, go in insert mode if the
     " term was in insert mode.
+    au BufEnter <buffer> if exists("b:terminal_path") | execute("cd " . b:terminal_path) | endif
     let b:should_insert = 1
     au BufEnter <buffer> if b:should_insert == 1 | startinsert | endif
     nnoremap <buffer> <silent> a :set laststatus=1<CR>:let b:should_insert = 1<CR>a
