@@ -165,7 +165,7 @@ function hist_stats () {
 }
 
 alias _='sudo'
-alias cleantex='rm *.{aux,idx,log,nav,out,snm,toc,vrb}(.N) 2>/dev/null'
+alias cleantex='rm *.{aux,idx,log,nav,out,snm,toc,vrb,bbl,blg}(.N) 2>/dev/null'
 alias cp='cp  -i'
 alias ea='nocorrect sudo emerge --ask'
 alias ek='cd /usr/src/linux && sudo -s make menuconfig && sudo make -j5 && sudo make modules_install && sudo make install && sudo grub-mkconfig -o /boot/grub/grub.cfg'
