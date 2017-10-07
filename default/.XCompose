@@ -1,3 +1,4 @@
+# Use xev to discover the name of the keys
 <dead_circumflex> <A>:               "Â"
 <dead_circumflex> <E>:               "Ê"
 <dead_circumflex> <I>:               "Î"
@@ -40,9 +41,47 @@
 <dead_grave> <space>:                "`"
 # Somehow AltGr+o sends ocircumflex but I want œ instead
 <ocircumflex>:                       "œ"
-<acircumflex>:                       "æ"
 <odiaeresis>:                        "Œ"
+# Change AltGr+a from â to æ
+<acircumflex>:                       "æ"
 <adiaeresis>:                        "Æ"
+# Change AltGR+l from Ô to λ
+<Ocircumflex>:                       "λ"
+<Odiaeresis>:                        "Λ"
+# Change AltGR+B from ’ to Β
+<rightsinglequotemark>:              "Β"
+# Change AltGR+g from ae to γ
+<ae>:                                "γ"
+<AE>:                                "Γ"
+# Change AltGR+d from Ê to Δ
+<Ecircumflex>:                       "Δ"
+<Ediaeresis>:                        "δ"
+# Change AltGR+z from å to ζ
+<aring>:                             "ζ"
+<Aring>:                             "Ζ"
+# Change AltGR+t from þ to τ
+<thorn>:                             "τ"
+<THORN>:                             "Τ"
+# Change AltGR+p from ¶ to π
+<paragraph>:                         "π"
+<grave>:                             "Π"
+# Change AltGR+n from ¬ to ν
+<notsign>:                           "ν"
+# Change AltGR+k from Î to κ
+<Icircumflex>:                       "κ"
+<Idiaeresis>:                        "Κ"
+# Change AltGR+h from ð to η
+<eth>:                               "η"
+<ETH>:                               "Η"
+# Change AltGr+m from ¹ to μ
+<onesuperior>:                       "μ"
+<masculine>:                         "Μ"
+# Change AltGr+i from î to ι
+<icircumflex>:                       "ι"
+<idiaeresis>:                        "Ι"
+# Change AltGr+u from û to υ
+<ucircumflex>:                       "υ"
+<udiaeresis>:                        "Υ"
 
 <dead_circumflex> <colon> <parenright>:   "☺"   U263A           # WHITE SMILING FACE
 <dead_circumflex> <colon> <parenleft>:    "☹"   U2639           # WHITE FROWNING FACE
