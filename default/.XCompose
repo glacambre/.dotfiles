@@ -83,6 +83,7 @@
 <ucircumflex>:                       "υ"
 <udiaeresis>:                        "Υ"
 
+<dead_circumflex> <period> <period> <period>: "…" U2026
 <dead_circumflex> <colon> <parenright>:   "☺"   U263A           # WHITE SMILING FACE
 <dead_circumflex> <colon> <parenleft>:    "☹"   U2639           # WHITE FROWNING FACE
 <dead_circumflex> <less> <3>:             "❤"   U2764           # HEAVY BLACK HEART
