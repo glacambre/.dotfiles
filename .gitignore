@@ -26,6 +26,8 @@
 /default/.elinks/gotohist
 /default/.elinks/searchhist
 
+/default/.fonts/*
+
 /default/.local/share/*
 !/default/.local/share/applications/
 /default/.local/share/applications/*
