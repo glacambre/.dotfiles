@@ -8,7 +8,7 @@ augroup MY_GENERAL_AUGROUP
 
 	" This is equivalent to :set autochdir but lets buffer-local
 	" autocommands change the dir. Autochdir doesn't.
-	au BufEnter * execute("cd " . expand('%:p:h'))
+	au BufEnter * if &buftype!="terminal" | execute("cd " . expand('%:p:h')) | endif
 augroup END
 
 augroup MY_UPDATE_AUGROUP
@@ -21,12 +21,7 @@ augroup MY_C_AUGROUP
 	autocmd!
 	" When reading a .h file, if it is empty, add a generic include guard
 	" Also, set its ft to c.
-	au BufRead,BufNewFile *.h if line('$') == 1 && getline(1) == ''
-		\ | let b:definevar = substitute(toupper(expand('%:t')), "\\.", "_", "g")
-		\ | call append(0, ["#ifndef " . b:definevar, "#define " . b:definevar, "", "#endif"])
-		\ | call cursor(line('$') - 2, 1)
-		\ | endif
-		\ | set ft=c
+	au BufRead,BufNewFile *.h call GenerateCHeaderSkeleton()
 augroup END
 
 augroup MY_NETRW_AUGROUP

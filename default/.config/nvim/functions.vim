@@ -237,3 +237,29 @@ function! LessInitFunc()
     set laststatus=0
     set readonly
 endfunction
+
+function! GenerateCHeaderSkeleton()
+    " If the file isn't empty, abort
+    if line('$') != 1 || getline(1) != ''
+        return
+    endif
+    " Grab the filename and use it to get a good include guard name
+    let l:definename = substitute(toupper(expand('%:t')), "\\.", "_", "g")
+    " Append the beginning of the include guard
+    call append(0, ["#ifndef " . l:definename, "#define " . l:definename])
+    " Try to find a c file that has the same name
+    let l:filename = expand("%:t:r") . ".c"
+    let l:file = findfile(l:filename, "..")
+    if l:file != ""
+         let l:lines = filter(readfile(l:file), 'match(v:val, "^\\(struct\\s*\\)\\?[a-z0-9_]\\+\\s*\\*\\?\\s*[a-z0-9_]\\+\\s*(") == 0')
+         let l:lines = map(l:lines, 'substitute(v:val, ")[^)]*$", ");", "")')
+         call append(line('$'), l:lines)
+    endif
+
+    call append(line('$'), ["#endif"])
+
+    call cursor(line('$') - 2, 1)
+
+    set ft=c
+
+endfunction
