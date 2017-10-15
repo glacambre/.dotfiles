@@ -166,8 +166,7 @@ let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.erlang = 'erlang_complete#Complete'
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
-let g:neosnippet#snippets_directory= [ s:bundle_dir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets',
-	\ s:config_dir . '/custom_snippets' ]
+let g:neosnippet#snippets_directory= [ s:config_dir . '/custom_snippets' , s:bundle_dir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets']
 let g:deoplete#sources#clang#libclang_path="/usr/lib64/libclang.so"
 let g:deoplete#sources#clang#clang_header="/usr/lib64/clang/"
 let g:deoplete#sources#go#gocode_binary=$HOME . "/.gopath/bin/gocode"

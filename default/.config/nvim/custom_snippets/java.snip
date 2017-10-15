@@ -1,0 +1,27 @@
+snippet class
+	class `expand("%:t:r")` {
+
+		${1}
+
+		public `expand("%:t:r")` (${2}) {
+			${3}
+		}
+
+		${4}
+
+	}
+
+snippet prop
+	private ${1:type} ${2:name};
+	public void set$2 ($1 $2) {
+		this.$2 = $2;
+	}
+	public $1 get$2 () {
+		return this.$2;
+	}
+	${3}
+
+snippet fun
+	private ${1:type} ${2:name} (${3:args}) {
+		${4:body}
+	}
