@@ -91,23 +91,23 @@ endfunction
 
 " Updates/lauches mupdf
 function! UpdateLatexPdfDisplay()
-	" If a mupdf instance has been found, update it with a hup signal.
-	" Otherwise, start a mupdf instance.
-	if &ft != "tex"
-		return
-	endif
-	silent exec '!
-	\ found=false;
-	\ for i in `pidof mupdf-x11`; do;
-		\ if [ `xargs -0 < /proc/$i/cmdline | grep -c "' . expand('%:p:r') . '.pdf"` -ge 1 ] ; then;
-			\ kill -1 $i;
-			\ found=true;
-			\ break;
-		\ fi;
-	\ done;
-	\ if [ $found = false ]; then;
-		\ mupdf "' . expand('%:p:r') . '.pdf" &;
-	\ fi'
+    " If a mupdf instance has been found, update it with a hup signal.
+    " Otherwise, start a mupdf instance.
+    if &ft != "tex"
+        return
+    endif
+    silent exec '!
+                \ found=false;
+                \ for i in `pidof mupdf-x11`; do;
+                \ if [ `xargs -0 < /proc/$i/cmdline | grep -c "' . expand('%:p:r') . '.pdf"` -ge 1 ] ; then;
+                \ kill -1 $i;
+                \ found=true;
+                \ break;
+                \ fi;
+                \ done;
+                \ if [ $found = false ]; then;
+                \ mupdf "' . expand('%:p:r') . '.pdf" &;
+                \ fi'
 endfunction
 
 " Called when a new term is created
@@ -251,15 +251,17 @@ function! GenerateCHeaderSkeleton()
     let l:filename = expand("%:t:r") . ".c"
     let l:file = findfile(l:filename, "..")
     if l:file != ""
-         let l:lines = filter(readfile(l:file), 'match(v:val, "^\\(struct\\s*\\)\\?[a-z0-9_]\\+\\s*\\*\\?\\s*[a-z0-9_]\\+\\s*(") == 0')
-         let l:lines = map(l:lines, 'substitute(v:val, ")[^)]*$", ");", "")')
-         call append(line('$'), l:lines)
+        " If this file exists, find lines that look like function declarations
+        let l:lines = filter(readfile(l:file), 'match(v:val, "^\\(struct\\s*\\)\\?[a-z0-9_]\\+\\s*\\*\\?\\s*[a-z0-9_]\\+\\s*(") == 0')
+        " Make them look like regular signatures
+        let l:lines = map(l:lines, 'substitute(v:val, ")[^)]*$", ");", "")')
+        " And add them to the file
+        call append(line('$'), l:lines)
     endif
 
+    " Close the include guard
     call append(line('$'), ["#endif"])
-
+    " Go back to the line before the end of the include guard
     call cursor(line('$') - 2, 1)
-
     set ft=c
-
 endfunction
