@@ -12,3 +12,5 @@ hash -d gral=~/documents/ecole/7/gral
 
 hash -d nvim=~/.config/nvim
 hash -d zsh=~/.config/zsh
+
+hash -d cv=~/documents/cv_motiv/src
