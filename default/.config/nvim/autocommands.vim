@@ -41,7 +41,20 @@ augroup MY_TERM_AUGROUP
 augroup END
 
 augroup MY_MISC_AUGROUP
-	au FileType tex setlocal spell spelllang=fr
 	au BufReadPost *hledger.journal set ft=ledger
 	au BufReadPost mutt-* setlocal formatoptions += aw | setlocal tw=78
+augroup END
+
+augroup MY_TEX_AUGROUP
+	au FileType tex setlocal spell spelllang=fr
+	au FileType tex iabbrev λ $\lambda$
+	au FileType tex iabbrev Λ $\Lambda$
+	au FileType tex iabbrev ß $\beta$
+	au FileType tex iabbrev Β $\Beta$
+	au FileType tex iabbrev π $\pi$
+	au FileType tex iabbrev Π $\Pi$
+	au FileType tex iabbrev τ $\tau$
+	au FileType tex iabbrev Τ $\Tau$
+	au FileType tex iabbrev μ $\mu$
+	au FileType tex iabbrev Μ $\Mu$
 augroup END
