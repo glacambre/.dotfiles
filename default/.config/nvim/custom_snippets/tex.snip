@@ -20,26 +20,26 @@ alias   letter
     \usepackage[utf8]{inputenc}
     \usepackage[T1]{fontenc}
     \usepackage[francais]{babel}
-    \usepackage[scale=0.775]{geometry}
+    \usepackage[lmargin=20mm, rmargin=20mm]{geometry}
     \usepackage{utopia}
     \author{${1:author}}
     \pagenumbering{gobble}
     \makeatletter
     \begin{document}
     \begin{flushleft}
-    \@author\\
+    \@author\\\\
     ${2:address}
     \end{flushleft}
     \noindent
     \hangafter=0
-    \hangindent=300pt
+    \hangindent=10cm
     ${3:recipient}
     \paragraph{}
     \paragraph{}
     \paragraph{Objet:}${4:subject}
     \paragraph{}${5:content}
     \begin{flushright}
-    \today \\
+    \today \\\\
     \@author
     \end{flushright}
     \vfill
