@@ -52,4 +52,8 @@ augroup MY_TEX_AUGROUP
 	au FileType tex iabbrev Τ $\Tau$
 	au FileType tex iabbrev μ $\mu$
 	au FileType tex iabbrev Μ $\Mu$
+	au FileType tex iabbrev → \rightarrow
+	au FileType tex iabbrev ⇒ \Rightarrow
+	au FileType tex iabbrev ← \leftarrow
+	au FileType tex iabbrev ⇐ \Leftarrow
 augroup END
