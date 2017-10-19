@@ -93,6 +93,12 @@ call dein#add('https://github.com/Shougo/echodoc.vim',                     {'on_
 	    \ 'hook_add': 'let g:echodoc_enable_at_startup = 1'})
 
 " Various language-specific plugins
+call dein#add('https://github.com/let-def/vimbufsync',                     {'on_ft': ['coq']})
+call dein#add('https://github.com/the-lambda-church/coquille',             {'on_ft': ['coq'],
+	\ 'depends': 'vimbufsync',
+	\ 'hook_add': "nnoremap <Leader>cn :CoqNext<CR>
+		\ | nnoremap <Leader>cu :CoqUndo<CR>
+		\ | nnoremap <Leader>ch :CoqToCursor<CR>"})
 call dein#add('https://github.com/PotatoesMaster/i3-vim-syntax',           {'on_ft': ['i3']})
 call dein#add('https://github.com/vim-erlang/vim-erlang-omnicomplete',     {'on_ft': ['erlang']})
 call dein#add('https://github.com/jelera/vim-javascript-syntax',           {'on_ft': ['javascript']})
@@ -144,7 +150,7 @@ function! s:my_cr_function() abort
 	return "\<CR>"
 endfunction
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-imap <expr> <Tab> exists('*neosnippet#expandable_or_jumpable()') && neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
+imap <expr> <Tab> exists('*neosnippet#expandable_or_jumpable()') && neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_jump_or_expand)" : "\<Tab>"
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_complete_delay = 0
