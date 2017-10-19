@@ -50,6 +50,7 @@ call dein#add('https://github.com/rbonvall/vim-textobj-latex',             {'dep
 
 " Autocompletion plugins
 call dein#add('https://github.com/Shougo/deoplete.nvim',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+call dein#add('https://github.com/Shougo/neoinclude.vim',                  {'depends': 'deoplete.nvim', 'on_path': '^\(.*term:\/\/\)\@!.*$'})
 call dein#add('https://github.com/zchee/deoplete-clang',                   {'depends': 'deoplete.nvim', 'on_ft': ['c', 'cpp']})
 call dein#add('https://github.com/zchee/deoplete-go',                      {'depends': 'deoplete.nvim', 'on_ft': ['go'], 'build': {'unix': 'make'}})
 call dein#add('https://github.com/zchee/deoplete-jedi',                    {'depends': 'deoplete.nvim', 'on_ft': ['python']})
@@ -70,6 +71,7 @@ call dein#add('https://github.com/ludovicchabant/vim-gutentags',           {'on_
 	\| if !isdirectory(s:tag_dir)
 	\|     call mkdir(s:tag_dir, "p")
 	\| endif
+	\| let g:gutentags_project_root = ["build.xml"]
 	\| let g:gutentags_cache_dir = s:tag_dir'})
 
 " Snippets plugins
