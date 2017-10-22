@@ -58,4 +58,6 @@ augroup MY_TEX_AUGROUP
 	au FileType tex iabbrev <buffer> ⇒ \Rightarrow
 	au FileType tex iabbrev <buffer> ← \leftarrow
 	au FileType tex iabbrev <buffer> ⇐ \Leftarrow
+	au FileType tex iabbrev <buffer> ↔ \leftrightarrow
+	au FileType tex iabbrev <buffer> ⇔ \Leftrightarrow
 augroup END
