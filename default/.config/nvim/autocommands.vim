@@ -4,7 +4,7 @@ augroup MY_GENERAL_AUGROUP
 	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 				\| exe "normal! g`\"" | endif
 
-	" au CursorHold,FocusGained,FocusLost * rshada|wshada
+	au BufUnload * wshada
 
 	" This is equivalent to :set autochdir but lets buffer-local
 	" autocommands change the dir. Autochdir doesn't.
