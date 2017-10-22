@@ -8,8 +8,7 @@ augroup MY_GENERAL_AUGROUP
 
 	" This is equivalent to :set autochdir but lets buffer-local
 	" autocommands change the dir. Autochdir doesn't.
-	au BufEnter * if &buftype!="terminal"
-				\ | let dir = expand('%:p:h')
+	au BufEnter * let dir = expand('%:p:h')
 				\ | if isdirectory(dir)
 					\ | execute("cd " . dir)
 				\ | endif
