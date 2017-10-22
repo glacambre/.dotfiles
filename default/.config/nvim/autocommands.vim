@@ -8,7 +8,11 @@ augroup MY_GENERAL_AUGROUP
 
 	" This is equivalent to :set autochdir but lets buffer-local
 	" autocommands change the dir. Autochdir doesn't.
-	au BufEnter * if &buftype!="terminal" | execute("cd " . expand('%:p:h')) | endif
+	au BufEnter * if &buftype!="terminal"
+				\ | let dir = expand('%:p:h')
+				\ | if isdirectory(dir)
+					\ | execute("cd " . dir)
+				\ | endif
 augroup END
 
 augroup MY_UPDATE_AUGROUP
@@ -19,8 +23,6 @@ augroup END
 
 augroup MY_C_AUGROUP
 	autocmd!
-	" When reading a .h file, if it is empty, add a generic include guard
-	" Also, set its ft to c.
 	au BufRead,BufNewFile *.h call GenerateCHeaderSkeleton()
 augroup END
 
@@ -42,18 +44,18 @@ augroup END
 
 augroup MY_TEX_AUGROUP
 	au FileType tex setlocal spell spelllang=fr
-	au FileType tex iabbrev λ $\lambda$
-	au FileType tex iabbrev Λ $\Lambda$
-	au FileType tex iabbrev ß $\beta$
-	au FileType tex iabbrev Β $\Beta$
-	au FileType tex iabbrev π $\pi$
-	au FileType tex iabbrev Π $\Pi$
-	au FileType tex iabbrev τ $\tau$
-	au FileType tex iabbrev Τ $\Tau$
-	au FileType tex iabbrev μ $\mu$
-	au FileType tex iabbrev Μ $\Mu$
-	au FileType tex iabbrev → \rightarrow
-	au FileType tex iabbrev ⇒ \Rightarrow
-	au FileType tex iabbrev ← \leftarrow
-	au FileType tex iabbrev ⇐ \Leftarrow
+	au FileType tex iabbrev <buffer> λ $\lambda$
+	au FileType tex iabbrev <buffer> Λ $\Lambda$
+	au FileType tex iabbrev <buffer> ß $\beta$
+	au FileType tex iabbrev <buffer> Β $\Beta$
+	au FileType tex iabbrev <buffer> π $\pi$
+	au FileType tex iabbrev <buffer> Π $\Pi$
+	au FileType tex iabbrev <buffer> τ $\tau$
+	au FileType tex iabbrev <buffer> Τ $\Tau$
+	au FileType tex iabbrev <buffer> μ $\mu$
+	au FileType tex iabbrev <buffer> Μ $\Mu$
+	au FileType tex iabbrev <buffer> → \rightarrow
+	au FileType tex iabbrev <buffer> ⇒ \Rightarrow
+	au FileType tex iabbrev <buffer> ← \leftarrow
+	au FileType tex iabbrev <buffer> ⇐ \Leftarrow
 augroup END
