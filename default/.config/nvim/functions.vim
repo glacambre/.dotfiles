@@ -130,7 +130,6 @@ function! OnTermOpen()
     au BufEnter <buffer> if b:should_insert == 1 | startinsert | endif
     nnoremap <buffer> <silent> a :set laststatus=1<CR>:let b:should_insert = 1<CR>a
     nnoremap <buffer> <silent> i :set laststatus=1<CR>:let b:should_insert = 1<CR>i
-    startinsert
 
     " When opening a new term, go in insert mode
     startinsert
