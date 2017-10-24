@@ -125,6 +125,7 @@ nnoremap Z :Denite buffer file_rec file_mru<CR>
 nnoremap zh :Denite -default_action=split buffer file_rec file_mru<CR>
 nnoremap zv :Denite -default_action=vsplit buffer file_rec file_mru<CR>
 nnoremap zg :Denite grep:::!<CR>
+nnoremap zt :Denite outline<CR>
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 " Add wildignored patterns to denite's ignored patterns
