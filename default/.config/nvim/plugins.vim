@@ -18,12 +18,14 @@ call dein#add('https://github.com/Shougo/dein.vim')
 call dein#add('https://github.com/chrisbra/Recover.vim')
 call dein#add('https://github.com/Shougo/denite.nvim')
 call dein#add('https://github.com/Shougo/neomru.vim',                      {'depends': 'denite.nvim'})
-call dein#add('https://github.com/haya14busa/incsearch.vim',               {'hook_add': '
-	\ let g:incsearch#auto_nohlsearch = 1
-	\| nmap / <Plug>(incsearch-forward)
-	\| nmap ? <Plug>(incsearch-backward)
-	\| nmap n <Plug>(incsearch-nohl-n)
-	\| nmap N <Plug>(incsearch-nohl-N)'})
+" Incsearch is a very nice plugin but it breaks macros. Maybe re-enable it
+" later? https://github.com/haya14busa/incsearch.vim/issues/138
+"call dein#add('https://github.com/haya14busa/incsearch.vim',               {'hook_add': '
+"	\ let g:incsearch#auto_nohlsearch = 1
+"	\| nmap / <Plug>(incsearch-forward)
+"	\| nmap ? <Plug>(incsearch-backward)
+"	\| nmap n <Plug>(incsearch-nohl-n)
+"	\| nmap N <Plug>(incsearch-nohl-N)'})
 
 " New pending operators, functions and motions
 call dein#add('https://github.com/tommcdo/vim-exchange',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
