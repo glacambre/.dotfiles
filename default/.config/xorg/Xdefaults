@@ -1,37 +1,37 @@
 /* #include "/etc/X11/app-defaults/XTerm-color" */
 
 !BLK Cursor
-#define _color0        #101010
-#define _color8        #101010
+#define _color0        #000000
+#define _color8        #5C6370
 !RED Tag
-#define _color1        #af0000
-#define _color9        #af0000
+#define _color1        #E45649
+#define _color9        #e06c75
 !GRN SpecialKey
-#define _color2        #5faf00
-#define _color10       #5faf00
+#define _color2        #50A14F
+#define _color10       #50A14F
 !YEL Keyword
-#define _color3        #afaf00
-#define _color11       #afaf00
+#define _color3        #986801
+#define _color11       #986801
 !BLU Number
-#define _color4        #5fafff
-#define _color12       #5fafff
+#define _color4        #4078F2
+#define _color12       #4078F2
 !MAG Precondit
-#define _color5        #af5fef
-#define _color13       #af5fef
+#define _color5        #A626A4
+#define _color13       #A626A4
 !CYN Float
-#define _color6        #87d7ff
-#define _color14       #87d7ff
+#define _color6        #0184BC
+#define _color14       #0184BC
 !WHT Search
-#define _color7        #dedede
-#define _color15       #dedede
+#define _color7        #A0A1A7
+#define _color15       #FFFFFF
 !FMT Include, StatusLine, ErrorMsg
 #define _colorBD       #ffcfaf
 #define _colorUL       #ccdc90
 #define _colorIT       #80d4aa
 !TXT Normal, Normal, Cursor
-#define _foreground    #bcbcbc
-#define _background    #262626
-#define _cursorColor   #bcbcbc
+#define _foreground    #383A42
+#define _background    #FFFFFF
+#define _cursorColor   #D0D0D0
 !Font attributes
 #define _font_name     NotoMono
 #define _font_size     11
@@ -140,4 +140,3 @@ lines           1,-1,-1,-1,-1,1;\
 foreground      gray60;\
 lines           -1,0,0,0,0,-1
 #endif
-
