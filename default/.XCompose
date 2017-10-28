@@ -83,6 +83,10 @@
 <ucircumflex>:                       "υ"
 <udiaeresis>:                        "Υ"
 
+<dead_circumflex> <minus> <greater>: "→" U2192
+<dead_circumflex> <minus> <less>: "←" U2190
+<dead_circumflex> <equal> <greater>: "⇒" U21D2
+<dead_circumflex> <equal> <less>: "⇐" U21D0
 <dead_circumflex> <period> <period> <period>: "…" U2026
 <dead_circumflex> <colon> <parenright>:   "☺"   U263A           # WHITE SMILING FACE
 <dead_circumflex> <colon> <parenleft>:    "☹"   U2639           # WHITE FROWNING FACE
