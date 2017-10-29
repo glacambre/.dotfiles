@@ -28,7 +28,7 @@ set splitbelow                  " Open horizontal splits below
 set splitright                  " Open vertical splits on the right
 
 set list
-set listchars=eol:¬,tab:►\ 
+set listchars=tab:►\ 
 
 set lazyredraw                  " Redraw the screen only when it's needed
 set autoread                    " Periodically check if the file changed
