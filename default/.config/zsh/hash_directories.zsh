@@ -7,6 +7,7 @@ hash -d aaga=~/documents/ecole/7/aaga
 hash -d gral=~/documents/ecole/7/gral
 hash -d ip=~/documents/ecole/7/ip
 hash -d ppc=~/documents/ecole/7/ppc
+hash -d stage=~/documents/ecole/7/stage
 hash -d svp=~/documents/ecole/7/svp
 hash -d tas=~/documents/ecole/7/tas
 
