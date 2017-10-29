@@ -47,6 +47,8 @@ augroup MY_TEX_AUGROUP
 	au FileType tex iabbrev <buffer> Λ $\Lambda$
 	au FileType tex iabbrev <buffer> ß $\beta$
 	au FileType tex iabbrev <buffer> Β $\Beta$
+	au FileType tex iabbrev <buffer> γ $\gamma$
+	au FileType tex iabbrev <buffer> Γ $\Gamma$
 	au FileType tex iabbrev <buffer> π $\pi$
 	au FileType tex iabbrev <buffer> Π $\Pi$
 	au FileType tex iabbrev <buffer> τ $\tau$
