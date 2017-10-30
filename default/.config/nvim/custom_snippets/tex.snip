@@ -44,3 +44,49 @@ alias   letter
     \end{flushright}
     \vfill
     \end{document}
+
+snippet \presentation
+alias   presentation
+    \documentclass[10pt,xcolor={usenames,dvipsnames}]{beamer}
+    \usetheme{CambridgeUS}
+    \usecolortheme{beaver}
+    \usepackage[utf8]{inputenc}
+    \usepackage[french]{babel}
+    \usepackage[T1]{fontenc}
+    \usepackage[dvipsnames]{xcolor}
+    \usepackage{listings}
+    \usepackage{multirow}
+    \usepackage{colortbl}
+    \usepackage{hhline}
+    \author[]{${1:author}}
+    \title[]{${2:subject}}
+    \institute[]{${3:institute}}
+    \date{\today}
+    \lstset{ %
+    backgroundcolor=\color{white}, % bg color
+    basicstyle=\footnotesize,      % the size of the fonts that are used for the code
+    frame=single,                  % adds a frame around the code
+    keepspaces=true,               % useful for space indents
+    keywordstyle=\color{BrickRed}, % keyword style
+    language=C,                    % the language of the code
+    numbers=left,                  % values are (none, left, right)
+    numberstyle=\tiny\color{gray}, % the style that is used for the line-numbers
+    }
+    \definecolor{RowColor}{RGB}{216,216,216}
+    \setbeamertemplate{sections/subsections in toc}[circle]
+    \setbeamerfont{section number projected}{%
+    family=\rmfamily,series=\bfseries,size=\normalsize}
+    \setbeamercolor{section number projected}{bg=White,fg=BrickRed}
+    \setbeamertemplate{navigation symbols}{}
+    \begin{document}
+        \maketitle
+        \section{${4:section}}
+        \begin{frame}
+            \frametitle{${4:section}}
+            \tableofcontents
+        \end{frame}
+        \section{${5:section}}
+        \begin{frame}
+            \frametitle{${5:section}}
+        \end{frame}
+    \end{document}
