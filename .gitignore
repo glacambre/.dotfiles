@@ -26,6 +26,11 @@
 /default/.elinks/gotohist
 /default/.elinks/searchhist
 
+/default/.local/share/*
+!/default/.local/share/applications/
+/default/.local/share/applications/*
+!/default/.local/share/applications/nvim_in_term.desktop
+
 /default/.vim/spell/
 /default/.vim/swapdir/
 /default/.vim/undodir/
