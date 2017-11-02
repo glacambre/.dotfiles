@@ -28,6 +28,7 @@ source "$ZSH_HOME/vi-mode-color-prompt.zsh"
 source "$ZSH_HOME/less.zsh"
 source "$ZSH_HOME/ls_colors.zsh"
 source "$ZSH_HOME/zsh_auto_suggestions.zsh"
+source "$ZSH_HOME/zsh_calc.zsh"
 
 ### VARIOUS OPTIONS
 setopt auto_cd                # Cd when a dirname has been given instead of a program
