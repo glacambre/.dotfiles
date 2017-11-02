@@ -48,6 +48,10 @@ bindkey -M vicmd 'V'     visual-mode-eol
 bindkey -M vicmd 'u'     undo
 bindkey -M vicmd 'U'     redo
 bindkey -M vicmd 'H'     run-help
+bindkey -M vicmd "^[[A"  up-line-or-search
+bindkey -M vicmd "^[[B"  down-line-or-search
+bindkey -M viins "^[[A"  up-line-or-search
+bindkey -M viins "^[[B"  down-line-or-search
 # ^[[3~ is the "del" key
 bindkey -M viins '^[[3~' delete-char
 bindkey -M vicmd '^[[3~' delete-char
