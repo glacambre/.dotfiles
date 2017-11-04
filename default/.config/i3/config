@@ -1,15 +1,15 @@
-new_window          pixel 1
+new_window          pixel 2
 # hide_edge_borders   both
 default_orientation horizontal
 focus_follows_mouse no
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #bcbcbc #bcbcbc #ffffff #2e9ef4 #bcbcbc
-client.focused_inactive #333333 #333333 #ffffff #484e50 #333333
-client.unfocused        #3a3a3a #3a3a3a #888888 #292d2e #3a3a3a
+client.focused          #FFFFFF #000000 #FFFFFF #2e9ef4 #000000
+client.focused_inactive #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF
+client.unfocused        #FFFFFF #FFFFFF #888888 #FFFFFF #FFFFFF
 client.urgent           #a78bc3 #a78bc3 #2d2d2d #3a3a3a #aa2222
-client.placeholder      #000000 #000000 #ffffff #000000 #000000
-client.background       #ffffff
+client.placeholder      #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF
+client.background       #FFFFFF
 
 # Available letters: zaygcv SZTYFGMWXV
 set $mod Mod4
