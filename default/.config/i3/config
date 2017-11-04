@@ -1,12 +1,12 @@
-new_window          pixel 2
+new_window          pixel 1
 # hide_edge_borders   both
 default_orientation horizontal
 focus_follows_mouse no
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #FFFFFF #000000 #FFFFFF #2e9ef4 #000000
+client.focused          #22CCFF #22CCFF #000000 #CC22FF #22CCFF
 client.focused_inactive #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF
-client.unfocused        #FFFFFF #FFFFFF #888888 #FFFFFF #FFFFFF
+client.unfocused        #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF
 client.urgent           #a78bc3 #a78bc3 #2d2d2d #3a3a3a #aa2222
 client.placeholder      #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF
 client.background       #FFFFFF
