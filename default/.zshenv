@@ -1,15 +1,14 @@
-##### PATH VARIABLES
-export INDENT_PROFILE="$HOME/.config/indent/profile"
-export XDG_DATA_HOME="$HOME/.local/share/"
+export ZDOTDIR="$HOME/.config/zsh/"
 
 ##### MISC VARIABLES
 export EDITOR="nvim"
-export VISUAL="$EDITOR"
-export ZDOTDIR="$HOME/.config/zsh/"
-export NODE_REPL_HISTORY=""
-export XKB_DEFAULT_LAYOUT="fr-latin9"
 export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
 export GREP_COLORS="mt=01;35:fn=34:ln=01;37:se=37"
+export INDENT_PROFILE="$HOME/.config/indent/profile"
+export NODE_REPL_HISTORY=""
+export VISUAL="$EDITOR"
+export XDG_DATA_HOME="$HOME/.local/share/"
+export XKB_DEFAULT_LAYOUT="fr-latin9"
 
 ##### LESS VARIABLES
 # Standout
