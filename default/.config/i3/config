@@ -32,10 +32,10 @@ bindsym $mod+d "exec dmenu_run -p  \"$(date +%H:%M) $(acpi | grep -o '[0-9]*%' |
 bindsym $mod+Shift+d exec /home/me/bin/dopen
 
 # change focus
-bindsym $mod+h exec /home/me/bin/move_i3_nvim_focus left
-bindsym $mod+j exec /home/me/bin/move_i3_nvim_focus down
-bindsym $mod+k exec /home/me/bin/move_i3_nvim_focus up
-bindsym $mod+l exec /home/me/bin/move_i3_nvim_focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
