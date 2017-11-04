@@ -1,4 +1,4 @@
-export fpath=("$HOME/.config/zsh/completion" $fpath)
+export fpath=("$ZDOTDIR/completion" $fpath)
 autoload -Uz compinit promptinit
 compinit -d /tmp/zcompdump.me
 promptinit
@@ -8,6 +8,7 @@ zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path /tmp
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 setopt auto_list         # When requesting autocomp ambiguously, show list of options on first request
 setopt auto_menu         # When autocompleting ambiguously, insert first match on second autocomp request

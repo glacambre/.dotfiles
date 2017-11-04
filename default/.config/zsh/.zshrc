@@ -3,32 +3,21 @@ zmodload zsh/complete # Basic completion code
 zmodload zsh/complist # Completion listing extension
 zmodload zsh/zpty     # Enables starting commands in pseudo terminals
 
-##### PATH VARIABLES
+##### PATH
+# This is here instead of zshenv because I'm overriding default binaries.
+# I don't want binaries to be overriden in scripts and while zshenv is sourced
+# for scripts, zshrc isn't.
 export PATH="$HOME/bin/:$HOME/.cargo/bin/:$PATH"
-export INDENT_PROFILE="$HOME/.config/indent/profile"
-export XDG_DATA_HOME="$HOME/.local/share/"
 
-##### MISC VARIABLES
-export EDITOR="nvim"
-export VISUAL="$EDITOR"
-export ZSH_HOME="$HOME/.config/zsh/"
-export NODE_REPL_HISTORY=""
-export XKB_DEFAULT_LAYOUT="fr-latin9"
-export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
-export GREP_COLORS="mt=01;35:fn=34:ln=01;37:se=37"
-
-source "$ZSH_HOME/aliases.zsh"
-source "$ZSH_HOME/hash_directories.zsh"
-source "$ZSH_HOME/history.zsh"
-source "$ZSH_HOME/completion.zsh"
-source "$ZSH_HOME/ps1.zsh"
-source "$ZSH_HOME/vi-mode.zsh"
-source "$ZSH_HOME/vi-mode-x-paste.zsh"
-source "$ZSH_HOME/vi-mode-color-prompt.zsh"
-source "$ZSH_HOME/less.zsh"
-source "$ZSH_HOME/ls_colors.zsh"
-source "$ZSH_HOME/zsh_auto_suggestions.zsh"
-source "$ZSH_HOME/zsh_calc.zsh"
+source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/completion.zsh"
+source "$ZDOTDIR/hash_directories.zsh"
+source "$ZDOTDIR/history.zsh"
+source "$ZDOTDIR/ps1.zsh"
+source "$ZDOTDIR/vi-mode-color-prompt.zsh"
+source "$ZDOTDIR/vi-mode-x-paste.zsh"
+source "$ZDOTDIR/vi-mode.zsh"
+source "$ZDOTDIR/zsh_auto_suggestions.zsh"
 
 ### VARIOUS OPTIONS
 setopt auto_cd                # Cd when a dirname has been given instead of a program

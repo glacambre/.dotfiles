@@ -147,6 +147,13 @@ function go () {
     return
 }
 
+# = alias that works as calculator
+autoload -U zcalc
+function __calc_plugin {
+    zcalc -e "$*"
+}
+aliases[=]='noglob __calc_plugin'
+
 # Prints ssh keys. Useful to check if new host has the right key
 function print_keys () {
     echo "SSH keys:"

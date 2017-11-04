@@ -18,8 +18,8 @@
 /default/.config/gimp-2.8/
 
 /default/.config/zsh/zsh-autosuggestions
-/default/.config/zsh/zsh-calc
 /default/.config/zsh/zsh_history
+default/.config/zsh/.zcalc_history
 
 /default/.elinks/bookmarks
 /default/.elinks/cookies

@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-ZSH_AUTOSUGGESTIONS_DIR="$ZSH_HOME/zsh-autosuggestions"
+ZSH_AUTOSUGGESTIONS_DIR="$ZDOTDIR/zsh-autosuggestions"
 ZSH_INTALL_FILE="/tmp/zsh_autosuggestion_installation_error"
 if [[ ! -d  "$ZSH_AUTOSUGGESTIONS_DIR" && ! -e "$ZSH_INSTALL_FILE" ]]; then
     echo "Trying to install zsh-autosuggestions."
