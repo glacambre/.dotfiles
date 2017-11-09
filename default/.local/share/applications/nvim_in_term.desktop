@@ -2,9 +2,9 @@
 Name=Nvim_In_Term
 GenericName=Text Editor
 Comment=Edit text files
-TryExec=open_terminal_with_nvim
+TryExec=nvim
 Exec=open_terminal_with_nvim %F
-Terminal=true
+Terminal=false
 Type=Application
 Keywords=Text;editor;
 Icon=nvim
