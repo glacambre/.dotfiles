@@ -90,6 +90,16 @@
 <dead_circumflex> <equal> <less>: "⇐" U21D0
 <dead_circumflex> <less> <equal> <greater>: "⇔" U21D4
 <dead_circumflex> <period> <period> <period>: "…" U2026
+<dead_circumflex> <0>: "⁰" U2070
+<dead_circumflex> <1>: "¹" U00B9
+<dead_circumflex> <2>: "²" U20B2
+<dead_circumflex> <3>: "³" U00B3
+<dead_circumflex> <4>: "⁴" U2074
+<dead_circumflex> <5>: "⁵" U2075
+<dead_circumflex> <6>: "⁶" U2076
+<dead_circumflex> <7>: "⁷" U2077
+<dead_circumflex> <8>: "⁸" U2078
+<dead_circumflex> <9>: "⁹" U2079
 <dead_circumflex> <colon> <parenright>:   "☺"   U263A           # WHITE SMILING FACE
 <dead_circumflex> <colon> <parenleft>:    "☹"   U2639           # WHITE FROWNING FACE
 <dead_circumflex> <less> <3>:             "❤"   U2764           # HEAVY BLACK HEART
