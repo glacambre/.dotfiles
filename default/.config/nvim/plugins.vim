@@ -128,23 +128,28 @@ nnoremap zh :Denite -default_action=split buffer file_rec file_mru<CR>
 nnoremap zv :Denite -default_action=vsplit buffer file_rec file_mru<CR>
 nnoremap zg :Denite grep:::!<CR>
 nnoremap zt :Denite outline<CR>
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-" Add wildignored patterns to denite's ignored patterns
-let wildignored_patterns = []
-for elem in split(&wildignore, ',')
-	let elem = substitute(elem, '*.', '*', 'g')
-	let wildignored_patterns += ['--ignore', tolower(elem)]
-	let wildignored_patterns += ['--ignore', toupper(elem)]
-endfor
-call denite#custom#var('file_rec', 'command',
-	\ ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '',
-	\ '--ignore-dir', '.git/',    '--ignore-dir', '.hg/',          '--ignore-dir', '.bzr/',
-	\ '--ignore-dir', '.svn/',    '--ignore-dir', 'undodir/',      '--ignore-dir', 'images/',
-	\ '--ignore-dir', 'fonts/',   '--ignore-dir', 'music/',        '--ignore-dir', 'img/',
-	\ '--ignore-dir', '.mozilla/','--ignore-dir', 'node_modules/', '--ignore-dir', 'img/',
-	\ '--ignore-dir', 'bundle/',  '--ignore-dir', 'spell/',        '--ignore-dir', '.cache/',
-	\ '--ignore-dir', 'swapdir/', '--ignore-dir', '.metadata/'] + wildignored_patterns)
+" The two ifs here are a workaround to a windows bug.
+if exists('*denite#custom#map()')
+	call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+	call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+endif
+if exists('*denite#custom#var()')
+	" Add wildignored patterns to denite's ignored patterns
+	let wildignored_patterns = []
+	for elem in split(&wildignore, ',')
+		let elem = substitute(elem, '*.', '*', 'g')
+		let wildignored_patterns += ['--ignore', tolower(elem)]
+		let wildignored_patterns += ['--ignore', toupper(elem)]
+	endfor
+	call denite#custom#var('file_rec', 'command',
+		\ ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '',
+		\ '--ignore-dir', '.git/',    '--ignore-dir', '.hg/',          '--ignore-dir', '.bzr/',
+		\ '--ignore-dir', '.svn/',    '--ignore-dir', 'undodir/',      '--ignore-dir', 'images/',
+		\ '--ignore-dir', 'fonts/',   '--ignore-dir', 'music/',        '--ignore-dir', 'img/',
+		\ '--ignore-dir', '.mozilla/','--ignore-dir', 'node_modules/', '--ignore-dir', 'img/',
+		\ '--ignore-dir', 'bundle/',  '--ignore-dir', 'spell/',        '--ignore-dir', '.cache/',
+		\ '--ignore-dir', 'swapdir/', '--ignore-dir', '.metadata/'] + wildignored_patterns)
+endif
 
 " Deoplete && neosnippets
 " <CR> when autocompleting creates a new line
