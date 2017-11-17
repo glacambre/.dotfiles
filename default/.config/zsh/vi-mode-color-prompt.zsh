@@ -1,5 +1,5 @@
 # Color PS1
-export KEYTIMEOUT=1
+export KEYTIMEOUT=10
 export _PS1="$PS1"
 
 precmd() {
