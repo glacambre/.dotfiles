@@ -3,7 +3,7 @@ export ZDOTDIR="$HOME/.config/zsh/"
 ##### MISC VARIABLES
 export EDITOR="nvim"
 export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
-export GREP_COLORS="mt=01;35:fn=34:ln=01;37:se=37"
+export GREP_COLORS="mt=01;35:fn=34:ln=11;37:se=37"
 export INDENT_PROFILE="$HOME/.config/indent/profile"
 export NODE_REPL_HISTORY=""
 export VISUAL="$EDITOR"
