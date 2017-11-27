@@ -5,6 +5,8 @@ execute("source " . s:config_dir . "/keymap.vim")
 execute("source " . s:config_dir . "/autocommands.vim")
 execute("source " . s:config_dir . "/plugins.vim")
 
+filetype plugin indent on
+syntax enable
 colorscheme paramount
 
 set exrc    " Enable project-specific vimrc

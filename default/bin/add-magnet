@@ -1,5 +1,5 @@
 #!/bin/sh
-# This script converts magnet urls to torrent files and upload them to a raspberry pi through passwordless ssh.
+# This script converts a magnet into a torrent file and drops it in a specific directory
 
 if [ "$#" -lt 1 ] ; then
     echo "Not enough arguments";
@@ -7,29 +7,12 @@ if [ "$#" -lt 1 ] ; then
 fi
 
 # Find which dir the torrent should be put in
-remote_dir="/wd/torrents/"
-case "$1" in
-    music)
-        remote_dir="$remote_dir/music/";;
-    shows)
-        remote_dir="$remote_dir/shows/";;
-    *)
-        remote_dir="$remote_dir/films/";;
-esac
-
-# If there is less than 2 args the url is the 1st arg otherwise it's the 2nd
-if [ "$#" -lt 2 ] ; then
-    url="$1"
-else
-    url="$2"
-fi
-
+torrent_dir="/wd/torrents/films/"
+url="$1"
 
 if [[ ! "$url" =~ xt=urn:btih:([^&/]+) ]] ; then
     echo "url doesn't look like a magnet link"
     exit
 fi
 
-echo "d10:magnet-uri${#url}:${url}e" | ssh raspi "cat > '$remote_dir/meta-$(echo "$url" | grep -o 'xt=urn:btih:[a-zA-Z0-9]*' | sed 's/xt=urn:btih://').torrent'"
-
-exit
+echo "d10:magnet-uri${#url}:${url}e" > "$torrent_dir/meta-$(echo "$url" | grep -o 'xt=urn:btih:[a-zA-Z0-9]*' | sed 's/xt=urn:btih://').torrent"
