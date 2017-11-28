@@ -119,68 +119,64 @@ if dein#load_state(s:bundle_dir)
 	call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 	call dein#end()
 	call dein#save_state()
-
-	if s:do_update == 1
-		call dein#update()
-	endif
-
-	" Denite
-	nnoremap Z :Denite buffer file_rec file_mru<CR>
-	nnoremap zh :Denite -default_action=split buffer file_rec file_mru<CR>
-	nnoremap zv :Denite -default_action=vsplit buffer file_rec file_mru<CR>
-	nnoremap zg :Denite grep:::!<CR>
-	nnoremap zt :Denite outline<CR>
-	" The two ifs here are a workaround to a windows bug.
-	if exists('*denite#custom#map()')
-		call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-		call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-	endif
-	if exists('*denite#custom#var()')
-		" Add wildignored patterns to denite's ignored patterns
-		let wildignored_patterns = []
-		for elem in split(&wildignore, ',')
-			let elem = substitute(elem, '*.', '*', 'g')
-			let wildignored_patterns += ['--ignore', tolower(elem)]
-			let wildignored_patterns += ['--ignore', toupper(elem)]
-		endfor
-		call denite#custom#var('file_rec', 'command',
-			\ ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '',
-			\ '--ignore-dir', '.git/',    '--ignore-dir', '.hg/',          '--ignore-dir', '.bzr/',
-			\ '--ignore-dir', '.svn/',    '--ignore-dir', 'undodir/',      '--ignore-dir', 'images/',
-			\ '--ignore-dir', 'fonts/',   '--ignore-dir', 'music/',        '--ignore-dir', 'img/',
-			\ '--ignore-dir', '.mozilla/','--ignore-dir', 'node_modules/', '--ignore-dir', 'img/',
-			\ '--ignore-dir', 'bundle/',  '--ignore-dir', 'spell/',        '--ignore-dir', '.cache/',
-			\ '--ignore-dir', 'swapdir/', '--ignore-dir', '.metadata/'] + wildignored_patterns)
-	endif
-
-	" Deoplete && neosnippets
-	" <CR> when autocompleting creates a new line
-	function! s:my_cr_function() abort
-		if exists('*deoplete#close_popup()')
-			return deoplete#close_popup() . "\<CR>"
-		endif
-		return "\<CR>"
-	endfunction
-	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-	imap <expr> <Tab> exists('*neosnippet#expandable_or_jumpable()') && neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_jump_or_expand)" : "\<Tab>"
-	let g:deoplete#enable_at_startup = 1
-	let g:deoplete#enable_smart_case = 1
-	let g:deoplete#auto_complete_delay = 0
-	let g:neosnippet#disable_runtime_snippets = {'_' : 1}
-	if !exists('g:deoplete#omni_patterns')
-		let g:deoplete#omni_patterns = {}
-	end
-	let g:deoplete#omni_patterns.erlang = [
-		\ '[^. *\t]:\w*',
-		\ '^\s*-\w*'
-		\ ]
-	let g:deoplete#omni#functions = {}
-	let g:deoplete#omni#functions.erlang = 'erlang_complete#Complete'
-	let g:deoplete#sources = {}
-	let g:deoplete#sources._ = []
-	let g:neosnippet#snippets_directory= [ s:config_dir . '/custom_snippets' , s:bundle_dir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets']
-	let g:deoplete#sources#clang#libclang_path="/usr/lib64/libclang.so"
-	let g:deoplete#sources#clang#clang_header="/usr/lib64/clang/"
-	let g:deoplete#sources#go#gocode_binary=$HOME . "/.gopath/bin/gocode"
-
 endif
+
+" Denite
+nnoremap Z :Denite buffer file_rec file_mru<CR>
+nnoremap zh :Denite -default_action=split buffer file_rec file_mru<CR>
+nnoremap zv :Denite -default_action=vsplit buffer file_rec file_mru<CR>
+nnoremap zg :Denite grep:::!<CR>
+nnoremap zt :Denite outline<CR>
+" The two ifs here are a workaround to a windows bug.
+if exists('*denite#custom#map()')
+	call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+	call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+endif
+if exists('*denite#custom#var()')
+	" Add wildignored patterns to denite's ignored patterns
+	let wildignored_patterns = []
+	for elem in split(&wildignore, ',')
+		let elem = substitute(elem, '*.', '*', 'g')
+		let wildignored_patterns += ['--ignore', tolower(elem)]
+		let wildignored_patterns += ['--ignore', toupper(elem)]
+	endfor
+	call denite#custom#var('file_rec', 'command',
+				\ ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '',
+				\ '--ignore-dir', '.git/',    '--ignore-dir', '.hg/',          '--ignore-dir', '.bzr/',
+				\ '--ignore-dir', '.svn/',    '--ignore-dir', 'undodir/',      '--ignore-dir', 'images/',
+				\ '--ignore-dir', 'fonts/',   '--ignore-dir', 'music/',        '--ignore-dir', 'img/',
+				\ '--ignore-dir', '.mozilla/','--ignore-dir', 'node_modules/', '--ignore-dir', 'img/',
+				\ '--ignore-dir', 'bundle/',  '--ignore-dir', 'spell/',        '--ignore-dir', '.cache/',
+				\ '--ignore-dir', 'swapdir/', '--ignore-dir', '.metadata/'] + wildignored_patterns)
+endif
+
+" Deoplete && neosnippets
+" <CR> when autocompleting creates a new line
+function! s:my_cr_function() abort
+	if exists('*deoplete#close_popup()')
+		return deoplete#close_popup() . "\<CR>"
+	endif
+	return "\<CR>"
+endfunction
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+imap <expr> <Tab> exists('*neosnippet#expandable_or_jumpable()') && neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_jump_or_expand)" : "\<Tab>"
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_complete_delay = 0
+let g:neosnippet#disable_runtime_snippets = {'_' : 1}
+if !exists('g:deoplete#omni_patterns')
+	let g:deoplete#omni_patterns = {}
+end
+let g:deoplete#omni_patterns.erlang = [
+			\ '[^. *\t]:\w*',
+			\ '^\s*-\w*'
+			\ ]
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.erlang = 'erlang_complete#Complete'
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = []
+let g:neosnippet#snippets_directory= [ s:config_dir . '/custom_snippets' , s:bundle_dir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets']
+let g:deoplete#sources#clang#libclang_path="/usr/lib64/libclang.so"
+let g:deoplete#sources#clang#clang_header="/usr/lib64/clang/"
+let g:deoplete#sources#go#gocode_binary=$HOME . "/.gopath/bin/gocode"
+
