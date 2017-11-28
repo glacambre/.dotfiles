@@ -150,20 +150,22 @@ if exists('*denite#custom#var()')
 				\ '--ignore-dir', 'swapdir/', '--ignore-dir', '.metadata/'] + wildignored_patterns)
 endif
 
-" Deoplete && neosnippets
-" <CR> when autocompleting creates a new line
-function! s:my_cr_function() abort
-	if exists('*deoplete#close_popup()')
-		return deoplete#close_popup() . "\<CR>"
-	endif
-	return "\<CR>"
-endfunction
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" Neosnippets
 imap <expr> <Tab> exists('*neosnippet#expandable_or_jumpable()') && neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_jump_or_expand)" : "\<Tab>"
+let g:neosnippet#disable_runtime_snippets = {'_' : 1}
+let g:neosnippet#snippets_directory= [ s:config_dir . '/custom_snippets' , s:bundle_dir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets']
+
+" Deoplete
+" <CR> when autocompleting creates a new line
+if exists('*deoplete#close_popup()')
+	function! s:my_cr_function() abort
+		return deoplete#close_popup() . "\<CR>"
+	endfunction
+	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+endif
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_complete_delay = 0
-let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 if !exists('g:deoplete#omni_patterns')
 	let g:deoplete#omni_patterns = {}
 end
@@ -175,8 +177,7 @@ let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.erlang = 'erlang_complete#Complete'
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
-let g:neosnippet#snippets_directory= [ s:config_dir . '/custom_snippets' , s:bundle_dir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets']
-let g:deoplete#sources#clang#libclang_path="/usr/lib64/libclang.so"
+let g:deoplete#sources#clang#libclang_path=system("find /usr/lib64/ -name libclang.so")[0:-2]
 let g:deoplete#sources#clang#clang_header="/usr/lib64/clang/"
 let g:deoplete#sources#go#gocode_binary=$HOME . "/.gopath/bin/gocode"
 
