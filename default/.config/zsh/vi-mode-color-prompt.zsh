@@ -6,11 +6,16 @@ precmd() {
     PS1="%{[38;05;4m%}$_PS1%{[0m%}"
 }
 
+print -n -- "\033[6 q"
 zle-keymap-select() {
     if [[ "$KEYMAP" = "vicmd" ]] ; then
+        # Green, block cursor
         PS1="%{[38;05;2m%}$_PS1%{[0m%}"
+        print -n -- "\033[2 q"
     else
+        # Blue, line cursor
         PS1="%{[38;05;4m%}$_PS1%{[0m%}"
+        print -n -- "\033[6 q"
     fi
     () { return $__prompt_status }
     zle reset-prompt
