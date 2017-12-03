@@ -52,7 +52,7 @@ if dein#load_state(s:bundle_dir)
 		\| xmap aE <Plug>(textobj-latex-environment-a)' })
 
 	" Autocompletion plugins
-	call dein#add('https://github.com/Shougo/deoplete.nvim',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+	call dein#add('https://github.com/Shougo/deoplete.nvim',                   {'on_path': '^\(.*term:\/\/\)\@!.*$', 'hook_add': 'inoremap <silent> <CR> <C-r>=My_cr_function()<CR>'}) 
 	call dein#add('https://github.com/Shougo/neoinclude.vim',                  {'depends': 'deoplete.nvim', 'on_path': '^\(.*term:\/\/\)\@!.*$'})
 	call dein#add('https://github.com/zchee/deoplete-clang',                   {'depends': 'deoplete.nvim', 'on_ft': ['c', 'cpp']})
 	call dein#add('https://github.com/zchee/deoplete-go',                      {'depends': 'deoplete.nvim', 'on_ft': ['go'], 'build': {'unix': 'make'}})
@@ -98,6 +98,7 @@ if dein#load_state(s:bundle_dir)
 		\ 'hook_add': 'let g:echodoc_enable_at_startup = 1'})
 
 	" Various language-specific plugins
+	call dein#add('https://github.com/sheerun/vim-polyglot')
 	call dein#add('https://github.com/let-def/vimbufsync',                     {'on_ft': ['coq']})
 	call dein#add('https://github.com/the-lambda-church/coquille',             {'on_ft': ['coq'],
 		\ 'depends': 'vimbufsync',
@@ -157,12 +158,9 @@ let g:neosnippet#snippets_directory= [ s:config_dir . '/custom_snippets' , s:bun
 
 " Deoplete
 " <CR> when autocompleting creates a new line
-if exists('*deoplete#close_popup()')
-	function! s:my_cr_function() abort
-		return deoplete#close_popup() . "\<CR>"
-	endfunction
-	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-endif
+function! My_cr_function() abort
+	return deoplete#close_popup() . "\<CR>"
+endfunction
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_complete_delay = 0
