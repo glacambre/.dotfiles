@@ -45,6 +45,7 @@ if dein#load_state(s:bundle_dir)
 	call dein#add('https://github.com/jceb/vim-textobj-uri',                   {'depends': 'vim-textobj-user'})
 	call dein#add('https://github.com/kana/vim-textobj-line',                  {'depends': 'vim-textobj-user'})
 	call dein#add('https://github.com/kana/vim-textobj-entire',                {'depends': 'vim-textobj-user'})
+	call dein#add('https://github.com/Julian/vim-textobj-variable-segment',    {'depends': 'vim-textobj-user'})
 	call dein#add('https://github.com/rbonvall/vim-textobj-latex',             {'depends': 'vim-textobj-user',
 		\ 'hook_add': 'omap iE <Plug>(textobj-latex-environment-i)
 		\| xmap iE <Plug>(textobj-latex-environment-i)
@@ -118,6 +119,7 @@ if dein#load_state(s:bundle_dir)
 
 	" Configures indentation settings
 	call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
+
 	call dein#end()
 	call dein#save_state()
 endif
