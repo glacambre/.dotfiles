@@ -219,7 +219,7 @@ function! WipeButKeepOpen(force)
 
     " If the current buffer is now an empty buffer
     if bufname('%') == '' && line('$') == 1 && getline(1) == ''
-        close
+        call WipeButKeepOpen(0)
     endif
 
 endfunction
