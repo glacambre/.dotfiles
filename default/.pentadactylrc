@@ -92,22 +92,22 @@ command! playAllYoutubeLinks -js <<EOF
 EOF
 
 highlight CompDesc color:#1D1D1D;
-highlight CompGroup background-color:#FFFFFF;color:#1D1D1D;
-highlight CompItem:nth-of-type(n) background-color:#FFFFFF;color:#1D1D1D;
+highlight CompGroup background-color:#e8e8e7;color:#1D1D1D;
+highlight CompItem:nth-of-type(n) background-color:#e8e8e7;color:#1D1D1D;
 highlight CompItem[selected] background-color:#af5fff;color:#1D1D1D;
-highlight CompMsg background-color:#FFFFFF;color:#1D1D1D;
-highlight CompTitle background-color:#FFFFFF;color:#1D1D1D;
-highlight -link=FontProportional Help background-color:#FFFFFF;color:#2D2D2D;
+highlight CompMsg background-color:#e8e8e7;color:#1D1D1D;
+highlight CompTitle background-color:#e8e8e7;color:#1D1D1D;
+highlight -link=FontProportional Help background-color:#e8e8e7;color:#2D2D2D;
 highlight HelpLink color:#5fafff !important;
 highlight -link=FontCode HelpOpt color: #af5fff;
 highlight -link=FontCode HelpString color: #af5fff;
 highlight Hint text-transform:uppercase;font-size:10pt;color:#1D1D1D!important;background-color:rgba(255,255,255,0.9)!important;padding:1pt;border: solid #1D1D1D 1px;z-index:10000
-highlight HintActive background-color:#AF5FFF!important;color:#FFFFFF!important;box-shadow: 1px 1px 1px #FFFFFF;
-highlight HintElem background-color:#FFFFFF!important;color:#1D1D1D!important;box-shadow: 1px 1px 1px #AF5FFF;
-highlight MoreMsg background-color:#FFFFFF;color:#878787;
-highlight Normal background:#FFFFFF;color:#1D1D1D;
-highlight StatusLineBroken background-color:#FFFFFF;color:#2D2D2D;background-repeat:no-repeat;background-size:15px;background-position:center;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAATCAYAAABPwleqAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMQFAcPCfgclwAAAJxJREFUOMtjYICCe/fugel/np5GQLwEiD8D8X8gfgTEU4FYlgEbQNKYBtWAC7thNQAooY+m8CcQH8digAq6Rg40BYHIrgLyi5Dk7qNrVkWSrMfhsoNQ+T/oElZImo1gYYBmeyZMDbpm5IAyxWFzLnU1AzkGQLwaSfMEIC7GgtcjqSkEYhmQ5j8E4hYnZiBX46jmIad5Phka/wHxXAAoGEBgKzYhOQAAAABJRU5ErkJggg==);
-highlight StatusLineExtended background-color:#FFFFFF;color:#2D2D2D;background-repeat:no-repeat;background-size:47px;background-position:center;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAATCAYAAAAAn1R6AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMQEzgbTrP0UwAAANVJREFUSMdjYICCe/fuwWgjIF4CxJ+B+D8QPwLiqUAsy0AEoLt+JIenQTXgwm4ELB4Y/UAJfTSFP4H4OBYDVAaVfqAAB5qCQORYAeIiJLn7WCzGqR8qTzv9QAFVJMl6HCFzECr/B4vcwOkHClghaTaC5QG00M+EqcFiMIp+HJbTRj9aRjHFoTkXj+UDp3/IOh7IMQDi1UiaJwBxMRa8HklNIRDLDLh+UAYgULbixFDLB04/uRqRLB84/aOOH3X8qONHHT/qeGIcP58Mjf+AeC7U8gHTDwBFE3EdcEYvdAAAAABJRU5ErkJggg==);
-highlight StatusLineNormal background-color:#FFFFFF;color:#2D2D2D;
-highlight StatusLineSecure background-color:#FFFFFF;color:#2D2D2D;background-repeat:no-repeat;background-size:15px;background-position:center;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAATCAYAAABPwleqAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMQExkFOCPc0wAAAJdJREFUOMtjYICCe/fuwWgjIF4CxJ+B+D8QPwLiqUAsy4ANIGlMg2rAhd1wGaCPpvAnEB/HYoAKukYONAWByK4C4iIkufvomlWRJOtxuOwgVP4PuoQVkmYjWBig2Z4JU4MuiRxQpjhszqWuZiDHAIhXI2meAMTFWPB6JDWFQCwD0vyHQNzixAzkahzVPOQ0zydD4z8gngsA7RYuYdKG3NwAAAAASUVORK5CYII=);
+highlight HintActive background-color:#AF5FFF!important;color:#e8e8e7!important;box-shadow: 1px 1px 1px #e8e8e7;
+highlight HintElem background-color:#e8e8e7!important;color:#1D1D1D!important;box-shadow: 1px 1px 1px #AF5FFF;
+highlight MoreMsg background-color:#e8e8e7;color:#878787;
+highlight Normal background:#e8e8e7;color:#1D1D1D;
+highlight StatusLineBroken background-color:#e8e8e7;color:#2D2D2D;background-repeat:no-repeat;background-size:15px;background-position:center;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAATCAYAAABPwleqAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMQFAcPCfgclwAAAJxJREFUOMtjYICCe/fugel/np5GQLwEiD8D8X8gfgTEU4FYlgEbQNKYBtWAC7thNQAooY+m8CcQH8digAq6Rg40BYHIrgLyi5Dk7qNrVkWSrMfhsoNQ+T/oElZImo1gYYBmeyZMDbpm5IAyxWFzLnU1AzkGQLwaSfMEIC7GgtcjqSkEYhmQ5j8E4hYnZiBX46jmIad5Phka/wHxXAAoGEBgKzYhOQAAAABJRU5ErkJggg==);
+highlight StatusLineExtended background-color:#e8e8e7;color:#2D2D2D;background-repeat:no-repeat;background-size:47px;background-position:center;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAATCAYAAAAAn1R6AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMQEzgbTrP0UwAAANVJREFUSMdjYICCe/fuwWgjIF4CxJ+B+D8QPwLiqUAsy0AEoLt+JIenQTXgwm4ELB4Y/UAJfTSFP4H4OBYDVAaVfqAAB5qCQORYAeIiJLn7WCzGqR8qTzv9QAFVJMl6HCFzECr/B4vcwOkHClghaTaC5QG00M+EqcFiMIp+HJbTRj9aRjHFoTkXj+UDp3/IOh7IMQDi1UiaJwBxMRa8HklNIRDLDLh+UAYgULbixFDLB04/uRqRLB84/aOOH3X8qONHHT/qeGIcP58Mjf+AeC7U8gHTDwBFE3EdcEYvdAAAAABJRU5ErkJggg==);
+highlight StatusLineNormal background-color:#e8e8e7;color:#2D2D2D;
+highlight StatusLineSecure background-color:#e8e8e7;color:#2D2D2D;background-repeat:no-repeat;background-size:15px;background-position:center;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAATCAYAAABPwleqAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMQExkFOCPc0wAAAJdJREFUOMtjYICCe/fuwWgjIF4CxJ+B+D8QPwLiqUAsy4ANIGlMg2rAhd1wGaCPpvAnEB/HYoAKukYONAWByK4C4iIkufvomlWRJOtxuOwgVP4PuoQVkmYjWBig2Z4JU4MuiRxQpjhszqWuZiDHAIhXI2meAMTFWPB6JDWFQCwD0vyHQNzixAzkahzVPOQ0zydD4z8gngsA7RYuYdKG3NwAAAAASUVORK5CYII=);
 highlight StatusQuestion color: inherit !important; background: transparent !important; background-color: inherit !important;
