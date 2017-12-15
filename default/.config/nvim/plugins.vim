@@ -100,12 +100,6 @@ if dein#load_state(s:bundle_dir)
 
 	" Various language-specific plugins
 	call dein#add('https://github.com/sheerun/vim-polyglot')
-	call dein#add('https://github.com/let-def/vimbufsync',                     {'on_ft': ['coq']})
-	call dein#add('https://github.com/the-lambda-church/coquille',             {'on_ft': ['coq'],
-		\ 'depends': 'vimbufsync',
-		\ 'hook_add': "nnoremap <Leader>cn :CoqNext<CR>
-			\ | nnoremap <Leader>cu :CoqUndo<CR>
-			\ | nnoremap <Leader>ch :CoqToCursor<CR>"})
 	call dein#add('https://github.com/PotatoesMaster/i3-vim-syntax',           {'on_ft': ['i3']})
 	call dein#add('https://github.com/vim-erlang/vim-erlang-omnicomplete',     {'on_ft': ['erlang']})
 	call dein#add('https://github.com/jelera/vim-javascript-syntax',           {'on_ft': ['javascript']})
