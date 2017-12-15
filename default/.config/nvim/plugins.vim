@@ -42,8 +42,6 @@ if dein#load_state(s:bundle_dir)
 	call dein#add('https://github.com/kana/vim-textobj-user')
 	call dein#add('https://github.com/thinca/vim-textobj-between',             {'depends': 'vim-textobj-user'})
 	call dein#add('https://github.com/glts/vim-textobj-comment',               {'depends': 'vim-textobj-user'})
-	call dein#add('https://github.com/jceb/vim-textobj-uri',                   {'depends': 'vim-textobj-user'})
-	call dein#add('https://github.com/kana/vim-textobj-line',                  {'depends': 'vim-textobj-user'})
 	call dein#add('https://github.com/kana/vim-textobj-entire',                {'depends': 'vim-textobj-user'})
 	call dein#add('https://github.com/Julian/vim-textobj-variable-segment',    {'depends': 'vim-textobj-user'})
 	call dein#add('https://github.com/rbonvall/vim-textobj-latex',             {'depends': 'vim-textobj-user',
