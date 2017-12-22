@@ -120,6 +120,9 @@ if dein#load_state(s:bundle_dir)
 	" Configures indentation settings
 	call dein#add('https://github.com/tpope/vim-sleuth.git',                   {'on_path': '^\(.*term:\/\/\)\@!.*$'})
 
+	" Rainbow parentheses
+	call dein#add('https://github.com/kien/rainbow_parentheses.vim',           {'on_path': '^\(.*term:\/\/\)\@!.*$', 'hook_add': 'au BufEnter *.{clj,cljc} execute("RainbowParenthesesActivate") | execute("RainbowParenthesesLoadRound")'})
+
 	call dein#end()
 	call dein#save_state()
 endif
