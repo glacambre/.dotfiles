@@ -4,7 +4,7 @@
 	path = nvim
 [user]
 	name = glacambre
-	email = me@r4
+	email = code@lacamb.re
 [commit]
 	verbose = true
 [push]
