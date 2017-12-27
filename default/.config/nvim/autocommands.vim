@@ -25,6 +25,13 @@ augroup MY_C_AUGROUP
 	au BufRead,BufNewFile *.h call GenerateCHeaderSkeleton()
 augroup END
 
+augroup MY_OCAML_AUGROUP
+	autocmd!
+	" Temporary, remove when https://github.com/vim/vim/issues/2428 is
+	" closed
+	au BufRead,BufNewFile *.ml set commentstring=(*%s*)
+augroup END
+
 augroup MY_NETRW_AUGROUP
 	autocmd!
 	au FileType netrw call SetNetrwMappings()

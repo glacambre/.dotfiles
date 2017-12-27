@@ -1,17 +1,15 @@
-let mapleader = " " " Leader key is space
-
-" Leader twice disables highlighting of currently matched search pattern
-nnoremap <leader><leader> :nohlsearch<CR>
-" Leader n goes to the next quickfix item
-nnoremap <leader>n :lnext<CR>
-" Leader p goes to the previous quickfix item
-nnoremap <leader>p :lprev<CR>
-" Leader e goes to the earlier version of the buffer
-nnoremap <leader>e :earlier<CR>
-" Leader l goes to the later version of the buffer
-nnoremap <leader>l :later<CR>
-" Leader h opens tag in new horizontal split
-nnoremap <leader>h :stj <C-R>=expand("<cword>")<CR><CR>
+" <Space>twice disables highlighting of currently matched search pattern
+nnoremap <Space><Space> :nohlsearch<CR>
+" <Space>n goes to the next quickfix item
+nnoremap <Space>n :lnext<CR>
+" <Space>p goes to the previous quickfix item
+nnoremap <Space>p :lprev<CR>
+" <Space>e goes to the earlier version of the buffer
+nnoremap <Space>e :earlier<CR>
+" <Space>l goes to the later version of the buffer
+nnoremap <Space>l :later<CR>
+" <Space>h opens tag in new horizontal split
+nnoremap <Space>h :stj <C-R>=expand("<cword>")<CR><CR>
 
 " wrapped lines: go to next row instead of next line
 nnoremap j gj

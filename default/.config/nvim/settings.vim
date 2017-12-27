@@ -7,6 +7,7 @@ set tabline=%!MyTabLine()           " MyTabLine is defined in functions.vim
 set wildmenu                        " Adds the menu at the bottom of the screen
 set wildmode=list:longest,list:full " Wildmenu gives a list of all matches
 set wildignore+=*.o,*.out,*.class   " Ignore certain filetypes
+set wildignore+=*.cmi,*.cmo
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.ico,*.svg,*.xcf
 set wildignore+=*.mp3,*.ogg,*.opus,*.wav,*.flac,
 set wildignore+=*.avi,*.mp4,*.mpg,*.mov,*.flv,*.webm
