@@ -91,10 +91,6 @@ if dein#load_state(s:bundle_dir)
 
 	" Various language-specific plugins
 	call dein#add('https://github.com/sheerun/vim-polyglot')
-	call dein#add('https://github.com/PotatoesMaster/i3-vim-syntax')
-	call dein#add('https://github.com/vim-erlang/vim-erlang-omnicomplete')
-	call dein#add('https://github.com/jelera/vim-javascript-syntax')
-	call dein#add('https://github.com/rust-lang/rust.vim')
 	call dein#add('https://github.com/shiracamus/vim-syntax-x86-objdump-d')
 	call dein#add('https://github.com/ap/vim-css-color')
 
