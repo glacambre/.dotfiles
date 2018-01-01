@@ -168,7 +168,7 @@ let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.erlang = 'erlang_complete#Complete'
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
-let g:deoplete#sources#clang#libclang_path=system("find /usr/lib64/ -name libclang.so")[0:-2]
+let g:deoplete#sources#clang#libclang_path=system("find /usr/lib64/ -name libclang.so -print -quit")[0:-2]
 let g:deoplete#sources#clang#clang_header="/usr/lib64/clang/"
 let g:deoplete#sources#go#gocode_binary=$HOME . "/.gopath/bin/gocode"
 
