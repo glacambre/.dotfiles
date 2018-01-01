@@ -94,9 +94,8 @@ if dein#load_state(s:bundle_dir)
 	call dein#add('https://github.com/shiracamus/vim-syntax-x86-objdump-d')
 	call dein#add('https://github.com/ap/vim-css-color')
 
-	" Completes 'if' with 'endif', opening brackets with closing brackets...
-	call dein#add('https://github.com/rstacruz/vim-closer.git')
-	call dein#add('https://github.com/tpope/vim-endwise')
+	" Complete matching pairs and be smart about it
+	call dein#add('https://github.com/jiangmiao/auto-pairs')
 
 	" Configures indentation settings
 	call dein#add('https://github.com/tpope/vim-sleuth.git')
