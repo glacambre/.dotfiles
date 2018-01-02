@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# Edit a file in the host nvim instance.
+from __future__ import print_function
+import os
+import sys
+
+from neovim import attach
+
+addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
+args = sys.argv[1:]
+
+if not addr or not (len(args) == 1):
+    os.execvp('man', args)
+
+nvim = attach("socket", path=addr)
+
+try:
+    nvim.command("Man " + args[0])
+finally:
+    nvim.stop_loop()
