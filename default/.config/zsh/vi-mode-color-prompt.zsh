@@ -2,9 +2,14 @@
 export KEYTIMEOUT=20
 export _PS1="$PS1"
 
-precmd() {
+reset_prompt_color() {
     PS1="%{[38;05;4m%}$_PS1%{[0m%}"
 }
+reset_prompt_color
+if [[ ! -v precmd_functions ]]; then
+    precmd_functions=()
+fi
+precmd_functions+=reset_prompt_color
 
 print -n -- "\033[6 q"
 zle-keymap-select() {

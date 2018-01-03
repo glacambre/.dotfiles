@@ -262,3 +262,27 @@ function! GenerateCHeaderSkeleton()
     call cursor(line('$') - 2, 1)
     set ft=c
 endfunction
+
+" Goes to the next/previous term prompt
+" prev: 1 if we want the previous prompt, 0 if we want the next
+" Very hackish for now, revisit when https://github.com/neovim/neovim/issues/7807 is fixed
+function! TermPrompt(prev) abort
+    if !exists('b:shell_prompts')
+        return
+    endif
+
+    let curline=line('.')
+    let i = 0
+    while i < len(b:shell_prompts) && (b:shell_prompts[i] + a:prev) <= curline
+        let i += 1
+    endwhile
+
+    let i = i - a:prev
+    echo "i is " . i
+    if (i >= 0 && i < len(b:shell_prompts)) 
+        let line = b:shell_prompts[i]
+        " My prompt always ends with a lbrace
+        let col = stridx(getline(line), "{") + 2
+        call cursor(b:shell_prompts[i], col)
+    endif
+endfunction

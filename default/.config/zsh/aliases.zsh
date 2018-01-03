@@ -3,12 +3,6 @@ function cpr () {
     pdftotext $1 - | less
 }
 
-# automatically change working dir of parent buffer if using zsh within nvim
-function chpwd () {
-    emulate -L zsh
-    nvimcd "$(pwd)"
-}
-
 # dd wrapper to get that sweet sweet statusbar
 function dd () {
     command dd status=progress "$@"

@@ -18,6 +18,11 @@ source "$ZDOTDIR/vi-mode-color-prompt.zsh"
 source "$ZDOTDIR/vi-mode-x-paste.zsh"
 source "$ZDOTDIR/vi-mode.zsh"
 source "$ZDOTDIR/zsh_auto_suggestions.zsh"
+if [ "$NVIM_LISTEN_ADDRESS" != "" ]
+then
+    source "$ZDOTDIR/nvim.zsh"
+fi
+
 
 ### VARIOUS OPTIONS
 setopt auto_cd                # Cd when a dirname has been given instead of a program
@@ -48,5 +53,3 @@ setopt numeric_glob_sort      # On {01..XX} expansions, sort numerically instead
 setopt pushd_ignore_dups      # Don't duplicate directories in the pushd stack
 setopt pushd_silent           # Don't print directory stack after pushd/popd
 setopt short_loops            # Allow alternative syntax, e.g. if { true } { thing() } else { other() }
-
-(nvimcd "$(pwd)" &) >/dev/null
