@@ -32,6 +32,11 @@ augroup MY_OCAML_AUGROUP
 	au BufRead,BufNewFile *.ml set commentstring=(*%s*)
 augroup END
 
+augroup MY_GIT_AUGROUP
+	autocmd!
+	au BufRead COMMIT_EDITMSG set ft=.gitcommit
+augroup END
+
 augroup MY_NETRW_AUGROUP
 	autocmd!
 	au FileType netrw call SetNetrwMappings()
