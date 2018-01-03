@@ -168,15 +168,13 @@ endfunction
 " Iterates over a list of buffers, if a loaded but non-displayed buffer
 " exists, switches to it and returns 1, 0 otherwise
 function! SwitchToBuf(buflist)
-    let switched = 0
     for idx in a:buflist
-        if bufloaded(idx) == 1 && bufwinnr(idx) == -1
+        if len(getbufinfo(idx)[0]["windows"]) == 0
             execute "buffer " . idx
-            let switched = 1
-            break
+            return 1
         endif
     endfor
-    return switched
+    return 0
 endfunction
 
 " Closes a buffer while keeping its window open.
