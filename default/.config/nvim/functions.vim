@@ -286,23 +286,25 @@ function! SavePrompt(pid, from_precmd, ps1) abort
     " Go to shell buffer
     exe "buffer " . bufnr
 
+    let prompt_line = 1
     " Try to find the last line with text
     try
         $;?.
+        " + a:from_precmd because when called from precmd the PS1 isn't
+        " displayed yet so the line we actually want is empty
+        let prompt_line = line('.') + a:from_precmd
     catch
-        let b:shell_prompts = [1]
-        let b:ps1_lengths = {"1": len(substitute(a:ps1, '\[[^m]\+m', '', 'g'))}
-        return
+        " Fails if the buffer is empty
+        let prompt_line = 1
     endtry
 
     " Save current cursor line and ps1
-    if !exists('b:shell_prompts')
+    if !exists('b:shell_prompts') || !exists('b:ps1_lengths')
         let b:shell_prompts = []
-        let b:ps1_lengths = []
+        let b:ps1_lengths = {}
     endif
-    " + a:from_precmd because when called from precmd the PS1 isn't displayed
-    " yet so the line we actually want is empty
-    let b:shell_prompts += [line('.') + a:from_precmd]
+
+    let b:shell_prompts += [prompt_line]
     let b:ps1_lengths["" . b:shell_prompts[-1]] = len(substitute(a:ps1, '\[[^m]\+m', '', 'g'))
 
     " Go back to the buffer we were on before calling the function
