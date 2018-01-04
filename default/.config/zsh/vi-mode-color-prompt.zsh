@@ -2,33 +2,33 @@
 export KEYTIMEOUT=20
 export _PS1="$PS1"
 
-reset_prompt_color() {
-    PS1="%{[38;05;4m%}$_PS1%{[0m%}"
+set_insert_colors() {
+    if [[ $__prompt_status == 0 ]]; then
+        PS1="[44m[34m$_PS1[0m"
+    else
+        PS1="[41m[31m$_PS1[0m"
+    fi
+    print -n -- "\033[6 q"
 }
-reset_prompt_color
-if [[ ! -v precmd_functions ]]; then
-    precmd_functions=()
-fi
-precmd_functions+=reset_prompt_color
 
-print -n -- "\033[6 q"
 zle-keymap-select() {
     if [[ "$KEYMAP" = "vicmd" ]] ; then
         # Green, block cursor
-        PS1="%{[38;05;2m%}$_PS1%{[0m%}"
+        PS1="[42m[32m$_PS1[0m"
         print -n -- "\033[2 q"
     else
-        # Blue, line cursor
-        PS1="%{[38;05;4m%}$_PS1%{[0m%}"
-        print -n -- "\033[6 q"
+        set_insert_colors
     fi
-    () { return $__prompt_status }
     zle reset-prompt
 }
 
-zle-line-init() {
+if [[ ! -v precmd_functions ]]; then
+    precmd_functions=()
+fi
+precmd_setup_colors() {
     typeset -g __prompt_status="$?"
+    set_insert_colors
 }
+precmd_functions+=precmd_setup_colors
 
 zle -N zle-keymap-select
-zle -N zle-line-init

@@ -128,6 +128,7 @@ function! OnTermOpen()
     au BufEnter <buffer> if exists("b:terminal_path") | execute("cd " . b:terminal_path) | endif
     let b:should_insert = 1
     au BufEnter <buffer> if b:should_insert == 1 | startinsert | endif
+    au BufLeave <buffer> stopinsert
     nnoremap <buffer> <silent> a :set laststatus=1<CR>:let b:should_insert = 1<CR>a
     nnoremap <buffer> <silent> i :set laststatus=1<CR>:let b:should_insert = 1<CR>i
 
@@ -263,24 +264,73 @@ function! GenerateCHeaderSkeleton()
     set ft=c
 endfunction
 
+" Saves the prompt position
+" pid: The pid of the shell that should be saved
+" from_precmd: 1 if called from a precmd zsh hook, 0 otherwise
+function! SavePrompt(pid, from_precmd, ps1) abort
+    let allbufs = getbufinfo()
+    " Find the buffer that belongs to the shell that has pid a:pid
+    let bufnr = 0
+    for i in range(len(allbufs))
+        if get(allbufs[i]["variables"], "terminal_job_pid", 0) == a:pid
+            let bufnr = allbufs[i]["bufnr"]
+            break
+        endif
+    endfor
+    if bufnr == 0
+        return
+    endif
+
+    " Save currently selected buffer
+    let curbuf = bufnr("%")
+    " Go to shell buffer
+    exe "buffer " . bufnr
+
+    " Try to find the last line with text
+    try
+        $;?.
+    catch
+        let b:shell_prompts = [1]
+        let b:ps1_lengths = {"1": len(substitute(a:ps1, '\[[^m]\+m', '', 'g'))}
+        return
+    endtry
+
+    " Save current cursor line and ps1
+    if !exists('b:shell_prompts')
+        let b:shell_prompts = []
+        let b:ps1_lengths = []
+    endif
+    " + a:from_precmd because when called from precmd the PS1 isn't displayed
+    " yet so the line we actually want is empty
+    let b:shell_prompts += [line('.') + a:from_precmd]
+    let b:ps1_lengths["" . b:shell_prompts[-1]] = len(substitute(a:ps1, '\[[^m]\+m', '', 'g'))
+
+    " Go back to the buffer we were on before calling the function
+    exe "buffer " . curbuf
+endfunction
+
 " Goes to the next/previous term prompt
 " prev: 1 if we want the previous prompt, 0 if we want the next
 function! TermPrompt(prev) abort
-    if !exists('b:shell_prompts')
+    if !exists('b:shell_prompts') || !exists('b:ps1_lengths')
         return
     endif
 
     let curline=line('.')
     let i = 0
-    while i < len(b:shell_prompts) && (b:shell_prompts[i] + a:prev) <= curline
+    while i < len(b:shell_prompts) && (b:shell_prompts[i]) < curline
         let i += 1
     endwhile
 
-    let i = i - a:prev
+    if a:prev
+        let i = i - 1
+    else
+        let i = i + (b:shell_prompts[i] == curline ? 1 : 0)
+    endif
+
     if (i >= 0 && i < len(b:shell_prompts)) 
-        let line = b:shell_prompts[i]
+        let buf_line = b:shell_prompts[i]
         " My prompt always ends with a lbrace
-        let col = stridx(getline(line), "{") + 2
-        call cursor(b:shell_prompts[i], col)
+        call cursor(buf_line, b:ps1_lengths["" . buf_line] + 1)
     endif
 endfunction

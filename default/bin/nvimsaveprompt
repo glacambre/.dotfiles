@@ -8,14 +8,12 @@ from neovim import attach
 
 addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
 
-if not addr:
+if not addr or len(sys.argv) != 3:
     exit()
 
 nvim = attach("socket", path=addr)
 
 try:
-    nvim.feedkeys("\034\016")
-    nvim.command("if exists('b:shell_prompts') | let b:shell_prompts += [line('.')] | else | let b:shell_prompts = [line('.')] | fi")
-    nvim.feedkeys("a")
+    nvim.command("call SavePrompt(" + sys.argv[1] + ", 1, '" + sys.argv[2] + "')")
 finally:
     nvim.stop_loop()
