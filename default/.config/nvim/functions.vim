@@ -265,7 +265,6 @@ endfunction
 
 " Goes to the next/previous term prompt
 " prev: 1 if we want the previous prompt, 0 if we want the next
-" Very hackish for now, revisit when https://github.com/neovim/neovim/issues/7807 is fixed
 function! TermPrompt(prev) abort
     if !exists('b:shell_prompts')
         return
@@ -278,7 +277,6 @@ function! TermPrompt(prev) abort
     endwhile
 
     let i = i - a:prev
-    echo "i is " . i
     if (i >= 0 && i < len(b:shell_prompts)) 
         let line = b:shell_prompts[i]
         " My prompt always ends with a lbrace
