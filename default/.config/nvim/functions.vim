@@ -267,6 +267,7 @@ endfunction
 " Saves the prompt position
 " pid: The pid of the shell that should be saved
 " from_precmd: 1 if called from a precmd zsh hook, 0 otherwise
+" ps1: The PS1, can contain escape sequences
 function! SavePrompt(pid, from_precmd, ps1) abort
     let allbufs = getbufinfo()
     " Find the buffer that belongs to the shell that has pid a:pid
@@ -290,9 +291,7 @@ function! SavePrompt(pid, from_precmd, ps1) abort
     " Try to find the last line with text
     try
         $;?.
-        " + a:from_precmd because when called from precmd the PS1 isn't
-        " displayed yet so the line we actually want is empty
-        let prompt_line = line('.') + a:from_precmd
+        let prompt_line = line('.')
     catch
         " Fails if the buffer is empty
         let prompt_line = 1
