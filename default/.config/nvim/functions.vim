@@ -268,7 +268,7 @@ endfunction
 " pid: The pid of the shell that should be saved
 " from_precmd: 1 if called from a precmd zsh hook, 0 otherwise
 " ps1: The PS1, can contain escape sequences
-function! SavePrompt(pid, from_precmd, ps1) abort
+function! SavePrompt(pid, from_precmd, ps1, cmdheight) abort
     let allbufs = getbufinfo()
     " Find the buffer that belongs to the shell that has pid a:pid
     let bufnr = 0
@@ -296,6 +296,7 @@ function! SavePrompt(pid, from_precmd, ps1) abort
         " Fails if the buffer is empty
         let prompt_line = 1
     endtry
+    let prompt_line = (prompt_line - a:cmdheight)
 
     " Save current cursor line and ps1
     if !exists('b:shell_prompts') || !exists('b:ps1_lengths')
@@ -331,7 +332,6 @@ function! TermPrompt(prev) abort
 
     if (i >= 0 && i < len(b:shell_prompts)) 
         let buf_line = b:shell_prompts[i]
-        " My prompt always ends with a lbrace
         call cursor(buf_line, b:ps1_lengths["" . buf_line] + 1)
     endif
 endfunction

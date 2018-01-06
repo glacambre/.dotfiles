@@ -9,8 +9,11 @@ if [[ ! -v chpwd_functions ]]; then
 fi
 chpwd_functions+=nvim_cd
 
-function zle-line-init () {
+function nvim_save_prompt() {
     # Note: if this breaks, try ${{(%)${(e)PS1}}}
-    nvimsaveprompt "$$" "${(%e)PS1}"
+    nvimsaveprompt "$$" "${(%e)PS1}" "$1"
 }
-zle -N zle-line-init
+if [[ ! -v preexec_functions ]]; then
+    preexec_functions=()
+fi
+preexec_functions+=nvim_save_prompt
