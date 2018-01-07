@@ -76,3 +76,8 @@ augroup MY_TEX_AUGROUP
 	au FileType tex iabbrev <buffer> ↔ \leftrightarrow
 	au FileType tex iabbrev <buffer> ⇔ \Leftrightarrow
 augroup END
+
+augroup MY_GNUPLOT_AUGROUP
+	autocmd!
+	au FileType gnuplot setlocal commentstring=#%s
+augroup END
