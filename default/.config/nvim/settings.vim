@@ -76,6 +76,8 @@ set modelines=5     " Maximum number of lines that are checked for modeline
 
 set updatetime=1000 " Updatetime is needed in order to refresh markology.vim
 
+set scrollback=-1 " Remember as many lines as possible
+
 let g:netrw_dirhistmax=0               " Do not write to ~/.vim/netrwist
 let g:netrw_banner=0                   " Hide the filebrowser banner
 let g:netrw_browsex_viewer= "xdg-open" " Open files with xdg-open

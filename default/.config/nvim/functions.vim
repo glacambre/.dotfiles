@@ -115,9 +115,6 @@ function! OnTermOpen()
     " Use a pretty name for the buffer
     execute("file " . substitute(expand("%"), "term://.//", "", ""))
 
-    " Remember as many lines as possible
-    set scrollback=-1
-
     " Splitting opens a new term
     nnoremap <buffer> <silent> <C-w>s :split<CR>:term<CR>
     nnoremap <buffer> <silent> <C-w>v :vsplit<CR>:term<CR>
