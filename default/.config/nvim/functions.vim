@@ -170,7 +170,7 @@ endfunction
 " exists, switches to it and returns 1, 0 otherwise
 function! SwitchToBuf(buflist)
     for idx in a:buflist
-        if len(getbufinfo(idx)[0]["windows"]) == 0
+        if len(win_findbuf(idx)) == 0
             execute "buffer " . idx
             return 1
         endif
