@@ -49,11 +49,13 @@ augroup MY_TERM_AUGROUP
 augroup END
 
 augroup MY_MISC_AUGROUP
+	autocmd!
 	au BufReadPost *hledger.journal set ft=ledger
 	au BufReadPost mutt-* setlocal formatoptions += aw | setlocal tw=78
 augroup END
 
 augroup MY_TEX_AUGROUP
+	autocmd!
 	au FileType tex setlocal spell spelllang=fr
 	au FileType tex iabbrev <buffer> λ $\lambda$
 	au FileType tex iabbrev <buffer> Λ $\Lambda$
