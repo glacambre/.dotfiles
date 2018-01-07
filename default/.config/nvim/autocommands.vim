@@ -29,7 +29,7 @@ augroup MY_OCAML_AUGROUP
 	autocmd!
 	" Temporary, remove when https://github.com/vim/vim/issues/2428 is
 	" closed
-	au BufRead,BufNewFile *.ml set commentstring=(*%s*)
+	au FileType ocaml setlocal commentstring=(*%s*)
 augroup END
 
 augroup MY_GIT_AUGROUP
