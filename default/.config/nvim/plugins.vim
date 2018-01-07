@@ -48,7 +48,7 @@ execute("set runtimepath+=" . s:dein_dir)
 
 if dein#load_state(s:bundle_dir)
 	call dein#begin(s:bundle_dir)
-	call dein#add('https://github.com/Shougo/dein.vim')
+	call dein#add('https://github.com/Shougo/dein.vim', {'hook_done_update': 'UpdateRemotePlugins'})
 
 	" To be used everywhere, even in terminal
 	call dein#add('https://github.com/chrisbra/Recover.vim')
