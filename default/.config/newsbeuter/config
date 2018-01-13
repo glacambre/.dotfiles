@@ -12,6 +12,8 @@ unbind-key s
 bind-key s sort
 unbind-key S
 bind-key S rev-sort
+unbind-key f
+bind-key f goto-url
 
 always-display-description false
 article-sort-order date desc
