@@ -3,12 +3,13 @@ export KEYTIMEOUT=20
 export _PS1="$PS1"
 
 set_insert_colors() {
-    if [[ $__prompt_status == 0 ]]; then
+    # 148 is ^Z
+    if [[ $__prompt_status == 0 ]] || [[ $__prompt_status == 148 ]]; then
         PS1="%{[34;44m%}$_PS1%{[0m%}"
     else
         PS1="%{[31;41m%}$_PS1%{[0m%}"
     fi
-    # print -n -- "\033[6 q"
+    print -n -- "\033[6 q"
 }
 
 zle-keymap-select() {
