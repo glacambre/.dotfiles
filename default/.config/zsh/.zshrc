@@ -9,6 +9,7 @@ zmodload zsh/zpty     # Enables starting commands in pseudo terminals
 # for scripts, zshrc isn't.
 export PATH="$HOME/bin/:$HOME/.cargo/bin/:$PATH"
 
+source "$ZDOTDIR/zsh_syntax_highlighting.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/completion.zsh"
 source "$ZDOTDIR/hash_directories.zsh"

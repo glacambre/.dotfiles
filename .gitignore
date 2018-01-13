@@ -18,6 +18,7 @@
 /default/.config/gimp-2.8/
 
 /default/.config/zsh/zsh-autosuggestions
+/default/.config/zsh/zsh-syntax-highlighting
 /default/.config/zsh/zsh_history
 default/.config/zsh/.zcalc_history
 
