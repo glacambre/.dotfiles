@@ -9,8 +9,6 @@ zmodload zsh/zpty     # Enables starting commands in pseudo terminals
 # for scripts, zshrc isn't.
 export PATH="$HOME/bin/:$HOME/.cargo/bin/:$PATH"
 
-source "$ZDOTDIR/zsh_syntax_highlighting.zsh"
-source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/completion.zsh"
 source "$ZDOTDIR/hash_directories.zsh"
 source "$ZDOTDIR/history.zsh"
@@ -18,6 +16,9 @@ source "$ZDOTDIR/ps1.zsh"
 source "$ZDOTDIR/vi-mode-color-prompt.zsh"
 source "$ZDOTDIR/vi-mode-x-paste.zsh"
 source "$ZDOTDIR/vi-mode.zsh"
+source "$ZDOTDIR/zsh_syntax_highlighting.zsh"
+# aliases are defined after syntax_highlighting because '=' isn't legal
+source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/zsh_auto_suggestions.zsh"
 if [ "$NVIM_LISTEN_ADDRESS" != "" ]
 then
