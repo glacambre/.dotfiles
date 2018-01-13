@@ -18,9 +18,15 @@ vi-join-prev-history-line () {
     BUFFER="$(fc -lnrm "$1*" 1 2>/dev/null | head -n 1) && $BUFFER"
 }
 
+accept-twice () {
+    accept-line
+    accept-line
+}
+
 zle -N visual-mode-eol
 zle -N prev-line-with-sudo
 zle -N vi-join-prev-history-line
+zle -N accept-twice
 
 #todo: find a good binding for spell-word
 #todo: find a good binding for quote-region
@@ -58,7 +64,7 @@ bindkey -M vicmd '^[[3~' delete-char
 bindkey -M menuselect "^Y" accept-and-menu-complete
 bindkey -M menuselect "^E" send-break
 bindkey -M menuselect "^[" vi-cmd-mode
-bindkey -M menuselect "^M" "^M^M" # Sort of a hack. Enter accepts completion and feeds line
+bindkey -M menuselect "^M" accept-twice
 
 # Surrouding operators !
 autoload -U select-quoted select-bracketed surround
