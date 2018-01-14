@@ -1,8 +1,5 @@
 bindkey -v
 # Don't prevent me from editing text I entered before going into command mode
-zle -A kill-whole-line vi-kill-line
-zle -A backward-kill-word vi-backward-kill-word
-zle -A backward-delete-char vi-backward-delete-char
 
 visual-mode-eol () {
     zle visual-mode;
@@ -58,6 +55,7 @@ bindkey -M vicmd "^[[A"  up-line-or-search
 bindkey -M vicmd "^[[B"  down-line-or-search
 bindkey -M viins "^[[A"  up-line-or-search
 bindkey -M viins "^[[B"  down-line-or-search
+bindkey -M viins "^W"    backward-kill-word
 # ^[[3~ is the "del" key
 bindkey -M viins '^[[3~' delete-char
 bindkey -M vicmd '^[[3~' delete-char
