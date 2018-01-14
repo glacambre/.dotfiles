@@ -1,5 +1,4 @@
 bindkey -v
-# Don't prevent me from editing text I entered before going into command mode
 
 visual-mode-eol () {
     zle visual-mode;
