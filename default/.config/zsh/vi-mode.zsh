@@ -55,6 +55,8 @@ bindkey -M vicmd "^[[A"  up-line-or-search
 bindkey -M vicmd "^[[B"  down-line-or-search
 bindkey -M viins "^[[A"  up-line-or-search
 bindkey -M viins "^[[B"  down-line-or-search
+# / can't be in WORDCHARS otherwise backward-kill-word will kill whole paths
+WORDCHARS=${WORDCHARS//\/}
 bindkey -M viins "^W"    backward-kill-word
 # ^[[3~ is the "del" key
 bindkey -M viins '^[[3~' delete-char
