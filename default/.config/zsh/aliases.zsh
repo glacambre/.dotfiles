@@ -150,7 +150,7 @@ aliases[=]='noglob __calc_plugin'
 
 # zmv enables stuff like 'zmv *.jpg *.jpeg' to rename every jpg into jpeg
 autoload -U zmv
-alias zmv='noglob zmv -W'
+alias zmv='noglob zmv'
 
 # Prints ssh keys. Useful to check if new host has the right key
 function print_keys () {
