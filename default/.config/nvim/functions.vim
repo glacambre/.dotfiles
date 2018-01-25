@@ -180,7 +180,7 @@ function! WipeButKeepOpen(force)
     " btarget is the id of the current buffer
     let btarget = bufnr("%")
     " allbufs is a list of all listed buffers
-    let allbufs = filter(range(1, bufnr('$')), 'bufloaded(v:val)')
+    let allbufs = filter(range(1, bufnr('$')), 'buflisted(v:val)')
     let nbbufs = len(allbufs)
 
     let closebuf = "bw"
