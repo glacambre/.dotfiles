@@ -16,6 +16,10 @@ let g:deoplete#sources._ = []
 let g:deoplete#sources#clang#libclang_path=system("find /usr/lib64/ -name libclang.so -print -quit")[0:-2]
 let g:deoplete#sources#clang#clang_header="/usr/lib64/clang/"
 let g:deoplete#sources#go#gocode_binary=$HOME . "/.gopath/bin/gocode"
+function! Deoplete_cr() abort
+	return deoplete#close_popup() . "\<CR>"
+endfunction
+
 
 " Denite
 function! Setup_denite_ignores()
@@ -92,7 +96,7 @@ if dein#load_state(s:bundle_dir)
 				\| xmap aE <Plug>(textobj-latex-environment-a)'})
 
 	" Autocompletion plugins
-	call dein#add('https://github.com/Shougo/deoplete.nvim',     {'on_path': '^\(.*term:\/\/\)\@!.*$', 'hook_add': 'inoremap <silent> <CR> <C-r>=deoplete#close_popup()<CR><CR>'})
+	call dein#add('https://github.com/Shougo/deoplete.nvim',     {'on_path': '^\(.*term:\/\/\)\@!.*$', 'hook_add': 'inoremap <silent> <CR> <C-r>=Deoplete_cr()<CR>'})
 	call dein#add('https://github.com/Shougo/neoinclude.vim',    {'depends': 'deoplete.nvim', 'on_path': '^\(.*term:\/\/\)\@!.*$'})
 	call dein#add('https://github.com/zchee/deoplete-clang',     {'depends': 'deoplete.nvim', 'on_ft': ['c', 'cpp']})
 	call dein#add('https://github.com/zchee/deoplete-go',        {'depends': 'deoplete.nvim', 'on_ft': ['go'], 'build': {'unix': 'make'}})
