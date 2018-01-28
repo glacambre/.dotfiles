@@ -12,7 +12,7 @@ nnoremap <Space>l :later<CR>
 nnoremap <Space>h :stj <C-R>=expand("<cword>")<CR><CR>
 " <Space>b in terminal goes to line of the previous prompt
 nnoremap <silent> <Space>b :call TermPrompt(1)<CR>
-" <Space>b in terminal goes to line of the next prompt
+" <Space>a in terminal goes to line of the next prompt
 nnoremap <silent> <Space>a :call TermPrompt(0)<CR>
 
 " wrapped lines: go to next row instead of next line
