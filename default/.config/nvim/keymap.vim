@@ -18,6 +18,8 @@ nnoremap <silent> <Space>a :call TermPrompt(0)<CR>
 " wrapped lines: go to next row instead of next line
 nnoremap j gj
 nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 
 " Y yanks to the end of the line instead of the whole line (like D)
 nnoremap Y y$
