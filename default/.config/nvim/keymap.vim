@@ -64,12 +64,17 @@ nnoremap <C-s> z=
 inoremap <C-x><C-s> <C-x><C-s><C-n>
 
 " Move in command line mode using hjkl
-for i in ["<C-h> <left>", "<C-j> <down>", "<C-k> <up>", "<C-l> <right>",
-            \ "<C-a> <Home>", "<C-e> <End>"]
-    execute('lnoremap ' . i)
-    " Cnoremap is needed because lnoremap won't redefine some of these
-    " mappings for some reason
-    execute('cnoremap ' . i)
+for b in [["<C-h>", "<left>"],
+	\ ["<C-j>", "<down>"],
+	\ ["<C-k>", "<up>"],
+	\ ["<C-l>", "<right>"],
+	\ ["<C-a>", "<Home>"],
+	\ ["<C-e>", "<End>"]]
+    execute('lnoremap ' . b[0] . ' ' . b[1])
+    execute('cnoremap ' . b[0] . ' ' . b[1])
+    " Warning: Unexpected behavior might ensue when it comes to closing
+    " completion menu because of <C-e>
+    execute('inoremap <expr> ' . b[0] . ' (pumvisible() ? "\<C-e>" : "") . "\' . b[1] . '"')
 endfor
 
 " Go to a tab by using alt+colnum
@@ -116,10 +121,6 @@ vnoremap ~ ~gv
 nnoremap <C-z> :call SuspendIfInShell()<CR>
 vnoremap <C-z> <Esc>:call SuspendIfInShell()<CR>gv
 
-" Insert mode: go to beginning of line
-inoremap <C-a> <C-o>0
-" Insert mode: go to end of line
-inoremap <C-e> <C-o>$
 " Insert mode: go to beginning of word
 inoremap <C-b> <C-o>b
 " Insert mode: go to end of word
