@@ -151,7 +151,9 @@ if dein#load_state(s:bundle_dir)
 	call dein#add('https://github.com/tpope/vim-sleuth.git')
 
 	" Rainbow parentheses
-	call dein#add('https://github.com/kien/rainbow_parentheses.vim', {'hook_add': 'au BufEnter *.{clj,cljc} execute("RainbowParenthesesActivate") | execute("RainbowParenthesesLoadRound")'})
+	call dein#add('https://github.com/kien/rainbow_parentheses.vim', {'hook_add': 'au BufEnter *.{clj,cljc} execute("RainbowParenthesesActivate") 
+				\| execute("RainbowParenthesesLoadRound")
+				\| execute("RainbowParenthesesLoadSquare")'})
 
 	" Git gud
 	call dein#add('https://github.com/tpope/vim-fugitive', {'on_path': '^\(.*term:\/\/\)\@!.*$'})
