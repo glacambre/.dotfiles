@@ -82,6 +82,9 @@ set sidescroll=1 " When scrolling horizontally, move col by col
 
 set nojoinspaces " Don't put 2 spaces when joining lines
 
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+\%#\@<!$/ " Highlight eol whitespace in red
+
 let g:netrw_dirhistmax=0               " Do not write to ~/.vim/netrwist
 let g:netrw_banner=0                   " Hide the filebrowser banner
 let g:netrw_browsex_viewer= "xdg-open" " Open files with xdg-open
