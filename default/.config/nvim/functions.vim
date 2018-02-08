@@ -208,14 +208,15 @@ function! WipeButKeepOpen(force)
         echoerr "Couldn't wipe buffer. Unsaved changes?"
     endtry
 
-    " If the buffer we just closed was the last
-    if nbbufs <= 1
-        quit
-    endif
 
     " If the current buffer is now an empty buffer
     if bufname('%') == '' && line('$') == 1 && getline(1) == ''
-        call WipeButKeepOpen(0)
+        " If the buffer we just closed was the last
+        if nbbufs <= 1
+            quit
+        else
+            call WipeButKeepOpen(0)
+        endif
     endif
 
 endfunction
