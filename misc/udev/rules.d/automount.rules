@@ -1,0 +1,12 @@
+KERNEL!="sd[b-z][1-9]", GOTO="media_by_label_auto_mount_end"
+
+# Global mount options
+ACTION=="add", ENV{mount_options}="relatime,users,sync"
+
+# Filesystem specific options
+ACTION=="add", PROGRAM=="/lib/initcpio/udev/vol_id -t %N", RESULT=="vfat|ntfs", ENV{mount_options}="$env{mount_options},utf8,gid=100,umask=002"
+ACTION=="add", PROGRAM=="/lib/initcpio/udev/vol_id --label %N", ENV{dir_name}="%c"
+ACTION=="add", PROGRAM!="/lib/initcpio/udev/vol_id --label %N", ENV{dir_name}="usbhd-%k"
+ACTION=="add", RUN+="/bin/mkdir -p /mnt/%E{dir_name}", RUN+="/bin/mount -o $env{mount_options} /dev/%k /mnt/%E{dir_name}"
+ACTION=="remove", ENV{dir_name}=="?*", RUN+="/bin/umount -l /mnt/%E{dir_name}", RUN+="/bin/rmdir /mnt/%E{dir_name}"
+LABEL="media_by_label_auto_mount_end"
