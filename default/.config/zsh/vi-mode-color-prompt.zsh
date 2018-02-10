@@ -5,9 +5,9 @@ export _PS1="$PS1"
 set_insert_colors() {
     # 148 is ^Z
     if [[ $__prompt_status == 0 ]] || [[ $__prompt_status == 148 ]]; then
-        PS1="%{[34;44m%}$_PS1%{[0m%}"
+        PS1="%{[0m%}$_PS1%{[0m%}"
     else
-        PS1="%{[31;41m%}$_PS1%{[0m%}"
+        PS1="%{[31m%}$_PS1%{[0m%}"
     fi
     print -n -- "\033[6 q"
 }
@@ -15,7 +15,7 @@ set_insert_colors() {
 zle-keymap-select() {
     if [[ "$KEYMAP" = "vicmd" ]] ; then
         # Green, block cursor
-        PS1="%{[42;32m%}$_PS1%{[0m%}"
+        PS1="%{[32m%}$_PS1%{[0m%}"
         print -n -- "\033[2 q"
     else
         set_insert_colors
