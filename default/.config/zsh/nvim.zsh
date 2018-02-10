@@ -1,3 +1,5 @@
+alias man='nvimman'
+
 # automatically change working dir of parent buffer if using zsh within nvim
 function nvim_cd () {
     emulate -L zsh

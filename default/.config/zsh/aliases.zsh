@@ -185,10 +185,8 @@ alias grep='LC_ALL=C grep --color=auto --exclude-dir=.git --binary-files=without
 alias l='ls -lAh --color=auto'
 alias ln='nocorrect ln'
 alias ls='ls --color=auto'
-alias man='nvimman'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv -i'
-alias remoteshell='(term -e ssh -Y -tt x250 nvim term://zsh) &'
 alias rtorrent='ssh -tt raspi abduco -A torrent rtorrent'
 if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then
     alias less='/usr/share/nvim/runtime/macros/less.sh';
