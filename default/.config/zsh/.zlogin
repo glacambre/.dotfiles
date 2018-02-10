@@ -1,6 +1,8 @@
 if [[ $(tty) = "/dev/tty1" ]] ; then
     # if running in the first tty, run startx
-    exec startx -- :0 vt1
+    if which startx 2>/dev/null ; then
+        exec startx -- :0 vt1
+    fi
 else
     # if running in another tty/pty
     if [[ "$SSH_CONNECTION" == "" ]]
