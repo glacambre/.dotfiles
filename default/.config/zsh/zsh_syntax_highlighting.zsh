@@ -13,9 +13,9 @@ if [[ -e "${ZSH_SYNTAX_HIGHLIGHTING_DIR}/zsh-syntax-highlighting.zsh" ]] ; then
     source "${ZSH_SYNTAX_HIGHLIGHTING_DIR}/zsh-syntax-highlighting.zsh"
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
     # Main
-    ZSH_HIGHLIGHT_STYLES[default]='fg=0'
+    ZSH_HIGHLIGHT_STYLES[default]='none'
     ZSH_HIGHLIGHT_STYLES[reserved-word]="$ZSH_HIGHLIGHT_STYLES[default]"
-    ZSH_HIGHLIGHT_STYLES[alias]='fg=4'
+    ZSH_HIGHLIGHT_STYLES[alias]='none'
     ZSH_HIGHLIGHT_STYLES[suffix-alias]="$ZSH_HIGHLIGHT_STYLES[alias]"
     ZSH_HIGHLIGHT_STYLES[builtin]="$ZSH_HIGHLIGHT_STYLES[alias]"
     ZSH_HIGHLIGHT_STYLES[function]="$ZSH_HIGHLIGHT_STYLES[alias]"
@@ -26,11 +26,11 @@ if [[ -e "${ZSH_SYNTAX_HIGHLIGHTING_DIR}/zsh-syntax-highlighting.zsh" ]] ; then
     ZSH_HIGHLIGHT_STYLES[path]="$ZSH_HIGHLIGHT_STYLES[default]"
     ZSH_HIGHLIGHT_STYLES[path_separator]="$ZSH_HIGHLIGHT_STYLES[path]"
     ZSH_HIGHLIGHT_STYLES[path_prefix_separator]="$ZSH_HIGHLIGHT_STYLES[path]"
-    ZSH_HIGHLIGHT_STYLES[globbing]="fg=5"
+    ZSH_HIGHLIGHT_STYLES[globbing]="none"
     ZSH_HIGHLIGHT_STYLES[history-expansion]="$ZSH_HIGHLIGHT_STYLES[default]"
     ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="$ZSH_HIGHLIGHT_STYLES[default]"
     ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="$ZSH_HIGHLIGHT_STYLES[single-hyphen-option]"
-    ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=5'
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='none'
     ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]='fg=1'
     ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="$ZSH_HIGHLIGHT_STYLES[back-quoted-argument]"
     ZSH_HIGHLIGHT_STYLES[single-quoted-argument-unclosed]="$ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]"
@@ -38,15 +38,14 @@ if [[ -e "${ZSH_SYNTAX_HIGHLIGHTING_DIR}/zsh-syntax-highlighting.zsh" ]] ; then
     ZSH_HIGHLIGHT_STYLES[double-quoted-argument-unclosed]="$ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]"
     ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]="$ZSH_HIGHLIGHT_STYLES[back-quoted-argument]"
     ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument-unclosed]="$ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]"
-    ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]="fg=7"
+    ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]="fg=6"
     ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]="$ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]"
     ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]="$ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]"
 
 
     # brackets
-    ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=1,bold'
-    ZSH_HIGHLIGHT_STYLES[bracket-error]='bg=0,fg=7,bold'
-    ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=0'
+    ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=1'
+    ZSH_HIGHLIGHT_STYLES[bracket-level-1]='none'
     ZSH_HIGHLIGHT_STYLES[bracket-level-2]="$ZSH_HIGHLIGHT_STYLES[bracket-level-1]"
     ZSH_HIGHLIGHT_STYLES[bracket-level-3]="$ZSH_HIGHLIGHT_STYLES[bracket-level-1]"
     ZSH_HIGHLIGHT_STYLES[bracket-level-4]="$ZSH_HIGHLIGHT_STYLES[bracket-level-1]"
