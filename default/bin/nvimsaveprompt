@@ -4,9 +4,11 @@ from __future__ import print_function
 import os
 import sys
 
-from neovim import attach
-
-addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
+try:
+    from neovim import attach
+    addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
+except:
+    addr = False
 
 if not addr or len(sys.argv) != 4:
     exit()

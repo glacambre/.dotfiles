@@ -4,19 +4,24 @@ from __future__ import print_function
 import os
 import sys
 
-from neovim import attach
+try:
+    from neovim import attach
+    addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
+except:
+    addr = False
 
-addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
 args = sys.argv[1:]
 progname = sys.argv[0][-3:]
 
 if not addr:
     params = {"/sp": "-o", "/vs": "-O"}
     if progname in params:
-        args = ['nvim', params[progname]] + args
-    else:
-        args = ['nvim'] + args
-    os.execvp('nvim', args)
+        args = [params[progname]] + args
+    for prog in ["nvim", "vim", "vi"]:
+        try:
+            os.execvp(prog, [prog] + args)
+        except:
+            pass
 
 nvim = attach("socket", path=addr)
 
