@@ -12,7 +12,7 @@ fi
 if [[ -e "${ZSH_AUTOSUGGESTIONS_DIR}/zsh-autosuggestions.zsh" ]] ; then
     source "${ZSH_AUTOSUGGESTIONS_DIR}/zsh-autosuggestions.zsh"
     ZSH_AUTOSUGGEST_IGNORE_WIDGETS=(orig-\* beep run-help set-local-history which-command yank)
-    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
     ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
     bindkey -M viins '\t' autosuggest-accept
     bindkey -M viins '^[[Z' autosuggest-clear
