@@ -196,3 +196,13 @@ if [[ $(gcc -v 2>&1 | tail -1 | awk '{print $3}') > 6.0.0 ]] ; then
     gcc_alias="$gcc_alias -Wduplicated-cond -Wduplicated-branch -Wnull-dereference "
 fi
 alias gcc="$gcc_alias"
+
+case "$(uname -a)" in
+    *gentoo*) alias i="sudo emerge --ask";
+              alias u="sudo emerge --unmerge";
+              alias s="emerge --search";;
+    *) alias i="sudo apt install";
+       alias u="sudo apt remove";
+       alias s="apt search";;
+esac
+
