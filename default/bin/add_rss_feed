@@ -1,0 +1,4 @@
+#!/bin/sh
+# Small script called from firefox
+
+echo "$@" | sed 's/^feed://' >> ~/.config/newsbeuter/urls
