@@ -2,5 +2,5 @@
 
 FILENAME="$HOME/.config/i3/i3-startup.$(hostname)"
 if [ -f "$FILENAME" ] ; then
-    source "$FILENAME"
+    exec "$FILENAME"
 fi

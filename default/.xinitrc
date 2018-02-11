@@ -4,7 +4,7 @@ if [ -d "$XORG_CONF_DIR" ] ; then
 
     FILENAME="$XORG_CONF_DIR/xinitrc.$(hostname)"
     if [ -e "$FILENAME" ] ; then
-        source "$FILENAME"
+        . "$FILENAME"
     fi
 fi
 
