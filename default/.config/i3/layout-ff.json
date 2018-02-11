@@ -8,13 +8,10 @@
        "x": 0,
        "y": 0
     },
-    "name": "Firefox",
     "percent": 1,
     "swallows": [
        {
-          "class": "^Firefox$",
-          "instance": "^Navigator$",
-          "window_role": "^browser$"
+          "class": "*irefox*"
        }
     ],
     "type": "con"
