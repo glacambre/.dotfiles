@@ -6,17 +6,16 @@ import sys
 
 try:
     from neovim import attach
+    addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
 except:
-    os.execvp('man', sys.argv)
+    addr = False
 
-addr = os.environ.get("NVIM_LISTEN_ADDRESS", None)
-
-if not addr or not (len(args) == 1):
+if (not addr) or not (len(sys.argv[:1]) == 1):
     os.execvp('man', sys.argv)
 
 nvim = attach("socket", path=addr)
 
 try:
-    nvim.command("Man " + sys.argv[1:])
+    nvim.command("Man " + sys.argv[1])
 finally:
     nvim.stop_loop()
