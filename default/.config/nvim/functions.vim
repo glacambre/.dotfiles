@@ -210,7 +210,7 @@ function! WipeButKeepOpen(force)
 
 
     " If the current buffer is now an empty buffer
-    if bufname('%') == '' && line('$') == 1 && getline(1) == ''
+    if (bufname('%') == '' && line('$') == 1 && getline(1) == '') || &ft == "netrw"
         " If the buffer we just closed was the last
         if nbbufs <= 1
             quit
