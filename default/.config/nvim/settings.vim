@@ -85,6 +85,8 @@ set nojoinspaces " Don't put 2 spaces when joining lines
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+\%#\@<!$/ " Highlight eol whitespace in red
 
+let g:loaded_netrw = 1                 " Netrw is rather annoying, diable it
+let g:loaded_netrwPlugin = 1
 let g:netrw_dirhistmax=0               " Do not write to ~/.vim/netrwist
 let g:netrw_banner=0                   " Hide the filebrowser banner
 let g:netrw_browsex_viewer= "xdg-open" " Open files with xdg-open
