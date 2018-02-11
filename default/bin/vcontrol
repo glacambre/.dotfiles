@@ -1,0 +1,24 @@
+#!/bin/sh
+# Control the volume
+
+symbol="-"
+if [ "$(basename $0)" = "vup" ]; then
+    symbol="+"
+fi
+
+amount="3"
+if [ "$(basename $1)" != "" ]; then
+    amout="$1"
+fi
+
+# Try pulseaudio first
+if which pactl >/dev/null 2>/dev/null; then
+    exec pactl set-sink-volume "alsa_output.pci-0000_00_1b.0.analog-stereo" "${symbol}${amount}%"
+fi
+
+# Try alsa
+amixer -q sset Master "${amount}%${symbol}"
+
+if [ "$?" != 0 ] ; then
+    amixer -c 1 -q sset Master "${amount}%${symbol}"
+fi

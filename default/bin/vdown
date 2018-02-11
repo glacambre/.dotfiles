@@ -1,7 +1,1 @@
-#!/bin/sh
-# Lower the volume of the alsa master chanel.
-amixer -q sset Master 3%-
-
-if [ "$?" != 0 ] ; then
-    amixer -c 1 -q sset Master 3%-
-fi
+vcontrol
