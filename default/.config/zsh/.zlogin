@@ -1,6 +1,9 @@
 if [[ $(tty) = "/dev/tty1" ]] ; then
+    if which pulseaudio >/dev/null 2>/dev/null ; then
+        pulseaudio --start &
+    fi
     # if running in the first tty, run startx
-    if which startx 2>/dev/null ; then
+    if which startx >/dev/null 2>/dev/null ; then
         exec startx -- :0 vt1
     fi
 else
