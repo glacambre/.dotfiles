@@ -1,5 +1,16 @@
 #!/bin/sh
-# Mute the alsa master chanel.
+# Mute the sound
+
+# Pulseaudio version
+if which pactl >/dev/null 2>/dev/null; then
+    mute="1"
+    if [ "$1" = "0" ] ; then
+	mute="0"
+    fi
+    exec pactl set-sink-mute "alsa_output.pci-0000_00_1b.0.analog-stereo" "$mute"
+fi
+
+# Alsa version
 res=$(amixer sget Master,0 2>/dev/null)
 if [ "$?" != 0 ]
 then

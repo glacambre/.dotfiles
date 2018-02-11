@@ -153,9 +153,9 @@ bindsym XF86AudioLowerVolume $voldown
 bindsym XF86AudioRaiseVolume $volup
 
 # Mute volume with $mod+m
-set     $volmute      "exec /home/me/bin/vmute"
-bindsym $mod+m        $volmute
-bindsym XF86AudioMute $volmute
+bindsym $mod+m        "exec /home/me/bin/vmute 1"
+bindsym $mod+Shift+m  "exec /home/me/bin/vmute 0"
+bindsym XF86AudioMute "exec /home/me/bin/vmute"
 
 # Decrease brightness with $mod+u, increase with $mod+U
 set     $brightdown           "exec sudo -A /home/me/bin/bdown"
