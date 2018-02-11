@@ -142,7 +142,7 @@ bindsym $mod+Shift+p exec /home/me/bin/dmusic
 # Toggle random/non random music playing with $mod+o
 bindsym $mod+o exec mpc random
 # Switch audio output with $mod+O
-bindsym $mod+Shift+o exec /home/me/bin/saoutput
+# bindsym $mod+Shift+o exec /home/me/bin/saoutput
 
 # Lower volume with $mod+i, increase with $mod+I
 set     $volup               "exec /home/me/bin/vup"
