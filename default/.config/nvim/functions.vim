@@ -311,12 +311,13 @@ endfunction
 
 " Goes to the next/previous term prompt
 " prev: 1 if we want the previous prompt, 0 if we want the next
-function! TermPrompt(prev) abort
+function! TermPrompt(prev) abort range
     if !exists('b:shell_prompts') || !exists('b:ps1_lengths')
         return
     endif
 
-    let curline=line('.')
+    " Find the prompt line after the cursor
+    let curline = line('.')
     let i = 0
     while i < len(b:shell_prompts) && (b:shell_prompts[i]) < curline
         let i += 1
@@ -325,11 +326,29 @@ function! TermPrompt(prev) abort
     if a:prev
         let i = i - 1
     else
-        let i = i + (b:shell_prompts[i] == curline ? 1 : 0)
+        " If the cursor is already on prompt, get the next one
+        let i += i < len(b:shell_prompts) && b:shell_prompts[i] == curline
     endif
 
+    let action = ""
     if (i >= 0 && i < len(b:shell_prompts)) 
-        let buf_line = b:shell_prompts[i]
-        call cursor(buf_line, b:ps1_lengths["" . buf_line] + 1)
+        " Compute how many lines the cursor should be moved {horizonta,vertica}lly
+        let target_line = b:shell_prompts[i]
+        let target_col = b:ps1_lengths["" + target_line] + 1
+
+        let lcount = (target_line - curline)
+        if lcount > 0
+            let action = lcount . "j"
+        elseif lcount < 0
+            let action = (-lcount) . "k"
+        endif
+
+        let ccount = (target_col - col('.'))
+        if ccount > 0
+            let action .= ccount . "l"
+        elseif ccount < 0
+            let action .= (-ccount) . "h"
+        endif
     endif
+    return action
 endfunction
