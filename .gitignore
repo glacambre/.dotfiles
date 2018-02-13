@@ -38,6 +38,9 @@
 /default/.local/share/applications/*
 !/default/.local/share/applications/nvim_in_term.desktop
 
+/default/.ssh/*
+!/default/.ssh/authorized_keys
+
 /default/.vim/spell/
 /default/.vim/swapdir/
 /default/.vim/undodir/
