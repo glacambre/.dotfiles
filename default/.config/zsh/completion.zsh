@@ -1,4 +1,3 @@
-export fpath=("$ZDOTDIR/completion" $fpath)
 autoload -Uz compinit promptinit
 compinit -d /tmp/zcompdump.me
 promptinit
