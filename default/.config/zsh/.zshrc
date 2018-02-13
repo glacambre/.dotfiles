@@ -17,6 +17,7 @@ source "$ZDOTDIR/vi-mode-color-prompt.zsh"
 source "$ZDOTDIR/vi-mode-x-paste.zsh"
 source "$ZDOTDIR/vi-mode.zsh"
 source "$ZDOTDIR/command_time.zsh"
+source "$ZDOTDIR/gpg.zsh"
 source "$ZDOTDIR/zsh_syntax_highlighting.zsh"
 # aliases are defined after syntax_highlighting because '=' isn't legal
 source "$ZDOTDIR/aliases.zsh"

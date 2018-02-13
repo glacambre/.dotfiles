@@ -20,7 +20,7 @@
 /default/.config/zsh/zsh-autosuggestions
 /default/.config/zsh/zsh-syntax-highlighting
 /default/.config/zsh/zsh_history
-default/.config/zsh/.zcalc_history
+/default/.config/zsh/.zcalc_history
 
 /default/.elinks/bookmarks
 /default/.elinks/cookies
@@ -29,6 +29,9 @@ default/.config/zsh/.zcalc_history
 /default/.elinks/searchhist
 
 /default/.fonts/*
+
+/default/.gnupg/*
+!/default/.gnupg/gpg-agent.conf
 
 /default/.local/share/*
 !/default/.local/share/applications/

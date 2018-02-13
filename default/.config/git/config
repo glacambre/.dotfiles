@@ -5,8 +5,10 @@
 [user]
 	name = glacambre
 	email = code@lacamb.re
+	signingkey = B9625DB1767553AC
 [commit]
 	verbose = true
+	gpgsign = true
 [push]
 	default = upstream
 [log]
