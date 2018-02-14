@@ -74,8 +74,6 @@ set novisualbell
 set modeline        " Execute vim commands that are at the end of a file
 set modelines=5     " Maximum number of lines that are checked for modeline
 
-set updatetime=1000 " Updatetime is needed in order to refresh markology.vim
-
 set scrollback=-1 " Remember as many lines as possible
 
 set sidescroll=1 " When scrolling horizontally, move col by col
