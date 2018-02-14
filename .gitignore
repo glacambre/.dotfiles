@@ -1,3 +1,5 @@
+/default/.config/dconf
+
 /default/.config/gtk-2.0/gtkfilechooser.ini
 
 /default/.config/mutt/accounts/*
@@ -9,6 +11,9 @@
 
 /default/.config/nvim/bundle/
 /default/.config/nvim/spell/
+
+/default/.config/pulse/*
+!/default/.config/pulse/default.pa
 
 /default/.config/qutebrowser/bookmarks/
 /default/.config/qutebrowser/quickmarks
