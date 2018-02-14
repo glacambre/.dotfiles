@@ -1,12 +1,3 @@
-# cli pdf reader
-function cpr () {
-    pdftotext $1 - | less
-}
-
-# dd wrapper to get that sweet sweet statusbar
-function dd () {
-    command dd status=progress "$@"
-}
 
 # Simple dc wrapper. $1 is input base, $2 is output base, $3 is value
 function baseXtoY () {
@@ -93,30 +84,6 @@ function base16 () {
     done
 }
 
-# Simulates an http server using netcat.
-# -d: display instead of downloading.
-function httpserve () {
-    download="attachment; "
-    if [ "$1" = "-d" ]
-    then
-        download=""
-        shift
-    fi
-    for i in "$@"
-    do
-        if [ ! -f "$i" ]
-        then
-            echo "No such file: $i"
-            continue
-        fi
-        (echo -ne "HTTP/1.1 200 OK\r
-Expires: -1\r
-Server: Netcat :)\r
-Content-Disposition: ${download}filename=\"$i\"\r
-\r\n"; dd if="$i") | nc -l -p 8080 -q 1
-    done
-}
-
 # Wrapper around go binary to provide project-specific gopath
 function go () {
     if [[ "$GOPATH" != "" ]]
@@ -169,27 +136,32 @@ function hist_stats () {
     fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
 }
 
+# Basic utilities
 alias _='sudo'
 alias cleantex='rm *.{aux,idx,log,nav,out,snm,toc,vrb,bbl,blg}(.N) 2>/dev/null'
 alias cp='cp  -i'
-alias ea='nocorrect sudo emerge --ask'
-alias ek='cd /usr/src/linux && sudo -s make menuconfig && sudo make -j5 && sudo make modules_install && sudo make install && sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias eq='nocorrect equery uses'
-alias es='nocorrect emerge --search'
-alias eu='nocorrect sudo emerge --unmerge'
-alias ev='equery -q list --portage-tree'
-alias ew='sudo emerge --ask --update --deep --changed-use @world && sudo emerge -av --depclean && sudo revdep-rebuild'
+alias dd='dd status=progress'
 alias gdb='gdb -q'
-alias glog='git log --graph --abbrev-commit --decorate --date=relative --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'\'' --all'
 alias grep='LC_ALL=C grep --color=auto --exclude-dir=.git --binary-files=without-match --line-number'
 alias l='ls -lAh --color=auto'
-alias ln='nocorrect ln'
 alias ls='ls --color=auto'
+alias ln='nocorrect ln'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv -i'
-alias rtorrent='ssh -tt raspi abduco -A torrent rtorrent'
+
+# Git 
+alias ga='git add'
+alias gc='git commit'
+alias gcl='git clone'
+alias gd='git diff'
+alias gf='git fetch'
+alias glog='git log --graph --abbrev-commit --decorate --date=relative --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'\'' --all'
+alias gm='git merge'
+alias gs='git show'
+
+# Fancy stuff
 if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then
-    alias less='/usr/share/nvim/runtime/macros/less.sh';
+    alias less='/usr/share/nvim/runtime/macros/less.sh'
 fi
 gcc_alias='gcc -Wall -Wextra -Wlogical-op -Wjump-misses-init -Wshadow'
 if [[ $(gcc -v 2>&1 | tail -1 | awk '{print $3}') > 6.0.0 ]] ; then
