@@ -4,6 +4,7 @@ ZSH_SYNTAX_HIGHLIGHTING_DIR="$ZDOTDIR/zsh-syntax-highlighting"
 ZSH_INTALL_FILE="/tmp/zsh_syntax_highlighting_installation_error"
 if [[ ! -d  "$ZSH_SYNTAX_HIGHLIGHTING_DIR" && ! -e "$ZSH_INSTALL_FILE" ]]; then
     echo "Trying to install zsh-syntax-highlighting."
+    mkdir -p "$(dirname "$ZSH_SYNTAX_HIGHLIGHTING_DIR")"
     git clone "https://github.com/zsh-users/zsh-syntax-highlighting" "$ZSH_SYNTAX_HIGHLIGHTING_DIR" > "$ZSH_INTALL_FILE"
     if [ "$?" != "0" ]; then
         echo "Failed to download zsh-syntax-highlighting."
