@@ -7,6 +7,7 @@ export GREP_COLORS="mt=01;35:fn=34:ln=11;37:se=37"
 export INDENT_PROFILE="$HOME/.config/indent/profile"
 export NODE_REPL_HISTORY=""
 export VISUAL="$EDITOR"
+export XDG_CONFIG_HOME="$HOME/.config/"
 export XDG_DATA_HOME="$HOME/.local/share/"
 export XKB_DEFAULT_LAYOUT="fr-latin9"
 
