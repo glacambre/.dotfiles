@@ -88,6 +88,7 @@ xft*antialias          : true
 *URxvt*cursorColor     : _cursorColor
 *URxvt*perl-ext        :
 *URxvt*perl-ext-common :
+*URxvt*iso14755        : False
 
 *VT100*colorMode       : on
 *VT100*boldColors      : on
