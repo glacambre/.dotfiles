@@ -20,7 +20,6 @@ function! Deoplete_cr() abort
 	return deoplete#close_popup() . "\<CR>"
 endfunction
 
-
 " Denite
 function! Setup_denite_ignores()
 	" Add wildignored patterns to denite's ignored patterns
@@ -109,15 +108,17 @@ if dein#load_state(s:bundle_dir)
 				\| xmap aE <Plug>(textobj-latex-environment-a)'})
 
 	" Autocompletion plugins
-	call dein#add('https://github.com/Shougo/deoplete.nvim',     {'on_path': '^\(.*term:\/\/\)\@!.*$', 'hook_add': 'inoremap <silent> <CR> <C-r>=Deoplete_cr()<CR>'})
-	call dein#add('https://github.com/Shougo/neoinclude.vim',    {'depends': 'deoplete.nvim', 'on_path': '^\(.*term:\/\/\)\@!.*$'})
-	call dein#add('https://github.com/zchee/deoplete-clang',     {'depends': 'deoplete.nvim', 'on_ft': ['c', 'cpp']})
-	call dein#add('https://github.com/zchee/deoplete-go',        {'depends': 'deoplete.nvim', 'on_ft': ['go'], 'build': {'unix': 'make'}})
-	call dein#add('https://github.com/zchee/deoplete-jedi',      {'depends': 'deoplete.nvim', 'on_ft': ['python']})
-	call dein#add('https://github.com/carlitux/deoplete-ternjs', {'depends': 'deoplete.nvim', 'on_ft': ['javascript']})
-	call dein#add('https://github.com/Shougo/neco-vim',          {'depends': 'deoplete.nvim', 'on_ft': ['vim']})
-	call dein#add('https://github.com/zchee/deoplete-zsh',       {'depends': 'deoplete.nvim', 'on_ft': ['sh', 'zsh'],
-				\ 'hook_add': 'au FileType zsh au BufUnload <buffer> silent exec "!rm -f ~/.zcompdump_capture"'})
+	" Wait for https://github.com/Shougo/deoplete.nvim/issues/656 to be
+	" solved before re-enabling these
+	" call dein#add('https://github.com/Shougo/deoplete.nvim',     {'on_path': '^\(.*term:\/\/\)\@!.*$', 'hook_add': 'inoremap <silent> <CR> <C-r>=Deoplete_cr()<CR>'})
+	" call dein#add('https://github.com/Shougo/neoinclude.vim',    {'depends': 'deoplete.nvim', 'on_path': '^\(.*term:\/\/\)\@!.*$'})
+	" call dein#add('https://github.com/zchee/deoplete-clang',     {'depends': 'deoplete.nvim', 'on_ft': ['c', 'cpp']})
+	" call dein#add('https://github.com/zchee/deoplete-go',        {'depends': 'deoplete.nvim', 'on_ft': ['go'], 'build': {'unix': 'make'}})
+	" call dein#add('https://github.com/zchee/deoplete-jedi',      {'depends': 'deoplete.nvim', 'on_ft': ['python']})
+	" call dein#add('https://github.com/carlitux/deoplete-ternjs', {'depends': 'deoplete.nvim', 'on_ft': ['javascript']})
+	" call dein#add('https://github.com/Shougo/neco-vim',          {'depends': 'deoplete.nvim', 'on_ft': ['vim']})
+	" call dein#add('https://github.com/zchee/deoplete-zsh',       {'depends': 'deoplete.nvim', 'on_ft': ['sh', 'zsh'],
+	" 			\ 'hook_add': 'au FileType zsh au BufUnload <buffer> silent exec "!rm -f ~/.zcompdump_capture"'})
 
 	" Tags generation
 	call dein#add('https://github.com/ludovicchabant/vim-gutentags', {'hook_add': '
