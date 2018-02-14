@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Cd nvim host instance"""
-from __future__ import print_function
 import os
 import sys
 
@@ -10,22 +9,16 @@ try:
 except:
     addr = False
 
-if not sys.argv[1]:
-    print("Usage: {} <dirname>".format(sys.argv[0]))
-    addr = False
-
-if not addr:
+if (not addr) or (len(sys.argv) != 2):
     sys.exit(1)
 
 nvim = attach("socket", path=addr)
 
-def _setup():
-    nvim.vars['b:terminal_path'] = sys.argv[1]
-    nvim.command('let b:terminal_path=fnameescape("' + sys.argv[1] + '")\n\
-    exe "cd " . b:terminal_path\n\
-    call rpcnotify(' + str(nvim.channel_id) + ', "n")')
-
-def _exit(*args):
+try:
+    # This will break if the path contains a quote
+    # Solution: Don't use paths with quotes! ;)
+    nvim.command("""let b:terminal_path = fnameescape('{}')\n\
+    exe "cd " . b:terminal_path""".format(sys.argv[1]))
+finally:
     nvim.stop_loop()
 
-nvim.run_loop(_exit, _exit, _setup)
