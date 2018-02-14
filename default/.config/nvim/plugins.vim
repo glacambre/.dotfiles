@@ -56,9 +56,9 @@ if dein#load_state(s:bundle_dir)
 	" Enhance terminal
 	call dein#add('https://github.com/glacambre/shelley', {'hook_add': '
 				\  nnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
-				\| nnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
+				\| vnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
 				\| nnoremap <silent> <expr> <Space>a shelley#NextPrompt()
-				\| nnoremap <silent> <expr> <Space>a shelley#NextPrompt()'})
+				\| vnoremap <silent> <expr> <Space>a shelley#NextPrompt()'})
 
 	" To be used everywhere, even in terminal
 	call dein#add('https://github.com/chrisbra/Recover.vim')
