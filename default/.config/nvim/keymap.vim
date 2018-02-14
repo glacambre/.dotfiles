@@ -10,12 +10,6 @@ nnoremap <Space>e :earlier<CR>
 nnoremap <Space>l :later<CR>
 " <Space>h opens tag in new horizontal split
 nnoremap <Space>h :stj <C-R>=expand("<cword>")<CR><CR>
-" <Space>b in terminal goes to line of the previous prompt
-nnoremap <silent> <expr> <Space>b TermPrompt(1)
-vnoremap <silent> <expr> <Space>b TermPrompt(1)
-" <Space>a in terminal goes to line of the next prompt
-nnoremap <silent> <expr> <Space>a TermPrompt(0)
-vnoremap <silent> <expr> <Space>a TermPrompt(0)
 
 " wrapped lines: go to next row instead of next line
 nnoremap j gj

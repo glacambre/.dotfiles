@@ -52,7 +52,14 @@ execute("set runtimepath+=" . s:dein_dir)
 
 if dein#load_state(s:bundle_dir)
 	call dein#begin(s:bundle_dir)
-	call dein#add('https://github.com/Shougo/dein.vim', {'hook_done_update': 'UpdateRemotePlugins'})
+	call dein#add('https://github.com/Shougo/dein.vim',   {'hook_done_update': 'UpdateRemotePlugins'})
+
+	" Enhance terminal
+	call dein#add('https://github.com/glacambre/shelley', {'hook_add': '
+				\  nnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
+				\| nnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
+				\| nnoremap <silent> <expr> <Space>a shelley#NextPrompt()
+				\| nnoremap <silent> <expr> <Space>a shelley#NextPrompt()'})
 
 	" To be used everywhere, even in terminal
 	call dein#add('https://github.com/chrisbra/Recover.vim')

@@ -18,15 +18,11 @@ source "$ZDOTDIR/vi-mode-x-paste.zsh"
 source "$ZDOTDIR/vi-mode.zsh"
 source "$ZDOTDIR/command_time.zsh"
 source "$ZDOTDIR/gpg.zsh"
+source "$ZDOTDIR/shelley.zsh"
 source "$ZDOTDIR/zsh_syntax_highlighting.zsh"
 # aliases are defined after syntax_highlighting because '=' isn't legal
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/zsh_auto_suggestions.zsh"
-if [ "$NVIM_LISTEN_ADDRESS" != "" ]
-then
-    source "$ZDOTDIR/nvim.zsh"
-fi
-
 
 ### VARIOUS OPTIONS
 setopt auto_cd                # Cd when a dirname has been given instead of a program
