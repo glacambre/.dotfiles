@@ -46,15 +46,6 @@ set hidden     " Do not unload buffers when leaving them
 set backspace=indent,eol,start " backspace deletes indent, eol and stat
 set matchpairs+=<:>
 
-" Indentation settings are overriden by sleuth.vim
-set smartindent   " Indents based on previous line indentation
-set autoindent    " Indents when opening lines with o/O
-set smarttab      " Indents by x chars instead of specific number
-set tabstop=8
-set softtabstop=8
-set shiftwidth=8
-set shiftround    " When indenting with <> round to a multiple of shiftwidth
-
 set nocul " shows CursorLine
 set nonu  " shows line number
 
