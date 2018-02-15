@@ -45,7 +45,7 @@ augroup END
 augroup MY_TERM_AUGROUP
 	autocmd!
 	au TermOpen * silent call OnTermOpen()
-	au TermClose * silent call OnTermClose()
+	au TermClose * nested silent call OnTermClose()
 augroup END
 
 augroup MY_MISC_AUGROUP
