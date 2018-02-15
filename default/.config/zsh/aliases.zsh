@@ -157,6 +157,10 @@ alias gd='git diff'
 alias gf='git fetch'
 alias glog='git log --graph --abbrev-commit --decorate --date=relative --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'\'' --all'
 alias gm='git merge'
+alias gmv='git mv'
+alias gp='git push'
+alias gr='git reset'
+alias grm='git rm'
 alias gs='git show'
 
 # Fancy stuff
