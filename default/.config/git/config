@@ -13,3 +13,6 @@
 	default = upstream
 [log]
 	decorate = short
+[url "git@github.com:"]
+	pushInsteadOf = "https://github.com/"
+	pushInsteadOf = "git://github.com/"
