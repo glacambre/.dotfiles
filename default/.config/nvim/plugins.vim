@@ -61,6 +61,15 @@ if dein#load_state(s:bundle_dir)
 				\| vnoremap <silent> <expr> <Space>a shelley#NextPrompt()'})
 
 	" To be used everywhere, even in terminal
+	call dein#add('https://github.com/kana/vim-submode',             {'hook_add': "
+				\  let g:submode_timeout = 0
+				\| let g:submode_always_show_submode = 1
+				\| call submode#enter_with('resize', 'n', '', '<C-r>', '<Nop>')
+				\| call submode#map('resize', 'n', '', 'h', '<C-w><')
+				\| call submode#map('resize', 'n', '', 'j', '<C-w>+')
+				\| call submode#map('resize', 'n', '', 'k', '<C-w>-')
+				\| call submode#map('resize', 'n', '', 'l', '<C-w>>')
+				\"})
 	call dein#add('https://github.com/chrisbra/Recover.vim')
 	call dein#add('https://github.com/Shougo/denite.nvim',           {'hook_add': '
 				\  call denite#custom#map("insert", "<C-n>", "<denite:move_to_next_line>", "noremap")
