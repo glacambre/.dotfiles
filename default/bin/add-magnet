@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This script converts a magnet into a torrent file and drops it in a specific directory
 
 if [ "$#" -lt 1 ] ; then
