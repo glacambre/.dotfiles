@@ -169,7 +169,7 @@ if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then
 fi
 gcc_alias='gcc -Wall -Wextra -Wlogical-op -Wjump-misses-init -Wshadow'
 if [[ $(gcc -v 2>&1 | tail -1 | awk '{print $3}') > 6.0.0 ]] ; then
-    gcc_alias="$gcc_alias -Wduplicated-cond -Wduplicated-branch -Wnull-dereference "
+    gcc_alias="$gcc_alias -Wduplicated-cond -Wduplicated-branches -Wnull-dereference "
 fi
 alias gcc="$gcc_alias"
 
