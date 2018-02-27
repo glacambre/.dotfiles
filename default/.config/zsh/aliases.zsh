@@ -4,6 +4,15 @@ function baseXtoY () {
     dc -e "${1}i${2}o${3}p"
 }
 
+function asciichar () {
+    [ "$1" -lt 256 ] || return 1
+    printf "\\$(printf '%03o' "$1")"
+}
+
+function asciinum () {
+    LC_CTYPE=C printf '%d' "'$1"
+}
+
 # Try to guess input base and convert to base 2
 function base2 () {
     for i in "$@:u"
