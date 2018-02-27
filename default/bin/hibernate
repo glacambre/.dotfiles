@@ -1,7 +1,7 @@
 #!/bin/sh
 # Locks the computer before hibernating.
 
-if [ "$EUID" -ne 0 ]; then
+if [ ! $EUID = 0 ]; then
   echo "This script needs to be run as root."
   exit
 fi
