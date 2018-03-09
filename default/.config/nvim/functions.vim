@@ -155,7 +155,7 @@ endfunction
 " suspending. If it is, suspend.
 function! SuspendIfInShell()
     let parent_name=substitute(system("ps -o comm= $(ps -p '" . getpid() . "' -o ppid=)"), '\n$', '\1', '')
-    if (match(['zsh','bash','csh','ksh','ash','ssh','sh'], parent_name) != -1)
+    if (match(['zsh','bash','csh','ksh','ash','ssh','sh','git'], parent_name) != -1)
         :suspend
     else
         echo "Suspend: Not suspended because running in " . parent_name
