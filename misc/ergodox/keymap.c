@@ -1,4 +1,4 @@
-#include "ergodox.h"
+#include QMK_KEYBOARD_H
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
@@ -31,9 +31,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   | ~L1  |   <  |  Alt | Ctrl | LGui |                                       |  RGui| RCtrl|  Alt |   $  | ~L1  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | App  | Home |       | PgUp | PrScrn |
+ *                                        | Left |Right |       | Down |  Up  |
  *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      | End  |       | PgDn |        |      |
+ *                                 |      |      | End  |       |PrScrn|        |      |
  *                                 | Space|  Tab |------|       |------| BkSpce |Enter |
  *                                 |      |      | AltGr|       | AltGr|        |      |
  *                                 `--------------------'       `----------------------'
@@ -46,8 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DELT, FR_A,    FR_Z,    KC_E,     KC_R,    KC_T,    TG(QWER),
         KC_ESC,  FR_Q,    KC_S,    KC_D,     KC_F,    KC_G,
         KC_LSFT, FR_W,    KC_X,    KC_C,     KC_V,    KC_B,    TG(SYMB),
-        KC_FN1,  FR_LESS, KC_LALT, KC_LCTRL, KC_LGUI,
-                                                      KC_APP,  KC_HOME,
+        MO(SYMB),  FR_LESS, KC_LALT, KC_LCTRL, KC_LGUI,
+                                                      KC_LEFT, KC_RIGHT,
                                                                KC_END,
                                              KC_SPC,  KC_TAB,  KC_RALT,
         // right hand
@@ -55,9 +55,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TG(QWER),     KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,      FR_EQL,
                            KC_H,    KC_J,    KC_K,     KC_L,    FR_M,      FR_UGRV,
              TG(SYMB), KC_N,    FR_COMM, FR_SCLN,  FR_COLN, FR_EXLM,   KC_RSFT,
-                                    KC_RGUI, KC_RCTRL, KC_LALT, FR_DLR,    KC_FN1,
-             KC_PGUP, KC_PSCREEN,
-             KC_PGDN,
+                                    KC_RGUI, KC_RCTRL, KC_LALT, FR_DLR,    MO(SYMB),
+             KC_DOWN, KC_UP,
+             KC_PSCREEN,
              KC_RALT, KC_BSPC, KC_ENT
     ),
 /* Keymap 1: Symbol Layer
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, FR_EXLM, FR_AT,   FR_LCBR, FR_RCBR, FR_PIPE, KC_TRNS,
        KC_TRNS, FR_HASH, FR_DLR,  FR_LPRN, FR_RPRN, FR_GRV,
        KC_TRNS, FR_PERC, FR_CIRC, FR_LBRC, FR_RBRC, FR_TILD, KC_TRNS,
-       KC_TRNS, KC_RGHT, KC_UP,   KC_DOWN, KC_LEFT,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                                     KC_TRNS, KC_TRNS,
                                                              KC_TRNS,
                                            KC_TRNS, KC_TRNS, KC_TRNS,
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, FR_EQL,  FR_7,   FR_8,    FR_9,    FR_ASTR, KC_F12,
                 FR_0,    FR_4,   FR_5,    FR_6,    FR_PLUS, KC_TRNS,
        KC_TRNS, FR_DOT,  FR_1,   FR_2,    FR_3,    FR_BSLS, KC_TRNS,
-                         KC_LEFT,KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS,
+                         KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS
