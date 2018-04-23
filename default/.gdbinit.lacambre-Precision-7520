@@ -1,0 +1,160 @@
+
+define pl
+p expand_location($arg0).file
+p expand_location($arg0).line
+end
+
+define pvr
+call debug_value_range ($arg0)
+end
+
+define bsa
+b <einfo__set_alignment> if (id = $arg0)
+end
+
+define pui
+call pid ($arg0)
+end
+
+define bse
+b <einfo__set_esize> if (id = $arg0)
+end
+
+define bsr
+b <einfo__set_rm_size> if (id = $arg0)
+end
+
+define blt
+b <layout__layout_type> if (e = $arg0)
+end
+
+define bgge
+b gnat_to_gnu_entity if (gnat_entity == $arg0)
+end
+
+define bgg
+b gnat_to_gnu if (gnat_node == $arg0)
+end
+
+define btt
+b tree_transform if (gnat_node == $arg0)
+end
+
+define bsgt
+b save_gnu_tree if (gnat_entity == $arg0)
+end
+
+define pas
+call debug_alias_sets ()
+end
+
+define pbb
+call debug_bb ($arg0)
+end
+
+define pbm
+call debug_bitmap ($arg0)
+end
+
+define pbbn
+call debug_bb_n ($arg0)
+end
+
+define pt
+call debug_tree ($arg0)
+end
+
+define pr
+call debug_rtx ($arg0)
+end
+
+define prli
+call debug_rli ($arg0)
+end
+
+define pri
+call debug_rtx_find (get_insns(), $arg0)
+set $insn = $
+end
+
+define prl
+call debug_rtx_list ($arg0, $arg1)
+end
+
+define pdn
+p $arg0.decl.name->identifier.id.str
+end
+
+define xpdn
+p $arg0.decl.name->identifier.pointer
+end
+
+define bic
+cond $arg0 ($arg1->common.code == $arg2)
+end
+
+define pg
+call pn ($arg0)
+end
+
+define pgn
+call pn ($arg0)
+end
+
+define pdw
+call debug_dwarf_die ($arg0)
+end
+
+define ssi
+si
+x /i $pc
+end
+
+define nni
+ni
+x /i $pc
+end
+
+define bmr
+break gen_raw_REG if (regno == (int)$arg0)
+end
+
+define bmi
+break make_insn_raw if (cfun->emit->x_cur_insn_uid == (int)$arg0)
+end
+
+define xbmi
+break make_insn_raw if (cur_insn_uid == (int)$arg0)
+end
+
+define bai
+break add_insn if (cfun->emit->x_cur_insn_uid-1 == (int)$arg0)
+end
+
+define bas
+break new_alias_set if (last_alias_set == ((int)$arg0 - 1))
+end
+
+define bba
+break ggc-page.c:961 if (result == $arg0)
+end
+
+define cogn
+cond $arg0 (gnat_node == $arg1)
+end
+
+define coge
+cond $arg0 (gnat_entity == $arg1)
+end
+
+define coix
+cond $arg0 ($arg1->u.fld[0].rt_int == $arg2)
+end
+
+define coi
+cond $arg0 (insn->u.fld[0].rt_int == $arg1)
+end
+
+define coii
+cond $arg0 ((insn->fld[0].rtint == $arg1) || (insn->fld[0].rtint == $arg2))
+end

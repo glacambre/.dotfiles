@@ -12,3 +12,6 @@ set history size unlimited
 set history remove-duplicates 1
 
 set confirm off
+
+shell if test -f "$HOME/.gdbinit.$HOST"; then echo source "$HOME/.gdbinit.$HOST"; fi > /tmp/gdbinit.tmp
+source /tmp/gdbinit.tmp
