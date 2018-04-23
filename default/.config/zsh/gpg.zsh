@@ -6,7 +6,7 @@ function _gpg-agent-update-tty {
     gpg-connect-agent UPDATESTARTUPTTY /bye >/dev/null
 }
 
-if [[ ! -v preexec_functions ]]; then
+if [ -z "$preexec_functions" ]; then
     preexec_functions=()
 fi
 preexec_functions+=_gpg-agent-update-tty

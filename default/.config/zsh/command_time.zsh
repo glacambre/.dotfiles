@@ -7,7 +7,7 @@ function display_command_time() {
         fi
     fi
 }
-if [[ ! -v precmd_functions ]]; then
+if [ -z "$precmd_functions" ]; then
     precmd_functions=()
 fi
 precmd_functions+=display_command_time
@@ -15,7 +15,7 @@ precmd_functions+=display_command_time
 function get_command_time() {
     export LAST_COMMAND_TIME="$(date '+%s')"
 }
-if [[ ! -v preexec_functions ]]; then
+if [ -z "$preexec_functions" ]; then
     preexec_functions=()
 fi
 preexec_functions+=get_command_time

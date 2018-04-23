@@ -32,7 +32,7 @@ precmd_setup_colors() {
     set_insert_colors
 }
 
-if [[ ! -v precmd_functions ]]; then
+if [ -z "$precmd_functions" ]; then
     precmd_functions=()
 fi
 precmd_functions+=precmd_setup_colors
