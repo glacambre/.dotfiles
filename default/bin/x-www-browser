@@ -12,12 +12,12 @@ if [ "$#" -eq "0" ] ; then
     exit
 fi
 
-for URL in $@; do
+for URL in "$@"; do
     case "$URL" in
         *youtube.com*|*youtu.be*|*vimeo.com*|*.webm|*.mkv|*.mp4)
-            mpv --no-terminal "$URL" &
+            nohup mpv --no-terminal "$URL" &
             ;;
         *)
-            $browser "$URL" 2>/dev/null 1>&2 &
+            nohup $browser "$URL" 2>/dev/null 1>&2 &
     esac
 done
