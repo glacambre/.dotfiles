@@ -29,21 +29,14 @@ set include             = yes
 set indent_str          = "> "
 set my_col_subject      = `echo $(($(tput cols)-63))`
 set index_format        = "%4C %-16.16F: %-$my_col_subject.${my_col_subject}s %> %[%F, %T] %Z"
-set mail_check          = 10
-set mail_check_recent   = yes
 set mailcap_path        = $my_conf_dir/mailcap
-set maildir_trash       = no
-set move                = no
 set quit                = yes
 set reply_self          = no
 set reply_to            = yes
 set resolve             = yes
 set reverse_alias       = yes
 set reverse_name        = yes
-set sig_dashes          = yes
-set sig_on_top          = no
 set sleep_time          = 0
-set smart_wrap          = yes
 set sort                = threads
 set sort_aux            = last-date
 set sort_re             = yes
@@ -58,13 +51,17 @@ set weed                = yes
 set wrap_search         = yes
 set xterm_set_titles    = no
 set text_flowed         = yes
-set timeout             = 1800
-set sidebar_folder_indent = yes
+
+set sidebar_delim_chars   = "/"
 set sidebar_format        = "%B %> %N"
 set sidebar_short_path    = yes
 set sidebar_visible       = yes
-set sidebar_width         = 13
-timeout-hook '`mbsync --all --quiet 2>/dev/null`'
+set sidebar_width         = 16
+
+set timeout = 600
+startup-hook '`nohup mbsync -a --quiet --quiet >/dev/null &`'
+timeout-hook '`nohup mbsync -a --quiet --quiet >/dev/null &`'
+shutdown-hook '`nohup mbsync -a --quiet --quiet >/dev/null &`'
 
 ignore *
 unignore from: to: cc: date: subject:
