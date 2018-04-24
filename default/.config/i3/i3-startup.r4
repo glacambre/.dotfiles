@@ -1,7 +1,7 @@
 #!/bin/sh
 
 i3-msg "workspace 2; move workspace to output right; append_layout /home/me/.config/i3/layout-ff.json; exec x-www-browser"
-i3-msg "workspace 1; move workspace to output left; split vertical; exec term -e newsbeuter"
+i3-msg "workspace 1; move workspace to output left; split vertical; exec term -e newsboat"
 i3-msg "workspace 1; exec term -e mutt"
 i3-msg "exec i3lock --nofork --ignore-empty-password --show-failed-attempts --color=2d2d2d"
 
