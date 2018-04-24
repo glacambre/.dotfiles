@@ -27,7 +27,7 @@ function! Setup_denite_ignores()
 	for elem in split(&wildignore, ',')
 		let wildignored_patterns += ['-iname', elem, '-prune', '-o']
 	endfor
-	let wildignored_patterns = ['find', '-L', ':directory',
+	let wildignored_patterns = ['find', '-L', ':directory', '!', '-executable', '-prune', '-o',
 				\  '-path', '*/.git/*',         '-prune', '-o', '-path', '*/.hg/*',      '-prune', '-o',
 				\  '-path', '*/.bzr/*',         '-prune', '-o', '-path', '*/.svn/*',     '-prune', '-o',
 				\  '-path', '*/undodir/*',      '-prune', '-o', '-path', '*/images/*',   '-prune', '-o',
