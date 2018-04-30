@@ -4,7 +4,6 @@ source $my_conf_dir/colors.conf
 source $my_conf_dir/keys.conf
 source $my_conf_dir/accounts/accounts.conf
 
-auto_view = text/html
 set abort_nosubject     = no
 set alias_file          = $my_conf_dir/alias
 set beep                = no
@@ -67,3 +66,7 @@ ignore *
 unignore from: to: cc: date: subject:
 unhdr_order *
 hdr_order from: to: cc: date: subject:
+
+unalternative_order *
+alternative_order text/plain text/html text/enriched
+auto_view = text/html
