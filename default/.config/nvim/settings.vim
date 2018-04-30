@@ -71,6 +71,8 @@ set sidescroll=1 " When scrolling horizontally, move col by col
 
 set nojoinspaces " Don't put 2 spaces when joining lines
 
+set expandtab
+
 set cino+=#1 " Make >> be able to shift lines that start with '#' in C
 
 highlight ExtraWhitespace ctermbg=red guibg=red
