@@ -26,6 +26,7 @@ set help                = yes # You might want to remove that now.
 set history_file        = history
 set include             = yes
 set indent_str          = "> "
+set new_mail_command    = "exec notify-send 'New mail' '%n new, %u unread' &"
 set my_col_subject      = `echo $(($(tput cols)-66))`
 set index_format        = "%4C %-16.16F: %-$my_col_subject.${my_col_subject}s %> %[%F, %T] %Z"
 set mailcap_path        = $my_conf_dir/mailcap
@@ -57,10 +58,7 @@ set sidebar_short_path    = yes
 set sidebar_visible       = yes
 set sidebar_width         = 16
 
-set timeout = 600
-startup-hook '`nohup mbsync -a --quiet --quiet >/dev/null &`'
-timeout-hook '`nohup mbsync -a --quiet --quiet >/dev/null &`'
-shutdown-hook '`nohup mbsync -a --quiet --quiet >/dev/null &`'
+set timeout = 60
 
 ignore *
 unignore from: to: cc: date: subject:
