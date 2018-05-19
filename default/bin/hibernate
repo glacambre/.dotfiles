@@ -1,11 +1,18 @@
 #!/bin/sh
 # Locks the computer before hibernating.
 
-if [ ! $EUID = 0 ]; then
+if [ ! "$(id -u)" = 0 ]; then
   echo "This script needs to be run as root."
   exit
 fi
 
+swap_partition="$(grep "none\\s\\+swap" /etc/fstab | cut '-d ' -f1)"
+case "$swap_partition" in
+  "UUID="*) swap_partition="$(readlink -f "/dev/disk/by-uuid/$(echo "$swap_partition" | cut -d= -f2)")";;
+  "/dev/sd"*);; # Old-style fstab
+  *) echo "No swap? $swap_partition"; exit;; # No swap?
+esac
+
 sudo -u me i3lock --ignore-empty-password --show-failed-attempts --color=2d2d2d &
-echo "/dev/sda3" > /sys/power/resume
+echo "$swap_partition" > /sys/power/resume
 echo "disk" > /sys/power/state
