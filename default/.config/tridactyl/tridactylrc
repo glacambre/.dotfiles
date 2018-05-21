@@ -1,0 +1,49 @@
+bind H tabprev
+bind J back
+bind K forward
+bind L tabnext
+
+bind <A-&> buffer 1
+bind <A-é> buffer 2
+bind <A-"> buffer 3
+bind <A-'> buffer 4
+bind <A-(> buffer 5
+bind <A--> buffer 6
+bind <A-è> buffer 7
+bind <A-_> buffer 8
+bind <A-ç> buffer 9
+bind <A-à> tablast
+
+bind <A-1> tabmove 1
+bind <A-2> tabmove 2
+bind <A-3> tabmove 3
+bind <A-4> tabmove 4
+bind <A-5> tabmove 5
+bind <A-6> tabmove 6
+bind <A-7> tabmove 7
+bind <A-8> tabmove 8
+bind <A-9> tabmove 9
+bind <A-0> tabmove 0
+
+set hintchars fdsqjklmrezauiopwxcvghtybn
+bind f hint -b
+bind F hint
+
+unbind yy
+unbind ys
+unbind yc
+bind y clipboard yankshort
+
+bind gl followpage next
+bind gh followpage prev
+
+set editorcmd x-terminal-emulator -title Pentadactyledit -e nvim -c "call feedkeys('GA')"
+
+bind v hint -W exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
+bind V current_url exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
+
+bind e hint -W exclaim_quiet add-magnet
+
+command playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
+
+bind <A-v> playAllVideos
