@@ -40,7 +40,7 @@ bind gh followpage prev
 set editorcmd x-terminal-emulator -title Pentadactyledit -e nvim -c "call feedkeys('GA')"
 
 bind v hint -W exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
-bind V current_url exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
+bind V js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
 
 bind e hint -W exclaim_quiet add-magnet
 
