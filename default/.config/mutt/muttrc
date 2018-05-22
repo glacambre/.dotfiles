@@ -6,6 +6,7 @@ source $my_conf_dir/accounts/accounts.conf
 
 set abort_nosubject     = no
 set alias_file          = $my_conf_dir/alias
+set auto_tag            = yes
 set beep                = no
 set beep_new            = no
 set certificate_file    = $my_conf_dir/certificates
@@ -57,6 +58,8 @@ set sidebar_format        = "%B %> %N"
 set sidebar_short_path    = yes
 set sidebar_visible       = yes
 set sidebar_width         = 16
+
+folder-hook . push "<delete-pattern>~=<enter>"
 
 set timeout = 60
 
