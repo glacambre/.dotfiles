@@ -1,6 +1,7 @@
 export ZDOTDIR="$HOME/.config/zsh/"
 
 ##### MISC VARIABLES
+export PATH="$HOME/gnatpython/bin:$PATH"
 export EDITOR="nvim"
 export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
 export GREP_COLORS="mt=01;35:fn=34:ln=11;37:se=37"
@@ -14,10 +15,10 @@ export RXVT_SOCKET="$XDG_DATA_HOME/urxvt/socket"
 
 ##### LESS VARIABLES
 # Standout
-export LESS_TERMCAP_so=$'\E[01;35;5;74m'
+export LESS_TERMCAP_so=$'\E[01;35;74m'
 export LESS_TERMCAP_se=$'\E[0m'
 # Underline
-export LESS_TERMCAP_us=$'\E[03;135;5;146m'
+export LESS_TERMCAP_us=$'\E[03;135;146m'
 export LESS_TERMCAP_ue=$'\E[0m'
 # Make blink
 export LESS_TERMCAP_mb=$'\E[01;31m'
