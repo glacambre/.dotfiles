@@ -151,14 +151,20 @@ function! FixEncoding()
     :setlocal ff=unix
 endfunction
 
-" Called on <C-z>. If nvim isn't running in a shell, prevent it from
-" suspending. If it is, suspend.
+" Called on <C-z>. If nvim is running directly in a terminal (e.g. not in a
+" shell), prevent it from being suspended. 
 function! SuspendIfInShell()
     let parent_name=substitute(system("ps -o comm= $(ps -p '" . getpid() . "' -o ppid=)"), '\n$', '\1', '')
-    if (match(['zsh','bash','csh','ksh','ash','ssh','sh','git'], parent_name) != -1)
-        :suspend
-    else
+    if (match(['Eterm', 'alacritty', 'aterm', 'gnome-terminal', 'kitty',
+                \ 'konsole', 'login', 'lxterminal', 'mate-terminal',
+                \ 'mlterm', 'nvim-gtk', 'qterminal', 'roxterm', 'rxvt',
+                \ 'rxvtc', 'rxvtcd', 'st', 'terminator', 'terminology',
+                \ 'terminte', 'termit', 'urxvt', 'urxvtc', 'urxvtcd',
+                \ 'urxvtd', 'uxterm', 'x-terminal-emulator', 'xfce4-terminal',
+                \ 'xterm'], parent_name) != -1)
         echo "Suspend: Not suspended because running in " . parent_name
+    else
+        :suspend
     endif
 endfunction
 
