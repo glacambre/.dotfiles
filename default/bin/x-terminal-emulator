@@ -1,1 +1,12 @@
-/usr/bin/urxvtc
+#!/bin/sh
+
+if [ "$1" = "-w" ]; then
+    shift
+    exec urxvt "$@"
+fi
+
+urxvtc "$@"
+if [ $? -eq 2 ]; then
+    urxvtd -q -f
+    exec urxvtc "$@"
+fi
