@@ -1,5 +1,6 @@
 set disassembly-flavor intel
 
+set print pretty
 set print demangle on
 set print asm-demangle on
 set print frame-arguments all
