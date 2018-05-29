@@ -13,7 +13,7 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_complete_delay = 0
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
-let g:deoplete#sources#clang#libclang_path=system("find /usr/lib/ -name libclang.so -print -quit")[0:-2]
+let g:deoplete#sources#clang#libclang_path=system("find /usr/lib/ -name '*libclang.so*' -print -quit")[0:-2]
 let g:deoplete#sources#clang#clang_header="/usr/lib/clang/"
 let g:deoplete#sources#go#gocode_binary=$HOME . "/.gopath/bin/gocode"
 function! Deoplete_cr() abort
