@@ -357,3 +357,22 @@ function! TermPrompt(prev) abort range
     endif
     return action
 endfunction
+
+function! SetGCCStyle()
+  let l:fname = expand("%:p")
+  if stridx(l:fname, 'libsanitizer') != -1
+    return
+  endif
+  let l:ext = fnamemodify(l:fname, ":e")
+  let l:c_exts = ['c', 'h', 'cpp', 'cc', 'C', 'H', 'def', 'java']
+  if index(l:c_exts, l:ext) != -1
+    setlocal cindent
+    setlocal tabstop=8
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+    setlocal noexpandtab
+    setlocal cinoptions=>4,n-2,{2,^-2,:2,=2,g0,f0,h2,p4,t0,+2,(0,u0,w1,m0
+    setlocal textwidth=80
+    setlocal formatoptions-=ro formatoptions+=cqlt
+  endif
+endfunction

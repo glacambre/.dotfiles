@@ -81,3 +81,8 @@ augroup MY_GNUPLOT_AUGROUP
 	autocmd!
 	au FileType gnuplot setlocal commentstring=#%s
 augroup END
+
+augroup MY_GCC_AUGROUP
+	autocmd!
+	au FileType c if stridx(expand("%:p"), '/gcc/') != -1 | call SetGCCStyle() | endif
+augroup END
