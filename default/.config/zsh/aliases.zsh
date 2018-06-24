@@ -151,12 +151,18 @@ alias cleantex='rm *.{aux,idx,log,nav,out,snm,toc,vrb,bbl,blg}(.N) 2>/dev/null'
 alias cp='cp  -i'
 alias dd='dd status=progress'
 alias gdb='gdb -q'
-alias grep='LC_ALL=C grep --color=auto --exclude-dir=.svn --exclude-dir=.git --binary-files=without-match --line-number'
 alias l='ls -lAh --color=auto'
 alias ls='ls --color=auto'
 alias ln='nocorrect ln'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv -i'
+alias nrb='npm run build'
+alias nrp='npm run pretty'
+
+# Grep
+grepcmd='LC_ALL=C grep --color=auto --exclude-dir=build --exclude-dir=bin --exclude-dir=generated --exclude-dir=node_modules --exclude-dir=.svn --exclude-dir=.git --exclude=package.json --exclude=package-lock.json --binary-files=without-match --line-number'
+alias grep="$grepcmd"
+alias gri="$grepcmd -ri"
 
 # Git 
 alias ga='git add'
