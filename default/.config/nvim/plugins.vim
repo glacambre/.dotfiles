@@ -27,7 +27,7 @@ function! Setup_denite_ignores()
 	for elem in split(&wildignore, ',')
 		let wildignored_patterns += ['-iname', elem, '-prune', '-o']
 	endfor
-	let wildignored_patterns = ['find', '-L', ':directory', '!', '-executable', '-prune', '-o',
+	let wildignored_patterns = ['find', '-L', ':directory', '-type', 'd', '!', '-executable', '-prune', '-o',
 				\  '-path', '*/.git/*',         '-prune', '-o', '-path', '*/.hg/*',      '-prune', '-o',
 				\  '-path', '*/.bzr/*',         '-prune', '-o', '-path', '*/.svn/*',     '-prune', '-o',
 				\  '-path', '*/undodir/*',      '-prune', '-o', '-path', '*/images/*',   '-prune', '-o',
@@ -36,7 +36,7 @@ function! Setup_denite_ignores()
 				\  '-path', '*/node_modules/*', '-prune', '-o', '-path', '*/img/*',      '-prune', '-o',
 				\  '-path', '*/bundle/*',       '-prune', '-o', '-path', '*/spell/*',    '-prune', '-o',
 				\  '-path', '*/.cache/*',       '-prune', '-o', '-path', '*/swapdir/*',  '-prune', '-o',
-				\  '-path', '*/.metadata/*',    '-prune', '-o'] +
+				\  '-path', '*/.metadata/*',    '-prune', '-o', '-path', '*/.Private/*', '-prune', '-o'] +
 				\ wildignored_patterns + ['-type', 'f', '-print']
 	call denite#custom#var('file_rec', 'command', wildignored_patterns)
 endfunction
