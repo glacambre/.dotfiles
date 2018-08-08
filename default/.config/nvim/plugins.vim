@@ -4,6 +4,9 @@ let s:bundle_dir = s:config_dir . "/bundle"
 let s:dein_dir = s:bundle_dir . "/repos/github.com/Shougo/dein.vim"
 let s:do_update = 0
 
+" Vim-polyglot
+let g:polyglot_disabled = ["graphql"]
+
 " Neosnippet
 let g:neosnippet#snippets_directory= [s:config_dir . '/custom_snippets', s:bundle_dir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets']
 
@@ -51,7 +54,7 @@ execute("set runtimepath+=" . s:dein_dir)
 
 if dein#load_state(s:bundle_dir)
 	call dein#begin(s:bundle_dir)
-	call dein#add('https://github.com/Shougo/dein.vim',   {'hook_done_update': 'UpdateRemotePlugins'})
+	call dein#add('https://github.com/Shougo/dein.vim',   {'hook_done_update': 'execute "UpdateRemotePlugins"'})
 
 	" Enhance terminal
 	call dein#add('https://github.com/glacambre/shelley', {'hook_add': '
