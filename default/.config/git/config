@@ -10,7 +10,7 @@
 	verbose = true
 	gpgsign = true
 [push]
-	default = upstream
+	default = current
 [log]
 	decorate = short
 [url "git@github.com:"]
