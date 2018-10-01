@@ -1,49 +1,76 @@
+sanitise tridactyllocal tridactylsync
+
+alias logall js let l=prompt() ; Object.keys(tri.config.get("logging")).forEach(k => tri.config.set("logging", k, l))
+alias playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
+
+bind O composite url2args | fillcmdline open
+bind gh followpage prev
+bind gl followpage next
 bind H tabprev
-bind J back
-bind K forward
 bind L tabnext
-
-bind <A-&> buffer 1
-bind <A-é> buffer 2
-bind <A-"> buffer 3
-bind <A-'> buffer 4
-bind <A-(> buffer 5
-bind <A--> buffer 6
-bind <A-è> buffer 7
-bind <A-_> buffer 8
-bind <A-ç> buffer 9
-bind <A-à> tablast
-
-bind <A-1> tabmove 1
-bind <A-2> tabmove 2
-bind <A-3> tabmove 3
-bind <A-4> tabmove 4
-bind <A-5> tabmove 5
-bind <A-6> tabmove 6
-bind <A-7> tabmove 7
-bind <A-8> tabmove 8
-bind <A-9> tabmove 9
-bind <A-0> tabmove 0
-
-set hintchars fdsqjklmrezauiopwxcvghtybn
-bind f hint -b
-bind F hint
+bind K forward
+bind J back
+bind y clipboard yankshort
+bind Y hint -p
+bind v hint -W exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
+bind V js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
+bind e hint -W exclaim_quiet add-magnet
+bind s fillcmdline saveas
+bind S saveas
+bind ;s hint -a
+bind ;S hint -s
+bind <A-v> playAllVideos
+" Bind <A-&..à> to `buffer 1..$` and <A-1..0> to `tabmove 1..$`
+jsb ["&", "é", '"', "'", "(", "-", "è", "_", "ç", "à"].forEach((l, i) => { i = (i == 9 ? 0 : (i + 1)); tri.excmds.bind(`<A-${l}>`, `buffer ${i}`) ; tri.excmds.bind(`<A-${i}>`, `tabmove ${i}`) })
+bind <A-H> tabmove -1
+bind <A-L> tabmove +1
+bind --mode=insert      <C-a> im_beginning_of_line
+bind --mode=input       <C-a> im_beginning_of_line
+bind --mode=insert      <C-e> im_end_of_line
+bind --mode=input       <C-e> im_end_of_line
+bind --mode=insert      <C-k> im_kill_line
+bind --mode=input       <C-k> im_kill_line
+bind --mode=insert      <C-u> im_backward_kill_line
+bind --mode=input       <C-u> im_backward_kill_line
+" One day this will work...
+bind --mode=insert      <C-w> im_backward_kill_word
+bind --mode=input       <C-w> im_backward_kill_word
 
 unbind yy
 unbind ys
 unbind yc
-bind y clipboard yankshort
 
-bind gl followpage next
-bind gh followpage prev
-
+set allowautofocus false
 set editorcmd x-terminal-emulator -w -title Pentadactyledit -e nvim -c "call feedkeys('GA')"
+set hintchars fdsqjklmrezauiopwxcvghtybn
+set searchengine searx
 
-bind v hint -W exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
-bind V js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
-
-bind e hint -W exclaim_quiet add-magnet
-
-command playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
-
-bind <A-v> playAllVideos
+" Disable all searchurls
+jsb Object.keys(tri.config.get("searchurls")).forEach(u => tri.config.set("searchurls", u, '""'))
+" Add our own
+set searchurls.amazon https://www.amazon.fr/s/ref=nb_sb_noss?field-keywords=%s
+set searchurls.cnrtl http://www.cnrtl.fr/lexicographie/%s
+set searchurls.conj http://www.les-verbes.com/conjuguer.php?verbe=%s
+set searchurls.ddg https://duckduckgo.com/html?q=%s
+set searchurls.g https://www.google.com/search?q=test
+set searchurls.gh https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
+set searchurls.gi https://www.google.com/search?q=%s&tbm=isch
+set searchurls.gw https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&search=%s&fulltext=Search
+set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js
+set searchurls.npm https://www.npmjs.com/search?q=%s
+set searchurls.osm https://www.openstreetmap.org/search?query=%s
+set searchurls.pydoc https://docs.python.org/3/search.html?q=%s
+set searchurls.qwant https://www.qwant.com/?q=%s
+set searchurls.ratp https://www.ratp.fr/itineraires?start=%s1&end=%s2&lieu_depart=&lieu_arrivee=&modes[rail]=rail&modes[metro]=metro&modes[bus]=bus&modes[tram]=tram&itinerary_profile=fastest&op=C%27est+parti
+set searchurls.reddit https://www.reddit.com/r/%s
+set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
+set searchurls.steam http://store.steampowered.com/search/?snr=1_7_7_151_12&term=%s
+set searchurls.torrentz https://torrentz2.eu/search?f=%s
+set searchurls.tpb https://thepiratebay.org/s/?q=%s&=on&page=0&orderby=99
+set searchurls.tre http://www.wordreference.com/redirect/translation.aspx?w=%s&dict=enfr
+set searchurls.trf http://www.wordreference.com/redirect/translation.aspx?w=%s&dict=fren
+set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
+set searchurls.wfr https://fr.wikipedia.org/w/index.php?search=%s&title=Sp%E9cial%3ARecherche
+set searchurls.y https://www.youtube.com/results?search_query=%s
+set searchurls.i https://searx.laquadrature.net/?q=%s&categories=images&preferences=eJx1VE2P1DAM_TX0UoGAPXDqAfEtIYHYgWvkJp6O1TQuTjoz_fc4s502s7scpqM49nvPjm3BOPkUDQcT8GQStM1n8BErx2QEI_sjSsOgx1csXeUhdBN02ID3lWcLHhsMlaMIrUdnRj91FGLzh4aXnno0B049zvHF2w8_RgwZUvmMp9CvpK3wKaJk8uz3LewpUEITrbD318j31mKM5uOPbwpyEnWoaFAlZhQ-z81OJqxgSmx5GD0mbKoIe4wIYg_N6yodcMCGowWpMNyKvUe_N0rLMkAiDlnFTsD2Kur3r-_KN7CWQa1fd7uf91d-Pd9f4HMiFhJ2LLOJ6NGmrSIYlANj05PtQRMwe_KYGfaCWEfepxMI1o5EwzKAoaS3R4ZkTGRL4OsBHYEaKYAxR3LIGUDQOXrq1DF3HuvRw1zDOBaM1tqX6VggdNSpSIgK0mFAAV_A6tNcZDphchtImEFFXEqfj2taG2jBP0yRrDGXP72aITg8P0e2WTrEPtGAcSnEA98VoaXQld6Oujb9j5yPhKWyN-dCeER0I-oLr9isbSY4clGxzelJ1VegRcI1BLWbc702jXsQ5rWeB2gF8mfJLzcQHbGmWMa0lNpJGzAtXjMcMkYBKjpCBLYQkrifOXE8cA9hS2uh30IxzQMHHUEsrQ91XtPcCwzgqRVcFAzzoGMgc50EQvTa7jdJ0vnvpK1QmnI0aEC2xNv0nOaWfx3XD_KffZjblrueHqW5Kl7e4Zr2I7f1RU8Uo9WFUzJaCFLHJJNNk2Qx0RIGixc1-YEsO6zzZylGgbIl9ebu7t35ZrqSh_YakUDSmPdVWQbX1Q4v6y6vnfJqnatLPuvKum6TrYBl0N8ThG2YqgHTgV3z5dOuWtaTzkOz3P4DmzJBcg==
+set searchurls.searx https://searx.laquadrature.net/?q=%s&preferences=eJx1VE2P1DAM_TX0UoGAPXDqAfEtIYHYgWvkJp6O1TQuTjoz_fc4s502s7scpqM49nvPjm3BOPkUDQcT8GQStM1n8BErx2QEI_sjSsOgx1csXeUhdBN02ID3lWcLHhsMlaMIrUdnRj91FGLzh4aXnno0B049zvHF2w8_RgwZUvmMp9CvpK3wKaJk8uz3LewpUEITrbD318j31mKM5uOPbwpyEnWoaFAlZhQ-z81OJqxgSmx5GD0mbKoIe4wIYg_N6yodcMCGowWpMNyKvUe_N0rLMkAiDlnFTsD2Kur3r-_KN7CWQa1fd7uf91d-Pd9f4HMiFhJ2LLOJ6NGmrSIYlANj05PtQRMwe_KYGfaCWEfepxMI1o5EwzKAoaS3R4ZkTGRL4OsBHYEaKYAxR3LIGUDQOXrq1DF3HuvRw1zDOBaM1tqX6VggdNSpSIgK0mFAAV_A6tNcZDphchtImEFFXEqfj2taG2jBP0yRrDGXP72aITg8P0e2WTrEPtGAcSnEA98VoaXQld6Oujb9j5yPhKWyN-dCeER0I-oLr9isbSY4clGxzelJ1VegRcI1BLWbc702jXsQ5rWeB2gF8mfJLzcQHbGmWMa0lNpJGzAtXjMcMkYBKjpCBLYQkrifOXE8cA9hS2uh30IxzQMHHUEsrQ91XtPcCwzgqRVcFAzzoGMgc50EQvTa7jdJ0vnvpK1QmnI0aEC2xNv0nOaWfx3XD_KffZjblrueHqW5Kl7e4Zr2I7f1RU8Uo9WFUzJaCFLHJJNNk2Qx0RIGixc1-YEsO6zzZylGgbIl9ebu7t35ZrqSh_YakUDSmPdVWQbX1Q4v6y6vnfJqnatLPuvKum6TrYBl0N8ThG2YqgHTgV3z5dOuWtaTzkOz3P4DmzJBcg==
