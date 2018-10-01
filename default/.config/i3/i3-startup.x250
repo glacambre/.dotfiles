@@ -1,3 +1,8 @@
 #!/bin/sh
 
-i3-msg "workspace 2; exec x-terminal-emulator -e term://zsh"
+i3-msg "workspace 2; exec x-terminal-emulator -e nvim term://zsh"
+
+# Make caps lock send hyper, make both shit press send caps lock
+(setxkbmap -layout fr-latin9 -option caps:hyper -option shift:both_capslock &&
+# Make a single hyper press send escape
+xcape -e "Hyper_L=Escape") &
