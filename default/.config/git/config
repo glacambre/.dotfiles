@@ -16,3 +16,5 @@
 [url "git@github.com:"]
 	pushInsteadOf = "https://github.com/"
 	pushInsteadOf = "git://github.com/"
+[alias]
+	cb = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
