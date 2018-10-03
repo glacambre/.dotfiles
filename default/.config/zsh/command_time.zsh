@@ -17,6 +17,7 @@ function display_command_time() {
             fi
         fi
     fi
+    LAST_COMMAND_TIME=""
 }
 if [ -z "$precmd_functions" ]; then
     precmd_functions=()
