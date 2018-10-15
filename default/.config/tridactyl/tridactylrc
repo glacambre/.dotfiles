@@ -48,6 +48,7 @@ set allowautofocus false
 set editorcmd x-terminal-emulator -w -title Pentadactyledit -e nvim -c "call feedkeys('GA')"
 set hintchars fdsqjklmrezauiopwxcvghtybn
 set searchengine searx
+set tabopencontaineraware true
 
 " Disable all searchurls
 jsb Object.keys(tri.config.get("searchurls")).forEach(u => tri.config.set("searchurls", u, '""'))
@@ -81,5 +82,5 @@ set searchurls.i https://searx.laquadrature.net/?q=%s&categories=images&preferen
 set searchurls.searx https://searx.laquadrature.net/?q=%s&preferences=eJx1VE2P1DAM_TX0UoGAPXDqAfEtIYHYgWvkJp6O1TQuTjoz_fc4s502s7scpqM49nvPjm3BOPkUDQcT8GQStM1n8BErx2QEI_sjSsOgx1csXeUhdBN02ID3lWcLHhsMlaMIrUdnRj91FGLzh4aXnno0B049zvHF2w8_RgwZUvmMp9CvpK3wKaJk8uz3LewpUEITrbD318j31mKM5uOPbwpyEnWoaFAlZhQ-z81OJqxgSmx5GD0mbKoIe4wIYg_N6yodcMCGowWpMNyKvUe_N0rLMkAiDlnFTsD2Kur3r-_KN7CWQa1fd7uf91d-Pd9f4HMiFhJ2LLOJ6NGmrSIYlANj05PtQRMwe_KYGfaCWEfepxMI1o5EwzKAoaS3R4ZkTGRL4OsBHYEaKYAxR3LIGUDQOXrq1DF3HuvRw1zDOBaM1tqX6VggdNSpSIgK0mFAAV_A6tNcZDphchtImEFFXEqfj2taG2jBP0yRrDGXP72aITg8P0e2WTrEPtGAcSnEA98VoaXQld6Oujb9j5yPhKWyN-dCeER0I-oLr9isbSY4clGxzelJ1VegRcI1BLWbc702jXsQ5rWeB2gF8mfJLzcQHbGmWMa0lNpJGzAtXjMcMkYBKjpCBLYQkrifOXE8cA9hS2uh30IxzQMHHUEsrQ91XtPcCwzgqRVcFAzzoGMgc50EQvTa7jdJ0vnvpK1QmnI0aEC2xNv0nOaWfx3XD_KffZjblrueHqW5Kl7e4Zr2I7f1RU8Uo9WFUzJaCFLHJJNNk2Qx0RIGixc1-YEsO6zzZylGgbIl9ebu7t35ZrqSh_YakUDSmPdVWQbX1Q4v6y6vnfJqnatLPuvKum6TrYBl0N8ThG2YqgHTgV3z5dOuWtaTzkOz3P4DmzJBcg==
 
 " Native messenger stuff
-fixamo
+fixamo_quiet
 guiset_quiet hoverlink right
