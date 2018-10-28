@@ -2,7 +2,11 @@ set my_conf_dir = $HOME/.config/mutt
 
 source $my_conf_dir/colors.conf
 source $my_conf_dir/keys.conf
-source $my_conf_dir/accounts/accounts.conf
+
+# startup-hook "`sync-mail`"
+# shutdown-hook "`sync-mail`"
+timeout-hook '`sync-mail`'
+set timeout = 60
 
 set abort_nosubject     = no
 set alias_file          = $my_conf_dir/alias
@@ -15,7 +19,7 @@ set check_new           = yes
 set confirmappend       = no
 set copy                = yes
 set date_format         = "%F, %T"
-set edit_headers        = no
+set edit_headers        = yes
 set editor              = "nvim -c \"set spell spelllang=fr\""
 set send_charset        = "utf-8"
 set fast_reply          = yes
@@ -31,6 +35,7 @@ set new_mail_command    = "exec notify-send 'New mail' '%n new, %u unread' &"
 set my_col_subject      = `echo $(($(tput cols)-66))`
 set index_format        = "%4C %-16.16F: %-$my_col_subject.${my_col_subject}s %> %[%F, %T] %Z"
 set mailcap_path        = $my_conf_dir/mailcap
+set move                = yes
 set quit                = yes
 set reply_self          = no
 set reply_to            = yes
@@ -41,6 +46,7 @@ set sleep_time          = 0
 set sort                = threads
 set sort_aux            = last-date
 set sort_re             = yes
+set ssl_force_tls       = yes
 set status_chars        = " *%A"
 set status_format       = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 set uncollapse_jump     = yes
@@ -54,14 +60,17 @@ set xterm_set_titles    = no
 set text_flowed         = yes
 
 set sidebar_delim_chars   = "/"
-set sidebar_format        = "%B %> %N"
+set sidebar_format        = "%B %> %N/%S"
 set sidebar_short_path    = yes
 set sidebar_visible       = yes
 set sidebar_width         = 16
 
-folder-hook . push "<delete-pattern>~=<enter>"
+set nm_record
+set nm_record_tags=sent
+set query_command = "notmuch address *%s*"
+bind editor <Tab> complete-query
 
-set timeout = 60
+folder-hook . push "<delete-pattern>~=<enter>"
 
 ignore *
 unignore from: to: cc: date: subject:
@@ -71,3 +80,5 @@ hdr_order from: to: cc: date: subject:
 unalternative_order *
 alternative_order text/plain text/html text/enriched
 auto_view = text/html
+
+source $my_conf_dir/accounts/accounts.conf
