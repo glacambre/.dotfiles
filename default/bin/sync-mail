@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ "$1" = "-q" ]; then
+        success=""
+        notmuchfail=""
+        mbsyncfail=""
+else
+        success="echo echo '$(date +'%F, %T'): Fetched mail.'"
+        notmuchfail="echo echo '$(date +'%F, %T'): Failed to update notmuch database.'"
+        mbsyncfail="echo echo '$(date +'%F, %T'): Failed to mail.'"
+fi
+
+if mbsync -qa ; then
+        if notmuch new --quiet ; then
+                $success
+        else
+                $notmuchfail
+        fi
+else
+        $mbsyncfail
+fi
