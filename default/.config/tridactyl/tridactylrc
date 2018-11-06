@@ -17,6 +17,8 @@ bind Y hint -p
 bind v composite hint -pipe a href | exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
 bind V js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
 bind e hint -W exclaim_quiet add-magnet
+bind u undo tab
+bind U undo window
 bind s fillcmdline saveas
 bind S saveas
 bind ;s hint -a
@@ -26,17 +28,17 @@ bind <A-v> playAllVideos
 jsb ["&", "é", '"', "'", "(", "-", "è", "_", "ç", "à"].forEach((l, i) => { i = (i == 9 ? 0 : (i + 1)); tri.excmds.bind(`<A-${l}>`, `buffer ${i}`) ; tri.excmds.bind(`<A-${i}>`, `tabmove ${i}`) })
 bind <A-H> tabmove -1
 bind <A-L> tabmove +1
-bind --mode=insert      <C-a> im_beginning_of_line
-bind --mode=input       <C-a> im_beginning_of_line
-bind --mode=insert      <C-e> im_end_of_line
-bind --mode=input       <C-e> im_end_of_line
-bind --mode=insert      <C-k> im_kill_line
-bind --mode=input       <C-k> im_kill_line
-bind --mode=insert      <C-u> im_backward_kill_line
-bind --mode=input       <C-u> im_backward_kill_line
+bind --mode=insert      <C-a> text.beginning_of_line
+bind --mode=input       <C-a> text.beginning_of_line
+bind --mode=insert      <C-e> text.end_of_line
+bind --mode=input       <C-e> text.end_of_line
+bind --mode=insert      <C-k> text.kill_line
+bind --mode=input       <C-k> text.kill_line
+bind --mode=insert      <C-u> text.backward_kill_line
+bind --mode=input       <C-u> text.backward_kill_line
 " One day this will work...
-bind --mode=insert      <C-w> im_backward_kill_word
-bind --mode=input       <C-w> im_backward_kill_word
+bind --mode=insert      <C-w> text.backward_kill_word
+bind --mode=input       <C-w> text.backward_kill_word
 
 unbind yy
 unbind ys
@@ -93,6 +95,7 @@ setpref app.normandy.first_run false
 setpref app.shield.optoutstudies.enabled false
 setpref beacon.enabled false
 setpref beacon.enabled false
+setpref browser.autofocus false
 setpref browser.aboutHomeSnippets.updateUrl "data:,"
 setpref browser.display.use_document_fonts 0
 setpref browser.download.dir "/home/me/downloads"
