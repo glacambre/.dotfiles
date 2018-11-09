@@ -3,9 +3,7 @@ set my_conf_dir = $HOME/.config/mutt
 source $my_conf_dir/colors.conf
 source $my_conf_dir/keys.conf
 
-# startup-hook "`sync-mail`"
-# shutdown-hook "`sync-mail`"
-timeout-hook '`sync-mail`'
+timeout-hook '`sync-mail -q -b`'
 set timeout = 60
 
 set abort_nosubject     = no
