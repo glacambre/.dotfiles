@@ -47,7 +47,6 @@ unbind ym
 unbind yt
 
 set allowautofocus false
-set editorcmd x-terminal-emulator -w -title Pentadactyledit -e nvim -c "call feedkeys('GA')"
 set hintchars fdsqjklmrezauiopwxcvghtybn
 set searchengine qwant
 set tabopencontaineraware true
