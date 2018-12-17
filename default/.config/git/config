@@ -18,3 +18,5 @@
 	pushInsteadOf = "git://github.com/"
 [alias]
 	cb = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
+[diff]
+	algorithm = patience
