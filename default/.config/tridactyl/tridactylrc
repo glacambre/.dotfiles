@@ -4,10 +4,13 @@ alias tabsort jsb browser.tabs.query({}).then(tabs => tabs.sort((t1, t2) => t1.u
 alias tabuniq jsb browser.tabs.query({}).then(tabs => browser.tabs.remove(tabs.filter((tab, index) => tabs.slice(index + 1).find(t => t.url == tab.url)).map(tab => tab.id)))
 alias logall js let l=prompt() ; Object.keys(tri.config.get("logging")).forEach(k => tri.config.set("logging", k, l))
 alias playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
+alias gitclone jsb -p tri.native.run("git clone '" + JS_ARG + "' /home/me/prog/" + JS_ARG.split("/").slice(-1))
 
 bind O composite url2args | fillcmdline open
 bind gh followpage prev
 bind gl followpage next
+bind gc composite js window.location.href | gitclone
+bind ;gc hint -qW gitclone
 bind H tabprev
 bind L tabnext
 bind K forward
