@@ -1,9 +1,32 @@
 #!/bin/sh
 # Brightens the screen. Needs root.
 
-brightness=$((`cat /sys/class/backlight/intel_backlight/brightness`+50))
+if [ "$(id -u)" -ne 0 ]; then
+  echo "This script needs to be run as root."
+  exit
+fi
 
-if [ $brightness -lt `cat /sys/class/backlight/intel_backlight/max_brightness` ]
-then
-	echo $brightness > /sys/class/backlight/intel_backlight/brightness
+if [ -e /sys/class/backlight/intel_backlight/brightness ] ; then
+	brightness=$(($(cat /sys/class/backlight/intel_backlight/brightness)+50))
+
+	if [ $brightness -lt "$(cat /sys/class/backlight/intel_backlight/max_brightness)" ]
+	then
+		echo $brightness > /sys/class/backlight/intel_backlight/brightness
+	fi
+
+elif command -v ddccontrol >/dev/null ; then
+	devices="$(sudo ddccontrol -p 2>/dev/null | grep "dev:/dev/[a-z0-9-]\\+" -o | sort | uniq)"
+	echo "$devices" | while read -r device ; do (
+		if [ "$device" = "" ]; then
+			continue;
+		fi
+		current="$(ddccontrol -r 0x10 "$device" 2>/dev/null | grep "+/[0-9]\\+/100" -o | cut -d/ -f2)"
+		if [ "$current" != "" ] ; then
+			ddccontrol -r 0x10 -w "$((current+20))" "$device" >/dev/null 2>/dev/null
+		fi
+		) & done
+
+else
+	echo "No /sys/class or ddccontrol found."
+	exit
 fi
