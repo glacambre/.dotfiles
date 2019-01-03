@@ -4,6 +4,7 @@ set print pretty
 set print demangle on
 set print asm-demangle on
 set print frame-arguments all
+set print object
 set pagination off
 
 shell if [ ! -d ~/.local/share/gdb ] ; then rm -rf ~/.local/share/gdb/history ; mkdir -p ~/.local/share/gdb ; fi
