@@ -8,5 +8,6 @@ execute("source " . s:config_dir . "/plugins.vim")
 filetype plugin indent on
 syntax enable
 colorscheme paramount
+set bg=light
 
 set exrc    " Enable project-specific vimrc
