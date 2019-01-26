@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rm -rf ~/.mozilla/firefox/normal && cp -r ~/.mozilla/firefox/normal.backup ~/.mozilla/firefox/normal && exec firefox -P normal
