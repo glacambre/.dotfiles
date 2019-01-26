@@ -158,6 +158,7 @@ alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv -i'
 alias nrb='npm run build'
 alias nrp='npm run pretty'
+alias newsboat='rr record ~/prog/newsboat/newsboat'
 
 # Grep
 grepcmd='LC_ALL=C grep --color=auto --exclude-dir=build --exclude-dir=bin --exclude-dir=generated --exclude-dir=node_modules --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg --exclude=package.json --exclude=package-lock.json --exclude=bundle.js.map --binary-files=without-match --line-number'

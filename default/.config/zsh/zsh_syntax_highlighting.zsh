@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+X_ZSH_HIGHLIGHT_DIRS_BLACKLIST=(/wd)
 ZSH_SYNTAX_HIGHLIGHTING_DIR="$ZDOTDIR/zsh-syntax-highlighting"
 ZSH_INTALL_FILE="/tmp/zsh_syntax_highlighting_installation_error"
 if [[ ! -d  "$ZSH_SYNTAX_HIGHLIGHTING_DIR" && ! -e "$ZSH_INSTALL_FILE" ]]; then
