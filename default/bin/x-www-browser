@@ -1,11 +1,7 @@
 #!/bin/sh
 # Choose whether to open urls with mpv or firefox.
 
-if which firefox-esr >/dev/null 2>/dev/null ; then
-    browser="firefox-esr"
-else
-    browser="firefox"
-fi
+browser="firefox"
 
 if [ "$#" -eq "0" ] ; then
     $browser 2>/dev/null 1>&2 &
