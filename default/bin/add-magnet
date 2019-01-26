@@ -15,4 +15,15 @@ if [[ ! "$url" =~ xt=urn:btih:([^&/]+) ]] ; then
     exit
 fi
 
-echo "d10:magnet-uri${#url}:${url}e" > "$torrent_dir/meta-$(echo "$url" | grep -o 'xt=urn:btih:[a-zA-Z0-9]*' | sed 's/xt=urn:btih://').torrent"
+filename="$torrent_dir/meta-$(echo "$url" | grep -o 'xt=urn:btih:[a-zA-Z0-9]*' | sed 's/xt=urn:btih://').torrent"
+
+echo "d10:magnet-uri${#url}:${url}e" > "$filename"
+
+if [ ! -e "$filename" ] ; then
+    filename="/tmp/$filename"
+    mkdir -p "$filename"
+    rm -rf "$filename"
+    echo "d10:magnet-uri${#url}:${url}e" > "$filename"
+    echo "Failed to create torrent file."
+    exit 1
+fi
