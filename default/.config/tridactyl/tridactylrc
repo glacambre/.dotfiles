@@ -5,6 +5,7 @@ alias tabuniq jsb browser.tabs.query({}).then(tabs => browser.tabs.remove(tabs.f
 alias logall js let l=prompt() ; Object.keys(tri.config.get("logging")).forEach(k => tri.config.set("logging", k, l))
 alias playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
 alias gitclone jsb -p tri.native.run("git clone '" + JS_ARG + "' /home/me/prog/" + JS_ARG.split("/").slice(-1))
+alias rsssave jsb -p tri.native.run('cat >> ~/.config/newsboat/urls', JS_ARG)
 
 bind O composite url2args | fillcmdline open
 bind gh followpage prev
@@ -49,16 +50,21 @@ unbind yc
 unbind ym
 unbind yt
 unbind --mode=ex <C-c>
+unbind <SA-ArrowUp><SA-ArrowUp><SA-ArrowDown><SA-ArrowDown><SA-ArrowLeft><SA-ArrowRight><SA-ArrowLeft><SA-ArrowRight>ba
+
+bindurl https://github.com/.*/.*/blob f hint -c .blob-num,a
 
 set allowautofocus false
 set hintchars fdsqjklmrezauiopwxcvghtybn
 set searchengine qwant
 set tabopencontaineraware true
+set rsscmd rsssave %u
 
 " Disable all searchurls
 jsb Object.keys(tri.config.get("searchurls")).forEach(u => tri.config.set("searchurls", u, '""'))
 " Add our own
 set searchurls.amazon https://www.amazon.fr/s/ref=nb_sb_noss?field-keywords=%s
+set searchurls.bandcamp https://bandcamp.com/search?q=%s
 set searchurls.cnrtl http://www.cnrtl.fr/lexicographie/%s
 set searchurls.conj http://www.les-verbes.com/conjuguer.php?verbe=%s
 set searchurls.ddg https://duckduckgo.com/html?q=%s
@@ -69,6 +75,7 @@ set searchurls.gi https://www.google.com/search?q=%s&tbm=isch
 set searchurls.gmaps https://www.google.com/maps/search/%s
 set searchurls.gw https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&search=%s&fulltext=Search
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js
+set searchurls.monova https://monova.to/search?term=%s
 set searchurls.npm https://www.npmjs.com/search?q=%s
 set searchurls.osm https://www.openstreetmap.org/search?query=%s
 set searchurls.pydoc https://docs.python.org/3/search.html?q=%s
@@ -78,7 +85,7 @@ set searchurls.reddit https://www.reddit.com/r/%s
 set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
 set searchurls.steam https://store.steampowered.com/search/?term=%s
 set searchurls.torrentz https://torrentz2.eu/search?f=%s
-set searchurls.tpb https://thepiratebay.org/s/?q=%s&=on&page=0&orderby=99
+set searchurls.tpb https://thepiratebay.bid/s/?q=%s&=on&page=0&orderby=99
 set searchurls.tre http://www.wordreference.com/redirect/translation.aspx?w=%s&dict=enfr
 set searchurls.trf http://www.wordreference.com/redirect/translation.aspx?w=%s&dict=fren
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
@@ -88,6 +95,8 @@ set searchurls.i https://searx.laquadrature.net/?q=%s&categories=images&preferen
 set searchurls.searx https://searx.laquadrature.net/?q=%s&preferences=eJx1VE2P1DAM_TX0UoGAPXDqAfEtIYHYgWvkJp6O1TQuTjoz_fc4s502s7scpqM49nvPjm3BOPkUDQcT8GQStM1n8BErx2QEI_sjSsOgx1csXeUhdBN02ID3lWcLHhsMlaMIrUdnRj91FGLzh4aXnno0B049zvHF2w8_RgwZUvmMp9CvpK3wKaJk8uz3LewpUEITrbD318j31mKM5uOPbwpyEnWoaFAlZhQ-z81OJqxgSmx5GD0mbKoIe4wIYg_N6yodcMCGowWpMNyKvUe_N0rLMkAiDlnFTsD2Kur3r-_KN7CWQa1fd7uf91d-Pd9f4HMiFhJ2LLOJ6NGmrSIYlANj05PtQRMwe_KYGfaCWEfepxMI1o5EwzKAoaS3R4ZkTGRL4OsBHYEaKYAxR3LIGUDQOXrq1DF3HuvRw1zDOBaM1tqX6VggdNSpSIgK0mFAAV_A6tNcZDphchtImEFFXEqfj2taG2jBP0yRrDGXP72aITg8P0e2WTrEPtGAcSnEA98VoaXQld6Oujb9j5yPhKWyN-dCeER0I-oLr9isbSY4clGxzelJ1VegRcI1BLWbc702jXsQ5rWeB2gF8mfJLzcQHbGmWMa0lNpJGzAtXjMcMkYBKjpCBLYQkrifOXE8cA9hS2uh30IxzQMHHUEsrQ91XtPcCwzgqRVcFAzzoGMgc50EQvTa7jdJ0vnvpK1QmnI0aEC2xNv0nOaWfx3XD_KffZjblrueHqW5Kl7e4Zr2I7f1RU8Uo9WFUzJaCFLHJJNNk2Qx0RIGixc1-YEsO6zzZylGgbIl9ebu7t35ZrqSh_YakUDSmPdVWQbX1Q4v6y6vnfJqnatLPuvKum6TrYBl0N8ThG2YqgHTgV3z5dOuWtaTzkOz3P4DmzJBcg==
 set customthemes.custom span.TridactylHint { font-family: monospace !important; background: transparent !important; color: black !important; text-shadow: cyan -1px -1px 0px, cyan -1px 0px 0px, cyan -1px 1px 0px, cyan 1px -1px 0px, cyan 1px 0px 0px, cyan 1px 1px 0px, cyan 0px 1px 0px, cyan 0px -1px 0px !important; }
 set theme custom
+
+seturl jsfiddle.net allowautofocus true
 
 " Native messenger stuff
 guiset_quiet hoverlink right
@@ -187,6 +196,7 @@ setpref intl.locale.requested "en-US"
 setpref intl.regional_prefs.use_os_locales false
 setpref javascript.use_us_english_locale true
 setpref layout.css.font-loading-api.enabled false
+setpref media.autoplay.default 1
 setpref media.eme.enabled false
 setpref media.gmp-gmpopenh264.autoupdate false
 setpref media.gmp-gmpopenh264.enabled false
