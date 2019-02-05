@@ -20,7 +20,7 @@ bind y clipboard yankshort
 bind Y hint -p
 bind v composite hint -pipe a href | exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
 bind V js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
-bind e hint -W exclaim_quiet add-magnet
+bind e hint -W js -p tri.native.run(`add-magnet '${JS_ARG}'`)
 bind u undo tab
 bind U undo window
 bind s fillcmdline saveas
@@ -29,9 +29,8 @@ bind ;s hint -a
 bind ;S hint -s
 bind <A-v> playAllVideos
 " Bind <A-&..à> to `buffer 1..$` and <A-1..0> to `tabmove 1..$`
-jsb ["&", "é", '"', "'", "(", "-", "è", "_", "ç", "à"].forEach((l, i) => { i = (i == 9 ? 0 : (i + 1)); tri.excmds.bind(`<A-${l}>`, `buffer ${i}`) ; tri.excmds.bind(`<A-${i}>`, `tabmove ${i}`) })
-bind <A-H> tabmove -1
-bind <A-L> tabmove +1
+jsb ["&", "é", '"', "'", "(", "-", "è", "_", "ç", "à"].forEach((l, i) => { i = (i == 9 ? 0 : (i + 1)); ["--mode=insert", "--mode=input", "--mode=normal"].forEach(mode => { tri.excmds.bind(mode, `<A-${l}>`, `buffer ${i}`) ; tri.excmds.bind(mode, `<A-${i}>`, `tabmove ${i}`) })})
+jsb ["--mode=insert", "--mode=input", "--mode=normal"].forEach(mode => { tri.excmds.bind(mode, `<A-H>`, `tabmove -1`) ; tri.excmds.bind(mode, `<A-L>`, `tabmove +1`) ; })
 bind --mode=insert      <C-a> text.beginning_of_line
 bind --mode=input       <C-a> text.beginning_of_line
 bind --mode=insert      <C-e> text.end_of_line
@@ -83,6 +82,7 @@ set searchurls.qwant https://www.qwant.com/?q=%s
 set searchurls.ratp https://www.ratp.fr/itineraires?start=%s1&end=%s2&lieu_depart=&lieu_arrivee=&modes[rail]=rail&modes[metro]=metro&modes[bus]=bus&modes[tram]=tram&itinerary_profile=fastest&op=C%27est+parti
 set searchurls.reddit https://www.reddit.com/r/%s
 set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
+set searchurls.skyt https://www.skytorrents.to/?search=%s
 set searchurls.steam https://store.steampowered.com/search/?term=%s
 set searchurls.torrentz https://torrentz2.eu/search?f=%s
 set searchurls.tpb https://thepiratebay.bid/s/?q=%s&=on&page=0&orderby=99
@@ -208,6 +208,8 @@ setpref media.gmp-widevinecdm.autoupdate false
 setpref media.gmp-widevinecdm.enabled false
 setpref media.gmp-widevinecdm.visible false
 setpref media.gmp.trial-create.enabled false
+" WebRTC. Might need to re-enable some day
+setpref media.peerconnection.enabled false
 setpref network.IDN_show_punycode true
 setpref network.allow-experiments false
 setpref network.http.referer.XOriginPolicy 1
