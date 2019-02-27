@@ -21,9 +21,11 @@ echo "d10:magnet-uri${#url}:${url}e" > "$filename"
 
 if [ ! -e "$filename" ] ; then
     filename="/tmp/$filename"
-    mkdir -p "$filename"
+    if [ ! -e "$filename" ] ; then
+        mkdir -p "$filename"
+    fi
     rm -rf "$filename"
     echo "d10:magnet-uri${#url}:${url}e" > "$filename"
-    echo "Failed to create torrent file."
+    echo "Failed to create torrent file. File is in /tmp instead."
     exit 1
 fi
