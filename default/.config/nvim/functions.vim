@@ -128,6 +128,9 @@ function! OnTermOpen()
     nnoremap <buffer> <silent> a :set laststatus=1<CR>:let b:should_insert = 1<CR>a
     nnoremap <buffer> <silent> i :set laststatus=1<CR>:let b:should_insert = 1<CR>i
 
+    " Get max scrollback
+    setlocal scrollback=-1
+
     " When opening a new term, go in insert mode
     startinsert
     let b:should_insert = 1
