@@ -6,6 +6,7 @@ alias logall js let l=prompt() ; Object.keys(tri.config.get("logging")).forEach(
 alias playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
 alias gitclone jsb -p tri.native.run("git clone '" + JS_ARG + "' /home/me/prog/" + JS_ARG.split("/").slice(-1))
 alias rsssave jsb -p tri.native.run('cat >> ~/.config/newsboat/urls', JS_ARG)
+alias openGithubNotifications composite js Array.from(document.querySelectorAll("li.list-group-item > span:nth-child(1) > a:nth-child(2)")).map(e => e.href) | jsb -p JS_ARG.forEach(url => tri.excmds.tabopen(url))
 
 bind O composite url2args | fillcmdline open
 bind gh followpage prev
@@ -31,17 +32,27 @@ bind <A-v> playAllVideos
 " Bind <A-&..à> to `buffer 1..$` and <A-1..0> to `tabmove 1..$`
 jsb ["&", "é", '"', "'", "(", "-", "è", "_", "ç", "à"].forEach((l, i) => { i = (i == 9 ? 0 : (i + 1)); ["--mode=insert", "--mode=input", "--mode=normal"].forEach(mode => { tri.excmds.bind(mode, `<A-${l}>`, `buffer ${i}`) ; tri.excmds.bind(mode, `<A-${i}>`, `tabmove ${i}`) })})
 jsb ["--mode=insert", "--mode=input", "--mode=normal"].forEach(mode => { tri.excmds.bind(mode, `<A-H>`, `tabmove -1`) ; tri.excmds.bind(mode, `<A-L>`, `tabmove +1`) ; })
-bind --mode=insert      <C-a> text.beginning_of_line
-bind --mode=input       <C-a> text.beginning_of_line
-bind --mode=insert      <C-e> text.end_of_line
-bind --mode=input       <C-e> text.end_of_line
-bind --mode=insert      <C-k> text.kill_line
-bind --mode=input       <C-k> text.kill_line
-bind --mode=insert      <C-u> text.backward_kill_line
-bind --mode=input       <C-u> text.backward_kill_line
-" One day this will work...
-bind --mode=insert      <C-w> text.backward_kill_word
-bind --mode=input       <C-w> text.backward_kill_word
+bind --mode=ex          <C-a>   text.beginning_of_line
+bind --mode=insert      <C-a>   text.beginning_of_line
+bind --mode=input       <C-a>   text.beginning_of_line
+bind --mode=ex          <C-e>   text.end_of_line
+bind --mode=insert      <C-e>   text.end_of_line
+bind --mode=input       <C-e>   text.end_of_line
+bind --mode=ex          <C-k>   text.kill_line
+bind --mode=insert      <C-k>   text.kill_line
+bind --mode=input       <C-k>   text.kill_line
+bind --mode=ex          <C-u>   text.backward_kill_line
+bind --mode=insert      <C-u>   text.backward_kill_line
+bind --mode=input       <C-u>   text.backward_kill_line
+" Requires custom firefox build: https://github.com/glacambre/firefox-patches
+bind --mode=ex          <C-w>   text.backward_kill_word
+bind --mode=insert      <C-w>   text.backward_kill_word
+bind --mode=input       <C-w>   text.backward_kill_word
+
+bind --mode=ex          <C-n>   ex.next_completion
+bind --mode=ex          <C-p>   ex.prev_completion
+bind --mode=ex          <C-y>   ex.insert_completion
+bind --mode=ex          <Tab>   ex.complete
 
 unbind yy
 unbind ys
@@ -49,15 +60,20 @@ unbind yc
 unbind ym
 unbind yt
 unbind --mode=ex <C-c>
+unbind --mode=ex <Space>
 unbind <SA-ArrowUp><SA-ArrowUp><SA-ArrowDown><SA-ArrowDown><SA-ArrowLeft><SA-ArrowRight><SA-ArrowLeft><SA-ArrowRight>ba
 
 bindurl https://github.com/.*/.*/blob f hint -c .blob-num,a
+bindurl https://github.com/notifications <Space><Space> openGithubNotifications
+bindurl youtu((\.be)|(be\.com)) f hint -J
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -J
 
 set allowautofocus false
 set hintchars fdsqjklmrezauiopwxcvghtybn
 set searchengine qwant
 set tabopencontaineraware true
 set rsscmd rsssave %u
+set wordpattern [^\s\/]+
 
 " Disable all searchurls
 jsb Object.keys(tri.config.get("searchurls")).forEach(u => tri.config.set("searchurls", u, '""'))
