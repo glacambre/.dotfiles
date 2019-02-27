@@ -11,7 +11,7 @@ fi
 for URL in "$@"; do
     case "$URL" in
         *youtube.com*|*youtu.be*|*vimeo.com*|*.webm|*.mkv|*.mp4)
-            nohup mpv --no-terminal "$URL" &
+            nohup mpv --no-terminal --profile=protocol.http "$URL" &
             ;;
         *)
             nohup $browser "$URL" 2>/dev/null 1>&2 &
