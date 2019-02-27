@@ -17,6 +17,7 @@
 	pushInsteadOf = "https://github.com/"
 	pushInsteadOf = "git://github.com/"
 [alias]
-	cb = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
+	cb = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d && git remote prune origin
+	stats = !git ls-files | xargs -n1 git blame -w -M -C -C --line-porcelain | sed -n 's/^author //p' | sort -f | uniq -ic | sort -nr
 [diff]
 	algorithm = patience
