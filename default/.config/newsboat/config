@@ -49,8 +49,14 @@ swap-title-and-hints yes
 
 color background        default     default
 color listnormal        default     default
-color listfocus    	    color16     color145
+color listfocus         color16     color145
 color listnormal_unread color111    default
 color listfocus_unread  color16     color145
 color info              color250    color237
 color article           default     default
+
+download-path ~/downloads
+max-downloads 10
+player mpv
+bind-key d pb-delete
+bind-key O pb-download
