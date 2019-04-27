@@ -10,7 +10,7 @@ fi
 
 for URL in "$@"; do
     case "$URL" in
-        *youtube.com*|*youtu.be*|*vimeo.com*|*.webm|*.mkv|*.mp4)
+        *youtube.com*|*youtu.be*|*vimeo.com*|*.webm|*.mkv|*.mp4|*www.franceinter.fr/emissions/*|*/videos/watch/*)
             nohup mpv --no-terminal --profile=protocol.http "$URL" &
             ;;
         *)
