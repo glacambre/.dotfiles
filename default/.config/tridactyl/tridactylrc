@@ -5,7 +5,7 @@ alias tabuniq jsb browser.tabs.query({}).then(tabs => browser.tabs.remove(tabs.f
 alias logall js let l=prompt() ; Object.keys(tri.config.get("logging")).forEach(k => tri.config.set("logging", k, l))
 alias playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
 alias gitclone jsb -p tri.native.run("git clone '" + JS_ARG + "' /home/me/prog/" + JS_ARG.split("/").slice(-1))
-alias rsssave jsb -p tri.native.run('cat >> ~/.config/newsboat/urls', JS_ARG)
+alias rsssave jsb -p tri.native.run('cat >> ~/.config/newsboat/urls', JS_ARG + "\n")
 alias openGithubNotifications composite js Array.from(document.querySelectorAll("li.list-group-item > span:nth-child(1) > a:nth-child(2)")).map(e => e.href) | jsb -p JS_ARG.forEach(url => tri.excmds.tabopen(url))
 
 bind O composite url2args | fillcmdline open
@@ -52,6 +52,7 @@ bind --mode=input       <C-w>   text.backward_kill_word
 bind --mode=ex          <C-n>   ex.next_completion
 bind --mode=ex          <C-p>   ex.prev_completion
 bind --mode=ex          <C-y>   ex.insert_completion
+bind --mode=ex          <C-e>   ex.deselect_completion
 bind --mode=ex          <Tab>   ex.complete
 
 unbind yy
@@ -82,6 +83,7 @@ set searchurls.amazon https://www.amazon.fr/s/ref=nb_sb_noss?field-keywords=%s
 set searchurls.bandcamp https://bandcamp.com/search?q=%s
 set searchurls.cnrtl http://www.cnrtl.fr/lexicographie/%s
 set searchurls.conj http://www.les-verbes.com/conjuguer.php?verbe=%s
+set searchurls.crates https://crates.io/search?q=%s
 set searchurls.ddg https://duckduckgo.com/html?q=%s
 set searchurls.deb https://packages.debian.org/search?keywords=%s&searchon=names&suite=all&section=all
 set searchurls.g https://www.google.com/search?q=%s
@@ -97,6 +99,7 @@ set searchurls.pydoc https://docs.python.org/3/search.html?q=%s
 set searchurls.qwant https://www.qwant.com/?q=%s
 set searchurls.ratp https://www.ratp.fr/itineraires?start=%s1&end=%s2&lieu_depart=&lieu_arrivee=&modes[rail]=rail&modes[metro]=metro&modes[bus]=bus&modes[tram]=tram&itinerary_profile=fastest&op=C%27est+parti
 set searchurls.reddit https://www.reddit.com/r/%s
+set searchurls.rustdoc https://doc.rust-lang.org/std/index.html?search=%s
 set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
 set searchurls.skyt https://www.skytorrents.to/?search=%s
 set searchurls.steam https://store.steampowered.com/search/?term=%s
