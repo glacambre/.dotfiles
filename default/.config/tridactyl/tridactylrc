@@ -67,10 +67,16 @@ unbind --mode=ex <C-c>
 unbind --mode=ex <Space>
 unbind <SA-ArrowUp><SA-ArrowUp><SA-ArrowDown><SA-ArrowDown><SA-ArrowLeft><SA-ArrowRight><SA-ArrowLeft><SA-ArrowRight>ba
 
+bindurl reddit.com <Space><Space> urlmodify -t www old
 bindurl https://github.com/.*/.*/blob f hint -c .blob-num,a
 bindurl https://github.com/notifications <Space><Space> openGithubNotifications
 bindurl youtu((\.be)|(be\.com)) f hint -J
-bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -J
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl lobste.rs f hint -c .headerlinks a, a.u-url, .comments_label a, .comment_text a, a.comment_replier, .story_text a
+bindurl lobste.rs F hint -bc .headerlinks a, a.u-url, .comments_label a, .comment_text a, a.comment_replier, .story_text a
+bindurl lobste.rs gF hint -qbc .headerlinks a, a.u-url, .comments_label a, .comment_text a, a.comment_replier, .story_text a
 
 set allowautofocus false
 set hintchars fdsqjklmrezauiopwxcvghtybn
