@@ -10,6 +10,8 @@ nnoremap <Space>e :earlier<CR>
 nnoremap <Space>l :later<CR>
 " <Space>h opens tag in new horizontal split
 nnoremap <Space>h :stj <C-R>=expand("<cword>")<CR><CR>
+" <Space>x evals the current line
+nnoremap <Space>x :<C-r><C-l><CR>
 
 " wrapped lines: go to next row instead of next line
 nnoremap j gj
