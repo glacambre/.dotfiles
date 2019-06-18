@@ -5,7 +5,12 @@ set showtabline=1                   " Show tabline when there are at least two
 set tabline=%!MyTabLine()           " MyTabLine is defined in functions.vim
 
 set wildmenu                        " Adds the menu at the bottom of the screen
-set wildmode=list:longest,list:full " Wildmenu gives a list of all matches
+if has('nvim-0.4')
+	set wildoptions+=pum        " Cool popup menu
+else
+	set wildmode=list:longest,list:full " Wildmenu gives a list of all matches
+endif
+set wildchar=<C-n>
 set wildignore+=*.o,*.out,*.class   " Ignore certain filetypes
 set wildignore+=*.cmi,*.cmo
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.ico,*.svg,*.xcf
