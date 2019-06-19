@@ -41,7 +41,25 @@ function! Setup_denite_ignores()
 				\  '-path', '*/.cache/*',       '-prune', '-o', '-path', '*/swapdir/*',  '-prune', '-o',
 				\  '-path', '*/.metadata/*',    '-prune', '-o', '-path', '*/.Private/*', '-prune', '-o'] +
 				\ wildignored_patterns + ['-type', 'f', '-print']
-	call denite#custom#var('file_rec', 'command', wildignored_patterns)
+	call denite#custom#var('file/rec', 'command', wildignored_patterns)
+endfunction
+
+function! Setup_denite_settings()
+	call Setup_denite_ignores()
+	function! Setup_denite_mappings()
+		call deoplete#custom#buffer_option("auto_complete", v:false)
+		inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+		inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
+		inoremap <silent><buffer> <C-n> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
+		inoremap <silent><buffer> <C-p> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
+		inoremap <silent><buffer> <C-a> <Home>
+		inoremap <silent><buffer> <C-e> <End>
+		inoremap <silent><buffer> <C-h> <Left>
+		inoremap <silent><buffer> <C-j> <Down>
+		inoremap <silent><buffer> <C-k> <Up>
+		inoremap <silent><buffer> <C-l> <Right>
+	endfunction
+	autocmd FileType denite-filter call Setup_denite_mappings()
 endfunction
 
 " If dein isn't already there, install it
@@ -75,29 +93,15 @@ if dein#load_state(s:bundle_dir)
 				\"})
 	call dein#add('https://github.com/chrisbra/Recover.vim')
 	call dein#add('https://github.com/Shougo/denite.nvim',           {'hook_add': '
-				\  call denite#custom#map("insert", "<C-n>", "<denite:move_to_next_line>", "noremap")
-				\| call denite#custom#map("insert", "<C-p>", "<denite:move_to_previous_line>", "noremap")
-				\| call denite#custom#map("insert", "<C-a>", "<Home>")
-				\| call denite#custom#map("insert", "<C-e>", "<End>")
-				\| call denite#custom#map("insert", "<C-h>", "<Left>")
-				\| call denite#custom#map("insert", "<C-j>", "<Down>")
-				\| call denite#custom#map("insert", "<C-k>", "<Up>")
-				\| call denite#custom#map("insert", "<C-l>", "<Right>")
-				\| execute("nnoremap Z :Denite buffer file_rec file_mru<CR>")
-				\| execute("nnoremap zh :Denite -default_action=split buffer file_rec file_mru<CR>")
-				\| execute("nnoremap zv :Denite -default_action=vsplit buffer file_rec file_mru<CR>")
+				\  call denite#custom#option("default", { "start_filter": 1, "split": "floating" })
+				\| execute("nnoremap Z  :Denite buffer file/rec file_mru<CR>")
+				\| execute("nnoremap zh :Denite -default_action=split buffer file/rec file_mru<CR>")
+				\| execute("nnoremap zv :Denite -default_action=vsplit buffer file/rec file_mru<CR>")
 				\| execute("nnoremap zg :Denite grep:::!<CR>")
 				\| execute("nnoremap zt :Denite outline<CR>")
-				\| call Setup_denite_ignores()'})
+				\| call Setup_denite_settings()
+				\|'})
 	call dein#add('https://github.com/Shougo/neomru.vim',            {'depends': 'denite.nvim'})
-	" Incsearch is a very nice plugin but it breaks macros. Maybe re-enable it
-	" later? https://github.com/haya14busa/incsearch.vim/issues/138
-	"call dein#add('https://github.com/haya14busa/incsearch.vim',    {'hook_add': '
-	"	\ let g:incsearch#auto_nohlsearch = 1
-	"	\| nmap / <Plug>(incsearch-forward)
-	"	\| nmap ? <Plug>(incsearch-backward)
-	"	\| nmap n <Plug>(incsearch-nohl-n)
-	"	\| nmap N <Plug>(incsearch-nohl-N)'})
 
 	" New pending operators, functions and motions
 	call dein#add('https://github.com/tommcdo/vim-exchange')
