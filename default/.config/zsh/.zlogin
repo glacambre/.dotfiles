@@ -12,6 +12,8 @@ else
     then
         # if not running in an ssh connection (= we're in a tty), load custom
         # linux console keymap
-        sudo loadkeys "$HOME/.config/linux-console/keymap"
+        cmd='sudo loadkeys "$HOME/.config/linux-console/keymap"'
+        echo $cmd
+        $cmd
     fi
 fi
