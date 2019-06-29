@@ -13,6 +13,6 @@ case "$swap_partition" in
   *) echo "No swap? $swap_partition"; exit;; # No swap?
 esac
 
-sudo -u me i3lock --ignore-empty-password --show-failed-attempts --color=2d2d2d &
+# sudo -u me i3lock --ignore-empty-password --show-failed-attempts --color=2d2d2d &
 echo "$swap_partition" > /sys/power/resume
 echo "disk" > /sys/power/state
