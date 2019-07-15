@@ -2,4 +2,4 @@ image/*; feh %s
 video/*; mpv %s
 application/pdf; pdftotext %s; test=which pdftotext 2>/dev/null
 application/pdf; mupdf %s
-text/html; elinks -eval "set document.codepage.assume = %{charset}" -localhost -force-html -dump -no-home %s; copiousoutput
+text/html; elinks -config-dir .config/elinks -eval "set document.codepage.assume = %{charset}" -localhost -force-html -dump -no-home %s; copiousoutput
