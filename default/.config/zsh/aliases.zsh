@@ -172,6 +172,7 @@ alias gbg='git bisect good'
 alias gbs='git bisect start'
 alias gbr='git bisect reset'
 alias gc='git commit --edit'
+alias gca='git commit --amend'
 alias gch='git checkout'
 alias gcl='git clone'
 alias gd='git diff'
@@ -180,21 +181,14 @@ alias gf='git fetch -p'
 alias glog='git log --first-parent --graph --abbrev-commit --decorate --date=relative --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'\'' --all'
 alias gm='git merge'
 alias gmv='git mv'
-alias gpu='git pull'
+alias gp='git push'
+alias gpf='git push --force'
 alias gr='git reset'
 alias gre='git rebase'
 alias grec='git rebase --continue'
 alias grea='git rebase --abort'
 alias grm='git rm'
 alias gs='git show'
-
-function gp {
-    if [ $# -eq "0" ]; then
-        git push -u
-    else
-        git push "$@"
-    fi
-}
 
 # Fancy stuff
 if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then
