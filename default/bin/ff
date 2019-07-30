@@ -1,3 +1,12 @@
 #!/bin/sh
 
-rm -rf ~/.mozilla/firefox/normal && cp -r ~/.mozilla/firefox/normal.backup ~/.mozilla/firefox/normal && exec firefox -P normal
+profile="$HOME/.mozilla/firefox/normal"
+backup="$profile.backup"
+
+if [ ! -d "$backup" ] ; then
+        echo "$backup doesn't exist."
+fi
+
+rm -rf "$profile"
+cp -r "$backup" "$profile"
+exec firefox -profile "$profile"
