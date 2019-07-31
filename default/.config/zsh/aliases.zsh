@@ -160,7 +160,7 @@ alias nrb='npm run build'
 alias nrp='npm run pretty'
 
 # Grep
-grepcmd='LC_ALL=C grep --color=auto --exclude-dir=build --exclude-dir=bin --exclude-dir=generated --exclude-dir=node_modules --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg --exclude=package.json --exclude=package-lock.json --exclude=bundle.js.map --exclude-dir=obj-x86_64-pc-linux-gnu --exclude-dir=target --binary-files=without-match --line-number'
+grepcmd='LC_ALL=C grep --color=auto --exclude-dir=build --exclude-dir=bin --exclude-dir=generated --exclude-dir=node_modules --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg --exclude=package.json --exclude=package-lock.json --exclude=yarn.lock --exclude=bundle.js.map --exclude-dir=obj-x86_64-pc-linux-gnu --exclude-dir=target --binary-files=without-match --line-number'
 alias grep="$grepcmd"
 alias gri="$grepcmd -ri"
 
