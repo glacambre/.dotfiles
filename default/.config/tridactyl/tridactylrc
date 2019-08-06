@@ -78,6 +78,8 @@ bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, 
 bindurl lobste.rs f hint -c .headerlinks a, a.u-url, .comments_label a, .comment_text a, a.comment_replier, .story_text a
 bindurl lobste.rs F hint -bc .headerlinks a, a.u-url, .comments_label a, .comment_text a, a.comment_replier, .story_text a
 bindurl lobste.rs gF hint -qbc .headerlinks a, a.u-url, .comments_label a, .comment_text a, a.comment_replier, .story_text a
+bindurl lkml.org/lkml gl js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) + 1].querySelector("a").href
+bindurl lkml.org/lkml gh js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) - 1].querySelector("a").href
 
 set allowautofocus false
 set hintchars fdsqjklmrezauiopwxcvghtybn
