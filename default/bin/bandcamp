@@ -1,0 +1,32 @@
+#!/bin/zsh
+# Unpack all bandcamp archives, group them into artist/album directories, copy
+# to backup directory, convert to opus into $HOME/music
+
+for i in *.zip ; do
+        name="$(basename "$i" | sed s/.zip$//)"
+        artist="$(echo "$name" | sed 's/ \?-.*//')"
+        album="$(echo "$name" | sed 's/[^-]\+- //')"
+        fullname="$artist/$album"
+        homepath="$HOME/music/$fullname"
+        backuppath="/data/media/music/$fullname"
+
+        mkdir -p "$fullname"
+        mkdir -p "$homepath"
+        mkdir -p "$backuppath"
+
+        mv "$i" "$fullname"
+        cd "$fullname" || exit 1
+
+        unzip "$i"
+        mv "$i" ../..
+
+        (
+                for j in **/*.flac ; do
+                        ( ffmpeg -y -i "$j" "$(echo "$homepath/$j" | sed s/.flac$/.opus/)" </dev/null >/dev/null ) &
+                done
+        ) &
+
+        cd ../.. || exit 1
+
+        cp -rf "$fullname"/* "$backuppath"
+done
