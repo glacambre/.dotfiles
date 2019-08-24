@@ -20,14 +20,14 @@ session = /wd/rtorrent.session
 
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = watch_directory,5,5,load_start=/wd/torrents/films/*.torrent
+schedule = watch_directory,5,5,load.start=/wd/torrents/films/*.torrent
 # */
 schedule = untied_directory,5,5,stop_untied=
 schedule = tied_directory,5,5,start_tied=
 
 # Sort torrents per ratio
-view.sort_current = main,greater=d.get_ratio=
-view.sort_new = main,less=d.get_ratio=
+view.sort_current = main,greater=d.ratio=
+view.sort_new = main,less=d.ratio=
 view.sort = main
 
 # Seed to a ratio of at least 2 and then stop.
@@ -42,7 +42,7 @@ port_random = no
 # handle it well.
 check_hash = no
 
-use_udp_trackers = yes
+trackers.use_udp.set = 1
 
 # Allow incoming encrypted connections, try encrypting outgoing
 # connections, if trying o start an encrypted connection fails
@@ -54,4 +54,4 @@ dht = on
 dht_port = 6881
 
 # Enable peer exchange (for torrents not marked private)
-peer_exchange = yes
+protocol.pex.set = 1
