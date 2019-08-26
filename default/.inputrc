@@ -10,6 +10,7 @@ set mark-symlinked-directories on
 set match-hidden-files on
 set page-completions off
 set print-completions-horizontally on
+set revert-all-at-newline on
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 set show-mode-in-prompt on
