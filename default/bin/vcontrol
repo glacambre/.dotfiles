@@ -13,7 +13,8 @@ fi
 
 # Try pulseaudio first
 if command -v pactl >/dev/null 2>/dev/null; then
-    exec pactl set-sink-volume "alsa_output.pci-0000_00_1b.0.analog-stereo" "${symbol}${amount}%"
+    sink_name="$(pactl list | awk '/State: RUNNING/,/Description:/{if ($2 ~ /alsa_output/) {print $2; exit}}')"
+    exec pactl set-sink-volume "$sink_name" "${symbol}${amount}%"
 fi
 
 # Try alsa
