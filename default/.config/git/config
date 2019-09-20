@@ -21,3 +21,6 @@
 	stats = !git ls-files | xargs -n1 git blame -w -M -C -C --line-porcelain | sed -n 's/^author //p' | sort -f | uniq -ic | sort -nr
 [diff]
 	algorithm = patience
+[rerere]
+	enabled = true
+	autoupdate = true
