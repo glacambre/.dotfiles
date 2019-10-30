@@ -154,6 +154,7 @@ setpref browser.feeds.handlers.application "/home/me/bin/add_rss_feed"
 setpref browser.formfill.enable false
 setpref browser.helperApps.deleteTempFileOnExit true
 setpref browser.library.activity-stream.enabled false
+setpref browser.messaging-system.whatsNewPanel.enabled false
 setpref browser.newtab.preload false
 setpref browser.newtab.url "about:blank"
 setpref browser.newtabpage.enabled false
