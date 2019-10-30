@@ -139,6 +139,7 @@ setpref app.normandy.api_url ""
 setpref app.normandy.enabled false
 setpref app.normandy.first_run false
 setpref app.shield.optoutstudies.enabled false
+setpref app.update.enabled false
 setpref beacon.enabled false
 setpref beacon.enabled false
 setpref browser.autofocus false
