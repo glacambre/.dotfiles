@@ -90,8 +90,8 @@ noremap <A-à> 10gt
 " Move tabs by using alt+shift+colnum
 let i = 1
 while i < 10
-    execute('noremap  <silent> <A-' . i . '> :tabm . ' . i . '<CR>')
-    execute('inoremap <silent> <A-' . i . '> :tabm . ' . i . '<CR>')
+    execute('noremap  <silent> <A-' . i . '> :tabm ' . i . '<CR>')
+    execute('inoremap <silent> <A-' . i . '> <Esc>:tabm ' . i . '<CR>')
     let i = i + 1
 endwhile
 
