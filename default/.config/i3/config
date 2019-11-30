@@ -82,7 +82,7 @@ set $wp6 6
 set $wp7 7
 set $wp8 8
 set $wp9 9
-set $wp10 10
+set $wp0 0
 
 # switch to workspace
 bindsym $mod+ampersand  workspace $wp1
@@ -94,7 +94,7 @@ bindsym $mod+minus      workspace $wp6
 bindsym $mod+egrave     workspace $wp7
 bindsym $mod+underscore workspace $wp8
 bindsym $mod+ccedilla   workspace $wp9
-bindsym $mod+agrave     workspace $wp10
+bindsym $mod+agrave     workspace $wp0
 
 # move focused container to workspace
 bindsym $mod+Shift+1        move container to workspace $wp1
@@ -106,7 +106,7 @@ bindsym $mod+Shift+6        move container to workspace $wp6
 bindsym $mod+Shift+egrave   move container to workspace $wp7
 bindsym $mod+Shift+8        move container to workspace $wp8
 bindsym $mod+Shift+ccedilla move container to workspace $wp9
-bindsym $mod+Shift+agrave   move container to workspace $wp10
+bindsym $mod+Shift+agrave   move container to workspace $wp0
 
 # move workspaces around
 bindsym $mod+$mod2+h move workspace to output right
@@ -120,9 +120,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Lock the computer
-bindsym $mod+q       exec i3lock --dpms --inactivity-timeout=10 --ignore-empty-password --show-failed-attempts --color=2d2d2d
+bindsym $mod+q       exec i3lock --ignore-empty-password --show-failed-attempts
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q "exec \"i3-nagbar -t warning -m '' -b '                                  Exit i3                                  ' 'i3-msg exit'\""
+bindsym $mod+Shift+q "exec \"i3-nagbar -t warning -m '' -b 'Exit i3' 'i3-msg exit'\""
 
 # Next song with $mod+n, previous song with $mod+N
 set     $mediaprev    "exec mpc next &"
@@ -153,8 +153,8 @@ bindsym XF86AudioLowerVolume $voldown
 bindsym XF86AudioRaiseVolume $volup
 
 # Mute volume with $mod+m
-bindsym $mod+m        "exec ~/bin/vmute 1"
-bindsym $mod+Shift+m  "exec ~/bin/vmute 0"
+# bindsym $mod+m        "exec ~/bin/vmute 1"
+# bindsym $mod+Shift+m  "exec ~/bin/vmute 0"
 bindsym XF86AudioMute "exec ~/bin/vmute"
 
 # Decrease brightness with $mod+u, increase with $mod+U
