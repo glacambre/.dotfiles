@@ -6,8 +6,10 @@ if [ "$(id -u)" -ne 0 ]; then
   exit
 fi
 
+step=$(($(cat /sys/class/backlight/intel_backlight/max_brightness) / 20))
+
 if [ -e /sys/class/backlight/intel_backlight/brightness ] ; then
-	brightness=$(($(cat /sys/class/backlight/intel_backlight/brightness)+50))
+	brightness=$(($(cat /sys/class/backlight/intel_backlight/brightness)+$step))
 
 	if [ $brightness -lt "$(cat /sys/class/backlight/intel_backlight/max_brightness)" ]
 	then
