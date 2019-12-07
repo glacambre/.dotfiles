@@ -51,7 +51,7 @@ set uncollapse_jump     = yes
 set use_from            = yes
 set use_envelope_from   = yes
 set user_agent          = no
-set wait_key            = yes
+set wait_key            = no
 set weed                = yes
 set wrap_search         = yes
 set xterm_set_titles    = no
@@ -61,7 +61,7 @@ set sidebar_delim_chars   = "/"
 set sidebar_format        = "%B %> %N/%S"
 set sidebar_short_path    = yes
 set sidebar_visible       = yes
-set sidebar_width         = 16
+set sidebar_width         = 18
 
 set nm_record
 set nm_record_tags=sent
