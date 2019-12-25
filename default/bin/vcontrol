@@ -14,7 +14,9 @@ fi
 # Try pulseaudio first
 if command -v pactl >/dev/null 2>/dev/null; then
     sink_name="$(pactl list | awk '/State: RUNNING/,/Description:/{if ($2 ~ /alsa_output/) {print $2; exit}}')"
-    exec pactl set-sink-volume "$sink_name" "${symbol}${amount}%"
+    if [ "$sink_name" != "" ]; then
+        exec pactl set-sink-volume "$sink_name" "${symbol}${amount}%"
+    fi
 fi
 
 # Try alsa
