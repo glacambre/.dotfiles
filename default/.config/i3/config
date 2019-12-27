@@ -21,7 +21,7 @@ font pango:Cousine 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return "exec x-terminal-emulator -e nvim term://zsh &"
+bindsym $mod+Return "exec $HOME/bin/x-terminal-emulator -e $HOME/bin/nvim term://zsh &"
 
 # kill focused window
 bindsym $mod+Shift+A kill
