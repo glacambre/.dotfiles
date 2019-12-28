@@ -83,6 +83,8 @@
 <ucircumflex>:                       "υ"
 <udiaeresis>:                        "Υ"
 
+<questiondown>: "⸮" U2E2E
+
 <dead_circumflex> <minus> <greater>: "→" U2192
 <dead_circumflex> <minus> <less>: "←" U2190
 <dead_circumflex> <less> <minus> <greater>: "↔" U2194
