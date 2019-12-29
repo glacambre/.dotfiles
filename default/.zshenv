@@ -13,6 +13,7 @@ export XDG_DATA_HOME="$HOME/.local/share/"
 export XKB_DEFAULT_LAYOUT="fr-latin9"
 export RXVT_SOCKET="$XDG_DATA_HOME/urxvt/socket"
 export NOTMUCH_CONFIG="$HOME/.config/notmuch/config"
+export WEECHAT_HOME="$HOME/.config/weechat"
 
 ##### LESS VARIABLES
 # Standout
