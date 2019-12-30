@@ -1,6 +1,6 @@
 
 PS1=""
-if [[ "$USER" != 'me' ]]; then
+if [[ "$USER" != 'me' ]] && [[ "$USER" != 'lacambre' ]]; then
     PS1="%n"
 fi
 
