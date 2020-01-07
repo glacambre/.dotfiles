@@ -83,7 +83,7 @@ bindurl lkml.org/lkml gh js let lis = Array.from(document.querySelectorAll(".thr
 
 set allowautofocus false
 set hintchars fdsqjklmrezauiopwxcvghtybn
-set searchengine qwant
+set searchengine g
 set tabopencontaineraware true
 set rsscmd rsssave %u
 set wordpattern [^\s\/]+
