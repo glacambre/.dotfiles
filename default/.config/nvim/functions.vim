@@ -379,3 +379,32 @@ function! SetGCCStyle()
     setlocal formatoptions-=ro formatoptions+=cqlt
   endif
 endfunction
+
+function! FillNeovimIssueTemplate() abort
+  let l:version = ''
+  redir => l:version
+  version
+  redir END
+  let l:version = split(l:version, "\n")[0]
+
+  let l:os = ''
+  redir => l:os
+  execute('!uname -poivrs')
+  redir END
+  let l:os = split(l:os, "\n")[2]
+
+  let l:term = ''
+  redir => l:term
+  execute('!' . $HOME . '/bin/term --version')
+  redir END
+  let l:term = split(l:term, "\n")[2]
+
+  let l:content = join(nvim_buf_get_lines(0, 0, -1, v:false), "\n")
+  let l:version_field = '- `nvim --version`:'
+  let l:content = substitute(l:content, l:version_field, l:version_field . ' ' . l:version, 'g')
+  let l:os_field = '- Operating system/version:'
+  let l:content = substitute(l:content, l:os_field, l:os_field . ' ' . l:os, 'g')
+  let l:term_field = '- Terminal name/version:'
+  let l:content = substitute(l:content, l:term_field, l:term_field . ' ' . l:term, 'g')
+  call nvim_buf_set_lines(0, 0, -1, v:false, split(l:content, "\n"))
+endfunction
