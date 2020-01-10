@@ -1,0 +1,11 @@
+[Plugin]
+Module=startup_queries
+Depends=
+Loader=python3
+Name=Startup queries plugin
+Description=plugin
+Authors=Ghjuvan Lacambre
+Copyright=GPLv3
+Website=
+Help=
+Hidden=false
