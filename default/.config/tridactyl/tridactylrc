@@ -7,6 +7,8 @@ alias playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-w
 alias gitclone jsb -p tri.native.run("git clone '" + JS_ARG + "' /home/me/prog/" + JS_ARG.split("/").slice(-1))
 alias rsssave jsb -p tri.native.run('cat >> ~/.config/newsboat/urls', JS_ARG + "\n")
 alias openGithubNotifications composite js Array.from(document.querySelectorAll("li.list-group-item > span:nth-child(1) > a:nth-child(2)")).map(e => e.href) | jsb -p JS_ARG.forEach(url => tri.excmds.tabopen(url))
+alias tn jsb let a = str.join("").split("/" + "/").slice(-1)[0]; tri.excmds.tabopen(a ? `https://intranet.adacore.com/crm/#/tn/${a}` : `https://intranet.adacore.com/crm/#/Tickets/myTNs`) //
+alias mktn js tri.native.run(`mkdir -v "$HOME/prog/${document.location.href.split("/").slice(-1)[0]}"`).then(r=>Array.from(document.querySelectorAll("#Files a")).forEach(a=>fetch(a.href).then(r=>r.text()).then(t=>tri.native.write(`${r.content.match(/'.*'\n/)[0].slice(1,-2)}/${a.href.split("/").slice(-1)[0]}`,t))))
 
 bind O composite url2args | fillcmdline open
 bind gh followpage prev
