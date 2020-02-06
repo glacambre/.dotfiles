@@ -88,6 +88,7 @@ set hintchars fdsqjklmrezauiopwxcvghtybn
 set searchengine g
 set tabopencontaineraware true
 set rsscmd rsssave %u
+set visualenterauto false
 set wordpattern [^\s\/]+
 
 " Disable all searchurls
