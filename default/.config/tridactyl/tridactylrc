@@ -23,7 +23,7 @@ bind y clipboard yankshort
 bind Y hint -p
 bind v composite hint -pipe a href | exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
 bind V js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
-bind e hint -W js -p tri.native.run(`add-magnet '${JS_ARG}'`)
+bind e hint -W js -p tri.native.run(`$HOME/bin/add-magnet '${JS_ARG}'`)
 bind u undo tab
 bind U undo window
 bind s fillcmdline saveas
