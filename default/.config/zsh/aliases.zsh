@@ -157,6 +157,7 @@ alias ln='nocorrect ln'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv -i'
 alias nrb='npm run build'
+alias nrt='npm run test'
 alias nrp='npm run pretty'
 
 # Grep
