@@ -89,7 +89,7 @@ set visualenterauto false
 set wordpattern [^\s\/]+
 
 " Disable all searchurls
-jsb Object.keys(tri.config.get("searchurls")).forEach(u => tri.config.set("searchurls", u, '""'))
+jsb Object.keys(tri.config.get("searchurls")).forEach(u => tri.config.set("searchurls", u, null))
 " Add our own
 set searchurls.amazon https://www.amazon.fr/s/ref=nb_sb_noss?field-keywords=%s
 set searchurls.bandcamp https://bandcamp.com/search?q=%s
