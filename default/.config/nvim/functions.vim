@@ -131,6 +131,10 @@ function! OnTermOpen()
     " Get max scrollback
     setlocal scrollback=-1
 
+    " Disable scrolloffset because it doesn't work nicely when the cursor is
+    " in a row < to scrolloffset while in terminal mode
+    setlocal scrolloff=0
+
     " When opening a new term, go in insert mode
     startinsert
     let b:should_insert = 1
