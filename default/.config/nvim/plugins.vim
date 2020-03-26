@@ -122,6 +122,7 @@ if dein#load_state(s:bundle_dir)
 				\|     call mkdir(s:tag_dir,             "p")
 				\| endif
 				\| let g:gutentags_enabled = nvim_buf_get_name(nvim_get_current_buf()) !~? "COMMIT_EDITMSG"
+				\| let g:gutentags_exclude_filetypes = ["ada", "typescript"]
 				\| let g:gutentags_project_root = ["build.xml"]
 				\| let g:gutentags_cache_dir = s:tag_dir'})
 
