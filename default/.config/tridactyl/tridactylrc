@@ -103,6 +103,7 @@ set searchurls.gh https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
 set searchurls.gi https://www.google.com/search?q=%s&tbm=isch
 set searchurls.gmaps https://www.google.com/maps/search/%s
 set searchurls.gw https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&search=%s&fulltext=Search
+set searchurls.imdb https://www.imdb.com/find?q=%s
 set searchurls.lqwant https://lite.qwant.com/?q=%s
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js
 set searchurls.monova https://monova.to/search?term=%s
