@@ -18,5 +18,9 @@ set confirm off
 
 winheight src 15
 
+define rf
+        reverse-finish
+end
+
 shell if test -f "$HOME/.config/gdb/.gdbinit.$HOST"; then echo source "$HOME/.config/gdb/.gdbinit.$HOST"; fi > /tmp/gdbinit.tmp
 source /tmp/gdbinit.tmp
