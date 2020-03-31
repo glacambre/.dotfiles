@@ -1,7 +1,8 @@
 #!/bin/sh
 
-xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x712 --rotate normal --output DP-1-1 --mode 2560x1440 --pos 1920x0 --rotate left
 setxkbmap -layout fr-latin9
+xcape -e "Hyper_L=Escape"
+# xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x712 --rotate normal --output DP-1-1 --mode 2560x1440 --pos 1920x0 --rotate left
 left="move workspace to output left"
 right="split vertical; move workspace to output right"
 openterm="exec term -e nvim term://zsh"
@@ -12,7 +13,7 @@ i3-msg "\
         workspace 3; $left; $openterm; \
         workspace 2; $left; $openterm; \
         workspace 1; $left; $openterm; \
-        workspace 0; $right; exec term -e nvim 'term://zsh -c \"neomutt && exec zsh\"';\
+        workspace 0; $right; exec thunderbird;\
         workspace 9; $right; exec x-www-browser; \
         workspace 8; $right; $openterm; \
         workspace 7; $right; $openterm; \
