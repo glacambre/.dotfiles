@@ -161,7 +161,7 @@ alias nrt='npm run test'
 alias nrp='npm run pretty'
 
 # Grep
-grepcmd='LC_ALL=C grep --color=auto --exclude-dir=build --exclude-dir=bin --exclude-dir=generated --exclude-dir=node_modules --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg --exclude=package.json --exclude=package-lock.json --exclude=yarn.lock --exclude=bundle.js.map --exclude-dir=obj-x86_64-pc-linux-gnu --exclude-dir=target --binary-files=without-match --line-number'
+grepcmd='LC_ALL=C grep --color=auto --exclude-dir=build --exclude-dir=bin --exclude-dir=generated --exclude-dir=node_modules --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg --exclude=package.json --exclude=package-lock.json --exclude=yarn.lock --exclude=bundle.js.map --exclude-dir=obj-x86_64-pc-linux-gnu --exclude-dir=target --exclude=.ali --binary-files=without-match --line-number'
 alias grep="$grepcmd"
 alias gri="$grepcmd -ri"
 
@@ -199,11 +199,6 @@ alias gs='git show'
 if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then
     alias less='/usr/share/nvim/runtime/macros/less.sh'
 fi
-gcc_alias='gcc -Wall -Wextra -Wlogical-op -Wjump-misses-init -Wshadow'
-if [[ $(gcc -v 2>&1 | tail -1 | awk '{print $3}') > 6.0.0 ]] ; then
-    gcc_alias="$gcc_alias -Wduplicated-cond -Wduplicated-branches -Wnull-dereference "
-fi
-alias gcc="$gcc_alias"
 
 case "$(uname -a)" in
     *gentoo*) alias i="sudo emerge --ask";
