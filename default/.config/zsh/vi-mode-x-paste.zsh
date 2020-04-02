@@ -1,4 +1,16 @@
-if which "xsel" >/dev/null; then
+GET_PRIMARY="xsel -o -p </dev/null"
+GET_CLIPBOARD="xsel -o -b </dev/null"
+
+which "xsel" >/dev/null
+X_CLIPBOARD_AVAILABLE=$?
+if ! [ "$X_CLIPBOARD_AVAILABLE" = 0 ]; then
+    which "xclip" >/dev/null
+    X_CLIPBOARD_AVAILABLE=$?
+    GET_PRIMARY="xclip -o -selection p </dev/null"
+    GET_CLIPBOARD="xclip -o -selection c </dev/null"
+fi
+
+if [ "$X_CLIPBOARD_AVAILABLE" = 0 ]; then
     bindkey -M vicmd -r '"'
     vi-x-paste-set-buffer () {
         if [ ${REGION_ACTIVE} -eq 1 ]; then
@@ -10,7 +22,7 @@ if which "xsel" >/dev/null; then
         YANK_END=$CURSOR;
     }
     vi-x-paste-primary () {
-        vi-x-paste-set-buffer "$(xsel -o -p </dev/null)" ;
+        vi-x-paste-set-buffer "$(eval "$GET_PRIMARY")" ;
     }
     vi-x-paste-primary-before () {
         vi-x-paste-primary;
@@ -22,7 +34,7 @@ if which "xsel" >/dev/null; then
         vi-x-paste-primary;
     }
     vi-x-paste-clipboard () {
-        vi-x-paste-set-buffer "$(xsel -o -b </dev/null)" ;
+        vi-x-paste-set-buffer "$(eval "$GET_CLIPBOARD")";
     }
     vi-x-paste-clipboard-before () {
         vi-x-paste-clipboard;
@@ -33,23 +45,12 @@ if which "xsel" >/dev/null; then
         fi
         vi-x-paste-clipboard;
     }
-    vi-x-copy-to-clipboard () {
-        if [ ${REGION_ACTIVE} -eq 0 ]; then
-            if [ $CURSOR -lt $MARK ]; then
-                echo "${BUFFER[$(($CURSOR+1)),$(($MARK+1))]}" | xsel --clipboard;
-            else
-                echo "${BUFFER[$(($MARK+1)),$(($CURSOR+1))]}" | xsel --clipboard;
-            fi
-        fi
-    }
     zle -N vi-x-paste-primary-after
     zle -N vi-x-paste-primary-before
     zle -N vi-x-paste-clipboard-after
     zle -N vi-x-paste-clipboard-before
-    zle -N vi-x-copy-to-clipboard
     bindkey -M vicmd '"*p' vi-x-paste-primary-after
     bindkey -M vicmd '"*P' vi-x-paste-primary-before
     bindkey -M vicmd '"+p' vi-x-paste-clipboard-after
     bindkey -M vicmd '"+P' vi-x-paste-clipboard-before
-    bindkey -M vicmd '"+y' vi-x-copy-to-clipboard
 fi
