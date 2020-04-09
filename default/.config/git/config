@@ -8,7 +8,7 @@
 	signingkey = B9625DB1767553AC
 [commit]
 	verbose = true
-	gpgsign = true
+	; gpgsign = true
 [push]
 	default = current
 [log]
