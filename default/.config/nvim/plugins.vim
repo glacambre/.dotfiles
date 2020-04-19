@@ -1,174 +1,140 @@
-" First, setup global variables
-let s:config_dir = substitute(expand('<sfile>:p:h'), '\', '/', 'g')
-let s:bundle_dir = s:config_dir . "/bundle"
-let s:dein_dir = s:bundle_dir . "/repos/github.com/Shougo/dein.vim"
-let s:do_update = 0
+let s:do_update = v:false
+try
+	packadd minpac
+catch
+	exe '!git clone https://github.com/k-takata/minpac.git ' . stdpath('config') . '/pack/minpac/opt/minpac'
+	packadd minpac
+	let s:do_update = v:true
+endtry
+
+call minpac#init()
+
+call minpac#add('https://github.com/k-takata/minpac')
+
+" Enhance terminal
+call minpac#add('https://github.com/glacambre/shelley')
+nnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
+vnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
+nnoremap <silent> <expr> <Space>a shelley#NextPrompt()
+vnoremap <silent> <expr> <Space>a shelley#NextPrompt()
+
+" To be used everywhere, even in terminal
+call minpac#add('https://github.com/kana/vim-submode')
+packadd vim-submode
+let g:submode_timeout = 0
+let g:submode_always_show_submode = 1
+call submode#enter_with('resize', 'n', '', '<C-r>', '<Nop>')
+call submode#map('resize', 'n', '', 'h', '<C-w><')
+call submode#map('resize', 'n', '', 'j', '<C-w>+')
+call submode#map('resize', 'n', '', 'k', '<C-w>-')
+call submode#map('resize', 'n', '', 'l', '<C-w>>')
+
+call minpac#add('https://github.com/chrisbra/Recover.vim')
+
+call minpac#add('https://github.com/Shougo/denite.nvim')
+packadd denite.nvim
+call denite#custom#option("default", { "start_filter": 1, "split": "floating" })
+nnoremap Z  :Denite buffer file/rec file_mru<CR>
+nnoremap zh :Denite -default_action=split buffer file/rec file_mru<CR>
+nnoremap zv :Denite -default_action=vsplit buffer file/rec file_mru<CR>
+nnoremap zg :Denite grep:::!<CR>
+nnoremap zt :Denite outline<CR>
+" Add wildignored patterns to denite's ignored patterns
+let wildignored_patterns = []
+for elem in split(&wildignore, ',')
+	let wildignored_patterns += ['-iname', elem, '-prune', '-o']
+endfor
+let wildignored_patterns = ['find', '-L', ':directory', '-type', 'd', '!', '-executable', '-prune', '-o',
+	\  '-path', '*/.git/*',         '-prune', '-o', '-path', '*/.hg/*',      '-prune', '-o',
+	\  '-path', '*/.bzr/*',         '-prune', '-o', '-path', '*/.svn/*',     '-prune', '-o',
+	\  '-path', '*/undodir/*',      '-prune', '-o', '-path', '*/images/*',   '-prune', '-o',
+	\  '-path', '*/fonts/*',        '-prune', '-o', '-path', '*/music/*',    '-prune', '-o',
+	\  '-path', '*/img/*',          '-prune', '-o', '-path', '*/.mozilla/*', '-prune', '-o',
+	\  '-path', '*/node_modules/*', '-prune', '-o', '-path', '*/img/*',      '-prune', '-o',
+	\  '-path', '*/bundle/*',       '-prune', '-o', '-path', '*/spell/*',    '-prune', '-o',
+	\  '-path', '*/.cache/*',       '-prune', '-o', '-path', '*/swapdir/*',  '-prune', '-o',
+	\  '-path', '*/.metadata/*',    '-prune', '-o', '-path', '*/.Private/*', '-prune', '-o'] +
+	\ wildignored_patterns + ['-type', 'f', '-print']
+call denite#custom#var('file/rec', 'command', wildignored_patterns)
+function! Setup_denite_mappings()
+	inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+	inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
+	inoremap <silent><buffer> <C-n> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
+	inoremap <silent><buffer> <C-p> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
+	inoremap <silent><buffer> <C-a> <Home>
+	inoremap <silent><buffer> <C-e> <End>
+	inoremap <silent><buffer> <C-h> <Left>
+	inoremap <silent><buffer> <C-j> <Down>
+	inoremap <silent><buffer> <C-k> <Up>
+	inoremap <silent><buffer> <C-l> <Right>
+endfunction
+autocmd FileType denite-filter call Setup_denite_mappings()
+
+call minpac#add('https://github.com/Shougo/neomru.vim')
+
+" New pending operators, functions and motions
+call minpac#add('https://github.com/tommcdo/vim-exchange')
+call minpac#add('https://github.com/tpope/vim-commentary.git')
+call minpac#add('https://github.com/tpope/vim-repeat')
+call minpac#add('https://github.com/tpope/vim-surround')
+call minpac#add('https://github.com/wellle/targets.vim')
+call minpac#add('https://github.com/junegunn/vim-easy-align')
+nmap ga <Plug>(EasyAlign)
+vmap ga <Plug>(EasyAlign)
+
+" New text objects
+call minpac#add('https://github.com/kana/vim-textobj-user')
+call minpac#add('https://github.com/thinca/vim-textobj-between')
+call minpac#add('https://github.com/glts/vim-textobj-comment')
+call minpac#add('https://github.com/kana/vim-textobj-entire')
+call minpac#add('https://github.com/Julian/vim-textobj-variable-segment')
+call minpac#add('https://github.com/rbonvall/vim-textobj-latex')
+omap iE <Plug>(textobj-latex-environment-i)
+xmap iE <Plug>(textobj-latex-environment-i)
+omap aE <Plug>(textobj-latex-environment-a)
+xmap aE <Plug>(textobj-latex-environment-a)
 
 " Vim-polyglot
 let g:polyglot_disabled = ["graphql"]
+let g:LatexBox_no_mappings = 1
+call minpac#add('https://github.com/sheerun/vim-polyglot')
+call minpac#add('https://github.com/shiracamus/vim-syntax-x86-objdump-d')
 
-" Neosnippet
-let g:neosnippet#snippets_directory= [s:config_dir . '/custom_snippets', s:bundle_dir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets']
+" Completes 'if' with 'endif', opening brackets with closing brackets...
+call minpac#add('https://github.com/rstacruz/vim-closer.git')
+call minpac#add('https://github.com/tpope/vim-endwise')
 
-" Denite
-function! Setup_denite_ignores()
-	" Add wildignored patterns to denite's ignored patterns
-	let wildignored_patterns = []
-	for elem in split(&wildignore, ',')
-		let wildignored_patterns += ['-iname', elem, '-prune', '-o']
-	endfor
-	let wildignored_patterns = ['find', '-L', ':directory', '-type', 'd', '!', '-executable', '-prune', '-o',
-				\  '-path', '*/.git/*',         '-prune', '-o', '-path', '*/.hg/*',      '-prune', '-o',
-				\  '-path', '*/.bzr/*',         '-prune', '-o', '-path', '*/.svn/*',     '-prune', '-o',
-				\  '-path', '*/undodir/*',      '-prune', '-o', '-path', '*/images/*',   '-prune', '-o',
-				\  '-path', '*/fonts/*',        '-prune', '-o', '-path', '*/music/*',    '-prune', '-o',
-				\  '-path', '*/img/*',          '-prune', '-o', '-path', '*/.mozilla/*', '-prune', '-o',
-				\  '-path', '*/node_modules/*', '-prune', '-o', '-path', '*/img/*',      '-prune', '-o',
-				\  '-path', '*/bundle/*',       '-prune', '-o', '-path', '*/spell/*',    '-prune', '-o',
-				\  '-path', '*/.cache/*',       '-prune', '-o', '-path', '*/swapdir/*',  '-prune', '-o',
-				\  '-path', '*/.metadata/*',    '-prune', '-o', '-path', '*/.Private/*', '-prune', '-o'] +
-				\ wildignored_patterns + ['-type', 'f', '-print']
-	call denite#custom#var('file/rec', 'command', wildignored_patterns)
-endfunction
+" Configures indentation settings
+call minpac#add('https://github.com/tpope/vim-sleuth.git')
 
-function! Setup_denite_settings()
-	call Setup_denite_ignores()
-	function! Setup_denite_mappings()
-		inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
-		inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
-		inoremap <silent><buffer> <C-n> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
-		inoremap <silent><buffer> <C-p> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
-		inoremap <silent><buffer> <C-a> <Home>
-		inoremap <silent><buffer> <C-e> <End>
-		inoremap <silent><buffer> <C-h> <Left>
-		inoremap <silent><buffer> <C-j> <Down>
-		inoremap <silent><buffer> <C-k> <Up>
-		inoremap <silent><buffer> <C-l> <Right>
-	endfunction
-	autocmd FileType denite-filter call Setup_denite_mappings()
-endfunction
+" Git gud
+call minpac#add('https://github.com/tpope/vim-fugitive')
 
-" If dein isn't already there, install it
-if !isdirectory(s:dein_dir)
-	call mkdir(fnamemodify(s:dein_dir, "h"), "p")
-	execute '!git clone --depth 1 --branch master "https://github.com/Shougo/dein.vim" "' . s:dein_dir . '"'
-	let s:do_update = 1
-endif
-execute("set runtimepath+=" . s:dein_dir)
-
-if dein#load_state(s:bundle_dir)
-	call dein#begin(s:bundle_dir)
-	call dein#add('https://github.com/Shougo/dein.vim',   {'hook_done_update': 'execute "UpdateRemotePlugins"'})
-
-	" Enhance terminal
-	call dein#add('https://github.com/glacambre/shelley', {'hook_add': '
-				\  nnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
-				\| vnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
-				\| nnoremap <silent> <expr> <Space>a shelley#NextPrompt()
-				\| vnoremap <silent> <expr> <Space>a shelley#NextPrompt()'})
-
-	" To be used everywhere, even in terminal
-	call dein#add('https://github.com/kana/vim-submode',             {'hook_add': "
-				\  let g:submode_timeout = 0
-				\| let g:submode_always_show_submode = 1
-				\| call submode#enter_with('resize', 'n', '', '<C-r>', '<Nop>')
-				\| call submode#map('resize', 'n', '', 'h', '<C-w><')
-				\| call submode#map('resize', 'n', '', 'j', '<C-w>+')
-				\| call submode#map('resize', 'n', '', 'k', '<C-w>-')
-				\| call submode#map('resize', 'n', '', 'l', '<C-w>>')
-				\"})
-	call dein#add('https://github.com/chrisbra/Recover.vim')
-	call dein#add('https://github.com/Shougo/denite.nvim',           {'hook_add': '
-				\  call denite#custom#option("default", { "start_filter": 1, "split": "floating" })
-				\| execute("nnoremap Z  :Denite buffer file/rec file_mru<CR>")
-				\| execute("nnoremap zh :Denite -default_action=split buffer file/rec file_mru<CR>")
-				\| execute("nnoremap zv :Denite -default_action=vsplit buffer file/rec file_mru<CR>")
-				\| execute("nnoremap zg :Denite grep:::!<CR>")
-				\| execute("nnoremap zt :Denite outline<CR>")
-				\| call Setup_denite_settings()
-				\|'})
-	call dein#add('https://github.com/Shougo/neomru.vim',            {'depends': 'denite.nvim'})
-
-	" New pending operators, functions and motions
-	call dein#add('https://github.com/tommcdo/vim-exchange')
-	call dein#add('https://github.com/tpope/vim-commentary.git')
-	call dein#add('https://github.com/tpope/vim-repeat')
-	call dein#add('https://github.com/tpope/vim-surround')
-	call dein#add('https://github.com/wellle/targets.vim')
-	call dein#add('https://github.com/junegunn/vim-easy-align', {'hook_add': 'nmap ga <Plug>(EasyAlign) | vmap ga <Plug>(EasyAlign)' })
-
-	" New text objects
-	call dein#add('https://github.com/kana/vim-textobj-user')
-        call dein#add('https://github.com/thinca/vim-textobj-between',          {'depends': 'vim-textobj-user'})
-        call dein#add('https://github.com/glts/vim-textobj-comment',            {'depends': 'vim-textobj-user'})
-        call dein#add('https://github.com/kana/vim-textobj-entire',             {'depends': 'vim-textobj-user'})
-        call dein#add('https://github.com/Julian/vim-textobj-variable-segment', {'depends': 'vim-textobj-user'})
-        call dein#add('https://github.com/rbonvall/vim-textobj-latex',          {'depends': 'vim-textobj-user', 'hook_add': '
-				\  omap iE <Plug>(textobj-latex-environment-i)
-				\| xmap iE <Plug>(textobj-latex-environment-i)
-				\| omap aE <Plug>(textobj-latex-environment-a)
-				\| xmap aE <Plug>(textobj-latex-environment-a)'})
-
-	" Tags generation
-	call dein#add('https://github.com/ludovicchabant/vim-gutentags', {
-				\ 'if': 'executable("ctags")',
-				\ 'hook_add': '
-				\  let s:xdg_data_home = $XDG_DATA_HOME
-				\| if s:xdg_data_home == ""
-				\|     let s:xdg_data_home = $HOME . "/.local/share"
-				\| endif
-				\| let s:tag_dir = s:xdg_data_home . "/nvim/tags"
-				\| if !isdirectory(s:tag_dir)
-				\|     call mkdir(s:tag_dir,             "p")
-				\| endif
-				\| let g:gutentags_enabled = nvim_buf_get_name(nvim_get_current_buf()) !~? "COMMIT_EDITMSG"
-				\| let g:gutentags_exclude_filetypes = ["ada", "typescript"]
-				\| let g:gutentags_project_root = ["build.xml"]
-				\| let g:gutentags_cache_dir = s:tag_dir'})
-
-	" Snippets plugins
-	call dein#add('https://github.com/Shougo/neosnippet.vim', {'hook_add': "
-				\  execute(\"imap <expr> <Tab> neosnippet#expandable_or_jumpable() ? '\\<Plug>(neosnippet_jump_or_expand)' : '\\<Tab>'\")
-				\| let g:neosnippet#disable_runtime_snippets = {'_' : 1}"})
-	call dein#add('https://github.com/Shougo/neosnippet-snippets')
-
-	" Automatically build files and show errors
-	call dein#add('https://github.com/neomake/neomake', {'hook_add': "
-				\  let g:neomake_error_sign   = {'text': '»', 'texthl': 'NeomakeErrorSign'}
-				\| let g:neomake_warning_sign = {'text': '»', 'texthl': 'NeomakeWarningSign'}
-				\| let g:neomake_message_sign = {'text': '»', 'texthl': 'NeomakeMessageSign'}
-				\| let g:neomake_info_sign    = {'text': '»', 'texthl': 'NeomakeInfoSign'}
-				\| let g:neomake_tex_enabled_makers = ['pdflatex']
-				\| au BufWritePost * Neomake
-				\| au User NeomakeFinished call UpdateLatexPdfDisplay()"})
-
-	" Echoes documentation in the command line when possible
-	call dein#add('https://github.com/Shougo/echodoc.vim', {'hook_add': 'let g:echodoc_enable_at_startup = 1'})
-
-	" Various language-specific plugins
-	call dein#add('https://github.com/sheerun/vim-polyglot', {'hook_add': 'let g:LatexBox_no_mappings = 1'})
-	call dein#add('https://github.com/shiracamus/vim-syntax-x86-objdump-d')
-	call dein#add('https://github.com/ap/vim-css-color')
-
-	" Completes 'if' with 'endif', opening brackets with closing brackets...
-	call dein#add('https://github.com/rstacruz/vim-closer.git')
-	call dein#add('https://github.com/tpope/vim-endwise')
-
-	" Configures indentation settings
-	call dein#add('https://github.com/tpope/vim-sleuth.git')
-
-	" Rainbow parentheses
-	call dein#add('https://github.com/kien/rainbow_parentheses.vim', {'hook_add': 'au BufEnter *.{clj,cljc} execute("RainbowParenthesesActivate") 
-				\| execute("RainbowParenthesesLoadRound")
-				\| execute("RainbowParenthesesLoadSquare")'})
-
-	" Git gud
-	call dein#add('https://github.com/tpope/vim-fugitive', {'on_path': '^\(.*term:\/\/\)\@!.*$'})
-
-	call dein#end()
-	call dein#save_state()
-endif
+" Default LSP configs
+call minpac#add('https://github.com/neovim/nvim-lsp')
+packadd nvim-lsp
+lua << END
+local l = require("nvim_lsp")
+local function nnoremap(keys, command)
+	vim.api.nvim_command("nnoremap <buffer> <silent> " .. keys
+		.. " <cmd>lua " .. command .. "()<CR>")
+end
+local function setup_lsp_settings()
+	nnoremap("gd", "vim.lsp.buf.declaration")
+	nnoremap("<c-]>", "vim.lsp.buf.definition")
+	nnoremap("K", "vim.lsp.buf.hover")
+	nnoremap("gD", "vim.lsp.buf.implementation")
+	nnoremap("<c-k>", "vim.lsp.buf.signature_help")
+	nnoremap("1gD", "vim.lsp.buf.type_definition")
+	nnoremap("gr", "vim.lsp.buf.references")
+	nnoremap("g0", "vim.lsp.buf.document_symbol")
+	vim.api.nvim_command("inoremap <C-n> <C-x><C-o>")
+	vim.api.nvim_command("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
+end
+l.clangd.setup{ on_attach = setup_lsp_settings }
+l.tsserver.setup{ on_attach = setup_lsp_settings }
+END
 
 if s:do_update
-	call dein#update()
-endif
+	call minpac#update()
+end
