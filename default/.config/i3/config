@@ -152,11 +152,6 @@ bindsym $mod+Shift+i         $volup
 bindsym XF86AudioLowerVolume $voldown
 bindsym XF86AudioRaiseVolume $volup
 
-# Mute volume with $mod+m
-# bindsym $mod+m        "exec ~/bin/vmute 1"
-# bindsym $mod+Shift+m  "exec ~/bin/vmute 0"
-bindsym XF86AudioMute "exec ~/bin/vmute"
-
 # Decrease brightness with $mod+u, increase with $mod+U
 set     $brightdown           "exec sudo -A ~/bin/bdown"
 set     $brightup             "exec sudo -A ~/bin/bup"
@@ -196,7 +191,6 @@ for_window [class="mpv"]                    floating enable
 for_window [class="arandr"]                 floating enable
 for_window [class="Arandr"]                 floating enable
 for_window [class="Screenkey"]              floating enable
-for_window [class="VirtualBox"]             floating enable
 for_window [class="Lxappearance"]           floating enable
 for_window [class="Floating Xterm"]         floating enable
 for_window [title="Pentadactyledit"]        floating enable
