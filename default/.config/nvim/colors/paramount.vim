@@ -163,7 +163,6 @@ call s:h("DiffDelete",    {"fg": s:red})
 call s:h("diffRemoved",   {"fg": s:red})
 call s:h("DiffChange",    {"fg": s:dark_yellow})
 call s:h("DiffText",      {"fg": s:dark_blue})
-call s:h("SignColumn",    {"fg": s:light_green})
 
 if has("gui_running")
   call s:h("SpellBad",    {"gui": "underline", "sp": s:red})
@@ -208,3 +207,10 @@ hi link GitGutterChange             LineNr
 hi link GitGutterChangeDelete       LineNr
 hi NeomakeErrorSign   ctermfg=1    ctermbg=none cterm=none
 hi NeomakeWarningSign ctermfg=5    ctermbg=none cterm=none
+
+" Signcolumn
+call s:h("SignColumn",                    {"bg": s:lightest_gray})
+call s:h("LspDiagnosticsErrorSign",       {"fg": s:red,    "bg": s:lightest_gray})
+call s:h("LspDiagnosticsWarningSign",     {"fg": s:purple, "bg": s:lightest_gray})
+call s:h("LspDiagnosticsInformationSign", {"fg": s:cyan,   "bg": s:lightest_gray})
+call s:h("LspDiagnosticsHintSign",        {"fg": s:light_black,  "bg": s:lightest_gray})
