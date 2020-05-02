@@ -49,6 +49,9 @@ bind --mode=input       <C-k>   text.kill_line
 bind --mode=ex          <C-u>   text.backward_kill_line
 bind --mode=insert      <C-u>   text.backward_kill_line
 bind --mode=input       <C-u>   text.backward_kill_line
+bind --mode=ex          <C-V>   composite getclip selection | text.insert_text
+bind --mode=insert      <C-V>   composite getclip selection | text.insert_text
+bind --mode=input       <C-V>   composite getclip selection | text.insert_text
 " Requires custom firefox build: https://github.com/glacambre/firefox-patches
 bind --mode=ex          <C-w>   text.backward_kill_word
 bind --mode=insert      <C-w>   text.backward_kill_word
