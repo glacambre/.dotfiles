@@ -171,6 +171,38 @@ bindsym --release Print "exec scrot -s ~/pictures/screenshot_%Y-%m-%d-%T.png"
 # create resize mode, lets you resize with hjkl
 set $resize_mode "resize"
 mode $resize_mode {
+        set $notify_resize_mode "exec notify-send 'Resize Mode is active.'"
+        bindsym a $notify_resize_mode
+        bindsym z $notify_resize_mode
+        bindsym e $notify_resize_mode
+        bindsym t $notify_resize_mode
+        bindsym q $notify_resize_mode
+        bindsym s $notify_resize_mode
+        bindsym f $notify_resize_mode
+        bindsym g $notify_resize_mode
+        bindsym m $notify_resize_mode
+        bindsym w $notify_resize_mode
+        bindsym x $notify_resize_mode
+        bindsym c $notify_resize_mode
+        bindsym v $notify_resize_mode
+        bindsym b $notify_resize_mode
+        bindsym n $notify_resize_mode
+        bindsym A $notify_resize_mode
+        bindsym Z $notify_resize_mode
+        bindsym E $notify_resize_mode
+        bindsym T $notify_resize_mode
+        bindsym Q $notify_resize_mode
+        bindsym S $notify_resize_mode
+        bindsym F $notify_resize_mode
+        bindsym G $notify_resize_mode
+        bindsym M $notify_resize_mode
+        bindsym W $notify_resize_mode
+        bindsym X $notify_resize_mode
+        bindsym C $notify_resize_mode
+        bindsym V $notify_resize_mode
+        bindsym B $notify_resize_mode
+        bindsym N $notify_resize_mode
+
         bindsym u resize shrink width  20 px or 20 ppt
         bindsym i resize grow   height 20 px or 20 ppt
         bindsym o resize shrink height 20 px or 20 ppt
@@ -193,7 +225,6 @@ for_window [class="Arandr"]                 floating enable
 for_window [class="Screenkey"]              floating enable
 for_window [class="Lxappearance"]           floating enable
 for_window [class="Floating Xterm"]         floating enable
-for_window [title="Pentadactyledit"]        floating enable
 for_window [title="Terminator Preferences"] floating enable
 
 exec --no-startup-id ~/.config/i3/i3-startup
