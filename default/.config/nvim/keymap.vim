@@ -1,17 +1,17 @@
 " <Space>twice disables highlighting of currently matched search pattern
 nnoremap <Space><Space> :nohlsearch<CR>
-" <Space>n goes to the next quickfix item
-nnoremap <Space>n :lnext<CR>
-" <Space>p goes to the previous quickfix item
-nnoremap <Space>p :lprev<CR>
-" <Space>e goes to the earlier version of the buffer
-nnoremap <Space>e :earlier<CR>
-" <Space>l goes to the later version of the buffer
-nnoremap <Space>l :later<CR>
-" <Space>h opens tag in new horizontal split
-nnoremap <Space>h :stj <C-R>=expand("<cword>")<CR><CR>
-" <Space>x evals the current line
-nnoremap <Space>x :<C-r><C-l><CR>
+" Close quickfix/location list
+nnoremap <Space>qc :ccl<CR>
+nnoremap <Space>lc :lcl<CR>
+" Next/previous item in the quickfix list
+nnoremap <Space>qn :qnext<CR>
+nnoremap <Space>qp :qprev<CR>
+" Next/previous item in the location list
+nnoremap <Space>ln :lnext<CR>
+nnoremap <Space>lp :lprev<CR>
+" Earlier/later item in the undo list
+nnoremap <Space>ue :earlier<CR>
+nnoremap <Space>ul :later<CR>
 
 " wrapped lines: go to next row instead of next line
 nnoremap j gj
