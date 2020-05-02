@@ -128,3 +128,6 @@ inoremap <expr><C-d> strcharpart(getline('.')[col('.') - 1:], 0, 1) == ' ' ? "\<
 
 " Make backspace delete characters in normal mode
 nnoremap <Backspace> hx
+
+" Open current url/file (same as Netrw, without the awful file browser)
+nnoremap gx :execute('silent! !xdg-open ' . expand('<cfile>'))<CR>
