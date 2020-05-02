@@ -192,6 +192,7 @@ alias gre='git rebase'
 alias grea='git rebase --abort'
 alias grec='git rebase --continue'
 alias greom='git rebase origin/master'
+alias greum='git rebase upstream/master'
 alias grm='git rm'
 alias gs='git show'
 
