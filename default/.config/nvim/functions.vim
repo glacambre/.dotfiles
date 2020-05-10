@@ -121,11 +121,13 @@ function! OnTermOpen()
     " When leaving a term buffer, remember whether it was in insert or normal
     " mode. When entering a terminal window/buffer, go in insert mode if the
     " term was in insert mode.
-    let b:should_insert = 1
+    au TermEnter <buffer> let b:should_insert = 1
     au BufEnter <buffer> if b:should_insert == 1 | startinsert | endif
-    au BufLeave <buffer> stopinsert
-    nnoremap <buffer> <silent> a :set laststatus=1<CR>:let b:should_insert = 1<CR>a
-    nnoremap <buffer> <silent> i :set laststatus=1<CR>:let b:should_insert = 1<CR>i
+
+    " When there is a single window and it's a terminal, don't display the
+    " statusline in terminal mode. This saves a line of space.
+    au TermEnter <buffer> if len(nvim_list_wins()) == 1 | set laststatus=1 | endif
+    au TermLeave <buffer> set laststatus=2
 
     " Get max scrollback
     setlocal scrollback=-1
