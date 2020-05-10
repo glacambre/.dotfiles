@@ -125,8 +125,5 @@ inoremap <C-f> <C-o>e
 " Insert mode: delete following word
 inoremap <expr><C-d> strcharpart(getline('.')[col('.') - 1:], 0, 1) == ' ' ? "\<C-o>d2w" : "\<C-o>dw"
 
-" Make backspace delete characters in normal mode
-nnoremap <Backspace> hx
-
 " Open current url/file (same as Netrw, without the awful file browser)
 nnoremap gx <Cmd>execute('silent! !xdg-open ' . expand('<cfile>'))<CR>
