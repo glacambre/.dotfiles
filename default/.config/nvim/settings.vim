@@ -1,5 +1,8 @@
 set encoding=utf-8
 
+" Load 'colors/colors.vim'
+let g:colors_name='colors'
+
 set tabpagemax=9                    " Have a maximum of 9 tabs open at all time
 set showtabline=1                   " Show tabline when there are at least two
 set tabline=%!MyTabLine()           " MyTabLine is defined in functions.vim
