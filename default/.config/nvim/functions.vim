@@ -113,7 +113,10 @@ endfunction
 " Called when a new term is created
 function! OnTermOpen()
     " Use a pretty name for the buffer
-    execute("file " . substitute(expand("%"), "term://.//", "", ""))
+    " Note: important to have the program name first and the pid second to
+    " allow shada to ignore zsh buffers!
+    let l:prog_pid = split(substitute(expand("%"), "term://.//", "", ""), ':')
+    execute("file " . prog_pid[-1] . ':' . prog_pid[0])
 
     " When leaving a term buffer, remember whether it was in insert or normal
     " mode. When entering a terminal window/buffer, go in insert mode if the

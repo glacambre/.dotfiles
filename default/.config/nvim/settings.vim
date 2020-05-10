@@ -3,6 +3,11 @@ set encoding=utf-8
 " Load 'colors/colors.vim'
 let g:colors_name='colors'
 
+" Choose what should be saved in the Shada file
+" We use a very small number ('10) to make neovim startup faster and try to be
+" smart about what files we keep.
+set shada='10,:10,/10,f0,r/home/me/zsh:,r/tmp,r/run/user/1000/firenvim
+
 set tabpagemax=9                    " Have a maximum of 9 tabs open at all time
 set showtabline=1                   " Show tabline when there are at least two
 set tabline=%!MyTabLine()           " MyTabLine is defined in functions.vim
