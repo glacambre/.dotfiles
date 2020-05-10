@@ -1,3 +1,4 @@
+
 let s:do_update = v:false
 try
 	packadd minpac
@@ -20,55 +21,65 @@ vnoremap <silent> <expr> <Space>a shelley#NextPrompt()
 
 " To be used everywhere, even in terminal
 call minpac#add('https://github.com/kana/vim-submode')
-packadd vim-submode
-let g:submode_timeout = 0
-let g:submode_always_show_submode = 1
-call submode#enter_with('resize', 'n', '', '<C-r>', '<Nop>')
-call submode#map('resize', 'n', '', 'h', '<C-w><')
-call submode#map('resize', 'n', '', 'j', '<C-w>+')
-call submode#map('resize', 'n', '', 'k', '<C-w>-')
-call submode#map('resize', 'n', '', 'l', '<C-w>>')
+function SetupResizeSubmode() abort
+	let g:submode_timeout = 0
+	let g:submode_always_show_submode = 1
+	call submode#enter_with('resize', 'n', '', '<C-r>', '<Nop>')
+	call submode#map('resize', 'n', '', 'h', '<C-w><')
+	call submode#map('resize', 'n', '', 'j', '<C-w>+')
+	call submode#map('resize', 'n', '', 'k', '<C-w>-')
+	call submode#map('resize', 'n', '', 'l', '<C-w>>')
+	call nvim_input('<C-r>')
+endfunction
+nnoremap <C-r> <Cmd>call SetupResizeSubmode()<CR>
 
 call minpac#add('https://github.com/chrisbra/Recover.vim')
 
 call minpac#add('https://github.com/Shougo/denite.nvim')
-packadd denite.nvim
-call denite#custom#option("default", { "start_filter": 1, "split": "floating" })
-nnoremap Z  :Denite buffer file/rec file_mru<CR>
-nnoremap zh :Denite -default_action=split buffer file/rec file_mru<CR>
-nnoremap zv :Denite -default_action=vsplit buffer file/rec file_mru<CR>
-nnoremap zg :Denite grep:::!<CR>
-nnoremap zt :Denite outline<CR>
-" Add wildignored patterns to denite's ignored patterns
-let wildignored_patterns = []
-for elem in split(&wildignore, ',')
-	let wildignored_patterns += ['-iname', elem, '-prune', '-o']
-endfor
-let wildignored_patterns = ['find', '-L', ':directory', '-type', 'd', '!', '-executable', '-prune', '-o',
-	\  '-path', '*/.git/*',         '-prune', '-o', '-path', '*/.hg/*',      '-prune', '-o',
-	\  '-path', '*/.bzr/*',         '-prune', '-o', '-path', '*/.svn/*',     '-prune', '-o',
-	\  '-path', '*/undodir/*',      '-prune', '-o', '-path', '*/images/*',   '-prune', '-o',
-	\  '-path', '*/fonts/*',        '-prune', '-o', '-path', '*/music/*',    '-prune', '-o',
-	\  '-path', '*/img/*',          '-prune', '-o', '-path', '*/.mozilla/*', '-prune', '-o',
-	\  '-path', '*/node_modules/*', '-prune', '-o', '-path', '*/img/*',      '-prune', '-o',
-	\  '-path', '*/bundle/*',       '-prune', '-o', '-path', '*/spell/*',    '-prune', '-o',
-	\  '-path', '*/.cache/*',       '-prune', '-o', '-path', '*/swapdir/*',  '-prune', '-o',
-	\  '-path', '*/.metadata/*',    '-prune', '-o', '-path', '*/.Private/*', '-prune', '-o'] +
-	\ wildignored_patterns + ['-type', 'f', '-print']
-call denite#custom#var('file/rec', 'command', wildignored_patterns)
-function! Setup_denite_mappings()
-	inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
-	inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
-	inoremap <silent><buffer> <C-n> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
-	inoremap <silent><buffer> <C-p> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
-	inoremap <silent><buffer> <C-a> <Home>
-	inoremap <silent><buffer> <C-e> <End>
-	inoremap <silent><buffer> <C-h> <Left>
-	inoremap <silent><buffer> <C-j> <Down>
-	inoremap <silent><buffer> <C-k> <Up>
-	inoremap <silent><buffer> <C-l> <Right>
+function! SetupDenite(key)
+	call denite#custom#option("default", { "start_filter": 1, "split": "floating" })
+	nnoremap Z  <Cmd>Denite buffer file/rec file_mru<CR>
+	nnoremap zh <Cmd>Denite -default_action=split buffer file/rec file_mru<CR>
+	nnoremap zv <Cmd>Denite -default_action=vsplit buffer file/rec file_mru<CR>
+	nnoremap zg <Cmd>Denite grep:::!<CR>
+	nnoremap zt <Cmd>Denite outline<CR>
+	" Add wildignored patterns to denite's ignored patterns
+	let wildignored_patterns = []
+	for elem in split(&wildignore, ',')
+		let wildignored_patterns += ['-iname', elem, '-prune', '-o']
+	endfor
+	let wildignored_patterns = ['find', '-L', ':directory', '-type', 'd', '!', '-executable', '-prune', '-o',
+		\  '-path', '*/.git/*',         '-prune', '-o', '-path', '*/.hg/*',      '-prune', '-o',
+		\  '-path', '*/.bzr/*',         '-prune', '-o', '-path', '*/.svn/*',     '-prune', '-o',
+		\  '-path', '*/undodir/*',      '-prune', '-o', '-path', '*/images/*',   '-prune', '-o',
+		\  '-path', '*/fonts/*',        '-prune', '-o', '-path', '*/music/*',    '-prune', '-o',
+		\  '-path', '*/img/*',          '-prune', '-o', '-path', '*/.mozilla/*', '-prune', '-o',
+		\  '-path', '*/node_modules/*', '-prune', '-o', '-path', '*/img/*',      '-prune', '-o',
+		\  '-path', '*/bundle/*',       '-prune', '-o', '-path', '*/spell/*',    '-prune', '-o',
+		\  '-path', '*/.cache/*',       '-prune', '-o', '-path', '*/swapdir/*',  '-prune', '-o',
+		\  '-path', '*/.metadata/*',    '-prune', '-o', '-path', '*/.Private/*', '-prune', '-o'] +
+		\ wildignored_patterns + ['-type', 'f', '-print']
+	call denite#custom#var('file/rec', 'command', wildignored_patterns)
+	function! Setup_denite_mappings()
+		inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+		inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
+		inoremap <silent><buffer> <C-n> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
+		inoremap <silent><buffer> <C-p> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
+		inoremap <silent><buffer> <C-a> <Home>
+		inoremap <silent><buffer> <C-e> <End>
+		inoremap <silent><buffer> <C-h> <Left>
+		inoremap <silent><buffer> <C-j> <Down>
+		inoremap <silent><buffer> <C-k> <Up>
+		inoremap <silent><buffer> <C-l> <Right>
+	endfunction
+	autocmd FileType denite-filter call Setup_denite_mappings()
+	call nvim_input(a:key)
 endfunction
-autocmd FileType denite-filter call Setup_denite_mappings()
+nnoremap Z  <Cmd>call SetupDenite("Z")<CR>
+nnoremap zh <Cmd>call SetupDenite("zh")<CR>
+nnoremap zv <Cmd>call SetupDenite("zv")<CR>
+nnoremap zg <Cmd>call SetupDenite("zg")<CR>
+nnoremap zt <Cmd>call SetupDenite("zt")<CR>
 
 call minpac#add('https://github.com/Shougo/neomru.vim')
 
