@@ -1,17 +1,17 @@
 " <Space>twice disables highlighting of currently matched search pattern
-nnoremap <Space><Space> :nohlsearch<CR>
+nnoremap <Space><Space> <Cmd>nohlsearch<CR>
 " Close quickfix/location list
-nnoremap <Space>qc :ccl<CR>
-nnoremap <Space>lc :lcl<CR>
+nnoremap <Space>qc <Cmd>ccl<CR>
+nnoremap <Space>lc <Cmd>lcl<CR>
 " Next/previous item in the quickfix list
-nnoremap <Space>qn :qnext<CR>
-nnoremap <Space>qp :qprev<CR>
+nnoremap <Space>qn <Cmd>cnext<CR>
+nnoremap <Space>qp <Cmd>cprev<CR>
 " Next/previous item in the location list
-nnoremap <Space>ln :lnext<CR>
-nnoremap <Space>lp :lprev<CR>
+nnoremap <Space>ln <Cmd>lnext<CR>
+nnoremap <Space>lp <Cmd>lprev<CR>
 " Earlier/later item in the undo list
-nnoremap <Space>ue :earlier<CR>
-nnoremap <Space>ul :later<CR>
+nnoremap <Space>ue <Cmd>earlier<CR>
+nnoremap <Space>ul <Cmd>later<CR>
 
 " wrapped lines: go to next row instead of next line
 nnoremap j gj
