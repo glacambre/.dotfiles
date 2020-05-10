@@ -235,8 +235,8 @@ function! WipeButKeepOpen(force)
 endfunction
 
 function! SetNetrwMappings()
-    nnoremap <buffer> x :silent call WipeButKeepOpen(0)<CR>
-    nnoremap <buffer> X :silent call WipeButKeepOpen(1)<CR>
+    nnoremap <buffer> x <Cmd>silent call WipeButKeepOpen(0)<CR>
+    nnoremap <buffer> X <Cmd>silent call WipeButKeepOpen(1)<CR>
 endfunction
 
 " Function called when running $VIMRUNTIME/macros/less.sh

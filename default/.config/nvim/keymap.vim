@@ -29,33 +29,32 @@ nnoremap V v$h
 vnoremap <expr>y "my\"" . v:register . "y`y"
 
 " s saves current buffer
-nnoremap s :w<CR>
+nnoremap s <Cmd>w<CR>
 " S saves with sudo
-nnoremap S :set nomodified<CR>:w !sudo tee > /dev/null %<CR><CR>
+nnoremap S <Cmd>set nomodified<CR><Cmd>w !sudo tee > /dev/null %<CR><CR>
 
 " x closes the current buffer
-nnoremap <silent> x :call WipeButKeepOpen(0)<CR>
-" X closes the current buffer even if it was modified
-nnoremap <silent> X :close<CR>
+nnoremap <silent> x <Cmd>call WipeButKeepOpen(0)<CR>
+" X closes the current window
+nnoremap <silent> X <Cmd>close<CR>
 
 " R reloads the current buffer
-nnoremap R :e!<CR>
+nnoremap R <Cmd>e!<CR>
 
 " . repeats the last action on a visual block
-vnoremap . :normal .<CR>
+vnoremap . <Cmd>normal .<CR>
 
 " Move between splits with alt+mov key
 for i in ['h', 'j', 'k', 'l', 'H', 'J', 'K', 'L']
-    execute('noremap <A-' . i . '> <C-w>' . i)
-    execute('inoremap <A-' . i . '> <Esc><C-w>' . i)
-    execute('tnoremap <A-' . i . '> <C-\><C-n><C-w>' . i)
+    execute('noremap <A-' . i . '> <Cmd>wincmd ' . i . '<CR>')
+    execute('inoremap <A-' . i . '> <Esc><Cmd>wincmd ' . i . '<CR>')
+    execute('tnoremap <A-' . i . '> <C-\><C-n><Cmd>wincmd ' . i . '<CR>')
 endfor
-function! ChangeASpaceKeybind() abort
-      set laststatus=2
+function! OnAltSpace() abort
       let b:should_insert = 0
-      tnoremap <silent> <A-Space> <C-\><C-n>:let b:should_insert = 0<CR>
+      stopinsert
 endfunction
-tnoremap <silent> <A-Space> <C-\><C-n>:call ChangeASpaceKeybind()<CR>
+tnoremap <silent> <A-Space> <Cmd>call OnAltSpace()<CR>
 
 " Suggest a spelling correction
 nnoremap <C-s> z=
@@ -90,13 +89,13 @@ noremap <A-à> 10gt
 " Move tabs by using alt+shift+colnum
 let i = 1
 while i < 10
-    execute('noremap  <silent> <A-' . i . '> :tabm ' . i . '<CR>')
-    execute('inoremap <silent> <A-' . i . '> <Esc>:tabm ' . i . '<CR>')
+    execute('noremap  <silent> <A-' . i . '> <Cmd>tabm ' . i . '<CR>')
+    execute('inoremap <silent> <A-' . i . '> <Cmd>tabm ' . i . '<CR>')
     let i = i + 1
 endwhile
 
 " Create a new tab
-nnoremap <silent> <C-w>t :tabnew<CR>
+nnoremap <silent> <C-w>t <Cmd>tabnew<CR>
 
 " Redo with U
 nnoremap U <C-r>
@@ -105,7 +104,7 @@ nnoremap U <C-r>
 nnoremap Q @@
 
 " This is needed because of mathchpairs+=<:> in settings.vim
-nnoremap << :<<CR>
+nnoremap << <Cmd><<CR>
 " Do not exit Visual mode when shift-indenting
 vnoremap < <gv
 vnoremap > >gv
@@ -116,8 +115,8 @@ vnoremap <C-x> <C-x>gv
 vnoremap ~ ~gv
 
 " Call a function that checks whether we can suspend or not
-nnoremap <C-z> :call SuspendIfInShell()<CR>
-vnoremap <C-z> <Esc>:call SuspendIfInShell()<CR>gv
+nnoremap <C-z> <Cmd>call SuspendIfInShell()<CR>
+vnoremap <C-z> <Cmd>call SuspendIfInShell()<CR>gv
 
 " Insert mode: go to beginning of word
 inoremap <C-b> <C-o>b
@@ -130,4 +129,4 @@ inoremap <expr><C-d> strcharpart(getline('.')[col('.') - 1:], 0, 1) == ' ' ? "\<
 nnoremap <Backspace> hx
 
 " Open current url/file (same as Netrw, without the awful file browser)
-nnoremap gx :execute('silent! !xdg-open ' . expand('<cfile>'))<CR>
+nnoremap gx <Cmd>execute('silent! !xdg-open ' . expand('<cfile>'))<CR>
