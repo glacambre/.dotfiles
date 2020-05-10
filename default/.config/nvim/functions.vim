@@ -115,10 +115,6 @@ function! OnTermOpen()
     " Use a pretty name for the buffer
     execute("file " . substitute(expand("%"), "term://.//", "", ""))
 
-    " Splitting opens a new term
-    nnoremap <buffer> <silent> <C-w>s :split<CR>:term<CR>
-    nnoremap <buffer> <silent> <C-w>v :vsplit<CR>:term<CR>
-
     " When leaving a term buffer, remember whether it was in insert or normal
     " mode. When entering a terminal window/buffer, go in insert mode if the
     " term was in insert mode.
