@@ -19,4 +19,4 @@ if [ "$SHLVL" -gt 1 ]; then
     PS1="${PS1}∞"
 fi
 
-export PS1="$PS1>"
+PS1="$PS1>"

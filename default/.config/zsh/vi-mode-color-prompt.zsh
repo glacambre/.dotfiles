@@ -1,6 +1,6 @@
 # Color PS1
-export KEYTIMEOUT=20
-export _PS1="$PS1"
+KEYTIMEOUT=20
+_PS1="$PS1"
 
 if [[ "$TERM" != "linux" ]]; then
     PRINTCHAR="q"
