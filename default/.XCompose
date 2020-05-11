@@ -82,8 +82,8 @@
 # Change AltGr+u from û to υ
 <ucircumflex>:                       "υ"
 <udiaeresis>:                        "Υ"
-
-<questiondown>: "⸮" U2E2E
+# Change AltGr+?
+<questiondown>:                      "⸮"
 
 <dead_circumflex> <minus> <greater>: "→" U2192
 <dead_circumflex> <minus> <less>: "←" U2190
