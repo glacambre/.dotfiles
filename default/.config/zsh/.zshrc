@@ -19,7 +19,6 @@ source "$ZDOTDIR/vi-mode.zsh"
 source "$ZDOTDIR/command_time.zsh"
 source "$ZDOTDIR/gpg.zsh"
 source "$ZDOTDIR/shelley.zsh"
-source "$ZDOTDIR/zsh_syntax_highlighting.zsh"
 # aliases are defined after syntax_highlighting because '=' isn't legal
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/zsh_auto_suggestions.zsh"
