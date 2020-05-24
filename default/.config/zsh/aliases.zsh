@@ -195,6 +195,7 @@ alias greom='git rebase origin/master --autostash'
 alias greum='git rebase upstream/master --autostash'
 alias grm='git rm'
 alias gs='git show'
+alias update-nvim='curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o ~/downloads/nvim && chmod +x ~/downloads/nvim && mv ~/downloads/nvim ~/bin/nvim'
 
 # Fancy stuff
 if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then
