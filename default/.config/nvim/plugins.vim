@@ -24,14 +24,14 @@ call minpac#add('https://github.com/kana/vim-submode')
 function SetupResizeSubmode() abort
 	let g:submode_timeout = 0
 	let g:submode_always_show_submode = 1
-	call submode#enter_with('resize', 'n', '', '<C-r>', '<Nop>')
+	call submode#enter_with('resize', 'n', '', '<C-w>r', '<Nop>')
 	call submode#map('resize', 'n', '', 'h', '<C-w><')
 	call submode#map('resize', 'n', '', 'j', '<C-w>+')
 	call submode#map('resize', 'n', '', 'k', '<C-w>-')
 	call submode#map('resize', 'n', '', 'l', '<C-w>>')
-	call nvim_input('<C-r>')
+	call nvim_input('<C-w>r')
 endfunction
-nnoremap <C-r> <Cmd>call SetupResizeSubmode()<CR>
+nnoremap <C-w>r <Cmd>call SetupResizeSubmode()<CR>
 
 call minpac#add('https://github.com/chrisbra/Recover.vim')
 
@@ -139,7 +139,8 @@ local function setup_lsp_settings()
 	nnoremap("1gD", "vim.lsp.buf.type_definition")
 	nnoremap("gr", "vim.lsp.buf.references")
 	nnoremap("g0", "vim.lsp.buf.document_symbol")
-	vim.api.nvim_command("inoremap <C-n> <C-x><C-o>")
+	vim.api.nvim_command("nnoremap <C-r> :lua vim.lsp.buf.rename('')<Left><Left>")
+	vim.api.nvim_command("inoremap <C-n> <C-x><C-o><C-n>")
 	vim.api.nvim_command("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 end
 l.clangd.setup{ on_attach = setup_lsp_settings }
