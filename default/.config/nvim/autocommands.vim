@@ -90,3 +90,13 @@ augroup MY_GCC_AUGROUP
 	autocmd!
 	au FileType c if stridx(expand("%:p"), '/gcc/') != -1 | call SetGCCStyle() | endif
 augroup END
+
+augroup MY_CSV_AUGROUP
+	autocmd!
+	au BufRead activity.csv call FillCSVLog()
+	au BufRead breakfast.csv call FillCSVLog()
+	au BufRead dinner.csv call FillCSVLog()
+	au BufRead lunch.csv call FillCSVLog()
+	au BufRead mood.csv call FillCSVLog()
+	au BufRead sleep.csv call FillCSVLog()
+augroup END

@@ -195,7 +195,16 @@ alias greom='git rebase origin/master --autostash'
 alias greum='git rebase upstream/master --autostash'
 alias grm='git rm'
 alias gs='git show'
+
 alias update-nvim='curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o ~/downloads/nvim && chmod +x ~/downloads/nvim && mv ~/downloads/nvim ~/bin/nvim'
+
+# Health log
+alias logactivity="sp $HOME/documents/logs/activity.csv"
+alias logbreakfast="sp $HOME/documents/logs/breakfast.csv"
+alias logdinner="sp $HOME/documents/logs/dinner.csv"
+alias loglunch="sp $HOME/documents/logs/lunch.csv"
+alias logmood="sp $HOME/documents/logs/mood.csv"
+alias logsleep="sp $HOME/documents/logs/sleep.csv"
 
 # Fancy stuff
 if [ -x "/usr/share/nvim/runtime/macros/less.sh" ] ; then

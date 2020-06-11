@@ -413,3 +413,11 @@ function! FillNeovimIssueTemplate() abort
   let l:content = substitute(l:content, l:term_field, l:term_field . ' ' . l:term, 'g')
   call nvim_buf_set_lines(0, 0, -1, v:false, split(l:content, "\n"))
 endfunction
+
+function! FillCSVLog() abort
+  let l:lastline = nvim_buf_get_lines(0, -2, -1, 0)[0]
+  let l:today = split(system("date +%F"))[0]
+  if match(l:lastline, "^" . l:today) == -1
+    call nvim_buf_set_lines(0, -1, -1, 0, [l:today . ","]) 
+  endif
+endfunction
