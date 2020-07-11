@@ -1,6 +1,0 @@
-#!/bin/sh
-# dmenu-based song selection.
-
-playlist=$(mpc playlist)
-song=$(echo "$playlist" | dmenu -i -l 20 -p "$(mpc | head -n 1)")
-[ "$song" != "" ] && mpc play "$(echo "$playlist" | awk -v s="$song" '$0==s {print NR; exit;}')"

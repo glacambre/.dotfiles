@@ -1,0 +1,12 @@
+#!/bin/sh
+# menu-based
+
+MENU="dmenu -i -l 20 -p"
+
+if which wofi >/dev/null 2>/dev/null ; then
+        MENU="wofi -i -d -p"
+fi
+
+playlist=$(mpc playlist)
+song=$(echo "$playlist" | $MENU "$(mpc | head -n 1)")
+[ "$song" != "" ] && mpc play "$(echo "$playlist" | awk -v s="$song" '$0==s {print NR; exit;}')"
