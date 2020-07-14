@@ -1,7 +1,9 @@
 set encoding=utf-8
 
-" Load 'colors/colors.vim'
-let g:colors_name='colors'
+if $TERM != "linux"
+	" Load 'colors/colors.vim'
+	let g:colors_name='colors'
+endif
 
 " Choose what should be saved in the Shada file
 " We use a very small number ('10) to make neovim startup faster and try to be
