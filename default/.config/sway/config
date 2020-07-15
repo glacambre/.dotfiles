@@ -1,0 +1,225 @@
+
+input type:keyboard {
+        xkb_layout fr
+        xkb_variant latin9
+}
+
+default_border          pixel 2
+gaps inner 2
+default_orientation horizontal
+focus_follows_mouse no
+smart_gaps on
+smart_borders on
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #22CCFF #22CCFF #000000 #CC22FF #22CCFF
+client.focused_inactive #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF
+client.unfocused        #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF
+client.urgent           #a78bc3 #a78bc3 #2d2d2d #3a3a3a #aa2222
+client.placeholder      #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF
+client.background       #FFFFFF
+
+# Available letters: aygcv SZTYFGMWXVDQ
+set $mod Mod4
+set $mod2 Mod1
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec open_terminal_with_nvim term://zsh
+
+# kill focused window
+bindsym $mod+Shift+A kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec menu-run
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (tabbed, toggle split)
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+
+# split vertical
+bindsym $mod+e split v
+# split horizontal
+bindsym $mod+Shift+e split h
+
+# send to scratchpad
+bindsym $mod+x move scratchpad
+# show scratchpad
+bindsym $mod+w scratchpad show
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container using ;
+bindcode $mod+59 focus parent
+
+# focus the child container using ,
+bindcode $mod+58 focus child
+
+# define workspaces
+set $wp1 1
+set $wp2 2
+set $wp3 3
+set $wp4 4
+set $wp5 5
+set $wp6 6
+set $wp7 7
+set $wp8 8
+set $wp9 9
+set $wp0 0
+
+# switch to workspace
+bindsym $mod+ampersand  workspace $wp1
+bindsym $mod+eacute     workspace $wp2
+bindsym $mod+quotedbl   workspace $wp3
+bindsym $mod+apostrophe workspace $wp4
+bindsym $mod+parenleft  workspace $wp5
+bindsym $mod+minus      workspace $wp6
+bindsym $mod+egrave     workspace $wp7
+bindsym $mod+underscore workspace $wp8
+bindsym $mod+ccedilla   workspace $wp9
+bindsym $mod+agrave     workspace $wp0
+
+# move focused container to workspace
+bindsym $mod+Shift+ampersand  move container to workspace $wp1
+bindsym $mod+Shift+eacute     move container to workspace $wp2
+bindsym $mod+Shift+quotedbl   move container to workspace $wp3
+bindsym $mod+Shift+apostrophe move container to workspace $wp4
+bindsym $mod+Shift+parenleft  move container to workspace $wp5
+bindsym $mod+Shift+minus      move container to workspace $wp6
+bindsym $mod+Shift+egrave     move container to workspace $wp7
+bindsym $mod+Shift+underscore move container to workspace $wp8
+bindsym $mod+Shift+ccedilla   move container to workspace $wp9
+bindsym $mod+Shift+agrave     move container to workspace $wp0
+
+# move workspaces around
+bindsym $mod+$mod2+h move workspace to output right
+bindsym $mod+$mod2+j move workspace to output bottom
+bindsym $mod+$mod2+k move workspace to output top
+bindsym $mod+$mod2+l move workspace to output left
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart sway inplace (preserves your layout/session, can be used to upgrade sway)
+bindsym $mod+Shift+r restart
+
+# Lock the computer
+bindsym $mod+q       exec swaylock --ignore-empty-password --show-failed-attempts
+
+# Next song with $mod+n, previous song with $mod+N
+set     $mediaprev    exec mpc next
+set     $medianext    exec mpc prev
+bindsym XF86AudioPrev $mediaprev
+bindsym XF86AudioNext $medianext
+bindsym $mod+n        $mediaprev
+bindsym $mod+Shift+n  $medianext
+
+# Play/pause with $mod+p
+set     $mediatoggle  exec mpc toggle
+bindsym $mod+p        $mediatoggle
+bindsym XF86AudioPlay $mediatoggle
+# Select specific song to play with $mod+P
+bindsym $mod+Shift+p exec menu-music
+
+# Toggle random/non random music playing with $mod+o
+bindsym $mod+o exec mpc random
+# Switch audio output with $mod+O
+# bindsym $mod+Shift+o exec /home/me/bin/saoutput
+
+# Lower volume with $mod+i, increase with $mod+I
+set     $volup               exec ~/bin/vup
+set     $voldown             exec ~/bin/vdown
+bindsym $mod+i               $voldown
+bindsym $mod+Shift+i         $volup
+bindsym XF86AudioLowerVolume $voldown
+bindsym XF86AudioRaiseVolume $volup
+
+# Decrease brightness with $mod+u, increase with $mod+U
+set     $brightdown           exec sudo -A ~/bin/bdown
+set     $brightup             exec sudo -A ~/bin/bup
+bindsym $mod+u                $brightdown
+bindsym $mod+Shift+u          $brightup
+bindsym XF86MonBrightnessDown $brightdown
+bindsym XF86MonBrightnessUp   $brightup
+
+# Open browser with $mod+b
+bindsym $mod+b exec x-www-browser
+# Open m with $mod+B
+bindsym $mod+Shift+b exec thunderbird
+
+# Take a screenshot with the PrintScreen key
+bindsym --release Print "exec scrot -s ~/pictures/screenshot_%Y-%m-%d-%T.png"
+
+# create resize mode, lets you resize with hjkl
+set $resize_mode "resize"
+mode $resize_mode {
+        set $notify_resize_mode exec notify-send 'Resize Mode is active.'
+        bindsym a $notify_resize_mode
+        bindsym z $notify_resize_mode
+        bindsym e $notify_resize_mode
+        bindsym t $notify_resize_mode
+        bindsym q $notify_resize_mode
+        bindsym s $notify_resize_mode
+        bindsym f $notify_resize_mode
+        bindsym g $notify_resize_mode
+        bindsym m $notify_resize_mode
+        bindsym w $notify_resize_mode
+        bindsym x $notify_resize_mode
+        bindsym c $notify_resize_mode
+        bindsym v $notify_resize_mode
+        bindsym b $notify_resize_mode
+        bindsym n $notify_resize_mode
+        bindsym Shift+a $notify_resize_mode
+        bindsym Shift+z $notify_resize_mode
+        bindsym Shift+e $notify_resize_mode
+        bindsym Shift+t $notify_resize_mode
+        bindsym Shift+q $notify_resize_mode
+        bindsym Shift+s $notify_resize_mode
+        bindsym Shift+f $notify_resize_mode
+        bindsym Shift+g $notify_resize_mode
+        bindsym Shift+m $notify_resize_mode
+        bindsym Shift+w $notify_resize_mode
+        bindsym Shift+x $notify_resize_mode
+        bindsym Shift+c $notify_resize_mode
+        bindsym Shift+v $notify_resize_mode
+        bindsym Shift+b $notify_resize_mode
+        bindsym Shift+n $notify_resize_mode
+
+        bindsym u resize shrink width  20 px or 20 ppt
+        bindsym i resize grow   height 20 px or 20 ppt
+        bindsym o resize shrink height 20 px or 20 ppt
+        bindsym p resize grow   width  20 px or 20 ppt
+
+        bindsym h resize shrink width  10 px or 10 ppt
+        bindsym j resize grow   height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow   width  10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode $resize_mode
+
+bindsym $mod+z exec makoctl dismiss
+
+include $HOME/.config/sway/$(hostname).config
