@@ -222,4 +222,6 @@ bindsym $mod+r mode $resize_mode
 
 bindsym $mod+z exec makoctl dismiss
 
+for_window [app_id="mpv"] floating enable
+
 include $HOME/.config/sway/$(hostname).config
