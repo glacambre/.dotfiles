@@ -13,6 +13,10 @@ dir_to_backup="/home"
 backup_dir="/data/backups/"
 backup_name="home.backup"
 
+if [ ! -e "$backup_dir" ] ; then
+  mount /data
+fi
+
 old_snapshot=$(most_recent_file "$dir_to_backup" "$backup_name*")
 cur_snapshot="$dir_to_backup/$backup_name.$(date -Iseconds)"
 
