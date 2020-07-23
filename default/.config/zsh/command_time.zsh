@@ -8,7 +8,7 @@ function display_command_time() {
             if which notify-send >/dev/null && (which dunst || which mako) >/dev/null 2>/dev/null; then
                 notify="timeout 3 notify-send 'Command finished in $timespan seconds' '$cmd'"
                 (
-                if ! $(eval "$notify") ; then
+                if ! eval "$notify" ; then
                     if which dunst >/dev/null ; then
                         dunst &
                     elif which mako >/dev/null ; then
