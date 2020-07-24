@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+DOWNLOAD_DIR="$HOME/downloads"
+TARGET="$DOWNLOAD_DIR/gh.tar.gz"
+
+curl -L https://github.com/cli/cli/releases/download/v$1/gh_$1_linux_amd64.tar.gz -o "$TARGET"
+tar --directory="$DOWNLOAD_DIR" -xvzf "$TARGET"
+mv "$DOWNLOAD_DIR/gh_$1_linux_amd64/bin/gh" "$HOME/bin/gh"
