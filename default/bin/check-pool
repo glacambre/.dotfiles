@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Store cookies in /tmp
+COOKIES="/tmp/pool-cookies"
+
+# Cleanup cookie jar, to get fresh runs every time
+rm -f "$COOKIES"
+
+# Pretend to navigate website
+curl -s -c "$COOKIES" -b "$COOKIES" 'http://www.piscine-baker.fr/' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -o /dev/null
+curl -s -c "$COOKIES" -b "$COOKIES" 'https://moncentreaquatique.com/module-inscriptions/?centre=135' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -o /dev/null
+curl -s -c "$COOKIES" -b "$COOKIES" 'https://moncentreaquatique.com/module-inscriptions/activites/' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Referer: https://moncentreaquatique.com/module-inscriptions/residence/' -H 'Upgrade-Insecure-Requests: 1' -o /dev/null
+curl -s -c "$COOKIES" -b "$COOKIES" 'https://moncentreaquatique.com/module-inscriptions/activite/?activite=12' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Referer: https://moncentreaquatique.com/module-inscriptions/activites/' -H 'Upgrade-Insecure-Requests: 1' | grep Semaine > /tmp/pool-new
+
+if ! [ -e /tmp/pool ] ; then
+        touch /tmp/pool
+fi
+
+# Compare with previous run
+if ! diff /tmp/pool /tmp/pool-new ; then
+        notify='notify-send "Swimming pool" "New week available"'
+        if which swaymsg > /dev/null 2>/dev/null ; then
+                for sock in /run/user/"$(id -u)"/sway-ipc.*.*.sock; do
+                        [ -S "${sock}" ] || continue;
+                        swaymsg -s "${sock}" exec "$notify";
+                done;
+        else
+                eval "$notify"
+        fi
+fi
