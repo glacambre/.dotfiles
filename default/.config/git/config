@@ -27,8 +27,8 @@
 	pushInsteadOf = "https://github.com/"
 	pushInsteadOf = "git://github.com/"
 [user]
-	name = glacambre
-	email = code@lacamb.re
+	name = Ghjuvan Lacambre
+	email = lacambre@adacore.com
 	signingkey = B9625DB1767553AC
 [rebase]
 	updateRefs = true
