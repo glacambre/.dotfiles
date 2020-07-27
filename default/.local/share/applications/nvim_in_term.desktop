@@ -2,8 +2,8 @@
 Name=Nvim_In_Term
 GenericName=Neovim
 Comment=Edit text files
-TryExec=/home/me/bin/nvim
-Exec=/home/me/bin/open_terminal_with_nvim %F
+TryExec=/home/lacambre/bin/nvim
+Exec=/home/me/lacambre/open_terminal_with_nvim %F
 Terminal=false
 Type=Application
 Keywords=Text;editor;
