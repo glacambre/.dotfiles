@@ -85,12 +85,52 @@ local function setup_lsp_settings(client, buf)
 	vim.api.nvim_buf_set_keymap(buf, "n", "<C-n>",     "<C-x><C-o><C-n>", opts)
 	vim.api.nvim_buf_set_option(buf, "omnifunc",  "v:lua.vim.lsp.omnifunc")
 end
+local function als_on_init(client)
+	local path = client.workspace_folders[1].uri:sub(8)
+	if vim.fn.filereadable(path .. "/database.gpr") ~= 0 then
+		result = path .. "/database.gpr"
+	elseif vim.fn.filereadable(path .. "/project_support.gpr") ~= 0 then
+		result = path .. "/project_support.gpr"
+	elseif vim.fn.filereadable(path .. "/wrappers.gpr") ~= 0 then
+		result = path .. "/wrappers.gpr"
+	elseif vim.fn.filereadable(path .. "/codepeer.gpr") ~= 0 then
+		result = path .. "/codepeer.gpr"
+	elseif vim.fn.filereadable(path .. "/codepeer_ws.gpr") ~= 0 then
+		result = path .. "/codepeer_ws.gpr"
+	elseif vim.fn.filereadable(path .. "/gnat2scil.gpr") ~= 0 then
+		result = path .. "/gnat2scil.gpr"
+	elseif vim.fn.filereadable(path .. "/world.gpr") ~= 0 then
+		result = path .. "/world.gpr"
+	elseif vim.fn.filereadable(path .. "/gnat.gpr") ~= 0 then
+		result = path .. "/gnat.gpr"
+	end
+	if result ~= nil then
+		client.config.settings.ada = { projectFile = result, log_level = 0 } 
+		client.notify("workspace/didChangeConfiguration", client.config.settings)
+	end
+	return true
+end
 l.clangd.setup{ on_attach = setup_lsp_settings }
-l.tsserver.setup{ on_attach = setup_lsp_settings }
-l.als.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/prog/ada_language_server/.obj/server/ada_language_server" }  }
 l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
-l.ocamllsp.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/.opam/default/bin/ocamllsp" } }
-
+l.ocamllsp.setup{
+	cmd = { "/home/lacambre/bin/ocaml-language-server/x86_64-linux/opam-4.11.2-0/install/repo/reloc/bin/ocamllsp" };
+	on_attach = setup_lsp_settings
+}
+l.ts_ls.setup{ on_attach = setup_lsp_settings }
+local configs = require("lspconfig.configs")
+configs.ada_language_server = {
+  default_config = {
+    cmd = { 'ada_language_server' },
+    filetypes = { 'ada' },
+    root_dir = l.util.root_pattern('Makefile', '.git', '*.gpr', '*.adc'),
+  },
+}
+l.ada_language_server.setup{
+	cmd = { "/home/lacambre/bin/ada_language_server_wrapper" };
+	on_attach = setup_lsp_settings;
+	on_init = als_on_init;
+	settings = {};
+}
 END
 
 if s:do_update
