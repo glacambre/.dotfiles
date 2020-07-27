@@ -12,6 +12,18 @@ if vim.g.started_by_firenvim then
       ['app.element.io'] = {
         takeover = 'never',
       },
+      ['slack.com'] = {
+        takeover = 'never',
+      },
+      ['sheets.google.com'] = {
+        takeover = 'never',
+      },
+      ['docs.google.com'] = {
+        takeover = 'never',
+      },
+      ['slides.google.com'] = {
+        takeover = 'never',
+      },
     },
   }
   local max_height = 10
