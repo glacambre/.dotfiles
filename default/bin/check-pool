@@ -25,6 +25,9 @@ if ! diff /tmp/pool /tmp/pool-new ; then
                         swaymsg -s "${sock}" exec "$notify";
                 done;
         else
-                eval "$notify"
+                for sock in /run/user/"$(id -u)"/i3/ipc-socket.*; do
+                        [ -S "${sock}" ] || continue;
+                        i3-msg -s "${sock}" exec "$notify";
+                done;
         fi
 fi
