@@ -3,7 +3,7 @@
 DIRNAME="$(dirname "$0")"
 NVIM="nvim"
 
-if ! which "$NVIM" ; then
+if ! which "$NVIM"; then
         NVIM="$DIRNAME/nvim"
 fi
 
