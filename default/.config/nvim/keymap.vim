@@ -121,7 +121,7 @@ vnoremap <C-z> <Cmd>call SuspendIfInShell()<CR>gv
 " Insert mode: go to beginning of word
 inoremap <C-b> <C-o>b
 " Insert mode: go to end of word
-inoremap <C-f> <C-o>e
+inoremap <C-f> <C-o>e<C-o>l
 " Insert mode: delete following word
 inoremap <expr><C-d> strcharpart(getline('.')[col('.') - 1:], 0, 1) == ' ' ? "\<C-o>d2w" : "\<C-o>dw"
 
