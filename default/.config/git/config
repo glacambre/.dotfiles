@@ -3,8 +3,8 @@
 [mergetool "vimdiff2"]
 	path = nvim
 [user]
-	name = glacambre
-	email = code@lacamb.re
+	name = Ghjuvan Lacambre
+	email = lacambre@adacore.com
 	signingkey = B9625DB1767553AC
 [commit]
 	verbose = true
