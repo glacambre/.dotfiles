@@ -85,8 +85,38 @@ local function setup_lsp_settings(client, buf)
 	vim.api.nvim_buf_set_keymap(buf, "n", "<C-n>",     "<C-x><C-o><C-n>", opts)
 	vim.api.nvim_buf_set_option(buf, "omnifunc",  "v:lua.vim.lsp.omnifunc")
 end
+local function als_on_init(client)
+       local path = client.workspace_folders[1].uri:sub(8)
+       if vim.fn.filereadable(path .. "/database.gpr") ~= 0 then
+               result = path .. "/database.gpr"
+       elseif vim.fn.filereadable(path .. "/project_support.gpr") ~= 0 then
+               result = path .. "/project_support.gpr"
+       elseif vim.fn.filereadable(path .. "/wrappers.gpr") ~= 0 then
+               result = path .. "/wrappers.gpr"
+       elseif vim.fn.filereadable(path .. "/codepeer.gpr") ~= 0 then
+               result = path .. "/codepeer.gpr"
+       elseif vim.fn.filereadable(path .. "/codepeer_ws.gpr") ~= 0 then
+               result = path .. "/codepeer_ws.gpr"
+       elseif vim.fn.filereadable(path .. "/gnat2scil.gpr") ~= 0 then
+               result = path .. "/gnat2scil.gpr"
+       elseif vim.fn.filereadable(path .. "/world.gpr") ~= 0 then
+               result = path .. "/world.gpr"
+       elseif vim.fn.filereadable(path .. "/gnat.gpr") ~= 0 then
+               result = path .. "/gnat.gpr"
+       end
+       if result ~= nil then
+               client.config.settings.ada = { projectFile = result, log_level = 0 }
+               client.notify("workspace/didChangeConfiguration", client.config.settings)
+       end
+       return true
+end
 l.clangd.setup{ on_attach = setup_lsp_settings }
-l.ada_ls.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/prog/ada_language_server/.obj/server/ada_language_server" }  }
+l.ada_ls.setup{ 
+       cmd = { "/home/lacambre/bin/ada_language_server_wrapper" };
+       on_attach = setup_lsp_settings;
+       on_init = als_on_init;
+       settings = {};
+}
 vim.api.nvim_create_user_command('Gpr', function(opts) vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = { ada = { projectFile = table.concat(opts.fargs) } } } ) end, { nargs = 1 })
 l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
 l.ocamllsp.setup{ on_attach = setup_lsp_settings }
