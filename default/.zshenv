@@ -3,6 +3,8 @@ export ZDOTDIR="$HOME/.config/zsh/"
 ##### MISC VARIABLES
 export PATH="$PATH:/usr/bin:/usr/sbin:/bin:/sbin"
 export SYSTEMD_EDITOR="vi"
+export PATH="$HOME/wave/x86_64-linux/gnat/install/bin:$HOME/gnatpython/bin:$HOME/e3/bin:$PATH:$HOME/jdk-13.0.1/bin:/usr/local/cuda/bin:$HOME/spark/bin"
+export LD_LIBRARY_PATH="$HOME/wave/x86_64-linux/gnat/install/lib/gcc/x86_64-pc-linux-gnu/9.3.1/adalib:$HOME/wave/x86_64-linux/gnat/install/lib64:$HOME/wave/x86_64-linux/gnat/install/lib:$LD_LIBRARY_PATH"
 export EDITOR="nvim"
 export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
 export NODE_REPL_HISTORY=""
