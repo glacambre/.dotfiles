@@ -31,3 +31,27 @@ vim.api.nvim_create_autocmd({ 'bufenter', 'winenter', 'dirchanged' }, {
   end
 })
 EOF
+
+if exists('g:started_by_firenvim')
+    nnoremap <C-CR> <Cmd>call firenvim#thunderbird_send()<CR>
+    let g:firenvim_config = {
+        \ 'localSettings': {
+            \ 'riot.im': {
+                \ 'takeover': 'never',
+            \ },
+            \ 'slack.com': {
+                \ 'takeover': 'never',
+            \ },
+            \ 'git.adacore.com': {
+                \ 'selector': '.com-google-gerrit-client-diff-DraftBox_BinderImpl_GenCss_style-editArea, .gwt-TextArea',
+            \ },
+            \ 'docs.google.com': {
+                \ 'takeover': 'never',
+            \ },
+            \ 'airfrance.fr': {
+                \ 'takeover': 'never',
+            \ }
+        \ }
+    \ }
+    nnoremap <Esc><Esc> :call firenvim#focus_page()<CR>
+end
