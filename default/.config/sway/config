@@ -33,7 +33,7 @@ bindsym $mod+Return exec open_terminal_with_nvim term://zsh
 bindsym $mod+Shift+A kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec menu-run
+bindsym $mod+d exec sh -c menu-run
 
 # change focus
 bindsym $mod+h focus left
