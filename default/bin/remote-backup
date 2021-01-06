@@ -1,0 +1,38 @@
+#!/bin/sh
+# Encrypt directory and upload to fastmail
+
+set -e
+
+if [ "$XDG_RUNTIME_DIR" = "" ]; then
+  XDG_RUNTIME_DIR="/tmp"
+fi
+
+WORK_DIR="$XDG_RUNTIME_DIR/remote-backup"
+
+rm -rf "$WORK_DIR"
+mkdir -p "$WORK_DIR"
+
+CWD="$(pwd)"
+cd "$WORK_DIR"
+
+tar --directory "$HOME" -cf - "documents" \
+  | xz -0 --stdout \
+  | gpg --passphrase="$PASSPHRASE" --batch --yes -c -o - \
+  | split  -d -b 200M - x
+
+if [ "$(ls x* | wc -l)" -gt 45 ] ; then
+  echo "Too many files"
+  exit 1
+fi
+
+if [ "$(ls x* | wc -l)" -lt 1 ] ; then
+  echo "No file created"
+  exit 1
+fi
+
+for i in x* ; do
+  curl --silent --show-error --basic --user "$FASTMAIL_ID" 'https://myfiles.fastmail.com' -T "$i"
+done
+
+cd "$CWD"
+rm -rf "$WORK_DIR"
