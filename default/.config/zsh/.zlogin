@@ -1,7 +1,9 @@
 if [[ $(tty) = "/dev/tty1" ]] ; then
     # if running in the first tty, try running these daemons
     if which dbus-launch >/dev/null 2>/dev/null ; then
-        export $(dbus-launch)
+        if [ "$(pidof dbus-daemon)" = "" ] ; then
+            export $(dbus-launch)
+        fi
     fi
     if which pulseaudio >/dev/null 2>/dev/null ; then
         pulseaudio --start &
