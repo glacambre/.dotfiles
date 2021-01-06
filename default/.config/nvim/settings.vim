@@ -1,6 +1,6 @@
 set encoding=utf-8
 
-if $TERM != "linux" || g:started_by_firenvim
+if $TERM != "linux" || exists("g:started_by_firenvim")
 	" Load 'colors/colors.vim'
 	let g:colors_name='colors'
 endif
