@@ -16,11 +16,24 @@ set history remove-duplicates 1
 
 set confirm off
 
-winheight src 15
+# winheight src 15
 
 define rf
         reverse-finish
 end
+
+set breakpoint pending on
+
+# Firefox + RR: ignore sandbox signals
+handle SIGSYS noprint nostop
+b extensions/permissions/PermissionDelegateHandler.cpp:220
+b dom/websocket/WebSocket.cpp:1452
+b dom/websocket/WebSocket.cpp:3039
+b dom/websocket/WebSocket.cpp:3635
+
+# Disable security on everything. Hope I'll remember to remove this if I ever
+# start debugging malicious software...
+set auto-load safe-path /
 
 shell if test -f "$HOME/.config/gdb/.gdbinit.$HOST"; then echo source "$HOME/.config/gdb/.gdbinit.$HOST"; fi > /tmp/gdbinit.tmp
 source /tmp/gdbinit.tmp
