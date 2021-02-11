@@ -122,10 +122,10 @@ call minpac#add('https://github.com/tpope/vim-sleuth.git')
 call minpac#add('https://github.com/tpope/vim-fugitive')
 
 " Default LSP configs
-call minpac#add('https://github.com/neovim/nvim-lsp')
-packadd nvim-lsp
+call minpac#add('https://github.com/neovim/nvim-lspconfig')
+packadd nvim-lspconfig
 lua << END
-local l = require("nvim_lsp")
+local l = require("lspconfig")
 local function nnoremap(keys, command)
 	vim.api.nvim_command("nnoremap <buffer> <silent> " .. keys
 		.. " <cmd>lua " .. command .. "()<CR>")
