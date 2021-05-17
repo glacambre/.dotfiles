@@ -29,7 +29,7 @@ fi
 precmd_functions+=display_command_time
 
 function get_command_time() {
-    export LAST_COMMAND_TIME="$(date '+%s')"
+    LAST_COMMAND_TIME="$(date '+%s')"
 }
 if [ -z "$preexec_functions" ]; then
     preexec_functions=()
