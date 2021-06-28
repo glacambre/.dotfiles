@@ -1,4 +1,30 @@
 
+function f () {
+    ticket="$(echo $1 | tr a-z A-Z)"
+    wavefront="$HOME/wavefront/"
+    parent_dir="${ticket:0:2}"
+    the_dir="$wavefront/fixed/$parent_dir/$ticket"
+    if [ -e "$the_dir" ] ; then
+        cd "$the_dir"
+        return
+    fi
+    the_dir="$wavefront/no-ms/$parent_dir/$ticket"
+    if [ -e "$the_dir" ] ; then
+        cd "$the_dir"
+        return
+    fi
+    cd "$wavefront/large/$parent_dir/$ticket"
+}
+
+function mkf () {
+    ticket="$(echo $1 | tr a-z A-Z)"
+    wavefront="$HOME/wavefront/"
+    parent_dir="${ticket:0:2}"
+    the_dir="$wavefront/fixed/$parent_dir/$ticket"
+    mkdir "$the_dir"
+    cd "$the_dir"
+}
+
 # Simple dc wrapper. $1 is input base, $2 is output base, $3 is value
 function baseXtoY () {
     dc -e "${1}i${2}o${3}p"
