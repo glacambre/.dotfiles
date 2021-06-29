@@ -1,5 +1,13 @@
 set debuginfod enabled on
 
+python
+import os
+import subprocess
+from datetime import datetime
+end
+
+set auto-load safe-path /
+
 set disassembly-flavor intel
 
 set print pretty
@@ -8,6 +16,7 @@ set print asm-demangle on
 set print frame-arguments all
 set print object
 set pagination off
+set breakpoint pending on
 
 shell if [ ! -d ~/.local/share/gdb ] ; then rm -rf ~/.local/share/gdb/history ; mkdir -p ~/.local/share/gdb ; fi
 set history filename ~/.local/share/gdb/history
@@ -24,7 +33,35 @@ define rf
         reverse-finish
 end
 
-set breakpoint pending on
+# Alert when long-running commands finish
+define set_running_since
+python
+running_since=datetime.now()
+end
+end
+set_running_since
+define hook-run
+        set_running_since
+end
+define hook-continue
+        set_running_since
+end
+define hook-finish
+        set_running_since
+end
+define hook-next
+        set_running_since
+end
+define hook-step
+        set_running_since
+end
+define hook-stop
+python
+now=datetime.now()
+if (now - running_since).seconds > 10:
+        subprocess.run(["notify-send", "GDB", "Finished running command."])
+end
+end
 
 # Firefox + RR: ignore sandbox signals
 handle SIGSYS noprint nostop
