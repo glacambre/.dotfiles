@@ -22,6 +22,7 @@ source "$ZDOTDIR/shelley.zsh"
 # aliases are defined after syntax_highlighting because '=' isn't legal
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/zsh_auto_suggestions.zsh"
+source "$ZDOTDIR/zsh_ileum.zsh"
 
 ### VARIOUS OPTIONS
 setopt auto_cd                # Cd when a dirname has been given instead of a program
