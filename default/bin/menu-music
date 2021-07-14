@@ -11,6 +11,14 @@ if which bemenu >/dev/null 2>/dev/null ; then
         MENU="bemenu -i -l 20"
 fi
 
+status='⏸'
+if [ "$(mpc | grep -c '^\[playing]')" -eq 1 ]; then
+        status="⏵"
+fi
+random="🡆"
+if [ "$(mpc | grep -c ' random: on ')" -eq 1 ]; then
+        random='⤨'
+fi
 playlist=$(mpc playlist)
-song=$(echo "$playlist" | $MENU -p "$(mpc | head -n 1)")
+song=$(echo "$playlist" | $MENU -p "$status $random $(mpc | head -n 1)")
 [ "$song" != "" ] && mpc play "$(echo "$playlist" | awk -v s="$song" '$0==s {print NR; exit;}')"
