@@ -22,70 +22,27 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* Keymap 0: Basic layer
- *
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   ^    |   &  |   é  |   "  |   '  |   (  | LEFT |           | RIGHT|   -  |   è  |   _  |   ç  |   à  |   )    |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Del    |   A  |   Z  |   E  |   R  |   T  |  L1  |           |  L1  |   Y  |   U  |   I  |   O  |   P  |   =    |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | ESC    |   Q  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   M  |   ù    |
- * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   ,  |   ;  |   :  |   !  | RShift |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | ~L1  |   <  |  Alt | Ctrl | LGui |                                       |  RGui| RCtrl|  Alt |   $  | ~L1  |
- *   `----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,-------------.
- *                                        | Left |Right |       | Down |  Up  |
- *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      | End  |       |PrScrn|        |      |
- *                                 | Space|  Tab |------|       |------| BkSpce |Enter |
- *                                 |      |      | AltGr|       | AltGr|        |      |
- *                                 `--------------------'       `----------------------'
- */
-// If it accepts an argument (i.e, is a function), it doesn't need KC_.
-// Otherwise, it needs KC_*
-[BASE] = LAYOUT_ergodox(  // layer 0 : default
+[BASE] = LAYOUT_ergodox(
+// DEFAULT
         // left hand
-        FR_CIRC,  FR_AMP,  FR_EACU, FR_QUOT, FR_APOS, FR_LPRN, KC_LEFT,
+        FR_CIRC, FR_AMP,  FR_EACU, FR_DQUO,  FR_APOS, FR_LPRN, KC_HOME,
         KC_DELT, FR_A,    FR_Z,    KC_E,     KC_R,    KC_T,    TG(QWER),
         KC_ESC,  FR_Q,    KC_S,    KC_D,     KC_F,    KC_G,
         KC_LSFT, FR_W,    KC_X,    KC_C,     KC_V,    KC_B,    TG(SYMB),
-        MO(SYMB),  FR_LESS, KC_LALT, KC_LCTRL, KC_LGUI,
+         MO(SYMB), FR_LESS, KC_LALT, KC_LCTRL, KC_LGUI,
                                                       KC_LEFT, KC_RIGHT,
-                                                               KC_END,
+                                                               KC_PSCREEN,
                                              KC_SPC,  KC_TAB,  KC_RALT,
         // right hand
-             KC_RGHT,      FR_MINS, FR_EGRV, FR_UNDS,  FR_CCED, FR_AGRV,   FR_RPRN,
+             KC_END,       FR_MINS, FR_EGRV, FR_UNDS,  FR_CCED, FR_AGRV,   FR_RPRN,
              TG(QWER),     KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,      FR_EQL,
                            KC_H,    KC_J,    KC_K,     KC_L,    FR_M,      FR_UGRV,
-             TG(SYMB), KC_N,    FR_COMM, FR_SCLN,  FR_COLN, FR_EXLM,   KC_RSFT,
-                                    KC_RGUI, KC_RCTRL, KC_LALT, FR_DLR,    MO(SYMB),
+             TG(SYMB),     KC_N,    FR_COMM, FR_SCLN,  FR_COLN, FR_EXLM,   KC_RSFT,
+                                   KC_RGUI, KC_RCTRL, KC_LALT, FR_DLR,    MO(SYMB),
              KC_DOWN, KC_UP,
              KC_PSCREEN,
              KC_RALT, KC_BSPC, KC_ENT
     ),
-/* Keymap 1: Symbol Layer
- *
- * ,---------------------------------------------------.           ,--------------------------------------------------.
- * |Version  |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
- * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
- * |         |   !  |   @  |   {  |   }  |   |  |      |           |      |   =  |   7  |   8  |   9  |   *  |   F12  |
- * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |   #  |   $  |   (  |   )  |   `  |------|           |------|   0  |   4  |   5  |   6  |   +  |        |
- * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |   %  |   ^  |   [  |   ]  |   ~  |      |           |      |   .  |   1  |   2  |   3  |   \  |        |
- * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |       | Right|  Up  | Down | Left |                                       | Left | Down |  Up  |Right |      |
- *   `-----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,-------------.
- *                                        |      |      |       |      |      |
- *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |      |
- *                                 |      |      |------|       |------|      |      |
- *                                 |      |      |      |       |      |      |      |
- *                                 `--------------------'       `--------------------'
- */
 // SYMBOLS
 [SYMB] = LAYOUT_ergodox(
        // left hand
@@ -107,7 +64,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS
 ),
-[QWER] = LAYOUT_ergodox(  // layer 3 : qwerty
+// QWERTY
+[QWER] = LAYOUT_ergodox(
         // left hand
         KC_EQL,  KC_1,   KC_HASH,  KC_QUOT,  LSFT(KC_QUOT), KC_LPRN, KC_LEFT,
         KC_DELT, KC_A,    KC_Z,    KC_E,     KC_R,    KC_T,    TG(QWER),
@@ -127,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              KC_PGDN,
              KC_RALT, KC_BSPC, KC_ENT
 ),
-// Qwerty symbols
+// QWERTY Symbols
 [QWSY] = LAYOUT_ergodox(
        // left hand
        VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,
