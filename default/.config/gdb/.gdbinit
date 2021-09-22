@@ -26,10 +26,6 @@ set breakpoint pending on
 
 # Firefox + RR: ignore sandbox signals
 handle SIGSYS noprint nostop
-b extensions/permissions/PermissionDelegateHandler.cpp:220
-b dom/websocket/WebSocket.cpp:1452
-b dom/websocket/WebSocket.cpp:3039
-b dom/websocket/WebSocket.cpp:3635
 
 # Disable security on everything. Hope I'll remember to remove this if I ever
 # start debugging malicious software...
