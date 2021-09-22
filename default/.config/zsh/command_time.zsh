@@ -5,13 +5,13 @@ function display_command_time() {
         timespan="$(($(date '+%s') - $LAST_COMMAND_TIME))"
         if [[ "$timespan" -gt 120 ]]; then
             echo "Job took $timespan seconds."
-            if which notify-send >/dev/null && (which dunst || which mako) >/dev/null 2>/dev/null; then
+            if command -v notify-send >/dev/null && (command -v dunst || command -v mako) >/dev/null 2>/dev/null; then
                 notify="timeout 3 notify-send 'Command finished in $timespan seconds' '$cmd'"
                 (
                 if ! eval "$notify" ; then
-                    if which dunst >/dev/null ; then
+                    if command -v dunst >/dev/null ; then
                         dunst &
-                    elif which mako >/dev/null ; then
+                    elif command -v mako >/dev/null ; then
                         mako &
                     fi
                     sleep 1

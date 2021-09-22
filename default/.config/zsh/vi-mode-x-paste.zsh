@@ -1,10 +1,10 @@
 GET_PRIMARY="xsel -o -p </dev/null"
 GET_CLIPBOARD="xsel -o -b </dev/null"
 
-which "xsel" >/dev/null
+command -v "xsel" >/dev/null
 X_CLIPBOARD_AVAILABLE=$?
 if ! [ "$X_CLIPBOARD_AVAILABLE" = 0 ]; then
-    which "xclip" >/dev/null
+    command -v "xclip" >/dev/null
     X_CLIPBOARD_AVAILABLE=$?
     GET_PRIMARY="xclip -o -selection p </dev/null"
     GET_CLIPBOARD="xclip -o -selection c </dev/null"
