@@ -1,8 +1,7 @@
 set encoding=utf-8
 
-if $TERM != "linux" || exists("g:started_by_firenvim")
-	" Load 'colors/colors.vim'
-	let g:colors_name='colors'
+if $TERM != "linux" || exists("g:started_by_nwin") || exists("g:started_by_firenvim")
+	colorscheme colors
 endif
 
 " Choose what should be saved in the Shada file
