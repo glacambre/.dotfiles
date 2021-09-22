@@ -129,7 +129,7 @@ set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
 set searchurls.skyt https://www.skytorrents.to/?search=%s
 set searchurls.steam https://store.steampowered.com/search/?term=%s
 set searchurls.torrentz https://torrentz2.eu/search?f=%s
-set searchurls.tpb https://thepiratebay.bid/s/?q=%s&=on&page=0&orderby=99
+set searchurls.tpb https://thepiratebay.org/s/?q=%s&=on&page=0&orderby=99
 set searchurls.tre http://www.wordreference.com/redirect/translation.aspx?w=%s&dict=enfr
 set searchurls.trf http://www.wordreference.com/redirect/translation.aspx?w=%s&dict=fren
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
