@@ -4,6 +4,10 @@ if $TERM != "linux" || exists("g:started_by_nwin") || exists("g:started_by_firen
 	colorscheme colors
 endif
 
+" Use space for vertical split separator, fold separator and end of buffer
+" characters
+set fillchars=vert:\ ,fold:\ ,eob:\  
+
 " Choose what should be saved in the Shada file
 " We use a very small number ('10) to make neovim startup faster and try to be
 " smart about what files we keep.
