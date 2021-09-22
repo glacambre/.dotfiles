@@ -146,6 +146,7 @@ end
 l.clangd.setup{ on_attach = setup_lsp_settings }
 l.tsserver.setup{ on_attach = setup_lsp_settings }
 l.als.setup{ on_attach = setup_lsp_settings }
+l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
 END
 
 if s:do_update
