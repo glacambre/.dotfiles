@@ -8,6 +8,8 @@ alias openGithubNotifications composite js Array.from(document.querySelectorAll(
 alias tn jsb let a = str.join("").split("/" + "/").slice(-1)[0]; tri.excmds.tabopen(a ? `https://intranet.adacore.com/crm/#/tn/${a}` : `https://intranet.adacore.com/crm/#/Tickets/myTNs`) //
 alias mktn js tri.native.run(`mkdir -v "$HOME/prog/${document.location.href.split("/").slice(-1)[0]}"`).then(r=>Array.from(document.querySelectorAll("#Files a")).forEach(a=>fetch(a.href).then(r=>r.text()).then(t=>tri.native.write(`${r.content.match(/'.*'\n/)[0].slice(1,-2)}/${a.href.split("/").slice(-1)[0]}`,t))))
 
+autocmd DocLoad twitter.com urlmodify -t twitter.com nitter.net
+
 bind O composite url2args | fillcmdline open
 bind gh followpage prev
 bind gl followpage next
