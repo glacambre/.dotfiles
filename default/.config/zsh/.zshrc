@@ -23,6 +23,7 @@ source "$ZDOTDIR/shelley.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/zsh_auto_suggestions.zsh"
 source "$ZDOTDIR/zsh_ileum.zsh"
+source "$ZDOTDIR/zsh_syncwd.zsh"
 
 ### VARIOUS OPTIONS
 setopt auto_cd                # Cd when a dirname has been given instead of a program
