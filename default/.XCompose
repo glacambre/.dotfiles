@@ -110,3 +110,6 @@
 <dead_circumflex> <x> <D>:                "😆"  U0001f606       # SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES
 <dead_circumflex> <greater> <less>:       "😤"  U0001f624       # FACE WITH LOOK OF TRIUMPH
 <dead_circumflex> <space>:                "​"  U200b
+<dead_circumflex> <colon> <f> <a> <c> <e> <p> <a> <l> <m> <colon>: "🤦"  U0001f926
+<dead_circumflex> <colon> <s> <h> <r> <u> <g> <colon>: "🤷"  U0001f937
+<dead_circumflex> <colon> <t> <h> <i> <n> <k> <i> <n> <g> <colon>: "🤔"  U0001f914
