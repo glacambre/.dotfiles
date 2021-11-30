@@ -64,29 +64,7 @@ function! MyStatusLine ()
         let l:line .= '[VISUAL]'
     endif
     let l:line .= '%y[%f]%m%r%='
-    let l:line .= '%{MyNeomakeStatusItem()}'
     return l:line . '[%l,%c:%b][%P]'
-endfunction
-
-function! MyNeomakeStatusItem()
-    if !exists('*neomake#statusline#LoclistCounts()')
-        return ""
-    endif
-    let counts = neomake#statusline#LoclistCounts(bufnr("%"))
-    let ecount = get(counts, "E", 0)
-    let wcount = get(counts, "W", 0)
-    if ecount > 0 && wcount > 0
-        return "[E:" . ecount . ",W:" . wcount . "]"
-    elseif ecount > 1
-        return "[" . ecount . " errors]"
-    elseif ecount > 0
-        return "[" . ecount . " error]"
-    elseif wcount > 1
-        return "[" . wcount . " warnings]"
-    elseif wcount > 0
-        return "[" . wcount . " warning]"
-    endif
-    return ""
 endfunction
 
 " Updates/lauches mupdf
