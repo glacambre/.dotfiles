@@ -38,11 +38,21 @@ call minpac#add('https://github.com/chrisbra/Recover.vim')
 call minpac#add('https://github.com/Shougo/denite.nvim')
 function! SetupDenite(key)
 	call denite#custom#option("default", { "start_filter": 1, "split": "floating" })
-	nnoremap Z  <Cmd>Denite buffer file/rec file_mru<CR>
-	nnoremap zh <Cmd>Denite -default_action=split buffer file/rec file_mru<CR>
-	nnoremap zv <Cmd>Denite -default_action=vsplit buffer file/rec file_mru<CR>
-	nnoremap zg <Cmd>Denite grep:::!<CR>
-	nnoremap zt <Cmd>Denite outline<CR>
+	call denite#custom#var('grep', {
+				\ 'command': ['grep'],
+				\ 'default_opts': ['-inHI'],
+				\ 'final_opts': [],
+				\ 'max_path_length': 50,
+				\ 'min_interactive_length': 3,
+				\ 'pattern_opt': ['-e'],
+				\ 'recursive_opts': ['-r'],
+				\ 'separator': ['--'],
+		\ })
+	nnoremap Z  <Cmd>Denite -highlight-window-background=Normal buffer file/rec file_mru<CR>
+	nnoremap zh <Cmd>Denite -highlight-window-background=Normal -default_action=split buffer file/rec file_mru<CR>
+	nnoremap zv <Cmd>Denite -highlight-window-background=Normal -default_action=vsplit buffer file/rec file_mru<CR>
+	nnoremap zg <Cmd>Denite -highlight-window-background=Normal grep:::!<CR>
+	nnoremap zt <Cmd>Denite -highlight-window-background=Normal outline<CR>
 	" Add wildignored patterns to denite's ignored patterns
 	let wildignored_patterns = []
 	for elem in split(&wildignore, ',')
