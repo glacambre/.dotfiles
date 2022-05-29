@@ -4,6 +4,14 @@ if $TERM != "linux" || exists("g:started_by_nwin") || exists("g:started_by_firen
 	colorscheme colors
 endif
 
+" Always cd to the directory of the current dir. Relies on OSC 7 in the shell
+" in order to move to the right dir in terminal buffers!
+set autochdir
+if exists('&autoshelldir')
+	" Pending neovim pr #17962
+	set autoshelldir
+endif
+
 " Use space for vertical split separator, fold separator and end of buffer
 " characters
 set fillchars=vert:\ ,fold:\ ,eob:\  
@@ -87,9 +95,6 @@ set nojoinspaces " Don't put 2 spaces when joining lines
 set expandtab
 
 set cino+=#1 " Make >> be able to shift lines that start with '#' in C
-
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+\%#\@<!$/ " Highlight eol whitespace in red
 
 let g:loaded_netrw = 1                 " Netrw is rather annoying, diable it
 let g:loaded_netrwPlugin = 1
