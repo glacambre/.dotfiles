@@ -56,10 +56,6 @@ function! OnAltSpace() abort
 endfunction
 tnoremap <silent> <A-Space> <Cmd>call OnAltSpace()<CR>
 
-" Suggest a spelling correction
-nnoremap <C-s> z=
-inoremap <C-x><C-s> <C-x><C-s><C-n>
-
 " Move in command line mode using hjkl
 for b in [["<C-h>", "<left>"],
 	\ ["<C-j>", "<down>"],
