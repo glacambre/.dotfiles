@@ -1,16 +1,22 @@
-GET_PRIMARY="xsel -o -p </dev/null"
-GET_CLIPBOARD="xsel -o -b </dev/null"
+GET_PRIMARY="wl-paste --primary </dev/null"
+GET_CLIPBOARD="wl-paste </dev/null"
 
-command -v "xsel" >/dev/null
-X_CLIPBOARD_AVAILABLE=$?
-if ! [ "$X_CLIPBOARD_AVAILABLE" = 0 ]; then
+command -v "wl-paste" >/dev/null
+GUI_CLIPBOARD_AVAILABLE=$?
+if ! [ "$GUI_CLIPBOARD_AVAILABLE" = 0 ]; then
+    command -v "xsel" >/dev/null
+    GUI_CLIPBOARD_AVAILABLE=$?
+    GET_PRIMARY="xsel -o -p </dev/null"
+    GET_CLIPBOARD="xsel -o -b </dev/null"
+fi
+if ! [ "$GUI_CLIPBOARD_AVAILABLE" = 0 ]; then
     command -v "xclip" >/dev/null
-    X_CLIPBOARD_AVAILABLE=$?
+    GUI_CLIPBOARD_AVAILABLE=$?
     GET_PRIMARY="xclip -o -selection p </dev/null"
     GET_CLIPBOARD="xclip -o -selection c </dev/null"
 fi
 
-if [ "$X_CLIPBOARD_AVAILABLE" = 0 ]; then
+if [ "$GUI_CLIPBOARD_AVAILABLE" = 0 ]; then
     bindkey -M vicmd -r '"'
     vi-x-paste-set-buffer () {
         if [ ${REGION_ACTIVE} -eq 1 ]; then
