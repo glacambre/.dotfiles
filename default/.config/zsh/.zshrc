@@ -1,3 +1,5 @@
+fpath=("${ZDOTDIR}completions" $fpath)
+
 ##### ZSH MODULES
 zmodload zsh/complete # Basic completion code
 zmodload zsh/complist # Completion listing extension
