@@ -1,0 +1,159 @@
+#compdef anod
+# In order to use this completion, add
+#
+#     fpath=(/path/to/directory/containing/this/file $fpath)
+#
+# At the top of your .zshrc.
+
+__anod_init()
+{
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments -C \
+    ':command:->command' \
+    '*::options:->options'
+
+  case $state in
+    (command)
+      local -a subcommands
+      subcommands=(
+        'wave:nightly builds'
+        '22.2:previous release'
+      )
+      _describe -t commands 'anod init' subcommands
+    ;;
+
+    (options)
+      case $line[1] in
+        *)
+          _files -/
+        ;;
+      esac
+    ;;
+  esac
+}
+
+__anod_lookfor ()
+{
+  if [ -d vcs/anod-auto ] ; then
+    local -a results
+    results=($(/bin/grep -Iri "def $1(" vcs/anod-auto | sed 's@.*/\([^/]*\)\.anod:.*@\1@' | sort | uniq))
+    _describe -t commands "$1" results
+  fi
+}
+
+__anod_install ()
+{
+  __anod_lookfor install
+}
+
+__anod_build ()
+{
+  __anod_lookfor build
+}
+
+__anod_test ()
+{
+  __anod_lookfor test
+}
+
+__anod_printenv ()
+{
+  __anod_lookfor setenv
+}
+
+__anod_tune ()
+{
+  _arguments '--electrolyt-dir:filename:_files -/' '--anod-dir:filename:_files -/' 
+}
+
+__anod_vcs_add_repos ()
+{
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments '1: :->repos' '2: :->files'
+  case $state in
+    (repos) 
+      if [ -e vcs/anod-auto/config/repositories.yaml ] ; then
+        local -a repos
+        repos=($(/bin/grep -o '^\([^# 	][^:]*\):' vcs/anod-auto/config/repositories.yaml))
+        _describe -t commands 'add-repos' repos
+      fi
+      ;;
+    (*) _files -/;;
+  esac
+}
+
+__anod_vcs ()
+{
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments -C \
+    ':command:->command' \
+    '*::options:->options'
+
+  case $state in
+    (command)
+      local -a switches
+      switches=('--add-repo' '--list')
+      _describe -t commands 'vcs' switches
+      ;;
+
+    (options)
+      case $line[1] in
+        (--add-repo) __anod_vcs_add_repos ;;
+      esac
+      ;;
+  esac
+}
+
+_anod ()
+{
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments -C \
+    ':command:->command' \
+    '*::options:->options' \
+
+  case $state in
+    (command)
+      local -a subcommands
+      subcommands=(
+        'build:run build from a given spec'
+        'deps:print a dependency tree for a given spec'
+        'eval:call/evaluate methods and attribute from a given spec'
+        '-h:show help message and exit'
+        '--help:show help message and exit'
+        'init:initialize a sandbox'
+        'install:run install from a given spec'
+        'printenv:print environment changes after call to spec setenv'
+        'reset:reset a given component in the sandbox'
+        'run:execute an entry point from an electrolyt plan'
+        'source:create sources declared in a given spec'
+        'test:run test from a given spec'
+        'tune:change sandbox parameters'
+        'update:update a sandbox'
+        'vcs:manage git and svn repositories'
+      )
+      _describe -t commands 'anod' subcommands
+      ;;
+
+    (options)
+      case $line[1] in
+        (build) __anod_build ;;
+        (init) __anod_init ;;
+        (install) __anod_install ;;
+        (printenv) __anod_printenv ;;
+        (test) __anod_test ;;
+        (tune) __anod_tune ;;
+        (vcs) __anod_vcs ;;
+      esac
+      ;;
+  esac
+}
+
+_anod "$@"
