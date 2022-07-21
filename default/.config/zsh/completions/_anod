@@ -17,10 +17,7 @@ __anod_init()
   case $state in
     (command)
       local -a subcommands
-      subcommands=(
-        'wave:nightly builds'
-        '22.2:previous release'
-      )
+      subcommands=($(anod list))
       _describe -t commands 'anod init' subcommands
     ;;
 
