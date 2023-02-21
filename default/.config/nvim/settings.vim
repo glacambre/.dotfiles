@@ -4,13 +4,7 @@ if $TERM != "linux" || exists("g:started_by_nwin") || exists("g:started_by_firen
 	colorscheme colors
 endif
 
-" Always cd to the directory of the current dir. Relies on OSC 7 in the shell
-" in order to move to the right dir in terminal buffers!
 set autochdir
-if exists('&autoshelldir')
-	" Pending neovim pr #17962
-	set autoshelldir
-endif
 
 " Use space for vertical split separator, fold separator and end of buffer
 " characters
