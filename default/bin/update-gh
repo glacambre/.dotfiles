@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ "$#" != "1" ] ; then
+  echo "Usage: update-gh 1.2.34"
+  exit 1
+fi
+
 set -e
 
 DOWNLOAD_DIR="$HOME/downloads"
