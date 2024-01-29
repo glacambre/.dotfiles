@@ -96,9 +96,6 @@ nnoremap <silent> <C-w>t <Cmd>tabnew<CR>
 " Redo with U
 nnoremap U <C-r>
 
-" TODO: Play last recorded macro with Q
-nnoremap Q @@
-
 " This is needed because of mathchpairs+=<:> in settings.vim
 nnoremap << <Cmd><<CR>
 " Do not exit Visual mode when shift-indenting

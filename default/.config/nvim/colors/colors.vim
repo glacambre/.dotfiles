@@ -59,6 +59,7 @@ hi Question guifg=#C30771 ctermfg=1
 hi StatusLine guibg=#EEEEEE ctermbg=255 gui=bold cterm=bold
 hi StatusLineNC guibg=#EEEEEE ctermbg=255 gui=NONE cterm=NONE
 hi VertSplit guibg=#EEEEEE ctermbg=255 guifg=#EEEEEE ctermfg=255
+hi WinSeparator guibg=#EEEEEE ctermbg=255 guifg=#EEEEEE ctermfg=255
 hi Title guifg=#008EC4 ctermfg=4
 hi Visual guifg=#4E4E4E ctermfg=239 guibg=#af5fd7 ctermbg=134 cterm=none gui=none
 hi VisualNOS guibg=#A8A8A8 ctermbg=248 cterm=none gui=none

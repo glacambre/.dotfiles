@@ -158,8 +158,10 @@ local function setup_lsp_settings(client, buf)
 end
 l.clangd.setup{ on_attach = setup_lsp_settings }
 l.tsserver.setup{ on_attach = setup_lsp_settings }
-l.als.setup{ on_attach = setup_lsp_settings }
+l.als.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/prog/ada_language_server/.obj/server/ada_language_server" }  }
 l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
+l.ocamllsp.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/.opam/default/bin/ocamllsp" } }
+
 END
 
 if s:do_update
