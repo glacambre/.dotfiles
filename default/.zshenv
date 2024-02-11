@@ -1,20 +1,15 @@
 export ZDOTDIR="$HOME/.config/zsh/"
 
 ##### MISC VARIABLES
-export PATH="$HOME/gnatpython/bin:$PATH"
+export PATH="$PATH:/usr/bin:/usr/sbin:/bin:/sbin"
 export EDITOR="nvim"
 export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
 export GREP_COLORS="mt=01;35:fn=34:ln=11;37:se=37"
-export INDENT_PROFILE="$HOME/.config/indent/profile"
 export NODE_REPL_HISTORY=""
 export VISUAL="$EDITOR"
 export XDG_CONFIG_HOME="$HOME/.config/"
 export XDG_DATA_HOME="$HOME/.local/share/"
-export XKB_DEFAULT_LAYOUT="fr-latin9"
-export RXVT_SOCKET="$XDG_DATA_HOME/urxvt/socket"
-export NOTMUCH_CONFIG="$HOME/.config/notmuch/config"
-export WEECHAT_HOME="$HOME/.config/weechat"
-export LC_TIME="C"
+export DEBUGINFOD_URLS="https://debuginfod.debian.net"
 
 ##### LESS VARIABLES
 # Standout
