@@ -5,22 +5,11 @@ if [[ $(tty) = "/dev/tty1" ]] ; then
             export $(dbus-launch)
         fi
     fi
-    if command -v pulseaudio >/dev/null 2>/dev/null ; then
-        pulseaudio --start &
-    fi
     if command -v sway >/dev/null 2>/dev/null; then
+        # export WLR_DRM_DEVICES=/dev/dri/card1
         exec sway
     fi
     if command -v startx >/dev/null 2>/dev/null ; then
         exec startx -- :0 vt1
-    fi
-else
-    # if running in another tty/pty
-    if [[ "$SSH_CONNECTION" == "" ]] ; then
-        # if not running in an ssh connection (= we're in a tty), load custom
-        # linux console keymap
-        cmd="sudo loadkeys '$HOME/.config/linux-console/keymap'"
-        echo $cmd
-        eval $cmd
     fi
 fi
