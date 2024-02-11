@@ -2,13 +2,20 @@
 # Unpack all bandcamp archives, group them into artist/album directories, copy
 # to backup directory, convert to opus into $HOME/music
 
+backupdir="/wd/data/media/music"
+
+if [ "$1" != "-f" ] && ! [ -d "$backupdir" ] ; then
+        echo "$backupdir does not exist, aborting."
+        exit 1
+fi
+
 for i in *.zip ; do
         name="$(basename "$i" | sed s/.zip$//)"
         artist="$(echo "$name" | sed 's/ \?-.*//')"
         album="$(echo "$name" | sed 's/[^-]\+- //')"
         fullname="$artist/$album"
         homepath="$HOME/music/$fullname"
-        backuppath="/data/media/music/$fullname"
+        backuppath="$backupdir/$fullname"
 
         mkdir -p "$fullname"
         mkdir -p "$homepath"
