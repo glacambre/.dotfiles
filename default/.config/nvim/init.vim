@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ 'TermRequest' }, {
       end
       vim.api.nvim_buf_set_var(e.buf, "last_osc7_payload", dir)
       if vim.o.autochdir and vim.api.nvim_get_current_buf() == e.buf then
-        vim.cmd.cd(dir)
+        vim.cmd.cd(vim.fn.fnameescape(dir))
       end
     end
   end
@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd({ 'bufenter', 'winenter', 'dirchanged' }, {
     if vim.b.last_osc7_payload ~= nil
       and vim.fn.isdirectory(vim.b.last_osc7_payload) == 1
     then
-      vim.cmd.cd(vim.b.last_osc7_payload)
+      vim.cmd.cd(vim.fn.fnameescape(vim.b.last_osc7_payload))
     end
   end
 })
