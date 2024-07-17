@@ -96,7 +96,6 @@ call minpac#add('https://github.com/Shougo/neomru.vim')
 
 " New pending operators, functions and motions
 call minpac#add('https://github.com/tommcdo/vim-exchange')
-call minpac#add('https://github.com/tpope/vim-commentary.git')
 call minpac#add('https://github.com/tpope/vim-repeat')
 call minpac#add('https://github.com/tpope/vim-surround')
 call minpac#add('https://github.com/wellle/targets.vim')
@@ -131,6 +130,8 @@ call minpac#add('https://github.com/tpope/vim-sleuth.git')
 
 " Git gud
 call minpac#add('https://github.com/tpope/vim-fugitive')
+call minpac#add('https://github.com/shumphrey/fugitive-gitlab.vim')
+let g:fugitive_gitlab_domains = {'ssh://git@ssh.gitlab.adacore-it.com': 'https://gitlab.adacore-it.com'}
 
 " Default LSP configs
 call minpac#add('https://github.com/neovim/nvim-lspconfig')
