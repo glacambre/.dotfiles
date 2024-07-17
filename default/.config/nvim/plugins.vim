@@ -184,14 +184,13 @@ local function als_on_init(client)
 end
 l.clangd.setup{ on_attach = setup_lsp_settings }
 l.ocamllsp.setup{
-	root_dir = (function() return "/home/lacambre/infer/infer/src/" end);
-	cmd = { "/home/lacambre/.opam/4.11.2+adacore/bin/ocamllsp" };
+	cmd = { "/home/lacambre/bin/ocaml-language-server/x86_64-linux/opam-4.11.2-0/install/repo/reloc/bin/ocamllsp" };
 	on_attach = setup_lsp_settings
 }
 l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
 l.tsserver.setup{ on_attach = setup_lsp_settings }
 l.als.setup{
-	cmd = { "/home/lacambre/wave/x86_64-linux/als_edge/install/bin/ada_language_server" };
+	cmd = { "/home/lacambre/wave/x86_64-linux/als-edge/install/bin/ada_language_server" };
 	on_attach = setup_lsp_settings;
 	on_init = als_on_init;
 	settings = {};
