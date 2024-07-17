@@ -21,13 +21,18 @@ vim.api.nvim_create_autocmd({ 'TermRequest' }, {
     end
   end
 })
-vim.api.nvim_create_autocmd({ 'bufenter', 'winenter', 'dirchanged' }, {
+vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   callback = function(e)
-    if vim.b.last_osc7_payload ~= nil
-      and vim.fn.isdirectory(vim.b.last_osc7_payload) == 1
-    then
-      vim.cmd.cd(vim.fn.fnameescape(vim.b.last_osc7_payload))
-    end
+    vim.api.nvim_create_autocmd({ 'bufenter', 'winenter', 'dirchanged' }, {
+      buffer = e.buf,
+      callback = function(e)
+        if vim.b.last_osc7_payload ~= nil
+          and vim.fn.isdirectory(vim.b.last_osc7_payload) == 1
+        then
+          vim.cmd.cd(vim.fn.fnameescape(vim.b.last_osc7_payload))
+        end
+      end
+    })
   end
 })
 EOF
