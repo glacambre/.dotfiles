@@ -8,7 +8,14 @@ if [ "$#" -eq "0" ] ; then
     exit
 fi
 
-for URL in "$@"; do
+args="$@"
+TN="$(echo "$args" | grep -o '^[0-9A-Z][0-9A-C][0-9]\{2\}-[0-9]\{3\}$')"
+
+if ! [ -z "$TN" ]; then
+    args="https://intranet.adacore.com/crm/#/tn/$TN"
+fi
+
+for URL in "$args"; do
     case "$URL" in
         *youtube.com*|*youtu.be*|*vimeo.com*|*.webm|*.mkv|*.mp4|*www.franceinter.fr/emissions/*|*/videos/watch/*)
             nohup mpv --no-terminal --profile=protocol.http "$URL" &

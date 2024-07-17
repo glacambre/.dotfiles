@@ -4,6 +4,10 @@ if $TERM != "linux" || exists("g:started_by_nwin") || exists("g:started_by_firen
 	colorscheme colors
 endif
 
+set mouse=
+
+" Automatically cd to dir of buffer. Including the shell's CWD in terminal
+" buffers when OSC7 is enabled!
 set autochdir
 
 " Use space for vertical split separator, fold separator and end of buffer
@@ -23,7 +27,7 @@ set wildignorecase                  " Ignore case when completing filenames
 set wildmenu                        " Adds the menu at the bottom of the screen
 set wildoptions+=pum                " Cool popup menu
 set wildchar=<C-n>
-set wildignore+=*.o,*.out,*.class   " Ignore certain filetypes
+set wildignore+=*.o,*.class         " Ignore certain filetypes
 set wildignore+=*.cmi,*.cmo
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.ico,*.svg,*.xcf
 set wildignore+=*.mp3,*.ogg,*.opus,*.wav,*.flac,
@@ -63,8 +67,8 @@ set hidden     " Do not unload buffers when leaving them
 set backspace=indent,eol,start " backspace deletes indent, eol and stat
 set matchpairs+=<:>
 
-set nocul " shows CursorLine
-set nonu  " shows line number
+set nocul " hides CursorLine
+set nonu  " hides line numbers
 
 set foldmethod=indent " Block folding is done with syntax
 set foldnestmax=10    " Fold a maximum of 10 blocks

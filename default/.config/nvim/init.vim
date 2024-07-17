@@ -41,17 +41,11 @@ if exists('g:started_by_firenvim')
             \ },
             \ 'slack.com': {
                 \ 'takeover': 'never',
-            \ },
-            \ 'git.adacore.com': {
-                \ 'selector': '.com-google-gerrit-client-diff-DraftBox_BinderImpl_GenCss_style-editArea, .gwt-TextArea',
-            \ },
-            \ 'docs.google.com': {
-                \ 'takeover': 'never',
-            \ },
-            \ 'airfrance.fr': {
-                \ 'takeover': 'never',
+                \ 'content': 'html',
             \ }
         \ }
     \ }
-    nnoremap <Esc><Esc> :call firenvim#focus_page()<CR>
+    nnoremap <Esc><Esc> <Cmd>call firenvim#focus_page()<CR>
+    nnoremap <C-CR> <Cmd>call firenvim#thunderbird_send()<CR>
 end
+

@@ -19,13 +19,14 @@ source "$ZDOTDIR/vi-mode-color-prompt.zsh"
 source "$ZDOTDIR/vi-mode-x-paste.zsh"
 source "$ZDOTDIR/vi-mode.zsh"
 source "$ZDOTDIR/command_time.zsh"
-source "$ZDOTDIR/gpg.zsh"
-source "$ZDOTDIR/shelley.zsh"
+# source "$ZDOTDIR/gpg.zsh"
+# source "$ZDOTDIR/shelley.zsh"
 # aliases are defined after syntax_highlighting because '=' isn't legal
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/zsh_auto_suggestions.zsh"
 source "$ZDOTDIR/zsh_ileum.zsh"
 source "$ZDOTDIR/zsh_syncwd.zsh"
+
 
 ### VARIOUS OPTIONS
 setopt auto_cd                # Cd when a dirname has been given instead of a program
@@ -35,7 +36,7 @@ setopt auto_pushd             # Cd pushes directories on the pushd stack
 unsetopt beep                 # Don't beep. Ever.
 unsetopt bg_nice              # Don't nice background jobs
 setopt cdable_vars            # If dirname given to cd isn't a dir, try acting like a ~ is in front of it
-setopt correct_all            # Try to correct typos in bin/dir names
+#setopt correct_all            # Try to correct typos in bin/dir names
 unsetopt flow_control         # Disable scroll-lock in shell editor
 setopt glob_dots              # Do not require a leading '.' in order to match files
 setopt hash_cmds              # Hash command locations for faster invocations
@@ -55,3 +56,11 @@ unsetopt notify               # Wait for a new prompt to be displayed before pri
 setopt numeric_glob_sort      # On {01..XX} expansions, sort numerically instead of lexicographically
 setopt pushd_ignore_dups      # Don't duplicate directories in the pushd stack
 setopt pushd_silent           # Don't print directory stack after pushd/popd
+
+# Should be set in .zshenv, cause it sets env vars!
+# source ~/.config/zsh/opam
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -e "$HOME/.local/kitty.app/lib/kitty/shell-integration/kitty.zsh"; then source "$HOME/.local/kitty.app/lib/kitty/shell-integration/kitty.zsh"; fi
+# END_KITTY_SHELL_INTEGRATION

@@ -176,6 +176,7 @@ alias _='sudo'
 alias cleantex='rm *.{aux,idx,log,nav,out,snm,toc,vrb,bbl,blg}(.N) 2>/dev/null'
 alias cp='cp  -i'
 alias dd='dd status=progress'
+alias fidn='find'
 alias gdb='gdb -q'
 alias l='ls -lAh --color=auto'
 alias ls='ls --color=auto'
@@ -186,10 +187,16 @@ alias nrb='npm run build'
 alias nrt='npm run test'
 alias nrp='npm run pretty'
 
+alias mamke=make
+alias makke=make
+
 # Grep
-grepcmd='LC_ALL=C grep --color=auto --exclude-dir=.nyc_output --exclude-dir=build --exclude-dir=bin --exclude-dir=generated --exclude-dir=node_modules --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg --exclude=package.json --exclude=package-lock.json --exclude=yarn.lock --exclude=bundle.js.map --exclude-dir=obj-x86_64-pc-linux-gnu --exclude-dir=target --exclude=.ali --binary-files=without-match --line-number'
+grepcmd='LC_ALL=C grep --color=auto --exclude-dir=.nyc_output --exclude-dir=obj --exclude-dir=bin --exclude-dir=generated --exclude-dir=node_modules --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg --exclude=package.json --exclude=package-lock.json --exclude=yarn.lock --exclude=bundle.js.map --exclude-dir=obj-x86_64-pc-linux-gnu --exclude-dir=target --exclude=.ali --exclude-dir=_build --binary-files=without-match --line-number'
 alias grep="$grepcmd"
 alias gri="$grepcmd -ri"
+
+alias setup-e3='scp lima:"/it/bootstrap/e3*x86_64-linux*" . && tar -xvf e3*x86_64-linux* && rm -rf e3 e3*.tgz && mv e3*x86_64-linux* e3'
+alias update-e3='python -m e3.distrib --update'
 
 # Git 
 alias ga='git add'
@@ -206,28 +213,47 @@ alias gcl='git clone'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gf='git fetch -p'
+alias gfoc='git fetch -p origin cpl'
+alias gfoe='git fetch -p origin edge'
 alias gfom='git fetch -p origin master'
-alias gfow='git fetch -p origin wavefront'
+alias gfowa='git fetch -p origin wavefront'
+alias gfowi='git fetch -p origin wizard'
 alias gfum='git fetch -p upstream master'
 alias glog='git log --first-parent --graph --abbrev-commit --decorate --date=relative --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(bold yellow)%d%C(reset)'\'' --all'
 alias gm='git merge'
 alias gmom='git merge origin/master'
-alias gmow='git merge origin/wavefront'
+alias gmowa='git merge origin/wavefront'
+alias gmowi='git merge origin/wizard'
 alias gmum='git merge upstream/master'
 alias gp='git push'
-alias gpf='git push --force'
+alias gpc='git push -o merge_request.create -o merge_request.target=cpl -o merge_request.label=CPL -o merge_request.label="workflow::in-review"'
+alias gpe='git push -o merge_request.create -o merge_request.target=edge -o merge_request.label="workflow::in-review"'
+alias gpm='git push -o merge_request.create -o merge_request.target=master -o merge_request.label="workflow::in-review"'
+alias gpwi='git push -o merge_request.create -o merge_request.target=wizard -o merge_request.label="workflow::in-review"'
+alias gpwa='git push -o merge_request.create -o merge_request.target=wavefront'
+alias gp23.1='git push -o merge_request.create -o merge_request.target=23.1 -o merge_request.label="workflow::in-review"'
+alias gpf='git push --force-with-lease'
 alias gr='git reset'
 alias gre='git rebase'
 alias grem='git rebase master'
 alias grea='git rebase --abort'
 alias grec='git rebase --continue'
+alias greoc='git rebase origin/cpl --autostash'
+alias greoe='git rebase origin/edge --autostash'
 alias greom='git rebase origin/master --autostash'
-alias greow='git rebase origin/wavefront --autostash'
+alias greowa='git rebase origin/wavefront --autostash'
+alias greowi='git rebase origin/wizard --autostash'
 alias greum='git rebase upstream/master --autostash'
 alias grm='git rm'
 alias gs='git show'
 
 alias update-nvim='curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o ~/downloads/nvim && chmod +x ~/downloads/nvim && mv ~/downloads/nvim ~/bin/nvim'
+
+alias anood=anod
+alias anot=anod
+alias init-wave='rm -rf wave && anod init wave && cd wave && (anod install stable-gnatall ; anod install stable-langkit ; anod install stable-langkit_support ; anod install stable-libadalang; anod install als --qualifier=edge) ; anod install gdb'
+alias update-wave='(cd x86_64-linux; for i in * ; do cd .. ; anod install "$(echo $i | /bin/grep -o "[a-z_-]*")"; cd - ; done;)'
+alias shutdown-r4='ssh -t me@r4 sudo systemctl suspend'
 
 # Health log
 alias logactivity="sp $HOME/documents/logs/activity.csv"
@@ -250,4 +276,3 @@ case "$(uname -a)" in
        alias u="sudo apt remove";
        alias s="apt search";;
 esac
-

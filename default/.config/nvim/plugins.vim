@@ -156,11 +156,44 @@ local function setup_lsp_settings(client, buf)
 	vim.api.nvim_buf_set_keymap(buf, "n", "<C-n>",     "<C-x><C-o><C-n>", opts)
 	vim.api.nvim_buf_set_option(buf, "omnifunc",  "v:lua.vim.lsp.omnifunc")
 end
+local function als_on_init(client)
+	local path = client.workspace_folders[1].uri:sub(8)
+	if vim.fn.filereadable(path .. "/database.gpr") ~= 0 then
+		result = path .. "/database.gpr"
+	elseif vim.fn.filereadable(path .. "/project_support.gpr") ~= 0 then
+		result = path .. "/project_support.gpr"
+	elseif vim.fn.filereadable(path .. "/wrappers.gpr") ~= 0 then
+		result = path .. "/wrappers.gpr"
+	elseif vim.fn.filereadable(path .. "/codepeer.gpr") ~= 0 then
+		result = path .. "/codepeer.gpr"
+	elseif vim.fn.filereadable(path .. "/codepeer_ws.gpr") ~= 0 then
+		result = path .. "/codepeer_ws.gpr"
+	elseif vim.fn.filereadable(path .. "/gnat2scil.gpr") ~= 0 then
+		result = path .. "/gnat2scil.gpr"
+	elseif vim.fn.filereadable(path .. "/world.gpr") ~= 0 then
+		result = path .. "/world.gpr"
+	elseif vim.fn.filereadable(path .. "/gnat.gpr") ~= 0 then
+		result = path .. "/gnat.gpr"
+	end
+	if result ~= nil then
+		client.config.settings.ada = { projectFile = result, log_level = 0 } 
+		client.notify("workspace/didChangeConfiguration", client.config.settings)
+	end
+	return true
+end
 l.clangd.setup{ on_attach = setup_lsp_settings }
+l.ocamllsp.setup{
+	root_dir = (function() return "/home/lacambre/infer/infer/src/" end);
+	cmd = { "/home/lacambre/.opam/4.11.2+adacore/bin/ocamllsp" };
+	on_attach = setup_lsp_settings
+}
+l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
 l.tsserver.setup{ on_attach = setup_lsp_settings }
 l.als.setup{
+	cmd = { "/home/lacambre/wave/x86_64-linux/als_edge/install/bin/ada_language_server" };
 	on_attach = setup_lsp_settings;
-	settings = { ada = { projectFile = "gnat.gpr" } };
+	on_init = als_on_init;
+	settings = {};
 }
 END
 

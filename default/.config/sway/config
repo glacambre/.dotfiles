@@ -5,7 +5,7 @@ input type:keyboard {
 }
 
 default_border          pixel 2
-gaps inner 2
+gaps inner 0
 default_orientation horizontal
 focus_follows_mouse no
 smart_gaps on
@@ -27,7 +27,8 @@ set $mod2 Mod1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec open_terminal_with_nvim term://zsh
+bindsym $mod+Return exec open_nvim_terminal
+# bindsym $mod+Return exec /home/me/bin/nwin term://zsh
 
 # kill focused window
 bindsym $mod+Shift+A kill
@@ -124,7 +125,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Lock the computer
-bindsym $mod+q       exec swaylock --ignore-empty-password --show-failed-attempts
+bindsym $mod+q       exec swaylock --ignore-empty-password --show-failed-attempts -c 000000
 
 # Next song with $mod+n, previous song with $mod+N
 set     $mediaprev    exec mpc next
@@ -155,8 +156,8 @@ bindsym XF86AudioLowerVolume $voldown
 bindsym XF86AudioRaiseVolume $volup
 
 # Decrease brightness with $mod+u, increase with $mod+U
-set     $brightdown           exec sudo -A ~/bin/bdown
-set     $brightup             exec sudo -A ~/bin/bup
+set     $brightdown           exec sudo /home/lacambre/bin/bdown
+set     $brightup             exec sudo /home/lacambre/bin/bup
 bindsym $mod+u                $brightdown
 bindsym $mod+Shift+u          $brightup
 bindsym XF86MonBrightnessDown $brightdown

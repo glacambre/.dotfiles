@@ -1,6 +1,13 @@
-set auto-load safe-path /
-set disassembly-flavor intel
+python
+import os
+import subprocess
+from datetime import datetime
+end
 
+source /home/lacambre/.dotfiles/default/.config/gdb/nvim.gdb/nvim.py
+set auto-load safe-path /
+
+set print elements 0
 set print pretty
 set print demangle on
 set print asm-demangle on
@@ -25,35 +32,42 @@ define rf
 end
 
 # Alert when long-running commands finish
+define set_running_since
+python
+running_since=datetime.now()
+end
+end
+set_running_since
 define hook-run
-        shell echo set \$RUNNING_SINCE=$(date '+%s') > /tmp/.gdb_time
+        set_running_since
 end
 define hook-continue
-        shell echo set \$RUNNING_SINCE=$(date '+%s') > /tmp/.gdb_time
+        set_running_since
 end
 define hook-finish
-        shell echo set \$RUNNING_SINCE=$(date '+%s') > /tmp/.gdb_time
+        set_running_since
 end
 define hook-next
-        shell echo set \$RUNNING_SINCE=$(date '+%s') > /tmp/.gdb_time
+        set_running_since
 end
 define hook-step
-        shell echo set \$RUNNING_SINCE=$(date '+%s') > /tmp/.gdb_time
+        set_running_since
 end
 define hook-stop
-        shell echo set \$NOW=$(date '+%s') >> /tmp/.gdb_time
-        with lang c -- source /tmp/.gdb_time
-        if $NOW-$RUNNING_SINCE > 10
-                shell notify-send "GDB" "Finished running command."
-        end
+python
+now=datetime.now()
+if (now - running_since).seconds > 10:
+        subprocess.run(["notify-send", "GDB", "Finished running command."])
+end
 end
 
 # Firefox + RR: ignore sandbox signals
 handle SIGSYS noprint nostop
 
-# Disable security on everything. Hope I'll remember to remove this if I ever
-# start debugging malicious software...
-set auto-load safe-path /
+define printwrite
+python
+print(gdb.parse_and_eval("(char*)buf").string(length=int(gdb.parse_and_eval("nbytes"))))
+end
 
 shell if test -f "$HOME/.config/gdb/.gdbinit.$HOST"; then echo source "$HOME/.config/gdb/.gdbinit.$HOST"; fi > /tmp/gdbinit.tmp
 source /tmp/gdbinit.tmp
