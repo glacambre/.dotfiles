@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 function print_osc7() {
-    if [ $ZSH_SUBSHELL != 0 ] ; then
+    if [ "$ZSH_SUBSHELL" -eq 0 ] ; then
         printf "\033]7;file://$HOST/$PWD\033\\"
     fi
 }
