@@ -1,7 +1,9 @@
 #!/bin/zsh
 
 function print_osc7() {
-    printf "\033]7;file://$HOST/$PWD\033\\"
+    if [ $ZSH_SUBSHELL != 0 ] ; then
+        printf "\033]7;file://$HOST/$PWD\033\\"
+    fi
 }
 autoload -Uz add-zsh-hook
 add-zsh-hook -Uz chpwd print_osc7
