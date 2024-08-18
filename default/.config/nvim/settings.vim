@@ -21,7 +21,7 @@ set tabline=%!MyTabLine()           " MyTabLine is defined in functions.vim
 
 set wildignorecase                  " Ignore case when completing filenames
 set wildmenu                        " Adds the menu at the bottom of the screen
-set wildoptions+=pum                " Cool popup menu
+set wildoptions+=pum,fuzzy          " Cool popup menu
 set wildchar=<C-n>
 set wildignore+=*.o,*.out,*.class   " Ignore certain filetypes
 set wildignore+=*.cmi,*.cmo
@@ -35,7 +35,7 @@ set wildignore+=*.tar,*.zip,*.rar,*.7z,*.tgz
 set wildignore+=*.swp,*.swp.*,*.bak
 set wildignore+=*.toc,*.nav,*.aux,*.log,*.dvi,*.cls,*.sty,*.bib
 
-set completeopt=menu,menuone,noinsert,noselect
+set completeopt=menu,menuone,noinsert,noselect,fuzzy
 
 set showcmd                     " Show commands at the bottom of the screen
 set noruler                     " Don't show cursor position at the bottom
