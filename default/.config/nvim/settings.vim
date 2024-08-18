@@ -23,7 +23,7 @@ set wildignorecase                  " Ignore case when completing filenames
 set wildmenu                        " Adds the menu at the bottom of the screen
 set wildoptions+=pum,fuzzy          " Cool popup menu
 set wildchar=<C-n>
-set wildignore+=*.o,*.out,*.class   " Ignore certain filetypes
+set wildignore+=*.o,*.class         " Ignore certain filetypes
 set wildignore+=*.cmi,*.cmo
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.ico,*.svg,*.xcf
 set wildignore+=*.mp3,*.ogg,*.opus,*.wav,*.flac,
