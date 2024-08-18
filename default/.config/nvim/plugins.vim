@@ -40,15 +40,9 @@ vmap ga <Plug>(EasyAlign)
 
 " New text objects
 call minpac#add('https://github.com/kana/vim-textobj-user')
-call minpac#add('https://github.com/thinca/vim-textobj-between')
 call minpac#add('https://github.com/glts/vim-textobj-comment')
 call minpac#add('https://github.com/kana/vim-textobj-entire')
 call minpac#add('https://github.com/Julian/vim-textobj-variable-segment')
-call minpac#add('https://github.com/rbonvall/vim-textobj-latex')
-omap iE <Plug>(textobj-latex-environment-i)
-xmap iE <Plug>(textobj-latex-environment-i)
-omap aE <Plug>(textobj-latex-environment-a)
-xmap aE <Plug>(textobj-latex-environment-a)
 
 " Vim-polyglot
 let g:polyglot_disabled = ["graphql"]
