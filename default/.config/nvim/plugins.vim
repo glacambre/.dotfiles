@@ -12,13 +12,6 @@ call minpac#init()
 
 call minpac#add('https://github.com/k-takata/minpac')
 
-" Enhance terminal
-call minpac#add('https://github.com/glacambre/shelley')
-nnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
-vnoremap <silent> <expr> <Space>b shelley#PrevPrompt()
-nnoremap <silent> <expr> <Space>a shelley#NextPrompt()
-vnoremap <silent> <expr> <Space>a shelley#NextPrompt()
-
 " To be used everywhere, even in terminal
 call minpac#add('https://github.com/kana/vim-submode')
 function SetupResizeSubmode() abort
