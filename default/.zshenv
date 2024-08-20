@@ -2,9 +2,10 @@ export ZDOTDIR="$HOME/.config/zsh/"
 
 ##### MISC VARIABLES
 export PATH="$PATH:/usr/bin:/usr/sbin:/bin:/sbin"
+export PATH="$HOME/e3/bin:$PATH"
+export PATH="$HOME/wave/x86_64-linux/gdb/install/bin:$PATH"
+
 export SYSTEMD_EDITOR="vi"
-export PATH="$HOME/wave/x86_64-linux/gnat/install/bin:$HOME/gnatpython/bin:$HOME/e3/bin:$PATH:$HOME/jdk-13.0.1/bin:/usr/local/cuda/bin:$HOME/spark/bin"
-export LD_LIBRARY_PATH="$HOME/wave/x86_64-linux/gnat/install/lib/gcc/x86_64-pc-linux-gnu/9.3.1/adalib:$HOME/wave/x86_64-linux/gnat/install/lib64:$HOME/wave/x86_64-linux/gnat/install/lib:$LD_LIBRARY_PATH"
 export EDITOR="nvim"
 export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
 export NODE_REPL_HISTORY=""
@@ -14,18 +15,6 @@ export XDG_DATA_HOME="$HOME/.local/share/"
 export DEBUGINFOD_URLS="https://debuginfod.debian.net"
 
 ##### LESS VARIABLES
-# Standout
-export LESS_TERMCAP_so=$'\E[01;35;74m'
-export LESS_TERMCAP_se=$'\E[0m'
-# Underline
-export LESS_TERMCAP_us=$'\E[03;135;146m'
-export LESS_TERMCAP_ue=$'\E[0m'
-# Make blink
-export LESS_TERMCAP_mb=$'\E[01;31m'
-# Make bold
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'
-# Turn off bold, blink, underline
-export LESS_TERMCAP_me=$'\E[0m'
 # Don't create a .lesshst file
 export LESSHISTFILE="-"
 # Disable a few useless features
