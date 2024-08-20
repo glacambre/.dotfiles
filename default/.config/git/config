@@ -1,28 +1,35 @@
+[alias]
+	cb = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d && git remote prune origin
+	stats = !git ls-files | xargs -n1 git blame -w -M -C -C --line-porcelain | sed -n 's/^author //p' | sort -f | uniq -ic | sort -nr
+[branch]
+	sort = committerdate
+[commit]
+	verbose = true
+	; gpgsign = true
+[diff]
+	algorithm = patience
+	renames = copy
+[init]
+	defaultBranch = master
+[log]
+	decorate = short
+	date = iso
 [merge]
-	tool = vimdiff2
-[mergetool "vimdiff2"]
-	path = nvim
+	conflictStyle = zdiff3
+	tool = fugitive
+[mergetool "fugitive"]
+	cmd = nvim -f -c "Gvdiffsplit!" "$MERGED"
+[push]
+	default = current
+[url "git@github.com:"]
+	pushInsteadOf = "https://github.com/"
+	pushInsteadOf = "git://github.com/"
 [user]
 	name = glacambre
 	email = code@lacamb.re
 	signingkey = B9625DB1767553AC
-[commit]
-	verbose = true
-	; gpgsign = true
-[push]
-	default = current
-[log]
-	decorate = short
-[url "git@github.com:"]
-	pushInsteadOf = "https://github.com/"
-	pushInsteadOf = "git://github.com/"
-[alias]
-	cb = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d && git remote prune origin
-	stats = !git ls-files | xargs -n1 git blame -w -M -C -C --line-porcelain | sed -n 's/^author //p' | sort -f | uniq -ic | sort -nr
-[diff]
-	algorithm = patience
+[rebase]
+	updateRefs = true
 [rerere]
 	enabled = true
 	autoupdate = true
-[init]
-	defaultBranch = master
