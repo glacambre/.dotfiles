@@ -11,6 +11,7 @@
 [diff]
 	algorithm = patience
 	renames = copy
+	colorMoved = dimmed-zebra
 [init]
 	defaultBranch = master
 [log]
