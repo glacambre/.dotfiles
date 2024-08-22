@@ -33,3 +33,35 @@ augroup MY_GNUPLOT_AUGROUP
 	autocmd!
 	au FileType gnuplot setlocal commentstring=#%s
 augroup END
+
+augroup MY_GPR_AUGROUP
+	autocmd!
+	au BufRead,BufNewFile *.gpr if line('$') == 1 && getline(1) == ''
+		\ |   let b:prjname = expand('%:t:r')
+		\ |   if b:prjname == "agg"
+		\ |     call append(line('$'), ["aggregate "])
+		\ |   endif
+		\ |   call append(line('$'), ["project " . b:prjname . " is"])
+		\ |   if b:prjname == "agg"
+		\ |     call append(line('$'), ["  for Project_Files use ();"])
+		\ |   endif
+		\ |   call append(line('$'), ["end " . b:prjname . ";"])
+		\ |   call cursor(line('$') - 2, 9)
+		\ | endif
+augroup END
+
+augroup MY_ADA_AUGROUP
+	autocmd!
+	au BufRead,BufNewFile *.adb if line('$') == 1 && getline(1) == ''
+		\ |   let b:bodyname = expand('%:t:r')
+		\ |   call append(line('$'), [
+		\       "procedure " . b:bodyname . " is",
+		\       "  A : Integer;",
+		\       "begin",
+		\       "  if A = 0 and then A = 1 then",
+		\       "    null;",
+		\       "  end if;",
+		\       "end;"])
+		\ |   call cursor(2, 11)
+		\ | endif
+augroup END
