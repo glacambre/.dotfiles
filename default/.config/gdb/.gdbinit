@@ -11,6 +11,7 @@ set auto-load safe-path /
 
 set disassembly-flavor intel
 
+set print elements 0
 set print pretty
 set print demangle on
 set print asm-demangle on
