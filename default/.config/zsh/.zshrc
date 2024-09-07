@@ -33,7 +33,7 @@ setopt auto_pushd             # Cd pushes directories on the pushd stack
 unsetopt beep                 # Don't beep. Ever.
 unsetopt bg_nice              # Don't nice background jobs
 setopt cdable_vars            # If dirname given to cd isn't a dir, try acting like a ~ is in front of it
-setopt correct_all            # Try to correct typos in bin/dir names
+#setopt correct_all            # Try to correct typos in bin/dir names
 unsetopt flow_control         # Disable scroll-lock in shell editor
 setopt glob_dots              # Do not require a leading '.' in order to match files
 setopt hash_cmds              # Hash command locations for faster invocations
