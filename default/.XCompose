@@ -106,8 +106,8 @@
 <dead_circumflex> <colon> <parenright>:   "☺"   U263A           # WHITE SMILING FACE
 <dead_circumflex> <colon> <parenleft>:    "☹"   U2639           # WHITE FROWNING FACE
 <dead_circumflex> <less> <3>:             "❤"   U2764           # HEAVY BLACK HEART
-<dead_circumflex> <p> <o> <o>:            "💩"  U0001f4a9       # PILE OF POO
-<dead_circumflex> <x> <D>:                "😆"  U0001f606       # SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES
+<dead_circumflex> <colon> <p> <o> <o> <colon>: "💩"  U0001f4a9       # PILE OF POO
+<dead_circumflex> <colon> <l> <a> <u> <g> <h> <i> <n> <g> <colon>: "😆"  U0001f606       # SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES
 <dead_circumflex> <greater> <less>:       "😤"  U0001f624       # FACE WITH LOOK OF TRIUMPH
 <dead_circumflex> <space>:                "​"  U200b
 <dead_circumflex> <colon> <f> <a> <c> <e> <p> <a> <l> <m> <colon>: "🤦"  U0001f926
