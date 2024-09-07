@@ -198,6 +198,7 @@ alias grm='git rm'
 alias gs='git show'
 
 alias update-nvim='curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o ~/downloads/nvim && chmod +x ~/downloads/nvim && mv ~/downloads/nvim ~/bin/nvim'
+alias patchfox='rm -rf ~/.cache/mozilla ; find "$(dirname "$(realpath "$(which firefox)")")" -iname omni.ja -exec perl -i -pne "s/reserved=.true./               /g" "{}" ";"'
 
 # Health log
 alias logactivity="sp $HOME/documents/logs/activity.csv"
