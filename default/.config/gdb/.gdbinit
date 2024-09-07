@@ -6,6 +6,7 @@ import subprocess
 from datetime import datetime
 end
 
+source /home/lacambre/.dotfiles/default/.config/gdb/nvim.gdb/nvim.py
 set auto-load safe-path /
 
 set disassembly-flavor intel
