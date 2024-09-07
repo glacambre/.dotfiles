@@ -30,5 +30,5 @@
 [rebase]
 	updateRefs = true
 [rerere]
-	enabled = true
+	enabled = false
 	autoupdate = true
