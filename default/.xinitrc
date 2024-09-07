@@ -17,4 +17,4 @@ export GTK_IM_MODULE="xim"
 # Make a single hyper press send escape
 xcape -e "Hyper_L=Escape") &
 
-i3
+exec i3 -d all
