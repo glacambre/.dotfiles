@@ -124,7 +124,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Lock the computer
-bindsym $mod+q       exec swaylock --ignore-empty-password --show-failed-attempts
+bindsym $mod+q       exec swaylock --ignore-empty-password --show-failed-attempts -c 000000
 
 # Next song with $mod+n, previous song with $mod+N
 set     $mediaprev    exec mpc next
