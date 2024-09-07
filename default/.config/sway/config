@@ -27,7 +27,7 @@ set $mod2 Mod1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec open_terminal_with_nvim term://zsh
+bindsym $mod+Return exec open_nvim_terminal
 
 # kill focused window
 bindsym $mod+Shift+A kill
