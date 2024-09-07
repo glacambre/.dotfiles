@@ -65,9 +65,6 @@ if (now - running_since).seconds > 10:
 end
 end
 
-# Firefox + RR: ignore sandbox signals
-handle SIGSYS noprint nostop
-
 define printwrite
 python
 print(gdb.parse_and_eval("(char*)buf").string(length=int(gdb.parse_and_eval("nbytes"))))
