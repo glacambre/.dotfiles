@@ -7,6 +7,16 @@ augroup MY_GENERAL_AUGROUP
 	au BufUnload * wshada
 augroup END
 
+augroup MY_OCAML_AUGROUP
+	autocmd!
+	" Temporary, remove when https://github.com/vim/vim/issues/2428 is
+	" closed
+	au FileType ocaml setlocal commentstring=(*%s*)
+	au BufWritePre *.ml if executable("ocamlformat") | execute "normal! m'" | execute "%!ocamlformat --enable-outside-detected-project --name % -"  | execute "normal! ''" | end
+	au BufWritePre *.mli if executable("ocamlformat") | execute "normal! m'" | execute "%!ocamlformat --enable-outside-detected-project --name % -"  | execute "normal! ''" | end
+
+augroup END
+
 augroup MY_GIT_AUGROUP
 	autocmd!
 	au BufRead COMMIT_EDITMSG set ft=.gitcommit
