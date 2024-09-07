@@ -61,9 +61,6 @@ set hidden     " Do not unload buffers when leaving them
 set backspace=indent,eol,start " backspace deletes indent, eol and stat
 set matchpairs+=<:>
 
-set nocul " shows CursorLine
-set nonu  " shows line number
-
 set foldmethod=indent " Block folding is done with syntax
 set foldnestmax=10    " Fold a maximum of 10 blocks
 set nofoldenable      " Don't fold on file opening
