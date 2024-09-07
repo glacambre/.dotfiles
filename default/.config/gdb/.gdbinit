@@ -68,10 +68,6 @@ end
 # Firefox + RR: ignore sandbox signals
 handle SIGSYS noprint nostop
 
-# Disable security on everything. Hope I'll remember to remove this if I ever
-# start debugging malicious software...
-set auto-load safe-path /
-
 define printwrite
 python
 print(gdb.parse_and_eval("(char*)buf").string(length=int(gdb.parse_and_eval("nbytes"))))
