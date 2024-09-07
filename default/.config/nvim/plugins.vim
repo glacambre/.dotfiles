@@ -42,7 +42,7 @@ vmap ga <Plug>(EasyAlign)
 call minpac#add('https://github.com/kana/vim-textobj-user')
 call minpac#add('https://github.com/glts/vim-textobj-comment')
 call minpac#add('https://github.com/kana/vim-textobj-entire')
-call minpac#add('https://github.com/Julian/vim-textobj-variable-segment')
+call minpac#add('https://github.com/Julian/vim-textobj-variable-segment', {'branch':'main'})
 
 " Vim-polyglot
 let g:polyglot_disabled = ["graphql"]
