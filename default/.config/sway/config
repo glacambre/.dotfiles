@@ -5,7 +5,7 @@ input type:keyboard {
 }
 
 default_border          pixel 2
-gaps inner 2
+gaps inner 0
 default_orientation horizontal
 focus_follows_mouse no
 smart_gaps on
