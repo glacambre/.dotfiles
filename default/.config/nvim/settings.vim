@@ -4,6 +4,8 @@ if $TERM != "linux" || exists("g:started_by_nwin") || exists("g:started_by_firen
 	colorscheme colors
 endif
 
+set mouse=
+
 set autochdir
 
 " Use space for vertical split separator, fold separator and end of buffer
