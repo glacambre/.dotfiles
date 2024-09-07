@@ -72,5 +72,10 @@ handle SIGSYS noprint nostop
 # start debugging malicious software...
 set auto-load safe-path /
 
+define printwrite
+python
+print(gdb.parse_and_eval("(char*)buf").string(length=int(gdb.parse_and_eval("nbytes"))))
+end
+
 shell if test -f "$HOME/.config/gdb/.gdbinit.$HOST"; then echo source "$HOME/.config/gdb/.gdbinit.$HOST"; fi > /tmp/gdbinit.tmp
 source /tmp/gdbinit.tmp
