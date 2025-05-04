@@ -94,6 +94,8 @@ l.ocamllsp.setup{ on_attach = setup_lsp_settings }
 
 vim.diagnostic.config({ virtual_lines = true })
 
+vim.diagnostic.config({ virtual_lines = true })
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
 	callback = function(args)
