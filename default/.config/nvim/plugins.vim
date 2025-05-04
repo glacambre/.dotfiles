@@ -87,7 +87,8 @@ local function setup_lsp_settings(client, buf)
 end
 l.clangd.setup{ on_attach = setup_lsp_settings }
 l.tsserver.setup{ on_attach = setup_lsp_settings }
-l.als.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/prog/ada_language_server/.obj/server/ada_language_server" }  }
+l.ada_ls.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/prog/ada_language_server/.obj/server/ada_language_server" }  }
+vim.api.nvim_create_user_command('Gpr', function(opts) vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = { ada = { projectFile = table.concat(opts.fargs) } } } ) end, { nargs = 1 })
 l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
 l.ocamllsp.setup{ on_attach = setup_lsp_settings }
 
