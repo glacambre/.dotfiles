@@ -100,3 +100,5 @@ let g:netrw_browsex_viewer= "xdg-open" " Open files with xdg-open
 
 let g:tex_flavor = "latex"             " Sets which kind of latex I use
 
+let g:neovide_cursor_animation_length = 0.05 " Neovide cursor animation duration
+let g:neovide_scroll_animation_length = 0.04 " Neovide scroll animation duration
