@@ -91,6 +91,8 @@ l.als.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/prog/ada_language
 l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
 l.ocamllsp.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/.opam/default/bin/ocamllsp" } }
 
+vim.diagnostic.config({ virtual_lines = true })
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
 	callback = function(args)
