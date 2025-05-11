@@ -191,6 +191,8 @@ alias gr='git reset'
 alias grm='git rm'
 alias gs='git show'
 
+alias nameres_env='anod build --sandbox-dir="$HOME/wave" --deps-only libadalang ; anod install --sandbox-dir="$HOME/wave" libadalang ; eval `anod printenv --sandbox-dir="$HOME/wave" --build-env libadalang` ; export PATH="$HOME/wave/x86_64-linux/libadalang-internal/install/test-programs/:$PATH"'
+
 alias update-nvim='curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage -o ~/downloads/nvim && chmod +x ~/downloads/nvim && mv ~/downloads/nvim ~/bin/nvim'
 alias patchfox='rm -rf ~/.cache/mozilla ; find "$(dirname "$(realpath "$(which firefox)")")" -iname omni.ja -exec perl -i -pne "s/reserved=.true./               /g" "{}" ";"'
 
