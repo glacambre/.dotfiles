@@ -47,7 +47,8 @@ bindsym $mod+Shift+l move right
 bindsym $mod+f fullscreen
 
 # change container layout (tabbed, toggle split)
-bindsym $mod+t layout tabbed
+bindsym $mod+t exec "~/bin/menu-tn s:open"
+bindsym $mod+shift+t exec "~/bin/menu-tn"
 bindsym $mod+s layout toggle split
 
 # split vertical
@@ -111,8 +112,8 @@ bindsym $mod+Shift+agrave   move container to workspace $wp0
 # move workspaces around
 bindsym $mod+$mod2+h move workspace to output right
 bindsym $mod+$mod2+j move workspace to output bottom
-bindsym $mod+$mod2+k move workspace to output top
-bindsym $mod+$mod2+l move workspace to output left
+bindsym $mod+$mod2+k move workspace to output up
+bindsym $mod+$mod2+l move workspace to output down
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -120,7 +121,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Lock the computer
-bindsym $mod+q       exec i3lock --ignore-empty-password --show-failed-attempts
+bindsym $mod+q       exec i3lock --ignore-empty-password --show-failed-attempts -c '#000000'
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q "exec \"i3-nagbar -t warning -m '' -b 'Exit i3' 'i3-msg exit'\""
 
@@ -137,7 +138,7 @@ set     $mediatoggle  "exec mpc toggle &"
 bindsym $mod+p        $mediatoggle
 bindsym XF86AudioPlay $mediatoggle
 # Select specific song to play with $mod+P
-bindsym $mod+Shift+p exec ~/bin/dmusic
+bindsym $mod+Shift+p exec ~/bin/menu-music
 
 # Toggle random/non random music playing with $mod+o
 bindsym $mod+o exec mpc random
