@@ -10,7 +10,6 @@ zmodload zsh/zpty     # Enables starting commands in pseudo terminals
 export PATH="$HOME/bin/:$HOME/.cargo/bin/:$PATH"
 
 source "$ZDOTDIR/completion.zsh"
-source "$ZDOTDIR/hash_directories.zsh"
 source "$ZDOTDIR/history.zsh"
 source "$ZDOTDIR/ps1.zsh"
 source "$ZDOTDIR/vi-mode-color-prompt.zsh"
@@ -51,3 +50,7 @@ unsetopt notify               # Wait for a new prompt to be displayed before pri
 setopt numeric_glob_sort      # On {01..XX} expansions, sort numerically instead of lexicographically
 setopt pushd_ignore_dups      # Don't duplicate directories in the pushd stack
 setopt pushd_silent           # Don't print directory stack after pushd/popd
+
+export NVM_DIR="$HOME/.config//nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
