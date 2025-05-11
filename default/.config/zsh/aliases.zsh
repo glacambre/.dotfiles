@@ -93,6 +93,22 @@ function base16 () {
     done
 }
 
+function workenv () {
+    WORKTREE="$1"
+    if [[ "$WORKTREE" = "" ]] ; then
+        WORKTREE_PATH="$(git rev-parse --git-dir 2>/dev/null)"
+        if [[ "$?" = "0" ]] ; then
+            WORKTREE="$(basename "$WORKTREE_PATH")"
+            if [[ "$WORKTREE" = ".git" ]] ; then
+                WORKTREE="codepeer"
+            fi
+        else
+            WORKTREE="codepeer"
+        fi
+    fi
+    export PATH="$(echo $PATH | sed "s@/codepeer/[^/]*/install/@/codepeer/$WORKTREE/install/@g" | sed "s@/codepeer/[^/]*/support/@/codepeer/$WORKTREE/support/@g")"
+}
+
 # = alias that works as calculator
 autoload -U zcalc
 function __calc_plugin {
