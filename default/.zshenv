@@ -5,7 +5,6 @@ export PATH="$PATH:/usr/bin:/usr/sbin:/bin:/sbin"
 export SYSTEMD_EDITOR="vi"
 export EDITOR="nvim"
 export GIMP2_DIRECTORY="$HOME/.config/gimp-2.8"
-export GREP_COLORS="mt=01;35:fn=34:ln=11;37:se=37"
 export NODE_REPL_HISTORY=""
 export VISUAL="$EDITOR"
 export XDG_CONFIG_HOME="$HOME/.config/"
@@ -46,4 +45,3 @@ LS_COLORS="${LS_COLORS}:bd=33;01" # block device
 LS_COLORS="${LS_COLORS}:cd=33;01" # character device
 export LS_COLORS="$LS_COLORS"
 export ZLS_COLORS="$LS_COLORS"
-
