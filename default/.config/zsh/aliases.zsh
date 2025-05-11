@@ -93,30 +93,6 @@ function base16 () {
     done
 }
 
-# Wrapper around go binary to provide project-specific gopath
-function go () {
-    if [[ "$GOPATH" != "" ]]
-    then
-        command go "$@"
-        return
-    fi
-    local dir="$PWD"
-    for i in 0 1 2 3; do
-        if [ -d "$dir/.gopath" ]
-        then
-            GOPATH="$dir/.gopath" command go "$@"
-            return
-        fi
-        dir="$dir/../"
-    done
-    if [ ! -e "$PWD/.gopath" ]
-    then
-        mkdir .gopath
-    fi
-    GOPATH="$PWD/.gopath" command go "$@"
-    return
-}
-
 # = alias that works as calculator
 autoload -U zcalc
 function __calc_plugin {
