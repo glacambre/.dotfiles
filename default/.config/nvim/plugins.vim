@@ -85,30 +85,31 @@ local function setup_lsp_settings(client, buf)
 	vim.api.nvim_buf_set_keymap(buf, "n", "<C-n>",     "<C-x><C-o><C-n>", opts)
 	vim.api.nvim_buf_set_option(buf, "omnifunc",  "v:lua.vim.lsp.omnifunc")
 end
+
+function setup_autoformat (client, buf)
+  if not client:supports_method('textDocument/willSaveWaitUntil')
+      and client:supports_method('textDocument/formatting') then
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = vim.api.nvim_create_augroup('my.lsp', {clear=false}),
+      buffer = buf,
+      callback = function()
+        vim.lsp.buf.format({ bufnr = buf, id = client.id, timeout_ms = 1000 })
+      end,
+    })
+  end
+end
+
 l.clangd.setup{ on_attach = setup_lsp_settings }
 l.ada_ls.setup{ on_attach = setup_lsp_settings, cmd = { "/home/me/prog/ada_language_server/.obj/server/ada_language_server" }  }
 vim.api.nvim_create_user_command('Gpr', function(opts) vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = { ada = { projectFile = table.concat(opts.fargs) } } } ) end, { nargs = 1 })
 l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
-l.ocamllsp.setup{ on_attach = setup_lsp_settings }
+l.ocamllsp.setup{ on_attach = function (client, buf)
+  setup_autoformat(client, buf)
+  setup_lsp_settings(client, buf)
+end }
 
 vim.diagnostic.config({ virtual_lines = true })
 
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('my.lsp', {}),
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		if not client:supports_method('textDocument/willSaveWaitUntil')
-				and client:supports_method('textDocument/formatting') then
-			vim.api.nvim_create_autocmd('BufWritePre', {
-				group = vim.api.nvim_create_augroup('my.lsp', {clear=false}),
-				buffer = args.buf,
-				callback = function()
-					vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
-				end,
-			})
-		end
-	end,
-})
 END
 
 if s:do_update
