@@ -32,11 +32,34 @@ if vim.g.started_by_firenvim then
     group = id,
     callback = function(ev)
       local height = vim.api.nvim_win_text_height(0, {}).all
-      if height > vim.o.lines and height < max_height then
-        vim.o.lines = height
+      if height > vim.o.lines then
+        if height < max_height then
+          vim.o.lines = height
+        else
+          vim.o.lines = max_height
+        end
       end
     end
   })
+end
+
+function termBufName(bid)
+  local success, last_osc7_payload = pcall(function()
+    return vim.api.nvim_buf_get_var(bid, "last_osc7_payload")
+  end)
+  if success and last_osc7_payload ~= nil then
+    local dir = vim.fn.fnameescape(last_osc7_payload)
+    local chan = vim.bo[bid].channel
+    local pid = vim.fn.jobpid(chan)
+    -- argv always starts with '&shell -c', so slice it to remove that part
+    local args = vim.api.nvim_get_chan_info(chan).argv
+    if args[1] == vim.o.shell and args[2] == "-c" then
+      args = vim.list_slice(args, 3)
+    end
+    local result = "term:" .. dir .. "//" .. pid .. ":" .. table.concat(args, " ")
+    return result
+  end
+  return nil
 end
 
 function onTermRequest(e)
@@ -46,18 +69,40 @@ function onTermRequest(e)
       return
     end
     vim.api.nvim_buf_set_var(e.buf, "last_osc7_payload", dir)
-    if vim.o.autochdir and vim.api.nvim_get_current_buf() == e.buf then
+    local bid = vim.api.nvim_get_current_buf()
+    if vim.o.autochdir and bid == e.buf then
       vim.cmd.cd(vim.fn.fnameescape(dir))
+      local success, last_osc7_payload = pcall(function()
+        return vim.api.nvim_buf_get_var(bid, "last_osc7_payload")
+      end)
+      if success then
+        local name = termBufName(bid)
+        if name ~= nil then
+          vim.cmd.file(name)
+        end
+      end
     end
   end
 end
 
 function triggerTermAutochdir(e)
-  if vim.o.autochdir
-    and vim.b.last_osc7_payload ~= nil
-    and vim.fn.isdirectory(vim.b.last_osc7_payload) == 1
+  if not vim.o.autochdir then
+    return
+  end
+  local bid = vim.api.nvim_get_current_buf()
+  local success, last_osc7_payload = pcall(function()
+    return vim.api.nvim_buf_get_var(bid, "last_osc7_payload")
+  end)
+  if success
+    and last_osc7_payload ~= nil
+    and vim.fn.isdirectory(last_osc7_payload) == 1
     then
-    vim.cmd.cd(vim.fn.fnameescape(vim.b.last_osc7_payload))
+    local dir = vim.fn.fnameescape(last_osc7_payload)
+    vim.cmd.cd(dir)
+    local name = termBufName(bid)
+    if name ~= nil then
+      vim.cmd.file(name)
+    end
   end
 end
 
