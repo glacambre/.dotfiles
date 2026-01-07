@@ -43,12 +43,6 @@ call minpac#add('https://github.com/glts/vim-textobj-comment')
 call minpac#add('https://github.com/kana/vim-textobj-entire')
 call minpac#add('https://github.com/Julian/vim-textobj-variable-segment', {'branch':'main'})
 
-" Vim-polyglot
-let g:polyglot_disabled = ["graphql"]
-let g:LatexBox_no_mappings = 1
-call minpac#add('https://github.com/sheerun/vim-polyglot')
-call minpac#add('https://github.com/shiracamus/vim-syntax-x86-objdump-d')
-
 " Completes 'if' with 'endif', opening brackets with closing brackets...
 call minpac#add('https://github.com/rstacruz/vim-closer.git')
 call minpac#add('https://github.com/tpope/vim-endwise')
