@@ -38,6 +38,7 @@ vim.pack.add({'https://github.com/shumphrey/fugitive-gitlab.vim'})
 vim.g.fugitive_gitlab_domains = {['ssh://git@ssh.gitlab.adacore-it.com']= 'https://gitlab.adacore-it.com'}
 
 vim.pack.add({'https://github.com/neovim/nvim-lspconfig'})
+
 local function setup_lsp_settings(client, buf)
 	local opts = { noremap=true, silent=true }
 	vim.api.nvim_buf_set_keymap(buf, "n", "gd",        "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -67,12 +68,46 @@ function setup_autoformat (client, buf)
   end
 end
 
+local function als_on_init(client)
+       local path = client.workspace_folders[1].uri:sub(8)
+       if vim.fn.filereadable(path .. "/database.gpr") ~= 0 then
+               result = path .. "/database.gpr"
+       elseif vim.fn.filereadable(path .. "/project_support.gpr") ~= 0 then
+               result = path .. "/project_support.gpr"
+       elseif vim.fn.filereadable(path .. "/wrappers.gpr") ~= 0 then
+               result = path .. "/wrappers.gpr"
+       elseif vim.fn.filereadable(path .. "/codepeer.gpr") ~= 0 then
+               result = path .. "/codepeer.gpr"
+       elseif vim.fn.filereadable(path .. "/codepeer_ws.gpr") ~= 0 then
+               result = path .. "/codepeer_ws.gpr"
+       elseif vim.fn.filereadable(path .. "/gnat2scil.gpr") ~= 0 then
+               result = path .. "/gnat2scil.gpr"
+       elseif vim.fn.filereadable(path .. "/world.gpr") ~= 0 then
+               result = path .. "/world.gpr"
+       elseif vim.fn.filereadable(path .. "/gnat.gpr") ~= 0 then
+               result = path .. "/gnat.gpr"
+       end
+       if result ~= nil then
+               client.config.settings.ada = { projectFile = result, log_level = 0 }
+               client.notify("workspace/didChangeConfiguration", client.config.settings)
+       end
+       return true
+end
+
+vim.lsp.config('ada_ls', {
+       cmd = { "/home/lacambre/bin/ada_language_server_wrapper" };
+       on_attach = setup_lsp_settings;
+       on_init = als_on_init;
+       settings = {};
+})
+vim.api.nvim_create_user_command('Gpr', function(opts) vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = { ada = { projectFile = table.concat(opts.fargs) } } } ) end, { nargs = 1 })
+
 vim.lsp.config('clangd', { on_attach = setup_lsp_settings })
 vim.lsp.config('rust_analyzer', { on_attach = setup_lsp_settings })
 vim.lsp.config('ocamllsp', { on_attach = function (client, buf)
   setup_autoformat(client, buf)
   setup_lsp_settings(client, buf)
 end })
-vim.lsp.enable({ 'clangd', 'rust_analyzer', 'ocamllsp' })
+vim.lsp.enable({ 'clangd', 'rust_analyzer', 'ocamllsp', 'ada_ls' })
 
 vim.diagnostic.config({ virtual_lines = true })
