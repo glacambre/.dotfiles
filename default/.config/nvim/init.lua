@@ -3,7 +3,7 @@ vim.cmd.source(config_dir .. '/functions.vim')
 vim.cmd.source(config_dir .. '/settings.vim')
 vim.cmd.source(config_dir .. '/keymap.vim')
 vim.cmd.source(config_dir .. '/autocommands.vim')
-vim.cmd.source(config_dir .. '/plugins.vim')
+vim.cmd.source(config_dir .. '/plugins.lua')
 vim.opt.rtp:append('/home/me/prog/firenvim/')
 
 if vim.g.started_by_firenvim then
