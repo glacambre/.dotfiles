@@ -11,11 +11,10 @@ if [ "$1" != "" ]; then
     amount="$1"
 fi
 
-# Try pulseaudio first
+# Try pulseaudio/pipewire first, adjusting the default sink
 if command -v pactl >/dev/null 2>/dev/null; then
-    sink_name="$(pactl list | awk '/State: RUNNING/,/Description:/{if ($2 ~ /combined/) {print $2; exit}}')"
-    if [ "$sink_name" != "" ]; then
-        exec pactl set-sink-volume "$sink_name" "${symbol}${amount}%"
+    if pactl get-sink-volume @DEFAULT_SINK@ >/dev/null 2>/dev/null; then
+        exec pactl set-sink-volume @DEFAULT_SINK@ "${symbol}${amount}%"
     fi
 fi
 
