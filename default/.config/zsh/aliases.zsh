@@ -104,6 +104,12 @@ aliases[=]='noglob __calc_plugin'
 autoload -U zmv
 alias zmv='noglob zmv'
 
+function dbg () {
+    binary="$1"
+    shift
+   gdb -ex 'b main' -ex 'run' -ex 'd' -q "$binary" --args "$binary" "$@"
+}
+
 # Prints ssh keys. Useful to check if new host has the right key
 function print_keys () {
     echo "SSH keys:"
@@ -126,7 +132,6 @@ alias _='sudo'
 alias cleantex='rm *.{aux,idx,log,nav,out,snm,toc,vrb,bbl,blg}(.N) 2>/dev/null'
 alias cp='cp  -i'
 alias dd='dd status=progress'
-alias gdb='gdb -q'
 alias l='ls -lAh --color=auto'
 alias ls='ls --color=auto'
 alias ln='nocorrect ln'
