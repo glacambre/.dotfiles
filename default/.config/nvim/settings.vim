@@ -23,7 +23,7 @@ set wildoptions+=pum,fuzzy          " Cool popup menu
 set wildchar=<C-n>
 set wildignore+=*.o,*.class         " Ignore certain filetypes
 set wildignore+=*.cmi,*.cmo
-set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.ico,*.svg,*.xcf
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.ico,*.xcf
 set wildignore+=*.mp3,*.ogg,*.opus,*.wav,*.flac,
 set wildignore+=*.avi,*.mp4,*.mpg,*.mov,*.flv,*.webm
 set wildignore+=*.pdf,*.doc,*.docx,*.xls,*.xlsx,*.odt,*.ods
@@ -31,7 +31,7 @@ set wildignore+=*.min.js
 set wildignore+=*.pem
 set wildignore+=*.tar,*.zip,*.rar,*.7z,*.tgz
 set wildignore+=*.swp,*.swp.*,*.bak
-set wildignore+=*.toc,*.nav,*.aux,*.log,*.dvi,*.cls,*.sty,*.bib
+set wildignore+=*.toc,*.nav,*.aux,*.dvi,*.cls,*.sty,*.bib
 
 set completeopt=menu,menuone,noinsert,noselect,fuzzy
 
