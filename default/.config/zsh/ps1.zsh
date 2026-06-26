@@ -15,8 +15,11 @@ else
     esac
 fi
 
-if [ "$SHLVL" -gt 1 ]; then
-    PS1="${PS1}∞"
+# Only use an angle bracket as PS1 if not running in nvim, as neovim delineates
+# prompt markers on its own
+if [ "$NVIM" = "" ]; then
+    PS1="$PS1>"
 fi
 
-PS1="$PS1>"
+# Add semantic prompts
+PS1=$'%{\e]133;A\a%}'$PS1$'%{\e]133;B\a%}'
