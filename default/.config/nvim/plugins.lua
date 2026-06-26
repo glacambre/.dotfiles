@@ -33,6 +33,7 @@ vim.pack.add({'https://github.com/tpope/vim-sleuth.git'})
 
 -- Git gud
 vim.pack.add({'https://github.com/tpope/vim-fugitive'})
+vim.pack.add({'https://github.com/barrettruth/diffs.nvim'})
 vim.pack.add({'https://github.com/shumphrey/fugitive-gitlab.vim'})
 vim.g.fugitive_gitlab_domains = {['ssh://git@ssh.gitlab.adacore-it.com']= 'https://gitlab.adacore-it.com'}
 
