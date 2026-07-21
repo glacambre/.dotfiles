@@ -109,6 +109,28 @@ end
 
 vim.api.nvim_create_autocmd({ 'TermRequest' }, { callback = onTermRequest })
 vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'DirChanged' }, { callback = triggerTermAutochdir })
+vim.api.nvim_create_autocmd({ 'DirChanged' }, { callback = function (e)
+  local dirs = vim.iter(vim.api.nvim_list_bufs()):map(function(b)
+    if not vim.api.nvim_get_option_value('buflisted', {buf=b}) then
+      return nil
+    end
+    local success, last_osc7_payload = pcall(function()
+      return vim.api.nvim_buf_get_var(b, "last_osc7_payload")
+    end)
+    local dir = ""
+    if success then
+      dir = last_osc7_payload
+    else
+      dir = vim.fs.dirname(vim.api.nvim_buf_get_name(b))
+    end
+    if vim.fn.isdirectory(dir) == 1 then
+      return dir
+    end
+  end):unique():totable()
+  table.insert(dirs, 1, ".,")
+  vim.opt.path = dirs
+end
+})
 
 
 vim.api.nvim_create_autocmd('TermOpen', {

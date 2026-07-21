@@ -19,7 +19,8 @@ local function build_find_cmd()
   for _, dir in ipairs(exclude_dirs) do
     table.insert(prune, "-path " .. vim.fn.shellescape("*/" .. dir))
   end
-  return "find . \\( " .. table.concat(prune, " -o ") .. " \\) -prune -o -type f -printf '%P\\n' 2>/dev/null"
+  local path = table.concat(vim.iter(vim.opt.path:get()):map(vim.fn.shellescape):totable(), " ")
+  return "find " .. path .. " \\( " .. table.concat(prune, " -o ") .. " \\) -prune -o -type f -printf '%P\\n' 2>/dev/null"
 end
 
 vim.o.grepprg = "LC_ALL=C grep -RIHns " .. grep_exclude_args() .. " $* ."
