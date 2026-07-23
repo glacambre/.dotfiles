@@ -111,3 +111,17 @@ vim.api.nvim_create_autocmd("CmdlineLeavePre", {
     end
   end,
 })
+
+local function leave_wildmenu()
+  if vim.fn.wildmenumode() == 0 then
+    return ""
+  end
+  -- <C-y> keeps a selected match, <C-e> reverts to what you typed
+  return vim.fn.cmdcomplete_info().selected ~= -1 and "<C-y>" or "<C-e>"
+end
+
+for _, key in ipairs({ "<Left>", "<Right>", "<Home>", "<End>" }) do
+  vim.keymap.set("c", key, function()
+    return leave_wildmenu() .. key
+  end, { expr = true })
+end
