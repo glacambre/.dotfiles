@@ -38,11 +38,6 @@ vim.pack.add({'https://github.com/shumphrey/fugitive-gitlab.vim'})
 vim.g.fugitive_gitlab_domains = {['ssh://git@ssh.gitlab.adacore-it.com']= 'https://gitlab.adacore-it.com'}
 
 vim.pack.add({'https://github.com/neovim/nvim-lspconfig'})
-local l = require("lspconfig")
-local function nnoremap(keys, command)
-	vim.api.nvim_command("nnoremap <buffer> <silent> " .. keys
-		.. " <cmd>lua " .. command .. "()<CR>")
-end
 local function setup_lsp_settings(client, buf)
 	local opts = { noremap=true, silent=true }
 	vim.api.nvim_buf_set_keymap(buf, "n", "gd",        "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -56,7 +51,7 @@ local function setup_lsp_settings(client, buf)
 	vim.api.nvim_buf_set_keymap(buf, "n", "<Space>ld", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(buf, "n", "<C-r>",     ":lua vim.lsp.buf.rename('')<Left><Left>", opts)
 	vim.api.nvim_buf_set_keymap(buf, "n", "<C-n>",     "<C-x><C-o><C-n>", opts)
-	vim.api.nvim_buf_set_option(buf, "omnifunc",  "v:lua.vim.lsp.omnifunc")
+	vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = buf })
 end
 
 function setup_autoformat (client, buf)
@@ -72,11 +67,12 @@ function setup_autoformat (client, buf)
   end
 end
 
-l.clangd.setup{ on_attach = setup_lsp_settings }
-l.rust_analyzer.setup{ on_attach = setup_lsp_settings }
-l.ocamllsp.setup{ on_attach = function (client, buf)
+vim.lsp.config('clangd', { on_attach = setup_lsp_settings })
+vim.lsp.config('rust_analyzer', { on_attach = setup_lsp_settings })
+vim.lsp.config('ocamllsp', { on_attach = function (client, buf)
   setup_autoformat(client, buf)
   setup_lsp_settings(client, buf)
-end }
+end })
+vim.lsp.enable({ 'clangd', 'rust_analyzer', 'ocamllsp' })
 
 vim.diagnostic.config({ virtual_lines = true })
