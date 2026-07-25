@@ -14,7 +14,7 @@ hi! link Identifier       Normal
 hi! link Function         Identifier
 
 hi Statement guifg=#767676 ctermfg=243
-hi! link Conditonal       Statement
+hi! link Conditional      Statement
 hi! link Repeat           Statement
 hi! link Label            Statement
 hi! link Keyword          Statement
