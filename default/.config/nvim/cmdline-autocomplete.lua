@@ -2,7 +2,6 @@
 local augroup = vim.api.nvim_create_augroup("cmdline_fuzzy", { clear = true })
 
 vim.o.wildmode = "noselect:lastused,full"
-vim.o.wildoptions = "pum"
 
 local exclude_dirs = {".nyc_output", "node_modules", "build", "_build", "bin", "generated", "node_modules", ".svn", ".git", ".hg", ".bzr", ".svn", "website", "_build_logs", "undodir", "obj-x86_64-pc-linux-gnu", "target"}
 

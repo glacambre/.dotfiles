@@ -19,7 +19,7 @@ set tabline=%!MyTabLine()           " MyTabLine is defined in functions.vim
 
 set wildignorecase                  " Ignore case when completing filenames
 set wildmenu                        " Adds the menu at the bottom of the screen
-set wildoptions+=pum,fuzzy          " Cool popup menu
+set wildoptions+=fuzzy              " Fuzzy cmdline completion (pum is default)
 set wildchar=<C-n>
 set wildignore+=*.o,*.class         " Ignore certain filetypes
 set wildignore+=*.cmi,*.cmo
