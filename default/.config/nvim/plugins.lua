@@ -22,7 +22,7 @@ vim.pack.add({'https://github.com/junegunn/vim-easy-align'})
 vim.pack.add({'https://github.com/kana/vim-textobj-user'})
 vim.pack.add({'https://github.com/glts/vim-textobj-comment'})
 vim.pack.add({'https://github.com/kana/vim-textobj-entire'})
-vim.pack.add({{src = 'https://github.com/Julian/vim-textobj-variable-segment', {version = 'main'}}})
+vim.pack.add({'https://github.com/Julian/vim-textobj-variable-segment'})
 
 -- Completes 'if' with 'endif', opening brackets with closing brackets...
 vim.pack.add({'https://github.com/rstacruz/vim-closer.git'})
