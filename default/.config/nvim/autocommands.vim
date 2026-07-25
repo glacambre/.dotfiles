@@ -18,11 +18,6 @@ augroup MY_OCAML_AUGROUP
 
 augroup END
 
-augroup MY_GIT_AUGROUP
-	autocmd!
-	au BufRead COMMIT_EDITMSG set ft=.gitcommit
-augroup END
-
 augroup MY_TERM_AUGROUP
 	autocmd!
 	au TermOpen * silent call OnTermOpen()
