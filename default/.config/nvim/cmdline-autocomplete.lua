@@ -13,16 +13,51 @@ local function grep_exclude_args()
   return table.concat(args, " ")
 end
 
+-- The dirs of all listed buffers, as maintained in 'path' by init.lua. Dirs
+-- nested in another one are dropped: neither grep nor find can skip what they
+-- have already seen, so walking both would report every match twice.
+local function path_dirs()
+  local dirs = vim.iter(vim.opt.path:get())
+    :map(function(dir)
+      return (dir:gsub("\\(.)", "%1"))
+    end)
+    :filter(function(dir)
+      return dir ~= "" and vim.fn.isdirectory(dir) == 1
+    end)
+    -- ":p" yields an absolute path with a trailing slash, so a dir is nested in
+    -- another exactly when that other one is a prefix of it
+    :map(function(dir)
+      return vim.fn.fnamemodify(dir, ":p")
+    end)
+    :unique()
+    :totable()
+  local roots = vim.iter(dirs)
+    :filter(function(dir)
+      return not vim.iter(dirs):any(function(other)
+        return #other < #dir and dir:sub(1, #other) == other
+      end)
+    end)
+    :map(vim.fn.shellescape)
+    :totable()
+  if vim.tbl_isempty(roots) then
+    roots = { "." }
+  end
+  return table.concat(roots, " ")
+end
+
 local function build_find_cmd()
   local prune = {}
   for _, dir in ipairs(exclude_dirs) do
     table.insert(prune, "-path " .. vim.fn.shellescape("*/" .. dir))
   end
-  local path = table.concat(vim.iter(vim.opt.path:get()):map(vim.fn.shellescape):totable(), " ")
-  return "find " .. path .. " \\( " .. table.concat(prune, " -o ") .. " \\) -prune -o -type f -printf '%P\\n' 2>/dev/null"
+  return "find " .. path_dirs() .. " \\( " .. table.concat(prune, " -o ") .. " \\) -prune -o -type f 2>/dev/null"
 end
 
-vim.o.grepprg = "LC_ALL=C grep -RIHns " .. grep_exclude_args() .. " $* ."
+local function build_grepprg()
+  return "LC_ALL=C grep -RIHns " .. grep_exclude_args() .. " $* " .. path_dirs()
+end
+
+vim.o.grepprg = build_grepprg()
 vim.o.grepformat = "%f:%l:%m"
  
 vim.api.nvim_create_autocmd("CmdlineChanged", {
@@ -35,7 +70,7 @@ vim.api.nvim_create_autocmd("CmdlineChanged", {
  
 local files_cache = {}
  
-_G._cmdline_find = function(arg, _)
+_G._cmdline_find = function(arg, completion)
   if vim.tbl_isempty(files_cache) then
     files_cache = vim.fn.systemlist(build_find_cmd())
   end
@@ -51,6 +86,9 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
   pattern = ":",
   callback = function()
     files_cache = {}
+    -- 'path' follows the listed buffers, and there is no 'grepfunc' to compute
+    -- this lazily, so refresh 'grepprg' from it here
+    vim.o.grepprg = build_grepprg()
   end,
 })
  

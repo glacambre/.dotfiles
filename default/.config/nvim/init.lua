@@ -119,7 +119,7 @@ vim.api.nvim_create_autocmd({ 'DirChanged' }, { callback = function (e)
     end)
     local dir = ""
     if success then
-      dir = last_osc7_payload
+      dir = last_osc7_payload:gsub("//", "/")
     else
       dir = vim.fs.dirname(vim.api.nvim_buf_get_name(b))
     end
@@ -127,7 +127,6 @@ vim.api.nvim_create_autocmd({ 'DirChanged' }, { callback = function (e)
       return dir
     end
   end):unique():totable()
-  table.insert(dirs, 1, ".,")
   vim.opt.path = dirs
 end
 })
