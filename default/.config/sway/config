@@ -154,6 +154,16 @@ bindsym $mod+Shift+i         $volup
 bindsym XF86AudioLowerVolume $voldown
 bindsym XF86AudioRaiseVolume $volup
 
+# Mute on Sway startup and whenever its configuration is reloaded.
+exec_always pactl set-source-mute @DEFAULT_SOURCE@ 1
+# Push-to-talk: unmute on press, mute on release. Ideally should be bound to
+# the mic media key, but that'd mean recompiling the keyboard firmware to have
+# that key in the right place, don't want to do that for now.
+bindsym --no-repeat $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ 0
+bindsym --release $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ 1
+bindsym $mod+Shift+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+
 # Decrease brightness with $mod+u, increase with $mod+U
 set     $brightdown           exec sudo -A ~/bin/bdown
 set     $brightup             exec sudo -A ~/bin/bup
