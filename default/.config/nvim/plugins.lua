@@ -36,6 +36,44 @@ vim.pack.add({'https://github.com/tpope/vim-fugitive'})
 vim.pack.add({'https://github.com/barrettruth/diffs.nvim'})
 vim.pack.add({'https://github.com/shumphrey/fugitive-gitlab.vim'})
 vim.g.fugitive_gitlab_domains = {['ssh://git@ssh.gitlab.adacore-it.com']= 'https://gitlab.adacore-it.com'}
+-- User command to edit/review the currently unstaged changes
+vim.api.nvim_create_user_command('GdiffAll', function(opts)
+  local ref = opts.args ~= '' and opts.args or nil
+
+  local root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+  if vim.v.shell_error ~= 0 or not root or root == '' then
+    vim.notify('Not inside a git repository', vim.log.levels.ERROR)
+    return
+  end
+
+  local diff_cmd = { 'git', '-C', root, 'diff', '--name-only' }
+  if ref then
+    table.insert(diff_cmd, 4, ref) -- git diff <ref> --name-only
+  end
+
+  local files = vim.fn.systemlist(diff_cmd)
+  if vim.v.shell_error ~= 0 then
+    vim.notify('git diff failed (bad ref: ' .. (ref or '') .. '?)', vim.log.levels.ERROR)
+    return
+  end
+
+  for _, f in ipairs(files) do
+    if f ~= '' then
+      local abs_path = root .. '/' .. f
+      vim.cmd('tabedit ' .. vim.fn.fnameescape(abs_path))
+      if ref then
+        vim.cmd('Gdiffsplit ' .. ref)
+      else
+        vim.cmd('Gdiffsplit')
+      end
+    end
+  end
+end, {
+  nargs = '?',
+  complete = function()
+    return vim.fn.systemlist('git branch --format=%(refname:short)')
+  end,
+})
 
 vim.pack.add({'https://github.com/neovim/nvim-lspconfig'})
 
