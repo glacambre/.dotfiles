@@ -5,7 +5,7 @@ if [[ "$USER" != 'me' ]] && [[ "$USER" != 'lacambre' ]]; then
 fi
 
 # Needed to check for both ssh and recursion
-parentprocess="$(ps -o comm= -p $PPID)"
+parentprocess="$(ps -o comm= -p $PPID 2>/dev/null)"
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     PS1="%n@%M"
